@@ -1,11 +1,17 @@
 <!DOCTYPE>
-<html>
+<html ng-app='TaoLoo'>
 <header>
+	<title>TaoLoo</title>
+	<meta charset="utf-8">
+    
 	<link href="css/layout.css" rel="stylesheet">
     
 	<script src='js/angular.js'></script>
     <script src="js/ANcontrol.js"></script>
 </header>
 <body>
+	<div ng-controller='TaoLooMenu'>
+		<p ng-repeat='list in lists'>{{list.name}}</p>
+    </div>
 </body>
 </html>
