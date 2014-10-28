@@ -1,0 +1,26 @@
+body{margin: 0;padding: 0;width: 100%;height: auto;margin: auto;
+font-family: '文泉驛微米黑 Regular', '文泉驛微米黑','Arial Negreta cursiva', 'Arial','微軟正黑體';
+background:rgba(242, 242, 242, 1);}
+.input{height: 40px;width:200px;border:none;}
+.button{border: none;width: 70px;height: 40px;}
+
+.showUs{width: 100%;position:relative;height: 440px;}
+	.logo{position:absolute;background: url(../images/taolou_logo.jpg);width:380px;height: 100px;background-size: auto 100%;margin-left: 50px;}
+	.showImage{width: 1024px;height: 400px;margin: auto;border:1px dashed black;margin-top: 20px;}
+
+.taoloumenu{position:relative;width: 100%;height: 70px;border-bottom: 3px solid black;border-top: 3px solid black;}
+	.menu{margin: auto;list-style: none;position: absolute;top:30px;font-size: 18px;left: 350px;}
+	.menu li{display: inline;margin-right: 30px;}
+	.menu li a{color: black;text-decoration: none;font-weight: 500;}
+	.menu li a:hover{text-decoration: underline;}
+
+	.search{position: absolute;top: 0px;left:900px;background: rgb(254,228,33);height: 70px;width: 300px;}
+		.searchPos{position: absolute;top: 15px;}
+		.searchBar{left: 10px;}
+		.goSearch{right: 10px;}
+		.goSearch:hover{cursor: pointer;}
+
+.body{position: relative;width: 1024px;margin: auto;height: auto;}
+
+.footer{width: 100%;height: auto;position: relative;background: black;}
+	.ourInfo{width: 1024px;height: 100px;margin: auto;}

@@ -1,11 +1,11 @@
-var TaoLoo = angular.module('TaoLoo',[]);
+var TaoLou = angular.module('TaoLou',[]);
 
-TaoLoo.controller('TaoLooMenu',['$scope', function TaoLooMenu($scope){
+TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 
 	$scope.lists=[
-		{'name':'會員專區','url':'login.html'},
-		{'name':'聯絡我們','url':'contact.html'},
-		{'name':'店家搜尋','url':'search.html'},
-		{'name':'最新活動','url':'news.html'}
+		{'name':'首頁','url':'index.html'},
+		{'name':'發現更多公司','url':'moreCompany.html'},
+		{'name':'註冊','url':'login.html'},
+		{'name':'登入','url':'login.html'}
 	];
 }]);
