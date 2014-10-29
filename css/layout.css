@@ -24,7 +24,7 @@ background:#ffffff;}
 			.goSearch{right: 10px;}
 			.goSearch:hover{cursor: pointer;}
 
-.body{position: relative;width: 1024px;margin: auto;height: auto;}
+.body{position: relative;width: 1024px;margin: auto;height: auto;margin-top: 50px;margin-bottom: 50px;}
 
 .footer{width: 100%;height: auto;position: relative;background: #0072E3;}
 	.ourInfo{width: 1024px;height: 100px;margin: auto;color: white;}
