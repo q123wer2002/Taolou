@@ -1,24 +1,24 @@
 body{margin: 0;padding: 0;width: 100%;height: auto;margin: auto;
 font-family: '文泉驛微米黑 Regular', '文泉驛微米黑','Arial Negreta cursiva', 'Arial','微軟正黑體';
-background:#ffffff;}
+background:url(../images/pattern.png);}
 ::selection {background: #b65132;color: #fff;}
 ::-moz-selection {background: #b65132;color: #fff;}
-.input{height: 40px;width:200px;border:none;font-size: 15px;font-weight: 500;}
+.input{height: 40px;width:200px;border:none;font-size: 15px;font-weight: 500;background: rgba(242, 242, 242, 1);}
 .button{border: none;width: 70px;height: 40px;background: #46A3FF;font-weight: 500;}
 
 
 .showUs{width: 100%;position:relative;height: 440px;}
 	.logo{position:absolute;background: url(../images/taolou_logo.jpg);width:380px;height: 100px;background-size: auto 100%;margin-left: 50px;}
-	.showImage{width: 1024px;height: 400px;margin: auto;border:1px dashed #46A3FF;margin-top: 20px;}
+	.showImage{width: 1024px;height: 400px;margin: auto;border:1px dashed #46A3FF;margin-top: 20px;background: white;}
 
-.taoloumenu{position:relative;width: 100%;height: 70px;border-bottom: 3px solid black;border-top: 3px solid black;}
+.taoloumenu{position:relative;width: 100%;height: 70px;border-bottom: 3px solid black;border-top: 3px solid black;background: white;}
 	.menuBar{width: 1024px;position: relative;margin: auto;}
 		.menu{margin: auto;list-style: none;position: absolute;top:30px;font-size: 18px;left: 0;}
 		.menu li{display: inline;margin-right: 30px;}
 		.menu li a{color: black;text-decoration: none;font-weight: 500;}
 		.menu li a:hover{text-decoration: underline;}
 
-		.search{position: absolute;top: 0px;right:0;background: rgba(242, 242, 242, 1);height: 70px;width: 300px;}
+		.search{position: absolute;top: 0px;right:0;background: white;height: 70px;width: 300px;}
 			.searchPos{position: absolute;top: 15px;}
 			.searchBar{left: 10px;}
 			.goSearch{right: 10px;}
