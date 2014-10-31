@@ -1,11 +1,31 @@
-.partner{position:ab;width: 210px;height: auto;padding-top: 10px;padding-bottom: 10px;text-align: left;background: white;}	
-	.partner h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-left: 10px;}
+.partner{position:absolute;width: 210px;height: auto;display:inline-block;text-align: left;background: white;top: 0;padding-bottom: 15px;}	
+h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-left: 10px;}
 	.partnerList{width: 100%;text-align: left;left:10px;}
-	.partnerList a{display: block;text-decoration: none;color: black;height: 35px;}
+	.partnerList a{display: block;text-decoration: none;color: black;height: 35px;padding: 10px 10px 10px 10px;}
 	.partnerList a:hover{background: #eceef1;}
 	.partnerList img{width: 25px;height: 25px;margin-top: 5px;}
 	.title-icon{background-position: -190px -113px;}
 
-.selectCompany{position: absolute;width: 720px;height: auto;left:300px;top:0px;background: white;}
+.selectCompany{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;border-bottom: 1px solid #eceef1;}
+	.title-box{background-position: -190px 0px;}
 	.selector{width: 100%;height: auto;position: relative;}
-	.selector ul{list-style: none;}
+	.selector ul{list-style: none;padding: 10px;margin-left: 30px;}
+		.tagName{font-weight: 700;font-size: 15px;margin-left: -15px;padding-right: 15px;}
+	.selector ul li{display: inline;}
+		.tag{margin-right: 15px;padding: 3px;}
+		.tag:hover{cursor: pointer;background:#707b91;color: #ffffff;border-radius: 2px;}
+
+.showJobs{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;}
+	.jobitem{text-decoration: none;color: #9097a4;position: relative;}
+	.jobInfo:hover{background: #eceef1;}
+		.jobInfo{width: 680px;height: 52px;padding: 14px 20px 14px 20px;position: relative;border-bottom: 1px solid #eceef1;}
+		.jobInfo img{width: 50px;height: 50px;}
+			.author{position:absolute;width: 610px;height: 28px;top: 18px;left: 94px;}
+			.author b{margin-right: 10px;}
+			.job-meta{position:absolute;width: 610px;height: 24px;bottom: 18px;left: 94px;}
+			.job-meta span{margin-right: 25px;}
+
+.dividePage{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;}
+	.pageBar{width: 670px;height: 30px;padding: 25px 25px 25px 25px;}
+		.pageTag{background: #eceef1;margin-right: 15px;height: 30px;text-decoration: none;color: #6b7485;padding: 10px;border-radius: 2px;}
+		.pageTag:hover{background:#707b91;color: white;}

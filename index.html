@@ -8,13 +8,15 @@
     
 	<script src='js/angular.js'></script>
     <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
 </header>
 <body>
 	<div class='showUs'>
-		<div class='logo'></div>
 		<div class='showImage'></div>
 	</div>
 	<div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
 		<div class='menuBar'>
 			<ul class='menu'>
 				<li ng-repeat='list in lists'>
@@ -24,7 +26,6 @@
 			
 			<div class='search'>
 				<form>
-
 					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
 					<button class='goSearch searchPos button'>搜尋</button>
 				</form>
@@ -35,37 +36,78 @@
     <link href="css/index.css" rel="stylesheet">
 
     <div class='body'>
-    	<div class='partner'>
+    	<nav class='partner'>
     		<h3>
                 <span class='icon title-chart title-icon'></span>
                 <span>推薦公司</span>
             </h3>
     		<div class='partnerList'>
-    			<a href="" ng-repeat='i in [1,2,3,4,5]'>
+    			<a href="" ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]'>
     				<img src="images/taolou_logo.jpg">
     				<span>第{{i}}家公司</span>
     			</a>
     		</div>
-    	</div>
+    	</nav>
 
-    	<div class='selectCompany'>
+    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+            <h3>
+                <span class='icon title-chart title-box'></span>
+                <span>瀏覽公司</span>
+            </h3>
     		<div class='selector'>
-    			<ul class='job'>
-    				<li><h4>熱門</h4></li>
+    			<ul class='hotJob'>
+    				<li class='tagName'>熱門</li>
+                    <li class='tag' ng-repeat='hotJob in hotJobs'>{{hotJob.name}}</li>
     			</ul>
     			<ul class='location'>
-    				<li><h4>地點</h4></li>
+    				<li class='tagName'>地區</li>
+                    <li class='tag' ng-repeat='pos in positions'>{{pos.name}}</li>
     			</ul>
     			<ul class='jobtype'>
-    				<li><h4>類型</h4></li>
+    				<li class='tagName'>類型</li>
+                    <li class='tag' ng-repeat='type in jobTypes'>{{type.name}}</li>
     			</ul>
     		</div>
+    	</section>
 
-    	</div>
+        <div class='showJobs'>
+            <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3,4,5,6,7,8,9,10,11,12,13]'>
+                <div class='jobInfo'>
+                    <figure>
+                        <img src="images/taolou_logo.jpg">
+                    </figure>
+                    <div class='author'>
+                        <b class="name">狸狗信息</b>
+                        <b class="job-creator-type">HR</b>
+                        <span class="company-domain">*@meidebi.com </span>
+                        发布了 <b class="job-title">移动产品经理</b>
+                    </div>
+                    <div class='job-meta'>
+                        <span class="location">地点<b>重庆</b></span>
+                        <span class="type">工作性质<b>全职</b></span>
+                        <span class="salary-start">起薪<b>4000</b></span>
+                        <span class="stock-share">股票或期权<b>提供</b></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class='dividePage'>
+            <div class='pageBar'>
+                <a class='home pageTag' href="">首頁</a>
+                <a class='pre pageTag' href="">上一頁</a>
+                <a class='page pageTag' href="" ng-repeat='i in [3,4,5,6,7]'>{{i}}</a>
+                <a class='next pageTag' href="">下一頁</a>
+            </div>
+        </div>
+    
     </div>
 
     <div class='footer'>
-    	<div class='ourInfo'>關於我們</div>
+    	<div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
     </div>
 </body>
 </html>
