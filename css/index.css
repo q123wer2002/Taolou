@@ -1,8 +1,11 @@
-.partner{position:relative;width: 270px;height: auto;border: 2px solid black;padding-top: 10px;padding-bottom: 10px;text-align: center;}	
-	.partnerList{width: 100%;text-align: center;}
+.partner{position:ab;width: 210px;height: auto;padding-top: 10px;padding-bottom: 10px;text-align: left;background: white;}	
+	.partner h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-left: 10px;}
+	.partnerList{width: 100%;text-align: left;left:10px;}
 	.partnerList a{display: block;text-decoration: none;color: black;height: 35px;}
-	.partnerList a:hover{background: gray;color: white;}
+	.partnerList a:hover{background: #eceef1;}
 	.partnerList img{width: 25px;height: 25px;margin-top: 5px;}
+	.title-icon{background-position: -190px -113px;}
 
-.selectCompany{position: absolute;width: 700px;height: auto;left:300px;top:0px;}
+.selectCompany{position: absolute;width: 720px;height: auto;left:300px;top:0px;background: white;}
 	.selector{width: 100%;height: auto;position: relative;}
+	.selector ul{list-style: none;}
