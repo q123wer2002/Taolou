@@ -1,5 +1,5 @@
 <?php
-require'include/function/main.php';
+include_once 'share.php';
 
 
 
