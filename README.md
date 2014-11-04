@@ -2,7 +2,7 @@
 ============
 使用者看：
 
-1. 首頁(職業列表) => <span style='color:red;'>index.html, 完成!</span>
+1. 首頁(職業列表) => index.html, 完成!
 2. 職位頁面
 3. 公司頁面
 4. 專題頁面
@@ -29,14 +29,14 @@
 撰寫前規則
 ===========
 1. layout.html是板型，寫每個頁面都可以用(如果不需要廣告，可以把直接把上面廣告的div刪掉)
-2. 內容直接寫在 <div class='body'></div> 內，寬度 '1024px'
-3. 在 <div class='body'></div> 上面載入此頁面專屬的 css
+2. 內容直接寫在 &lt;div class='body'&gt;&lt;/div&gt;  內，寬度 '1024px'
+3. 在 &lt;div class='body'&gt;&lt;/div&gt; 上面載入此頁面專屬的 css
 4. 需要重複的地方，可以用簡單的 angularjs，方法如下
-//<p ng-repeat='i in [1,2,3]'>你好{{i}}</p>
+&lt;p ng-repeat='i in [1,2,3]'&gt;你好{{i}}&lt;/p&gt;
 這樣就會出現 
-//<p>你好1</p>
-//<p>你好2</p>
-//<p>你好3</p>
+&lt;p&gt;你好1&lt;/p&gt;
+&lt;p&gt;你好2&lt;/p&gt;
+&lt;p&gt;你好3&lt;/p&gt;
 
 架構
 ======
