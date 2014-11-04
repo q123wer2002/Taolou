@@ -16,8 +16,18 @@ $obj_tmp1->ip_address;
 $obj_tmp1->ipVisit_date;
 /////////////////////////
 
-//$obj_tmp1->login_time=$_SESSION[USER_INFO]["login_time"];
-//$obj_tmp1->login_name=$_SESSION[USER_INFO]["name"];
+
+//判斷是不是會員
+if($_SESSION['user']){}
+else{}
+//===============
+
+//判斷是個人帳號，還是企業帳戶
+
+//============================
+
+
+//==========================================
 
 
 ?>
