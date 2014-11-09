@@ -38,4 +38,18 @@ TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 		{'name':'實習','typeTag':'4'}
 	];
 
+	$scope.cities=[
+		{'name':'全部','cityTag':'1'},
+		{'name':'Taipei','cityTag':'2'},
+		{'name':'Taichung','cityTag':'3'},
+		{'name':'eat shit','cityTag':'4'}
+	];
+
+	$scope.rank=[
+		{'name':'total','rankTag':'1'},
+		{'name':'hot','rankTag':'2'},
+		{'name':'new','rankTag':'3'},
+	];
+
+
 }]);
