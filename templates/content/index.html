@@ -1,0 +1,68 @@
+<link href="css/index.css" rel="stylesheet">
+
+    	<nav class='partner'>
+    		<h3>
+                <span class='icon title-chart title-icon'></span>
+                <span>推薦公司</span>
+            </h3>
+    		<div class='partnerList'>
+                <?php foreach($this->laout_arr['partner'] as $partnerkey => $partnervalue) { ?>
+    			<a href="companies.php?company=<?php echo $this->encode($partnervalue['id']); ?>">
+    				<img src="images/<?php echo $partnervalue['logo']; ?>">
+    				<span><?php echo $partnervalue['companyName']; ?></span>
+    			</a>
+                <?php } ?>
+    		</div>
+    	</nav>
+
+    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+            <h3>
+                <span class='icon title-chart title-box'></span>
+                <span>瀏覽公司</span>
+            </h3>
+    		<div class='selector'>
+    			<ul class='hotJob'>
+    				<li class='tagName'>熱門</li>
+                    <li class='tag' ng-repeat='hotJob in hotJobs'>{{hotJob.name}}</li>
+    			</ul>
+    			<ul class='location'>
+    				<li class='tagName'>地區</li>
+                    <li class='tag' ng-repeat='pos in positions'>{{pos.name}}</li>
+    			</ul>
+    			<ul class='jobtype'>
+    				<li class='tagName'>類型</li>
+                    <li class='tag' ng-repeat='type in jobTypes'>{{type.name}}</li>
+    			</ul>
+    		</div>
+    	</section>
+
+        <div class='showJobs'>
+            <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3,4,5,6,7,8,9,10,11,12,13]'>
+                <div class='jobInfo'>
+                    <figure>
+                        <img src="images/taolou_logo.jpg">
+                    </figure>
+                    <div class='author'>
+                        <b class="name">狸狗信息</b>
+                        <b class="job-creator-type">HR</b>
+                        <span class="company-domain">*@meidebi.com </span>
+                        发布了 <b class="job-title">移动产品经理</b>
+                    </div>
+                    <div class='job-meta'>
+                        <span class="location">地点<b>重庆</b></span>
+                        <span class="type">工作性质<b>全职</b></span>
+                        <span class="salary-start">起薪<b>4000</b></span>
+                        <span class="stock-share">股票或期权<b>提供</b></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class='dividePage'>
+            <div class='pageBar'>
+                <a class='home pageTag' href="">首頁</a>
+                <a class='pre pageTag' href="">上一頁</a>
+                <a class='page pageTag' href="" ng-repeat='i in [3,4,5,6,7]'>{{i}}</a>
+                <a class='next pageTag' href="">下一頁</a>
+            </div>
+        </div>

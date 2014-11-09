@@ -18,7 +18,7 @@ $obj_tmp1->ipVisit_date;
 
 
 //判斷是不是會員
-if($_SESSION['user']){}
+if(@$_SESSION['user']){}
 else{}
 //===============
 

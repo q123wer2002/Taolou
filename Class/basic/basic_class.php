@@ -295,7 +295,7 @@ class  Basic_page{
     function encode($string)
     {
       $encode_string = $string;
-      for($i=0;$i<10;$i++)
+      for($i=0;$i<3;$i++)
       {
         $encode_string = base64_encode($encode_string);
       }
@@ -304,7 +304,7 @@ class  Basic_page{
     function decode($encode_string)
     {
       $string = $encode_string;
-      for($i=0;$i<10;$i++)
+      for($i=0;$i<3;$i++)
       {
         $string = base64_decode($string);
       }
