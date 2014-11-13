@@ -37,32 +37,48 @@
     	</section>
 
         <div class='showJobs'>
-            <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3,4,5,6,7,8,9,10,11,12,13]'>
+            <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue) { ?>
+            <a class='jobitem' href="jobs.php?id=<?php echo $this->encode($jobValue['id']); ?>">
                 <div class='jobInfo'>
                     <figure>
-                        <img src="images/taolou_logo.jpg">
+                        <img src="images/<?php echo $jobValue['logo'] ?>">
                     </figure>
                     <div class='author'>
-                        <b class="name">狸狗信息</b>
+                        <b class="name"><?php echo $jobValue['companyName'] ?></b>
                         <b class="job-creator-type">HR</b>
                         <span class="company-domain">*@meidebi.com </span>
-                        发布了 <b class="job-title">移动产品经理</b>
+                        发布了 <b class="job-title"><?php echo $jobValue['jobName'] ?></b>
                     </div>
                     <div class='job-meta'>
-                        <span class="location">地点<b>重庆</b></span>
-                        <span class="type">工作性质<b>全职</b></span>
-                        <span class="salary-start">起薪<b>4000</b></span>
-                        <span class="stock-share">股票或期权<b>提供</b></span>
+                        <span class="location">地点<b><?php echo $jobValue['location'] ?></b></span>
+                        <span class="type">工作性质<b><?php echo $jobValue['jobType'] ?></b></span>
+                        <span class="salary-start">起薪<b><?php echo $jobValue['salary'] ?></b></span>
+                        <span class="stock-share">股票或期权<b><?php echo $jobValue['stock_option'] ?></b></span>
                     </div>
                 </div>
             </a>
+            <?php } ?>
         </div>
 
         <div class='dividePage'>
             <div class='pageBar'>
-                <a class='home pageTag' href="">首頁</a>
-                <a class='pre pageTag' href="">上一頁</a>
-                <a class='page pageTag' href="" ng-repeat='i in [3,4,5,6,7]'>{{i}}</a>
-                <a class='next pageTag' href="">下一頁</a>
+                <?php if($this->page > 2) {?>
+                    <a class='home pageTag' href="index.php">首頁</a>
+                <?php } ?>
+
+                <?php if($this->page > 1) {?>
+                    <a class='pre pageTag' href="index.php?page=<?php echo ($this->page-1); ?>">上一頁</a>
+                    <?php for($i=1;$i<$this->page;$i++) { ?>
+                    <a class='pageTag' href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                <?php } ?><?php } ?>
+
+                <a class='page pageTag'><?php echo $this->page; ?></a>
+
+                <?php if($this->page!=$this->max_page && $this->page<$this->max_page) {?>
+                    <?php for($i=$this->page+1;$i<=$this->max_page;$i++) {?>
+                    <a class='pageTag' href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <?php } ?>
+                    <a class='next pageTag' href="index.php?page=<?php echo ($this->page+1); ?>">下一頁</a>
+                <?php } ?>
             </div>
         </div>

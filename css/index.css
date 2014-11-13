@@ -29,3 +29,5 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	.pageBar{width: 670px;height: 30px;padding: 25px 25px 25px 25px;}
 		.pageTag{background: #eceef1;margin-right: 15px;height: 30px;text-decoration: none;color: #6b7485;padding: 10px;border-radius: 2px;}
 		.pageTag:hover{background:#707b91;color: white;}
+		.page{background:#6b7485;color: white;}
+		.page:hover{background:#6b7485;};
