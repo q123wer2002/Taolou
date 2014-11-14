@@ -4,7 +4,7 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 
 	$scope.lists=[
 		{'name':'首頁','url':'index.php'},
-		{'name':'發現更多公司','url':'moreCompany.html'},
+		{'name':'主題公司','url':'topicCompany.php'},
 		{'name':'註冊','url':'login.html'},
 		{'name':'登入','url':'login.html'}
 	];

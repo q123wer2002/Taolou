@@ -5,7 +5,7 @@ include_once 'share.php';
 $obj_tmp1->jobtable="taolou_job";
 $obj_tmp1->companyTable="taolou_company";
 $obj_tmp1->financetable='taolou_finance';
-$obj_tmp1->skilltable='taolou_skill';
+$obj_tmp1->companySkill='taolou_skill';
 $obj_tmp1->hrtable='taolou_member';
 $obj_tmp1->tmp_where="";
 @$obj_tmp1->tmp_comanyId = $obj_tmp1->decode(laout_check($_REQUEST["company"]));;
@@ -28,10 +28,10 @@ switch($action){
 	//===========================
 
 	//公司技能標籤
-	$sql_comSkill="SELECT ".$obj_tmp1->skilltable.".*
-				   FROM ".$obj_tmp1->skilltable."
-				   LEFT JOIN ".$obj_tmp1->companytable." ON ".$obj_tmp1->skilltable.".companyId=".$obj_tmp1->companytable.".id
-				   WHERE ".$obj_tmp1->skilltable.".companyId='".$obj_tmp1->tmp_comanyId."'";
+	$sql_comSkill="SELECT ".$obj_tmp1->companySkill.".*
+				   FROM ".$obj_tmp1->companySkill."
+				   LEFT JOIN ".$obj_tmp1->companytable." ON ".$obj_tmp1->companySkill.".companyId=".$obj_tmp1->companytable.".id
+				   WHERE ".$obj_tmp1->companySkill.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['comskill']=array();
 	$obj_tmp1->basic_select('laout_arr','comskill',$sql_comSkill);
 	//===========================

@@ -38,7 +38,7 @@
 
         <div class='showJobs'>
             <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue) { ?>
-            <a class='jobitem' href="jobs.php?id=<?php echo $this->encode($jobValue['id']); ?>">
+            <a class='jobitem' href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>">
                 <div class='jobInfo'>
                     <figure>
                         <img src="images/<?php echo $jobValue['logo'] ?>">
