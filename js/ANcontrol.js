@@ -10,6 +10,34 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 	];
 }]);
 
+//帳戶專用
+TaoLou.controller('TaolouAccount',['$scope','$http',function TaolouAccount($scope,$http){
+	if(this.email!="" && this.password!=""){
+		if(this.memberType==""){
+			var accountObject={"method":"login","memberType":"0","email":this.email,"password":this.password};
+		}
+		else(this.memberType!=""){
+			var accountObject={"method":"signup","memberType":this.memberType,"email":this.email,"password":this.password};	
+		}
+		$http({
+			method:'POST',
+			url:'server/accountAjax.php',
+			data: $.param(accountObject),
+			headers: headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+		}).
+		error(function(json){
+			console.log(json);
+		});
+	}
+	else{}
+}]);
+//=========================
+
+
+
 TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 
 	$scope.hotJobs=[
