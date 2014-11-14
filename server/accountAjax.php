@@ -67,14 +67,31 @@ else if($_POST['method']=='signup')
 		$obj_tmp1->laout_arr['countMember']=array();
 		$obj_tmp1->basic_select('laout_arr','countMember',$sql_countMember);
 		//========================
-		$memberID=$obj_tmp1->laout_arr['countMember'][0]['COUNT'];
-
 		
+		$memberID=$obj_tmp1->laout_arr['countMember'][0]['COUNT'];
+		
+		//存入account內
+		$sql_account="INSERT INTO ".$obj_tmp1->account."
+					  VALUES (NULL,'".$memberID."','".$account."','".$password."',CURRENT_TIMESTAMP)";
+		mysql_query($sql_account);
+		//========================
+
+		//存入member內
+		$sql_member="INSERT INTO ".$obj_tmp1->member."
+					 VALUES (NULL,'".$_POST['memberType']."','','','','','','','','','','','','','','','',CURRENT_TIMESTAMP)";
+		mysql_query($sql_member);
+		//========================
+
+		//跳回登入頁面
 	}
 
+	//echo json_encode($message);
+	exit;
+}
+else{
+	$message="404 Not found this page";
 	echo json_encode($message);
 	exit;
 }
-else{}
 
 ?>
