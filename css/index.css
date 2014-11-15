@@ -6,7 +6,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	.partnerList img{width: 25px;height: 25px;margin-top: 5px;}
 	.title-icon{background-position: -190px -113px;}
 
-.selectCompany{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;border-bottom: 1px solid #eceef1;}
+.selectCompany{position: relative;width: 720px;height: auto;left:150px;top:0px;background: white;border-bottom: 1px solid #eceef1;}
 	.title-box{background-position: -190px 0px;}
 	.selector{width: 100%;height: auto;position: relative;}
 	.selector ul{list-style: none;padding: 10px;margin-left: 30px;}
@@ -15,7 +15,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 		.tag{margin-right: 15px;padding: 3px;}
 		.tag:hover{cursor: pointer;background:#707b91;color: #ffffff;border-radius: 2px;}
 
-.showJobs{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;}
+.showJobs{position: relative;width: 720px;height: auto;left:150px;top:0px;background: white;}
 	.jobitem{text-decoration: none;color: #9097a4;position: relative;}
 	.jobInfo:hover{background: #eceef1;}
 		.jobInfo{width: 680px;height: 52px;padding: 14px 20px 14px 20px;position: relative;border-bottom: 1px solid #eceef1;}
@@ -25,7 +25,10 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 			.job-meta{position:absolute;width: 610px;height: 24px;bottom: 18px;left: 94px;}
 			.job-meta span{margin-right: 25px;}
 
-.dividePage{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;}
+.dividePage{position: relative;width: 720px;height: auto;left:150px;top:0px;background: white;}
 	.pageBar{width: 670px;height: 30px;padding: 25px 25px 25px 25px;}
 		.pageTag{background: #eceef1;margin-right: 15px;height: 30px;text-decoration: none;color: #6b7485;padding: 10px;border-radius: 2px;}
 		.pageTag:hover{background:#707b91;color: white;}
+	
+
+.showTopics{position: relative;width: 720px;height: auto;left:150px;top:0px;background: white;}

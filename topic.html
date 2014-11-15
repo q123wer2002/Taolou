@@ -1,0 +1,77 @@
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+	<title>TaoLou</title>
+	<meta charset="utf-8">
+    
+	<link href="css/layout.css" rel="stylesheet">
+    
+	<script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+	<div class='showUs'>
+		<div class='showImage'></div>
+	</div>
+	<div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+		<div class='menuBar'>
+			<ul class='menu'>
+				<li ng-repeat='list in lists'>
+					<a href="{{list.url}}">{{list.name}}</a>
+				</li>
+			</ul>
+			
+			<div class='search'>
+				<form>
+					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+					<button class='goSearch searchPos button'>搜尋</button>
+				</form>
+			</div>
+		</div>
+    </div>
+
+    <link href="css/index.css" rel="stylesheet">
+
+    <div>
+    	<section class='selectCompany'>
+            <div class='selector'>
+                <ul class='topic'>
+                    <li class='tagName'>topic</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class='showTopics'>
+            <div class='jobitem' ng-repeat='i in [1,2,3,4,5]'>
+                <div class='jobInfo'>
+                    <a href="http://tw.yahoo.com">
+                        <figure>
+                            <img src="images/topic.jpg">
+                        </figure>
+                    </a>
+                    <div class='author'>
+                        <a target="_blank" href="http://tw.yahoo.com">
+                            第二届程序员大会：一切只为改变
+                        </a>
+                    </div>
+                    <div class='job-meta'>
+                        <p class="intro">
+                            在职场上，你是否好奇羡慕过有人跨行业的华丽转变，是否也曾想尝试改变职场现状？其实有时候改变是日积月累…
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class='footer'>
+    	<div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div>
+</body>
+</html>
+
