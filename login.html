@@ -1,0 +1,116 @@
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+    <title>TaoLou</title>
+    <meta charset="utf-8">
+    
+    <link href="css/layout.css" rel="stylesheet">
+    
+    <script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+    <div class='showUs'>
+        <div class='showImage'></div>
+    </div>
+    <div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+        <div class='menuBar'>
+            <ul class='menu'>
+                <li ng-repeat='list in lists'>
+                    <a href="{{list.url}}">{{list.name}}</a>
+                </li>
+            </ul>
+            
+            <div class='search'>
+                <form>
+                    <input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+                    <button class='goSearch searchPos button'>搜尋</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <link href="css/index.css" rel="stylesheet">
+
+    <div class="container clearfix">
+
+        <section class="nsb-block login has-aside clearfix">
+            <div class="left">
+                <h2>
+                    <span>
+                        Login
+                    </span>
+                </h2>
+                <div class="nsb-block-content">
+                    <div class="edit-unit">
+                        <span class="edit-name">
+                            e-mail
+                        </span>
+                        <div class="edit-body">
+                            <input class="required" type="email" placeholder="" name="email"></input>
+                            <input type="hidden" value="" name="next"></input>
+                        </div>
+                    </div>
+                    <div class="edit-unit">
+                        <span class="edit-name">
+                            password
+                        </span>
+                        <div class="edit-body">
+                            <input class="required" type="password" placeholder="" name="password"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="nsb-block-ctrl">
+                    <div class="submit">
+                        <a class="blue-btn submit-btn">
+                            log in
+                        </a>
+                        <a class="pwd-lost" href="/forget_password">
+                            forget?
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <aside class="right">
+                <h3>
+                    no account？
+                </h3>
+                <a class="green-btn reg_btn" href="/signup">
+                    sign up
+                </a>
+                <span class="split">
+                    or
+                </span>
+                <a class="red-btn weibo" href="/oauth/sina">
+                    <span class="icon weibo-white"></span>
+                    <span class="text">
+                        log in with facebook
+                    </span>
+                </a>
+                <a class="blue-btn mingdao" href="/oauth/mingdao">
+                    <span class="icon mingdao-white"></span>
+                    <span class="text">
+                        log in with google
+                    </span>
+                </a>
+            </aside>
+        </section>
+    </div>
+
+    <div class='footer'>
+        <div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

@@ -32,3 +32,10 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	
 
 .showTopics{position: relative;width: 720px;height: auto;left:150px;top:0px;background: white;}
+
+
+.container {
+    width: 720px;
+    margin: 0px auto 30px;
+    padding-top: 30px;
+}
