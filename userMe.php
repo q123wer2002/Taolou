@@ -15,10 +15,12 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 
 //確認使用者是誰
 $userId='';
+
+$action="user";
 //===================
 
 
-switch($action){
+switch(@$action){
 	case "hr":
 
 	//顯示基本訊息
@@ -122,6 +124,17 @@ switch($action){
 	break;
 
 	default:
+
+	$obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/404.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+	$obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+//=======================================
+
 	break;
 }
 

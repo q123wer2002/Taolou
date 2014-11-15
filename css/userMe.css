@@ -1,0 +1,11 @@
+.onlineCV{width: 720px;margin: auto;height: auto;}
+	.profile{width: 720px;height: 86px;padding: 42px 0px 42px 0px;background-image: url(../images/userMe/online_resume_head.jpg);border-radius:2px;}
+		.avatar{width: 80px;height: 80px;margin: 0px 30px 0px 100px;border-radius: 45px;overflow: hidden;border: 3px solid #ffffff;float: left;z-index: 2px;}
+		.avatar img{width: 100%;color: transparent;}
+		.avatar:hover{background: #a2a8b3;cursor: pointer;opacity: 0.8;}
+		.main{margin-top:11px;line-height: 30px;height: 30px;font-size: 22px;}
+		.clearfix{zoom:1;}
+			.name{color: #ffffff;text-shadow:0 1px 1px rgba(0,0,0,.5);}
+			.status{color: #ffffff;font-size: 14px;text-shadow:0 1px 1px rgba(0,0,0,.5);}
+		.experience{line-height: 20px;margin-top: 10px;color: #ffffff;text-shadow:0 1px 1px rgba(0,0,0,.5);}
+	.profile-seg{width: 660px;height: 60px;padding: 30px;border-top:1px solid #eceef1;background: #f8f9fa;}

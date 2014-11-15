@@ -11,29 +11,31 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 }]);
 
 //帳戶專用
-TaoLou.controller('TaolouAccount',['$scope','$http',function TaolouAccount($scope,$http){
-	if(this.email!="" && this.password!=""){
-		if(this.memberType==""){
-			var accountObject={"method":"login","memberType":"0","email":this.email,"password":this.password};
+/*TaoLou.controller('TaolouAccount',['$scope','$http',function TaolouAccount($scope,$http){
+	$scope.submit = function() {
+		if($scope.email!="" && $scope.password!=""){
+			if($scope.memberType==""){
+				var accountObject={"method":"login","memberType":"0","email":$scope.email,"password":$scope.password};
+			}
+			else($scope.memberType!=""){
+				var accountObject={"method":"signup","memberType":$scope.memberType,"email":$scope.email,"password":$scope.password};	
+			}
+			$http({
+				method:'POST',
+				url:'server/accountAjax.php',
+				data: $.param(accountObject),
+				headers: headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+			}).
+			error(function(json){
+				console.log(json);
+			});
 		}
-		else(this.memberType!=""){
-			var accountObject={"method":"signup","memberType":this.memberType,"email":this.email,"password":this.password};	
-		}
-		$http({
-			method:'POST',
-			url:'server/accountAjax.php',
-			data: $.param(accountObject),
-			headers: headers: {'Content-type': 'application/x-www-form-urlencoded'},
-		}).
-		success(function(json){
-			console.log(json);
-		}).
-		error(function(json){
-			console.log(json);
-		});
+		else{}
 	}
-	else{}
-}]);
+}]);*/
 //=========================
 
 
