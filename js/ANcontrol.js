@@ -8,6 +8,14 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 		{'name':'註冊','url':'login.html'},
 		{'name':'登入','url':'login.html'}
 	];
+
+	$scope.company_lists=[
+		{'name':'首頁','url':'index.html'},
+		{'name':'發現更多公司','url':'moreCompany.html'},
+		{'name':'topic','url':'topic.html'},
+		{'name':'post job','url':'post_job.html'},
+		{'name':'manage account','url':'manage_company.html'}
+	];
 }]);
 
 TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
