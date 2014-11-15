@@ -1,0 +1,133 @@
+
+
+
+
+
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+    <title>TaoLou</title>
+    <meta charset="utf-8">
+    
+    <link href="css/layout.css" rel="stylesheet">
+    
+    <script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+    <div class='showUs'>
+        <div class='showImage'></div>
+    </div>
+    <div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+        <div class='menuBar'>
+            <ul class='menu'>
+                <li ng-repeat='list in lists'>
+                    <a href="{{list.url}}">{{list.name}}</a>
+                </li>
+            </ul>
+            
+            <div class='search'>
+                <form>
+                    <input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+                    <button class='goSearch searchPos button'>搜尋</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <link href="css/index.css" rel="stylesheet">
+
+    <div class="container clearfix">
+        <section class="nsb-block edit register has-aside clearfix">
+            <div class="left">
+                <h2>
+                    <span>
+                        Sign up
+                    </span>
+                </h2>
+                <div class="nsb-block-content">
+                    <div class="edit-unit user_type">
+                        <span class="edit-name">
+                            account type
+                        </span>
+                        <div class="edit-body">
+                            <div class="three-columns clearfix">
+                                <div class="input-wrapper">
+                                    <input id="work-type-fu" type="radio" value="0" name="user_type"></input>
+                                    <label>
+                                        <span class="icon"></span>
+                                        people
+                                    </label>
+                                </div>
+                                <div class="input-wrapper">
+                                    <input id="work-type-ex" type="radio" value="2" name="user_type"></input>
+                                    <label>
+                                        <span class="icon"></span>
+                                        human resource
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edit-unit">
+                        <span class="edit-name">
+                            e-mail
+                        </span>
+                        <div class="edit-body">
+                            <input class="required" type="email" placeholder="" name="email"></input>
+                        </div>
+                    </div>
+                    <div class="edit-unit">
+                        <span class="edit-name">
+                            password
+                        </span>
+                        <div class="edit-body">
+                            <input class="required" type="password" placeholder="" name="password"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="nsb-block-ctrl">
+                    <div class="submit"></div>
+                </div>
+            </div>
+            <aside class="right">
+                <h3>
+                    have account yet?
+                </h3>
+                <a class="blue-btn" href="/login">
+                    log in
+                </a>
+                <span class="split">
+                    or
+                </span>
+                <a class="red-btn weibo" href="/oauth/sina">
+                    <span class="icon weibo-white"></span>
+                    <span class="text">
+                        log in with facebook
+                    </span>
+                </a>
+                <a class="blue-btn mingdao" href="/oauth/mingdao">
+                    <span class="icon mindao-white"></span>
+                    <span class="text"></span>
+                </a>
+            </aside>
+        </section>
+    </div>
+
+    <div class='footer'>
+        <div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
