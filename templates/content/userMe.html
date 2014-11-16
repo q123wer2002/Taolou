@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/userMe.css">
+<script type="text/javascript" src="js/An_onlineCV.js"></script>
 
-<div class='onlineCV'>
+<div class='onlineCV' ng-controller='Taolou_onlineCV'>
 	<div class='profile'>
 		<div class='avatar'>
 			<img src="images/userMe/user-default.jpg" alt="">
@@ -17,6 +18,68 @@
 	</div>
 
 	<div class='profile-seg'>
-		123456
+		<span class="seg-title"><span class="icon title-chart locked" data-tooltip="仅自己可见"></span>聯絡方式</span>
+		<div class="seg-body">
+			<ul>
+				<li class="mail clearfix"> 
+					<span class="label">信箱</span>
+					<span class="value value-mail">q123wer2002@gmail.com</span>
+				</li>
+				<li class="phone edit-el clearfix" ng-repeat='p in phone'>
+					<a href="javascript:;" class='icon title-chart edit' ng-hide='p.editing' ng-click='edit(p)'></a>
+					<span class="label">電話</span>
+					<span class="value value-phone">
+						<span ng-hide='p.editing'>{{p.phone}}</span>
+						<span ng-show='p.editing'><input class='in_cv' ng-model='p.phone' value='{{p.phone}}'></span>
+						<span ng-show='p.editing'><button class='b_cv' ng-click='save(p)'>保存</button></span>
+					</span>
+				</li>
+			</ul>
+		</div>
 	</div>
+
+	<div class="profile-seg profile-job-wish">
+		<span class="seg-title">求職願望</span>
+		<div class="seg-body">
+			<div class="edit-el clearfix" ng-repeat='jobwish in job_wish' ng-hide='jobwish.editing'>
+				<a class="edit-tgr" href="javascript:;" ng-click='edit(jobwish)'><span class="icon edit"></span></a>
+
+				<span>尋找</span>
+						<em class="type" data-val="2">全職</em>
+						<em class="type" data-val="1">兼職</em>
+						<em class="type" data-val="0">實習</em>
+				<span>的</span>
+				<em class="title">{{jobwish.name}}</em>
+				<span>工作</span>
+				<br>
+
+				<span>工作地点位于</span>
+					<em class="loc">{{jobwish.loc}}</em>
+				<span>，接受</span>
+					<em class="loc">遠程工作</em>
+				<br>
+
+				<span>月薪不低于</span>
+					<em class="salary-start">{{jobwish.min_salary}}</em>
+				<span>，要求提供</span>
+					<em class='stock'>股票選擇權</em>
+			</div>
+
+			<div class="clearfix edit_jobwish" ng-repeat='jobwish in job_wish' ng-show='jobwish.editing'>
+
+				<p>職位名稱 <input class='in_cv' value='{{jobwish.name}}'></p>
+				<p><span class="prof-edit-line-lb">工作類型</span>
+					<div class="three-columns clearfix">
+						<div class="input-wrapper">
+							<input type="checkbox" name="type" id="work-type-fu" value="2" checked="">
+							<label class="first" for="work-type-fu"><span class="icon"></span>全职</label></div>
+						<div class="input-wrapper">
+							<input type="checkbox" name="type" id="work-type-pa" value="1" checked=""><label for="work-type-pa"><span class="icon"></span>兼职</label></div>
+						<div class="input-wrapper"><input type="checkbox" name="type" id="work-type-ex" value="0" checked=""><label class="last" for="work-type-ex"><span class="icon"></span>实习</label></div></div>
+				</p>
+			</div>
+
+		</div>
+	</div>
+
 </div>
