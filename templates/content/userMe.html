@@ -67,16 +67,28 @@
 
 			<div class="clearfix edit_jobwish" ng-repeat='jobwish in job_wish' ng-show='jobwish.editing'>
 
-				<p>職位名稱 <input class='in_cv' value='{{jobwish.name}}'></p>
-				<p><span class="prof-edit-line-lb">工作類型</span>
-					<div class="three-columns clearfix">
-						<div class="input-wrapper">
-							<input type="checkbox" name="type" id="work-type-fu" value="2" checked="">
-							<label class="first" for="work-type-fu"><span class="icon"></span>全职</label></div>
-						<div class="input-wrapper">
-							<input type="checkbox" name="type" id="work-type-pa" value="1" checked=""><label for="work-type-pa"><span class="icon"></span>兼职</label></div>
-						<div class="input-wrapper"><input type="checkbox" name="type" id="work-type-ex" value="0" checked=""><label class="last" for="work-type-ex"><span class="icon"></span>实习</label></div></div>
-				</p>
+				<div class='edit_div'>職位名稱 <input class='in_cv' value='{{jobwish.name}}'></div>
+				<div class='edit_div'>工作類型
+					<div class='editspan'>
+						<div class='edittype'><input type='checkbox'>全職</div>
+						<div class='edittype'><input type='checkbox'>兼職</div>
+						<div class='edittype'><input type='checkbox'>實習</div>
+					</div>
+				</div>
+				<div class='edit_div'>最低薪水 <input class='in_cv' value='{{jobwish.min_salary}}'></div>
+				<div class='edit_div'>股票期權<div class='edittype one_check'><input type='checkbox'>需要股票或期權</div></div>
+				<div class='edit_div'>工作地點
+					<div class='editloc'>
+						<div class='loctag'>{{jobwish.loc}}</div>
+						<br><br><input class='in_cv' placeholder='輸入城市名稱'>
+						<br>
+					</div>
+				</div>
+				<div class='edit_div'>遠程工作<div class='edittype one_check'><input type='checkbox'>接受遠程工作</div></div>
+
+				<button class='button b_jobwish' ng-click='save(jobwish)'>保存</button>
+				<button class='button b_jobwish deny'>取消</button>
+
 			</div>
 
 		</div>
