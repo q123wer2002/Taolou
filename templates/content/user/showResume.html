@@ -1,0 +1,49 @@
+<link href="css/resume_management.css" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+
+<div class="showsmart">
+    <div class="banner" id='open'><p class='opentext'>履歷已<span class='keyword'>開啟</span>智能投遞</p></div>
+    <div class="banner" id='close'><p class='opentext'>履歷已<span class='keyword'>取消</span>智能投遞</p></div>
+</div>
+<div class="center">
+<section class='selectCompany' ng-controller='TaoLoujob-index'>
+    <h3>
+        <span class='resume_management' id='a'>履歷管理</span>
+        <a href="userResume.php?action=upload" class='upload'>上傳履歷</a>
+        <div class="clearfix"></div>
+    </h3>
+	<div class='selector'>
+		 <p class='introduciton'>智能投递：哪上班智能投递系统通过后台的算法直接代您投递匹配的职位。</p>
+	</div>
+</section>
+
+<div class='showJobs'>
+    <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3]'>
+        <div class='jobInfo'>
+            <figure>
+                <img src="images/taolou_logo.jpg">
+            </figure>
+            <div class='author'>
+                <b class="name">林彥丞的履歷.pdf</b>
+            </div>
+            <div class='job-meta'>
+                <span class="time"><b>2014-11-14 20:54:39</b></span>
+                <span class="size"><b>文件大小</b>KB</span>
+            </div>
+            <div class="status"><span> <input type="checkbox" id='smart-checkbox' onclick="checkboxOnclick(this)">智能投遞 </span>｜<span> 預覽 </span>｜<span> 刪除 </span></div>
+        </div>
+    </a>
+</div>
+
+<script>
+    function checkboxOnclick(checkbox){
+    	if ( checkbox.checked == true){
+    		$("#open").slideDown(300).delay(2000).slideUp(300);
+			// alert('這份履歷已啟用智能投遞簡歷')
+		}
+		else{
+			$("#close").slideDown(300).delay(2000).slideUp(300);
+			// alert('這份履歷已取消智能投遞簡歷')
+		}
+	}
+</script>

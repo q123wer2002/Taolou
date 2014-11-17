@@ -1,0 +1,105 @@
+/* line 3, ../sass/message.sass */
+.partnerList a:hover {
+  color: blue;
+}
+/* line 5, ../sass/message.sass */
+.partnerList a img {
+  float: left;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+
+/* line 9, ../sass/message.sass */
+.contact-people {
+  float: left;
+}
+
+/* line 11, ../sass/message.sass */
+.rule {
+  position: relative;
+  width: 720px;
+  left: 270px;
+  top: 0px;
+  background: white;
+  height: 500px;
+  text-align: center;
+}
+
+/* line 19, ../sass/message.sass */
+.message-rule {
+  font-size: 45px;
+  padding: 30px;
+}
+
+/* line 22, ../sass/message.sass */
+.message-content, .message-quota {
+  font-size: 25px;
+  line-height: 2;
+}
+
+/* line 25, ../sass/message.sass */
+.times {
+  color: red;
+}
+
+/* line 27, ../sass/message.sass */
+.hr, .job-seeker {
+  position: relative;
+  width: 720px;
+  left: 270px;
+  top: 0px;
+  background: white;
+}
+
+/* line 34, ../sass/message.sass */
+.hr {
+  border-bottom: 1px solid #eceef1;
+  height: 400px;
+}
+
+/* line 37, ../sass/message.sass */
+.hr-left {
+  text-align: left;
+  float: left;
+}
+
+/* line 41, ../sass/message.sass */
+.job-seker-right {
+  text-align: left;
+  float: right;
+}
+
+/* line 45, ../sass/message.sass */
+.saying {
+  padding: 20px 30px;
+}
+
+/* line 47, ../sass/message.sass */
+.job-seeker {
+  height: 200px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+/* line 51, ../sass/message.sass */
+.job-seeker-send {
+  background: gray;
+  position: relative;
+  top: 10px;
+  height: 120px;
+  width: 650px;
+  margin: 5px auto;
+  display: block;
+}
+
+/* line 59, ../sass/message.sass */
+.btn {
+  background: gray;
+  color: white;
+  float: right;
+  margin: 10px 35px;
+  text-decoration: none;
+  height: 20px;
+  padding: 5px 20px;
+  font-size: 16px;
+}

@@ -18,37 +18,16 @@ $userId='';
 
 $action="";
 if($_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
-else {@$action='changePW';}
+else {@$action='';}
 //===================
 
 
 switch(@$action){
-	case "changePW":
+	case "upload":
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/user/changePassword.html';
-    $obj_tmp1->subMenu='content/user/MenuuserSetting.html';
-
-    //設定版面
-    $obj_tmp1->top_html="top.html";
-	$obj_tmp1->showad_html='showad.html';
-    $obj_tmp1->footer_html="footer.html";
-    $obj_tmp1->laout('templates.html');
-//=======================================
-
-	break;
-
-	case "mailAlert":	
-
-
-    //echo $obj_tmp1->encode("1"),"<BR>";
-    //echo $obj_tmp1->decode($obj_tmp1->encode("1"));
-
-
-	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/user/mailAlert.html';
-    $obj_tmp1->subMenu='content/user/MenuuserSetting.html';
+    $obj_tmp1->content_html='content/user/uploadResume.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
@@ -62,7 +41,7 @@ switch(@$action){
 	default:
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/404.html';
+    $obj_tmp1->content_html='content/user/showResume.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";

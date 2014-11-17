@@ -31,3 +31,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 		.pageTag:hover{background:#707b91;color: white;}
 		.page{background:#6b7485;color: white;}
 		.page:hover{background:#6b7485;};
+.introduciton{padding: 20px;}
+.smart_apply{text-decoration: none; color:red;}
+.status{position:absolute; top: 18px;right: 34px;}
+.resume_status{color: rgb(68,144,255);}

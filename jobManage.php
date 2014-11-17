@@ -18,17 +18,17 @@ $userId='';
 
 $action="";
 if($_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
-else {@$action='changePW';}
+else {@$action='autosendCV';}
 //===================
 
 
 switch(@$action){
-	case "changePW":
+	case "autosendCV":
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/user/changePassword.html';
-    $obj_tmp1->subMenu='content/user/MenuuserSetting.html';
+    $obj_tmp1->content_html='content/user/autosendCV.html';
+    $obj_tmp1->subMenu='content/user/MenujobManage.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
@@ -39,7 +39,7 @@ switch(@$action){
 
 	break;
 
-	case "mailAlert":	
+	case "aleadysend":	
 
 
     //echo $obj_tmp1->encode("1"),"<BR>";
@@ -47,8 +47,8 @@ switch(@$action){
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/user/mailAlert.html';
-    $obj_tmp1->subMenu='content/user/MenuuserSetting.html';
+    $obj_tmp1->content_html='content/user/aleadysend.html';
+    $obj_tmp1->subMenu='content/user/MenujobManage.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
@@ -58,6 +58,26 @@ switch(@$action){
 //=======================================
 
 	break;
+
+    case "aleadylove":  
+
+
+    //echo $obj_tmp1->encode("1"),"<BR>";
+    //echo $obj_tmp1->decode($obj_tmp1->encode("1"));
+
+
+    $obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/user/aleadylove.html';
+    $obj_tmp1->subMenu='content/user/MenujobManage.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+    $obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+//=======================================
+
+    break;
 
 	default:
 

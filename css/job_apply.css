@@ -1,0 +1,76 @@
+/* line 1, ../sass/job_apply.sass */
+.contact, .resume, .add-message, .apply {
+  border-bottom: 1px solid #eceef1;
+  position: relative;
+  width: 720px;
+  height: 60px;
+  left: 270px;
+  background: white;
+}
+
+/* line 9, ../sass/job_apply.sass */
+.title {
+  margin-left: 20px;
+  padding-top: 20px;
+}
+/* line 12, ../sass/job_apply.sass */
+.title input, .title select, .title .for-select {
+  margin: 0px 30px;
+  background: gray;
+  border: none;
+  height: 30px;
+  width: 200px;
+}
+/* line 18, ../sass/job_apply.sass */
+.title input {
+  width: 205px;
+}
+/* line 20, ../sass/job_apply.sass */
+.title select {
+  margin: 0px;
+  padding: 0px;
+  cursor: pointer;
+  color: white;
+}
+/* line 25, ../sass/job_apply.sass */
+.title textarea {
+  margin: 0px 30px;
+  background: gray;
+  border: none;
+  height: 200px;
+  width: 550px;
+}
+
+/* line 31, ../sass/job_apply.sass */
+.add-message {
+  height: 240px;
+}
+
+/* line 33, ../sass/job_apply.sass */
+.up {
+  vertical-align: top;
+}
+
+/* line 35, ../sass/job_apply.sass */
+.apply {
+  text-align: center;
+}
+
+/* line 37, ../sass/job_apply.sass */
+.apply-btn {
+  margin-top: 15px;
+  background: green;
+  padding: 6px 0px;
+  width: 200px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  text-align: center;
+}
+
+/* line 47, ../sass/job_apply.sass */
+.title .for-select {
+  display: inline-block;
+  margin: 0px 27px;
+  width: 205px;
+}
