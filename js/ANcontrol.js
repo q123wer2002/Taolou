@@ -11,7 +11,7 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 }]);
 
 //帳戶專用
-/*TaoLou.controller('TaolouAccount',['$scope','$http',function TaolouAccount($scope,$http){
+TaoLou.controller('TaolouAccount',['$scope','$http',function TaolouAccount($scope,$http){
 	$scope.submit = function() {
 		if($scope.email!="" && $scope.password!=""){
 			if($scope.memberType==""){
@@ -35,7 +35,7 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 		}
 		else{}
 	}
-}]);*/
+}]);
 //=========================
 
 

@@ -16,7 +16,7 @@
 			.status{color: #ffffff;font-size: 14px;text-shadow:0 1px 1px rgba(0,0,0,.5);}
 		.experience{line-height: 20px;margin-top: 10px;color: #ffffff;text-shadow:0 1px 1px rgba(0,0,0,.5);}
 	
-	.profile-seg{width: 660px;height: 60px;padding: 30px;border-top:1px solid #eceef1;background: #f8f9fa;}
+	.profile-seg{width: 660px;height: 60px;padding: 30px;border-top:1px solid #eceef1;background: #f8f9fa;font-size: 14px;}
 		.seg-title{display: block;width: 85px;float: left;text-align: right;font-size: 16px;color: #a2a8b3;font-weight: 400;line-height: 30px;-webkit-font-smoothing:antialiased;}
 			.locked{background-position: -156px -64px;width: 16px;height: 16px;}
 		.seg-body{margin-left: 105px;}
@@ -28,11 +28,13 @@
 	.profile-job-wish em{font-weight: 500;text-decoration: underline;}
 	.edit_jobwish{width: 525px;height: 505px;padding: 15px;background: #eceef1;}
 		.edit_div{position: relative;margin-top: 20px;}
-		.edittype{display: inline;padding: 10px;background: #eceef1;}
+		.edittype{display: inline;padding: 10px;background: #f8f9fa;border-right: 5px;}
 		.edittype:hover{cursor: pointer;}
-		.editspan{position: absolute;top: 0;left: 70px;}
+		.editspan{position: absolute;top: 0;left: 60px;}
 			.checkbox{}
-		.editloc{width: 425px;height: auto;padding: 10px 15px 5px 15px;background: #ffffff;margin-left: 70px;margin-top: -15px;}
-			.loctag{display:inline;padding: 0px 10px 0px 10px;background: #eceef1;border-radius: 5px;width: 30px;height: 30px;}
-		.one_check{position: absolute;top: -10px;left: 70px;width: 206px;}
-		.b_jobwish{width: 120px;height: 40px;position: relative;border-radius: 5px;font-size: 14px;}
+		.editloc{width: 425px;height: auto;padding: 10px 15px 5px 15px;background: #ffffff;margin-left: 60px;margin-top: -15px;}
+			.loctag{display:inline-block;padding: 0px 10px 0px 10px;background: #ecedf0;border-radius: 5px;height: 30px;}
+		.one_check{position: absolute;top: -10px;left: 60px;width: 206px;}
+		.b_jobwish{width: 120px;height: 40px;position: relative;border-radius: 5px;font-size: 14px;margin-top: 100px;margin-left: 70px;}
+		.b_jobwish:hover{cursor: pointer;}
+		.deny{background: #a2a8b3;}

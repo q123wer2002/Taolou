@@ -19,7 +19,9 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	$scope.save = function(item) {
 		delete item.editing;
 	}
-
+	$scope.reload = function() {
+   		location.reload();
+   	}
 
 
 }]);
