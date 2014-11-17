@@ -1,0 +1,102 @@
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+	<title>TaoLou</title>
+	<meta charset="utf-8">
+    
+	<link href="css/layout.css" rel="stylesheet">
+    <link href="css/resume_management.css" rel="stylesheet">
+    
+	<script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+	
+	<div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+		<div class='menuBar'>
+			<ul class='menu'>
+				<li ng-repeat='list in lists'>
+					<a href="{{list.url}}">{{list.name}}</a>
+				</li>
+			</ul>
+			
+			<div class='search'>
+				<form>
+					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+					<button class='goSearch searchPos button'>搜尋</button>
+				</form>
+			</div>
+		</div>
+    </div>
+
+    <link href="css/index.css" rel="stylesheet">
+    
+    <div class='body'>
+    	<div class="showsmart">
+            <div class="banner" id='open'><p class='opentext'>履歷已<span class='keyword'>開啟</span>智能投遞</p></div>
+            <div class="banner" id='close'><p class='opentext'>履歷已<span class='keyword'>取消</span>智能投遞</p></div>
+        </div>
+        <div class="center">
+    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+            <h3>
+                <span class='resume_management' id='a'>履歷管理</span>
+                <a href="upload_resume.html" class='upload'>上傳履歷</a>
+                <div class="clearfix"></div>
+            </h3>
+    		<div class='selector'>
+    			 <p class='introduciton'>智能投递：哪上班智能投递系统通过后台的算法直接代您投递匹配的职位。</p>
+    		</div>
+    	</section>
+
+        <div class='showJobs'>
+            <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3,4,5,6,7,8,9,10,11,12,13]'>
+                <div class='jobInfo'>
+                    <figure>
+                        <img src="images/taolou_logo.jpg">
+                    </figure>
+                    <div class='author'>
+                        <b class="name">林彥丞的履歷.pdf</b>
+                    </div>
+                    <div class='job-meta'>
+                        <span class="time"><b>2014-11-14 20:54:39</b></span>
+                        <span class="size"><b>文件大小</b>KB</span>
+                    </div>
+                    <div class="status"><span> <input type="checkbox" id='smart-checkbox' onclick="checkboxOnclick(this)">智能投遞 </span>｜<span> 預覽 </span>｜<span> 刪除 </span></div>
+                </div>
+            </a>
+        </div>
+
+        
+    </div>
+    </div>
+    
+    <!-- <div class='footer'>
+    	<div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div> -->
+    <script>
+    function checkboxOnclick(checkbox){
+
+if ( checkbox.checked == true){
+
+$("#open").slideDown(300).delay(2000).slideUp(300);
+// alert('這份履歷已啟用智能投遞簡歷')
+
+}else{
+$("#close").slideDown(300).delay(2000).slideUp(300);
+// alert('這份履歷已取消智能投遞簡歷')
+
+
+}
+
+}
+
+
+</script>
+</body>
+</html>

@@ -1,10 +1,11 @@
 .partner{position:absolute;width: 210px;height: auto;display:inline-block;text-align: left;background: white;top: 0;padding-bottom: 15px;}	
 h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-left: 10px;}
 	.partnerList{width: 100%;text-align: left;left:10px;}
-	.partnerList a{display: block;text-decoration: none;color: black;height: 35px;padding: 10px 10px 10px 10px;}
+	.partnerList a{display: block;text-decoration: none;color: black;height: 35px;padding: 10px;line-height: 2;}
 	.partnerList a:hover{background: #eceef1;}
 	.partnerList img{width: 25px;height: 25px;margin-top: 5px;}
 	.title-icon{background-position: -190px -113px;}
+	.span{}
 
 .selectCompany{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;border-bottom: 1px solid #eceef1;}
 	.title-box{background-position: -190px 0px;}
@@ -29,3 +30,9 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	.pageBar{width: 670px;height: 30px;padding: 25px 25px 25px 25px;}
 		.pageTag{background: #eceef1;margin-right: 15px;height: 30px;text-decoration: none;color: #6b7485;padding: 10px;border-radius: 2px;}
 		.pageTag:hover{background:#707b91;color: white;}
+.introduciton{
+	padding: 20px;
+}
+.smart_apply{text-decoration: none; color:red;}
+.status{position:absolute; top: 18px;right: 34px;}
+.resume_status{color: rgb(68,144,255);}

@@ -1,0 +1,71 @@
+/* line 1, ../sass/account.sass */
+.old, .new, .save, .checkbox {
+  border-bottom: 1px solid #eceef1;
+  position: relative;
+  width: 720px;
+  height: 100px;
+  left: 270px;
+  background: white;
+}
+
+/* line 9, ../sass/account.sass */
+.checkcontent {
+  padding: 25px 65px;
+}
+
+/* line 11, ../sass/account.sass */
+.password {
+  padding-top: 40px;
+  text-align: center;
+}
+/* line 14, ../sass/account.sass */
+.password input {
+  margin: 0px 10px;
+  background: gray;
+  border: none;
+  height: 30px;
+  width: 200px;
+}
+
+/* line 22, ../sass/account.sass */
+.confirm {
+  background: gray;
+  padding: 6px 0px;
+  margin-top: 25px;
+  margin-left: 354px;
+  width: 200px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  text-align: center;
+}
+
+/* line 32, ../sass/account.sass */
+.text {
+  display: inline-block;
+}
+
+/* line 34, ../sass/account.sass */
+.mail {
+  display: inline-block;
+  float: right;
+  padding-right: 300px;
+}
+
+/* line 38, ../sass/account.sass */
+.sure {
+  background: gray;
+  padding: 6px 0px;
+  margin-top: 25px;
+  margin-left: 245px;
+  width: 200px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  text-align: center;
+}
+
+/* line 48, ../sass/account.sass */
+.select {
+  padding: 5px;
+}

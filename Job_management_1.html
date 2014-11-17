@@ -12,9 +12,7 @@
     <script type="text/javascript" src='js/layout.js'></script>
 </header>
 <body>
-	<div class='showUs'>
-		<div class='showImage'></div>
-	</div>
+	
 	<div class='taoloumenu' ng-controller='TaoLouMenu'>
         <div class='logo'></div>
 		<div class='menuBar'>
@@ -38,35 +36,27 @@
     <div class='body'>
     	<nav class='partner'>
     		<h3>
-                <span class='icon title-chart title-icon'></span>
-                <span>推薦公司</span>
+                <span>求職管理</span>
             </h3>
     		<div class='partnerList'>
-    			<a href="" ng-repeat='i in [1,2,3,4,5,6,7,8,9,10]'>
-    				<img src="images/taolou_logo.jpg">
-    				<span>第{{i}}家公司</span>
+    			<a href="Job_management_1.html">
+    				<span class='job_management'>智能投遞工作</span>
     			</a>
+                <a href="Job_management_2.html">
+                    <span class='job_management'>已投遞工作</span>
+                </a>
+                <a href="Job_management_3.html">
+                    <span class='job_management'>已收藏工作</span>
+                </a>
     		</div>
     	</nav>
 
     	<section class='selectCompany' ng-controller='TaoLoujob-index'>
             <h3>
-                <span class='icon title-chart title-box'></span>
-                <span>瀏覽公司</span>
+                <span>智能投遞工作</span>
             </h3>
     		<div class='selector'>
-    			<ul class='hotJob'>
-    				<li class='tagName'>熱門</li>
-                    <li class='tag' ng-repeat='hotJob in hotJobs'>{{hotJob.name}}</li>
-    			</ul>
-    			<ul class='location'>
-    				<li class='tagName'>地區</li>
-                    <li class='tag' ng-repeat='pos in positions'>{{pos.name}}</li>
-    			</ul>
-    			<ul class='jobtype'>
-    				<li class='tagName'>類型</li>
-                    <li class='tag' ng-repeat='type in jobTypes'>{{type.name}}</li>
-    			</ul>
+    			 <p class='introduciton'>智能投遞將通過聰明的演算法幫您投遞對應的職缺，馬上使用<a href="" class='smart_apply'>「智能投遞」</a>！</p>
     		</div>
     	</section>
 
@@ -83,11 +73,12 @@
                         发布了 <b class="job-title">移动产品经理</b>
                     </div>
                     <div class='job-meta'>
-                        <span class="location">地点<b>重庆</b></span>
-                        <span class="type">工作性质<b>全职</b></span>
-                        <span class="salary-start">起薪<b>4000</b></span>
+                        <span class="location"><b>重庆</b></span>
+                        <span class="type"><b>全职</b></span>
+                        <span class="salary-start"><b>4000</b></span>
                         <span class="stock-share">股票或期权<b>提供</b></span>
                     </div>
+                    <div class="status"><span class='resume_status'>履歷未通過</span><br><span>於一個月前</span></div>
                 </div>
             </a>
         </div>

@@ -1,0 +1,84 @@
+/* line 2, ../sass/resume_management.sass */
+.center .selectCompany, .center .showJobs {
+  left: 0;
+  margin: 0 auto;
+}
+
+/* line 5, ../sass/resume_management.sass */
+.upload {
+  float: right;
+  padding: 0px 10px;
+  color: green;
+  text-decoration: none;
+}
+
+/* line 10, ../sass/resume_management.sass */
+.upload-space {
+  text-align: center;
+  border: 1px dotted gray;
+  padding: 50px;
+  margin: 20px;
+}
+
+/* line 15, ../sass/resume_management.sass */
+.hand {
+  color: blue;
+  cursor: pointer;
+}
+
+/* line 18, ../sass/resume_management.sass */
+.btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  background: gray;
+  color: white;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+/* line 25, ../sass/resume_management.sass */
+.submit {
+  text-align: center;
+  margin: 30px;
+}
+
+/* line 28, ../sass/resume_management.sass */
+.banner {
+  text-align: center;
+  color: red;
+  display: none;
+  background: rgba(255, 0, 0, 0.5);
+  margin: 0 auto;
+  height: 50px;
+  padding: 15px 0px;
+  width: 720px;
+  font-size: 16px;
+}
+
+/* line 41, ../sass/resume_management.sass */
+.showsmart {
+  height: 50px;
+  width: 720px;
+  margin: 0 auto;
+}
+
+/* line 45, ../sass/resume_management.sass */
+.opentext {
+  color: white;
+  font-weight: bold;
+}
+
+/* line 48, ../sass/resume_management.sass */
+.body {
+  margin-top: 0px;
+}
+
+/* line 50, ../sass/resume_management.sass */
+.keyword {
+  color: yellow;
+}
+
+/* line 52, ../sass/resume_management.sass */
+.formargin {
+  margin-top: 50px;
+}

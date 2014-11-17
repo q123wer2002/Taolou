@@ -1,0 +1,89 @@
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+	<title>TaoLou</title>
+	<meta charset="utf-8">
+    
+	<link href="css/layout.css" rel="stylesheet">
+    <link href="css/message.css" rel="stylesheet">
+    <link href="css/account.css" rel="stylesheet">
+    
+	<script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+	
+	<div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+		<div class='menuBar'>
+			<ul class='menu'>
+				<li ng-repeat='list in lists'>
+					<a href="{{list.url}}">{{list.name}}</a>
+				</li>
+			</ul>
+			
+			<div class='search'>
+				<form>
+					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+					<button class='goSearch searchPos button'>搜尋</button>
+				</form>
+			</div>
+		</div>
+    </div>
+
+    <link href="css/index.css" rel="stylesheet">
+
+    <div class='body'>
+    	<nav class='partner'>
+    		<h3>
+                <span>聯繫人列表</span>
+            </h3>
+    		<div class='partnerList peoplelist'>
+    			<a href="account_setting.html">
+                    
+                    <span class='contact-people'>密碼</span>
+    			</a>
+                <a href="account_setting2.html">
+                    
+                    <span class='contact-people'>郵件提醒</span>
+                </a>
+                
+    		</div>
+    	</nav>
+
+    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+            <h3>
+                <span>密碼</span>
+            </h3>
+    	</section>
+        <div class='old' ng-controller='TaoLoujob-index'>
+            <div class="password"><span class='big-fz'>舊密碼(請輸入您的舊密碼)</span><input type="password"></div>
+                
+            
+        </div>
+        <div class='new' ng-controller='TaoLoujob-index'>
+           
+                <div class="password"><span class='big-fz'>新密碼(密碼至少為六位數)</span><input type="password"></div>
+            
+        </div>
+        <div class='save' ng-controller='TaoLoujob-index'>
+           
+                <a href="" class='confirm'>確定</a>
+            
+        </div>
+        
+
+        
+    
+    </div>
+
+   <!--  <div class='footer'>
+    	<div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div>
+ --></body>
+</html>

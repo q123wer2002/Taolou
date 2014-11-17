@@ -1,0 +1,81 @@
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+	<title>TaoLou</title>
+	<meta charset="utf-8">
+    
+	<link href="css/layout.css" rel="stylesheet">
+    <link href="css/message.css" rel="stylesheet">
+    
+	<script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+	
+	<div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+		<div class='menuBar'>
+			<ul class='menu'>
+				<li ng-repeat='list in lists'>
+					<a href="{{list.url}}">{{list.name}}</a>
+				</li>
+			</ul>
+			
+			<div class='search'>
+				<form>
+					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+					<button class='goSearch searchPos button'>搜尋</button>
+				</form>
+			</div>
+		</div>
+    </div>
+
+    <link href="css/index.css" rel="stylesheet">
+
+    <div class='body'>
+    	<nav class='partner'>
+    		<h3>
+                <span>聯繫人列表</span>
+            </h3>
+    		<div class='partnerList peoplelist'>
+    			<a href="mesage-contact-people.html">
+                    <span><img class='contact-people-photo'src="images/cto.jpg" alt=""></span>
+                    <span class='contact-people'>林彥丞</span>
+    			</a>
+                <a href="mesage-contact-people.html">
+                    <span><img class='contact-people-photo'src="images/cto.jpg" alt=""></span>
+                    <span class='contact-people'>林彥丞</span>
+                </a>
+                <a href="mesage-contact-people.html">
+                    <span><img class='contact-people-photo'src="images/cto.jpg" alt=""></span>
+                    <span class='contact-people'>林彥丞</span>
+                </a>
+    		</div>
+    	</nav>
+
+    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+            <h3>
+                <span>私信</span>
+            </h3>
+    	</section>
+
+        <div class='rule'>
+            <p class='message-rule'>私訊規則</p>
+            <p class='message-content'>每天可与 10 人发起对话，对话内消息数量不限。</p>
+            <p class='message-quota'>今天还剩<span class='times'> 10 </span>次发起对话的机会</p>
+        </div>
+
+        
+    
+    </div>
+
+   <!--  <div class='footer'>
+    	<div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div>
+ --></body>
+</html>
