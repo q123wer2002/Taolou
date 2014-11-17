@@ -65,18 +65,26 @@
 					<em class='stock'>股票選擇權</em>
 			</div>
 
+			<script>
+				$(document).ready(function(){
+					$( ".edittype" ).on( "click", function() {
+  						$(this).prop("checked",true);
+					});
+				});
+			</script>
+
 			<div class="clearfix edit_jobwish" ng-repeat='jobwish in job_wish' ng-show='jobwish.editing'>
 
 				<div class='edit_div'>職位名稱 <input class='in_cv' value='{{jobwish.name}}'></div>
 				<div class='edit_div'>工作類型
 					<div class='editspan'>
-						<div class='edittype'><input type='checkbox'>全職</div>
-						<div class='edittype'><input type='checkbox'>兼職</div>
-						<div class='edittype'><input type='checkbox'>實習</div>
+						<div class='edittype'><input type='checkbox' class='checkbox'>全職</div>
+						<div class='edittype'><input type='checkbox' class='checkbox'>兼職</div>
+						<div class='edittype'><input type='checkbox' class='checkbox'>實習</div>
 					</div>
 				</div>
 				<div class='edit_div'>最低薪水 <input class='in_cv' value='{{jobwish.min_salary}}'></div>
-				<div class='edit_div'>股票期權<div class='edittype one_check'><input type='checkbox'>需要股票或期權</div></div>
+				<div class='edit_div'>股票期權<div class='edittype one_check'><input type='checkbox' class='checkbox'>需要股票或期權</div></div>
 				<div class='edit_div'>工作地點
 					<div class='editloc'>
 						<div class='loctag'>{{jobwish.loc}}</div>
@@ -84,7 +92,7 @@
 						<br>
 					</div>
 				</div>
-				<div class='edit_div'>遠程工作<div class='edittype one_check'><input type='checkbox'>接受遠程工作</div></div>
+				<div class='edit_div'>遠程工作<div class='edittype one_check'><input type='checkbox' class='checkbox'>接受遠程工作</div></div>
 
 				<button class='button b_jobwish' ng-click='save(jobwish)'>保存</button>
 				<button class='button b_jobwish deny'>取消</button>
