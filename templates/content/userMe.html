@@ -92,7 +92,7 @@
 				<div class='edit_div'>股票期權<div class='edittype one_check'><input type='checkbox' class='checkbox'>需要股票或期權</div></div>
 				<div class='edit_div'>工作地點
 					<div class='editloc'>
-						<div class='loctag'>{{jobwish.loc}}</div>
+						<div class='loctag'>{{jobwish.loc}}<a href='javascript:;' class='icon title-chart delete'></a></div>
 						<br><br>
 						<input class='in_cv' placeholder='輸入台灣城市名稱'>
 						<br>
@@ -106,6 +106,31 @@
 			</div>
 
 		</div>
+	</div>
+
+	<div class='special_skill'>
+		<span class="seg-title">特殊技能</span>
+		
+		<div  class="clearfix showskills" ng-repeat='divskill in divskills' ng-hide='divskill.editing'>
+			<a href="javascript:;" class='icon title-chart edit' ng-click='edit(divskill)'></a>
+			<ul class='skillList'>
+				<li class='skill' ng-repeat='skill in skills | filter:{isSelect:false}'>{{skill.name}}</li>
+			</ul>
+		</div>
+			
+		<div class='clearfix' ng-repeat='divskill in divskills' ng-show='divskill.editing'>
+			<ul class='skillList'>
+				<li class='skill' ng-repeat='skill in skills | filter:{isSelect:false}'>{{skill.name}}<a href='javascript:;' class='icon title-chart delete' ng-click='delete(skill)'></a></li>
+			</ul>
+
+			<div class='addskills'>
+				<form ng-submit='addskills()' >
+					<input type='text' class='in_cv' placeholder='請輸入技能標籤' ng-model='newitem' name='newitem'>
+					<input class='in_submit' type='submit' value='新增'>
+				</form>
+			</div>
+		</div>
+
 	</div>
 
 </div>
