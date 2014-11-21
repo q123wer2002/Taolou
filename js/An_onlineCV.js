@@ -16,16 +16,22 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	$scope.divskills=[{'name':'show'}];
 
 	$scope.skills=[
-		{'name':'PHP','isSelect':'false'},
-		{'name':'JAVASCRIPT','isSelect':'false'},
-		{'name':'HTML5','isSelect':'false'},
-		{'name':'前端設計','isSelect':'false'},
+		{'name':'PHP','isDelete':'false'},
+		{'name':'JAVASCRIPT','isDelete':'false'},
+		{'name':'HTML5','isDelete':'false'},
+		{'name':'前端設計','isDelete':'false'},
+	];
+
+	$scope.allskills=[
+		{'name':'PHP'},
+		{'name':'Angular'},
+		{'name':'WebServer'},
 	];
 
 	$scope.newitem='';
 	$scope.addskills = function(){
 		if(this.newitem != ''){
-			this.skills.push({name:this.newitem,isSelect:false});
+			this.skills.push({name:this.newitem,isDelete:false});
 			this.newitem='';
 		}
 	}
@@ -38,7 +44,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	}
 
 	$scope.delete = function(item){
-		item.isSelect=true;
+		item.isDelete=true;
 	}
 	$scope.reload = function() {
    		location.reload();

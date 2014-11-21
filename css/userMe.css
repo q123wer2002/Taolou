@@ -46,3 +46,6 @@
 		.skillList{list-style: none;width: 75%;position: relative;margin-left:90px;margin-top: 10px;}
 		.skill{display: inline;padding: 10px 10px 10px 10px;background: #ecedf0;border-radius: 5px;margin: 0px 5px 10px 5px;}
 		.addskills{width: 525px;height: 189px;margin-left: 90px;padding: 15px 15px 5px 15px;background: #ecedf0;position: relative;margin-top: 30px;}
+		#addskill{margin-left: 0px;margin-top: 20px;}
+		.addskillLi{display: inline;padding: 10px 10px 10px 10px;background: #ecedf0;border-radius: 5px;margin: 0px 5px 10px 5px;}
+		.addskillLi:hover{cursor: pointer;}

@@ -114,13 +114,13 @@
 		<div  class="clearfix showskills" ng-repeat='divskill in divskills' ng-hide='divskill.editing'>
 			<a href="javascript:;" class='icon title-chart edit' ng-click='edit(divskill)'></a>
 			<ul class='skillList'>
-				<li class='skill' ng-repeat='skill in skills | filter:{isSelect:false}'>{{skill.name}}</li>
+				<li class='skill' ng-repeat='skill in skills | filter:{isDelete:false}'>{{skill.name}}</li>
 			</ul>
 		</div>
 			
 		<div class='clearfix' ng-repeat='divskill in divskills' ng-show='divskill.editing'>
 			<ul class='skillList'>
-				<li class='skill' ng-repeat='skill in skills | filter:{isSelect:false}'>{{skill.name}}<a href='javascript:;' class='icon title-chart delete' ng-click='delete(skill)'></a></li>
+				<li class='skill' ng-repeat='skill in skills | filter:{isDelete:false}'>{{skill.name}}<a href='javascript:;' class='icon title-chart delete' ng-click='delete(skill)'></a></li>
 			</ul>
 
 			<div class='addskills'>
@@ -128,6 +128,9 @@
 					<input type='text' class='in_cv' placeholder='請輸入技能標籤' ng-model='newitem' name='newitem'>
 					<input class='in_submit' type='submit' value='新增'>
 				</form>
+				<ul class='skillList' id='addskill'>
+					<li class='addskillLi' ng-repeat='skill in allskills'><a href='javascript:;' ng-click='addskills()'>{{skill.name}}<input type="hidden" ng-model='newitem' name='newitem' value="{{skill.name}}"></a></li>
+				</ul>
 			</div>
 		</div>
 
