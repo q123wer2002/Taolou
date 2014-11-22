@@ -129,7 +129,7 @@
 					<input class='in_submit' type='submit' value='新增'>
 				</form>
 				<ul class='skillList' id='addskill'>
-					<li class='addskillLi' ng-repeat='skill in allskills'><a href='javascript:;' ng-click='addskills()'>{{skill.name}}<input type="hidden" ng-model='newitem' name='newitem' value="{{skill.name}}"></a></li>
+					<li class='addskillLi' ng-repeat='skill in allskills'>{{skill.name}}<input type="hidden" ng-model='newitem' name='newitem' value="{{skill.name}}"></li>
 				</ul>
 			</div>
 		</div>
