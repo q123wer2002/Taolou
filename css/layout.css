@@ -1,9 +1,9 @@
 body{margin: 0;padding: 0;width: 100%;height: auto;margin: auto;color: #6b7485;
 font-family: '文泉驛微米黑 Regular', '文泉驛微米黑','Arial Negreta cursiva', 'Arial','微軟正黑體';
 background:url(../images/layout/pattern.png);}
-a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video{margin: 0;padding: 0;border: 0;transition:opacity .2s ease,color .2s ease,background .2s ease,box-shadow .2s ease;font-family: '文泉驛微米黑 Regular', '文泉驛微米黑','Arial Negreta cursiva', 'Arial','微軟正黑體';font-weight: 400;}
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video{margin: 0;padding: 0;border: 0;transition:opacity .2s ease,color .2s ease,background .2s ease,box-shadow .2s ease;font-family: '微軟正黑體';font-weight: 400;}
 
-.input{height: 40px;width:200px;border:1px solid #46A3FF;font-size: 15px;font-weight: 500;background: rgba(242, 242, 242, 1);}
+.input{height: 40px;width:200px;border:1px solid #46A3FF;font-size: 18px;font-weight: 500;background: rgba(242, 242, 242, 1);}
 .button{border: none;width: 70px;height: 40px;background: #46A3FF;font-weight: 500;color: white;font-size: 17px;font-family: '微軟正黑體';}
 .icon{background-image: url(../images/layout/sprite.png);background-repeat: no-repeat;display: inline-block;vertical-align: 0;margin-bottom: -1px;zoom:1;}
 .title-chart{width: 13px;height: 13px;}

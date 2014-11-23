@@ -1,0 +1,27 @@
+<script type="text/javascript" src='js/AN_account.js'></script>
+
+<style type="text/css">
+	.error{color: red;font-weight: 400;font-size: 12px;}
+</style>
+
+<div class='signupDiv' ng-controller='TaolouAccount'>
+	<form ng-submit='account()'>
+		<p>
+			<input type='hidden' ng-init="myType.values = ''" ng-model='myType'>
+			用戶類別：
+			<select ng-model='myType' ng-options='m.name for m in memberType'>
+				<option value="">-- 請選擇 --</option>
+			</select>
+		</p><br>
+		<p>信箱：<input type='email' ng-model='email' value=''></p><br>
+		<p>密碼：<input type='password' ng-model='password' value=''></p><br>
+		<p><input type='submit' value='登入'></p>
+		<p class='error'>{{errorMessage}}</p>
+	</form>
+
+	<div class='anotherSignup'>
+		<ul class='signupListUl'>
+			<li></li>
+		</ul>
+	</div>
+</div>

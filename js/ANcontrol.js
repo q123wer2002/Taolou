@@ -5,39 +5,18 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 	$scope.lists=[
 		{'name':'首頁','url':'index.php'},
 		{'name':'主題公司','url':'topicCompany.php'},
-		{'name':'註冊','url':'login.html'},
-		{'name':'登入','url':'login.html'}
+		{'name':'註冊','url':'account.php?action=signup'},
+		{'name':'登入','url':'account.php?action=login'}
 	];
+
+	$scope.memberLists=[
+		{'name':'首頁','url':'index.php'},
+		{'name':'主題公司','url':'topicCompany.php'},
+		{'name':'簡歷','url':'userResume.php'},
+		{'name':'求職管理','url':'jobManage.php'}
+	];
+	
 }]);
-
-//帳戶專用
-/*TaoLou.controller('TaolouAccount',['$scope','$http',function TaolouAccount($scope,$http){
-	$scope.submit = function() {
-		if($scope.email!="" && $scope.password!=""){
-			if($scope.memberType==""){
-				var accountObject={"method":"login","memberType":"0","email":$scope.email,"password":$scope.password};
-			}
-			else($scope.memberType!=""){
-				var accountObject={"method":"signup","memberType":$scope.memberType,"email":$scope.email,"password":$scope.password};	
-			}
-			$http({
-				method:'POST',
-				url:'server/accountAjax.php',
-				data: $.param(accountObject),
-				headers: headers: {'Content-type': 'application/x-www-form-urlencoded'},
-			}).
-			success(function(json){
-				console.log(json);
-			}).
-			error(function(json){
-				console.log(json);
-			});
-		}
-		else{}
-	}
-}]);*/
-//=========================
-
 
 
 TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){

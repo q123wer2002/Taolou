@@ -9,7 +9,7 @@ $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //確認動作
-if($_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
+if(@$_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
 else {@$action='login';}
 //====================
 
@@ -18,7 +18,7 @@ switch($action){
 	case 'signup':
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/signup.html';
+    $obj_tmp1->content_html='content/account/signup.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
@@ -31,7 +31,7 @@ switch($action){
 	case 'login':
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/login.html';
+    $obj_tmp1->content_html='content/account/login.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
@@ -42,6 +42,17 @@ switch($action){
 	break;
 
 	case 'forget_password':
+
+	$obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/account/forget_password.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+	$obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+	//=======================================.
+	
 	break;
 	
 	default:
