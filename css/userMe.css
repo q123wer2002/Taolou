@@ -5,6 +5,7 @@
 	.in_cv:focus{border:2px solid #36a9e5;}
 	.edit{background-position: -173px -67px;width: 14px;height: 15px;position: absolute;right: 0;}
 	.edit:hover{background-position: -173px -35px;}
+	.add{background-position: -190px -85px;width: 13px;height: 13px;}
 
 	.profile{width: 720px;height: 86px;padding: 42px 0px 42px 0px;background-image: url(../images/userMe/online_resume_head.jpg);border-radius:2px;}
 		.avatar{width: 80px;height: 80px;margin: 0px 30px 0px 100px;border-radius: 45px;overflow: hidden;border: 3px solid #ffffff;float: left;z-index: 2px;}
@@ -45,8 +46,23 @@
 		.showskills{height: 60px;}
 		.skillList{list-style: none;width: 75%;position: relative;margin-left:90px;margin-top: 10px;}
 		.skill{display: inline;padding: 10px 10px 10px 10px;background: #ecedf0;border-radius: 5px;margin: 0px 5px 10px 5px;}
-		.addskills{width: 525px;height: 189px;margin-left: 90px;padding: 15px 15px 5px 15px;background: #ecedf0;position: relative;margin-top: 30px;}
+		.addskills{width: 525px;height: auto;margin-left: 90px;padding: 15px 15px 5px 15px;background: #ecedf0;position: relative;margin-top: 30px;}
 		#addskill{margin-left: 0px;margin-top: 20px;}
 		.addskillLi{display: inline;padding: 10px 10px 10px 10px;background: #f8f9fa;border-radius: 5px;margin: 0px 5px 10px 5px;position: relative;}
 		.addskillLi:hover{cursor: pointer;}
 			.hidden{width: 100%;height: 100%;opacity: 0;position: absolute;}
+
+	.education_experience{width: 660px;height: auto;padding: 30px 0px 30px 0px;border-top:1px solid #eceef1;background: #ffffff;font-size: 14px;position: relative;}
+		.educationList{margin-left: 105px;}
+			.educationListUl{list-style: none;}
+			.educationListUl li{list-style: none;line-height: 25px;margin-bottom: 20px;}
+			.educationListUl li:hover{background:#eceef1;}
+				.sub{color: #a2a8b3;}
+		.add_ee{text-decoration: none;color: #36a9e5;}
+
+	.experience2{width: 660px;height: auto;padding:30px 0px 30px 0px;border-top:1px solid #eceef1;background: #ffffff;font-size: 14px;position: relative;}
+		.experienceList{margin-left: 105px;margin-top: 7px;}
+
+	.selfDetail{width: 660px;height: auto;padding:30px 0px 30px 0px;border-top:1px solid #eceef1;background: #ffffff;font-size: 14px;position: relative;}
+		.addSelf{padding: 5px 0px 5px 0px;margin-top: -7px;}
+		.addSelf:hover{background:#eceef1;}

@@ -131,6 +131,48 @@
 				<ul class='skillList' id='addskill'>
 					<li class='addskillLi' ng-repeat='skill in allskills'>{{skill.name}}<input type="hidden" ng-model='newitem' name='newitem' value="{{skill.name}}"></li>
 				</ul>
+				<button class='button b_jobwish'>保存</button>
+				<button class='button b_jobwish deny'>取消</button>
+			</div>
+		</div>
+
+		<div class="education_experience">
+			<span class="seg-title">教育經歷</span>
+			<div class='clearfix educationList'>
+				<ul class='educationListUl'>
+					<li ng-repeat='eduexp in eduexps'>
+						<a href="javascript:;" class='icon title-chart edit' ng-click='edit(eduexp)'></a>
+						<p>{{eduexp.start_edu}}-{{eduexp.end_edu}} ● {{eduexp.school}}</p>
+						<p class='sub'>{{eduexp.education}} ● {{eduexp.marjor}}</p>
+					</li>
+				</ul>
+				<a href="javascript:;" class='add_ee' ng-click='edit(eduexp)'>
+					<span class='icon title-chart add'></span>
+					新增教育經歷
+				</a>
+			</div>
+		</div>
+
+		<div class='experience2'>
+			<span class="seg-title">項目經歷</span>
+			<div class='clearfix experienceList'>
+
+				<a href="javascript:;" class='add_ee' ng-click='edit(eduexp)'>
+					<span class='icon title-chart add'></span>
+					新增教育經歷
+				</a>
+			</div>
+		</div>
+
+		<div class='selfDetail'>
+			<span class="seg-title">自我描述</span>
+
+			<div class='clearfix experienceList'>
+
+				<div class='addSelf'>
+					<a href="javascript:;" class='icon title-chart edit'></a>
+					<p>請添加自我描述</p>
+				</div>
 			</div>
 		</div>
 

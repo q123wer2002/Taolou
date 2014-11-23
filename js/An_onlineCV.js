@@ -28,6 +28,11 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		{'name':'WebServer'},
 	];
 
+	$scope.eduexps=[
+		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information'},
+		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information'},
+	];
+
 	$scope.newitem='';
 	$scope.addskills = function(){
 		if(this.newitem != ''){

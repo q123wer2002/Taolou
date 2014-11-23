@@ -112,7 +112,7 @@ switch(@$action){
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/userMe.html';
+    $obj_tmp1->content_html='content/user/userMe.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";

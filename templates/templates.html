@@ -14,7 +14,7 @@
 				<li 
 				<?php 
 				if($_SESSION['user'] != ""){echo "ng-repeat='list in memberLists'";}
-				else{echo "ng-repeat='list in lists";}
+				else{echo "ng-repeat='list in lists'";}
 				?>>
 					<a href="{{list.url}}">{{list.name}}</a>
 				</li>
