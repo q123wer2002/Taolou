@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2014 at 06:36 AM
+-- Generation Time: Nov 23, 2014 at 06:53 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `taolou`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taolou_account`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `memberId` int(11) NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `taolou_account`
+--
+
+INSERT INTO `taolou_account` (`id`, `memberId`, `email`, `password`, `createDate`) VALUES
+(1, 1, 'q123wer2002@gmail.com', 'c0c493ca346af5ca1a45839351a3b656', '2014-11-23 17:22:10'),
+(2, 2, 'q123wer2002@livemail.tw', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-11-23 17:25:35');
 
 -- --------------------------------------------------------
 
@@ -107,33 +130,6 @@ INSERT INTO `taolou_job` (`id`, `title`, `companyId`, `jobName`, `location`, `jo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member`
---
-
-CREATE TABLE IF NOT EXISTS `taolou_member` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `comapnyHr` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
-  `comapnyId` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `facebook` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `photo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `bron` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `lastEducation` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `workYears` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `jobStatus` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `selfIntro` longblob NOT NULL,
-  `messageEmail` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
-  `CVupdateEmail` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
-  `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `taolou_member_cv`
 --
 
@@ -147,6 +143,42 @@ CREATE TABLE IF NOT EXISTS `taolou_member_cv` (
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taolou_member_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comapnyHr` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
+  `companyId` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `facebook` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `google+` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `photo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `bron` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `lastEducation` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `workYears` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `jobStatus` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `selfIntro` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `messageEmail` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `CVupdateEmail` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `taolou_member_detail`
+--
+
+INSERT INTO `taolou_member_detail` (`id`, `comapnyHr`, `companyId`, `name`, `email`, `phone`, `facebook`, `google+`, `photo`, `bron`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
+(1, 'n', 0, '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2014-11-23 17:22:10'),
+(2, 'n', 0, '', 'q123wer2002@livemail.tw', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2014-11-23 17:25:35');
 
 -- --------------------------------------------------------
 
@@ -180,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_experience` (
   `continueTime` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `company` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `detail` longblob NOT NULL,
+  `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
