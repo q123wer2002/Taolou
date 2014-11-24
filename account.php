@@ -19,6 +19,7 @@ switch($action){
 
 	$obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/account/signup.html';
+    $obj_tmp1->javaData='js/AN_account.js';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
@@ -32,6 +33,7 @@ switch($action){
 
 	$obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/account/login.html';
+    $obj_tmp1->javaData='js/AN_account.js';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
@@ -45,6 +47,7 @@ switch($action){
 
 	$obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/account/forget_password.html';
+    $obj_tmp1->javaData='js/AN_account.js';
 
     //設定版面
     $obj_tmp1->top_html="top.html";

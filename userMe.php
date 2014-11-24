@@ -112,6 +112,7 @@ switch(@$action){
 
 
 	$obj_tmp1->showad=false;
+	$obj_tmp1->javaData='js/AN_onlineCV.js';
     $obj_tmp1->content_html='content/user/userMe.html';
 
     //設定版面

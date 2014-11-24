@@ -67,6 +67,9 @@
 
     <div class='body'>
     	<?php @include_once $this->content_html; ?>
+    	<?php if($this->javaData!=""){
+    		echo "<script type='text/javascript' src='".$this->javaData."'></script>";
+    	} ?>
     	<?php @include_once @$this->subMenu; ?>
     </div>
 
