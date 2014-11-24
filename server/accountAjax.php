@@ -34,12 +34,13 @@ if($_POST['method']=='login')
 			//=======================
 
 			//將使用者資訊存入SESSION
-			$userId=$obj_tmp1->encode($obj_tmp1->laout_arr['loadUser'][0]['id']);
-			$_SESSION['user'][$userId]=array();
-			$_SESSION['user'][$userId]['id']=$userId;
-			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){$_SESSION['user'][$userId]['userType']="2";}
-			else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){$_SESSION['user'][$userId]['userType']="1";}
-			$message=array('first'=>"成功",'url'=>"index.php","actions"=>'login');
+			$userId=$obj_tmp1->laout_arr['loadUser'][0]['id'];
+			$_SESSION['user']=array();
+			$_SESSION['user']['id']=$userId;
+			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){$_SESSION['user']['userType']="2";}
+			else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){$_SESSION['user']['userType']="1";}
+			
+			$message=array('first'=>"success",'url'=>"index.php","actions"=>'login');
 			//=======================
 		}else{$message=array('first'=>"帳號密碼不正確",'url'=>"X","actions"=>'login');}
 	}else{$message=array('first'=>"請先註冊後登入",'url'=>"X","actions"=>'login');}
@@ -92,6 +93,14 @@ else if($_POST['method']=='signup')
 		//跳回登入頁面
 		$message=array('first'=>"成功",'url'=>'account.php?action=login',"actions"=>'signup');
 	}
+
+	echo json_encode($message);
+	exit;
+}
+else if($_POST['method'] == 'logout'){
+	
+	unset($_SESSION['user']);
+	$message=array('first'=>"success",'url'=>"index.php","actions"=>'logout');
 
 	echo json_encode($message);
 	exit;

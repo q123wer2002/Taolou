@@ -17,7 +17,7 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 $userId='';
 
 $action="";
-if($_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
+if(@$_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
 else {@$action='rule';}
 //===================
 

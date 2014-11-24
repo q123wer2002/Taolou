@@ -1,6 +1,6 @@
 var TaoLou = angular.module('TaoLou',[]);
 
-TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
+TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$http){
 
 	$scope.lists=[
 		{'name':'首頁','url':'index.php'},
@@ -15,6 +15,31 @@ TaoLou.controller('TaoLouMenu',['$scope', function TaoLouMenu($scope){
 		{'name':'簡歷','url':'userResume.php'},
 		{'name':'求職管理','url':'jobManage.php'}
 	];
+
+	$scope.companyLists=[
+		{'name':'首頁','url':'index.php'},
+		{'name':'主題公司','url':'topicCompany.php'},
+	];
+
+
+	$scope.searchText='';
+	$scope.search=function(){
+		if($scope.searchText != ""){
+			var searchObject={'method':'search','keyword':$scope.searchText};
+			$http({
+				method:'POST',
+				url:'server/ajax.php',
+				data: $.param(searchObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+			}).
+			error(function(json){
+				console.warn(json);
+			});
+		}
+	}
 	
 }]);
 

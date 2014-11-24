@@ -44,5 +44,25 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 		else{$scope.errorMessage='*請填入信箱與密碼';}
 	}
 
+
+	$scope.logout=function(){
+		var accountObject={'method':'logout'};
+		$http({
+			method:'POST',
+			url:'server/accountAjax.php',
+			data: $.param(accountObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			if(json.actions=="logout"){
+				if(json.url=='X'){$scope.errorMessage='*'+json.first;}
+				else{window.open(json.url,'_self');}
+			}
+		}).
+		error(function(jsin){
+			consoule.warn(json);
+		});
+	}
+
 });
 //=========================

@@ -13,7 +13,12 @@
 			<ul class='menu'>
 				<li 
 				<?php 
-				if($_SESSION['user'] != ""){echo "ng-repeat='list in memberLists'";}
+				if(@$_SESSION['user']['id']!="" && @$_SESSION['user']['userType']=='1'){
+					echo "ng-repeat='list in memberLists'";
+				}
+				else if(@$_SESSION['user']['id']!="" && @$_SESSION['user']['userType']=='2'){
+					echo "ng-repeat='list in companyLists'";
+				}
 				else{echo "ng-repeat='list in lists'";}
 				?>>
 					<a href="{{list.url}}">{{list.name}}</a>
@@ -21,12 +26,42 @@
 			</ul>
 			
 			<div class='search'>
-				<form>
-
-					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
-					<button class='goSearch searchPos button'>搜尋</button>
+				<form class='searchDiv'>
+					<a href="javascript:;" class='icon title-chart inputSearch' ng-click='search()'></a>
+					<input type='text' class='searchBar' ng-model='searchText' placeholder='搜尋公司或職位'>
 				</form>
 			</div>
+
+			<?php if(@$_SESSION['user']['id']!="" && @$_SESSION['user']['userType']=='1') { ?>
+			<script type="text/javascript" src='js/AN_account.js'></script>
+			<div class='userProfile' ng-controller='TaolouAccount'>
+				<a href="userMessage.php" class='icon title-chart userMessages'></a>
+				<span class='mailMessage'>私信</span>
+				<div class='userPicture'>
+					<ul class='userMenuListUl'>
+						<a href="userMe.php"><li>線上履歷</li></a>
+						<a href="userSetting.php"><li>設定</li></a>
+						<a href="javescript:;" ng-click='logout()'><li>登出</li></a>
+					</ul>
+				</div>
+			</div>
+			<?php } ?>
+
+			<?php if(@$_SESSION['user']['id']!="" && @$_SESSION['user']['userType']=='2') { ?>
+			<script type="text/javascript" src='js/AN_account.js'></script>
+			<div class='userProfile' ng-controller='TaolouAccount'>
+				<a href="userMessage.php" class='icon title-chart userMessages'></a>
+				<span class='mailMessage'>私信</span>
+				<div class='userPicture'>
+					<ul class='userMenuListUl'>
+						<a href="userMe.php"><li>個人資料</li></a>
+						<a href="userSetting.php"><li>設定</li></a>
+						<a href="javescript:;" ng-click='logout()'><li>登出</li></a>
+					</ul>
+				</div>
+			</div>
+			<?php } ?>
+
 		</div>
     </div>
 
