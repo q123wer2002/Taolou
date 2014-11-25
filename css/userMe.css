@@ -9,6 +9,7 @@
 
 	.profile{width: 720px;height: 86px;padding: 42px 0px 42px 0px;background-image: url(../images/userMe/online_resume_head.jpg);border-radius:2px;position: relative;}
 		.editProfile{position: absolute;right: 5px;top: 5px;color: #ffffff;text-decoration: none;font-size: 15px;font-weight: 500;border: 2px solid #ffffff;border-radius: 2px;padding: 2px;}
+		.editProfile:hover{border: 2px solid #46A3FF;}
 		#iconEditProfile{background-position: -173px -50px;width: 16px;height: 16px;}
 		.avatar{width: 80px;height: 80px;margin: 0px 30px 0px 100px;border-radius: 45px;overflow: hidden;border: 3px solid #ffffff;float: left;z-index: 2px;}
 		.avatar img{width: 100%;color: transparent;}
@@ -19,10 +20,20 @@
 			.status{color: #ffffff;font-size: 14px;text-shadow:0 1px 1px rgba(0,0,0,.5);}
 		.experience{line-height: 20px;margin-top: 10px;color: #ffffff;text-shadow:0 1px 1px rgba(0,0,0,.5);}
 
-	.popEditProfileDiv{background:#ffffff;width: 540px;border-radius: 5px;position: fixed;z-index: 5;bottom: -100%;}
-		.title{font-size: 15px;font-weight: 500px;}
-		.closePop{position: absolute;right: 10px;top: 5px;padding: 5px;background-color: #ecedf0;width: 10px;height: 10px;}
+	.popEditProfileDiv{background:#ffffff;width: 540px;border-radius: 3px;position: fixed;z-index: 5;bottom: -100%;box-shadow: 0px 0px 10px #46A3FF;}
+		.title{font-size: 15px;font-weight: 500px;width: 507px;height: 24px;padding: 13px 13px 13px 24px;}
+		.closePop{padding: 5px;background-color: #ecedf0;width: 10px;height: 10px;float: right;}
 		.closePop span{margin:0;padding: 0;position: relative;}
+		.pop-edit-line{width: 540px;height: 40px;padding: 15px 0px 15px 0px;border-top: 1px solid #eceef1;position: relative;}
+		.popLabel{width: 70px;height: 50px;padding: 0px 20px 0px 30px;text-align: right;}
+		.pop-inputWarp{width: 230px;height: 41px;display: inline-block;}
+		.pop-input{padding: 13px 15px 11px 15px;border:none;background: #ecedf0;border-radius: 3px;}
+		.pop-select:hover{cursor: pointer;}
+		.pop-selectUl{position: absolute;width: 199px;text-align: center;z-index: 6;}
+		.pop-selectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
+		.edit-hint{width: 170px;height: 40px;display: inline-block;}
+		.popSaveDiv{text-align: center;line-height: 40px;}
+		.pop_save{color: #ffffff;background: #17b385;text-decoration: none;font-weight: 500;padding: 10px 100px;border-radius: 3px;}
 
 	.profile-seg{width: 660px;height: 60px;padding: 30px;border-top:1px solid #eceef1;background: #f8f9fa;font-size: 14px;position: relative;}
 		.seg-title{display: block;width: 85px;float: left;text-align: right;font-size: 16px;color: #a2a8b3;font-weight: 400;line-height: 30px;-webkit-font-smoothing:antialiased;}

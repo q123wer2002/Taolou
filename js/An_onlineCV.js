@@ -61,6 +61,9 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 //一般的Javascript
 $(document).ready(function(){
 	$('.editProfile').click(function(){
-		$('.popEditProfileDiv').animate({bottom:'10%'},300);
+		$('.popEditProfileDiv').animate({bottom:'30%'},500);
+	});
+	$('.closePop').click(function(){
+		$('.popEditProfileDiv').animate({bottom:'-100%'},500);
 	});
 });

@@ -24,8 +24,53 @@
 	</div>
 
 	<div class='popEditProfileDiv'>
-		<div class='title'>修改基本訊息</div>
-		<a href="javascript:;" class='closePop'><span class='icon delete'></span></a>
+		<div class='title'>
+			<span>修改基本訊息</span>
+			<a href="javascript:;" class='closePop' alt='取消編輯'><span class='icon delete'></span></a>
+		</div>
+
+		<div class='pop-edit-line'>
+			<span class='popLabel'>　　姓名</span>
+			<div class='pop-inputWarp'>
+				<input type='text' class='pop-input' value='<?php echo $memberValue['name']; ?>'>
+			</div>
+			<p class='edit-hint'>必填</p>
+		</div>
+		<div class='pop-edit-line'>
+			<span class='popLabel'>出生年份</span>
+			<div class='pop-inputWarp'>
+				<input type='text' class='pop-input pop-select' disabled="disabled">
+				<ul class='pop-selectUl'>
+					<li data-ng-repeat="i in 1 .. 100">{{i}}</li>
+				</ul>
+			</div>
+			<p class='edit-hint'>必選</p>
+		</div>
+		<div class='pop-edit-line'>
+			<span class='popLabel'>最高學歷</span>
+			<div class='pop-inputWarp'>
+				<input type='text' class='pop-input pop-select' disabled="disabled">
+			</div>
+			<p class='edit-hint'>必選</p>
+		</div>
+		<div class='pop-edit-line'>
+			<span class='popLabel'>工作年齡</span>
+			<div class='pop-inputWarp'>
+				<input type='text' class='pop-input ' value='<?php echo $memberValue['workYears']; ?>'>
+			</div>
+			<p class='edit-hint'>必填,單位為「年」</p>
+		</div>
+		<div class='pop-edit-line'>
+			<span class='popLabel'>求職狀態</span>
+			<div class='pop-inputWarp'>
+				<input type='text' class='pop-input pop-select' disabled="disabled">
+			</div>
+			<p class='edit-hint'>必填</p>
+		</div>
+
+		<div class='pop-edit-line popSaveDiv'>
+			<a href="javascript:;" class='pop_save'>保存</a>
+		</div>
 	</div>
 
 	<div class='profile-seg'>
