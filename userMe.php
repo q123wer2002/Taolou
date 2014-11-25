@@ -14,9 +14,12 @@ $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //確認使用者是誰
-$userId='';
-
-$action="user";
+if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}
+if(@$_SESSION['user']['userType'] != ""){
+	if(@$_SESSION['user']['userType'] == '1'){$action='user';}
+	else if(@$_SESSION['user']['userType'] == '2'){$action='hr';}
+	else{$action='none';}
+}else{$action='none';}
 //===================
 
 
@@ -62,7 +65,7 @@ switch(@$action){
 	//顯示個人基本訊息
 	$sql_member="SELECT ".$obj_tmp1->member.".*
 				 FROM ".$obj_tmp1->member."
-				 WHERE ".$obj_tmp1->member.".id=".$userId." AND ".$obj_tmp1->member.".companyHr='n'";
+				 WHERE ".$obj_tmp1->member.".id='".$userId."' AND ".$obj_tmp1->member.".companyHr='n'";
 	$obj_tmp1->laout_arr['member']=array();
 	$obj_tmp1->basic_select('laout_arr','member',$sql_member);
 		//echo $sql_member;

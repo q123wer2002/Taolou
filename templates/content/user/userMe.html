@@ -1,28 +1,32 @@
 <link rel="stylesheet" type="text/css" href="css/userMe.css">
 
 <div class='onlineCV' ng-controller='Taolou_onlineCV'>
+	<?php if($this->laout_arr['member']!=""){
+			foreach($this->laout_arr['member'] as $memberKey => $memberValue) { ?>
 	<div class='profile'>
 		<div class='avatar'>
-			<img src="images/userMe/user-default.jpg" alt="">
+			<img ng-click='' src="images/userMe/<?php 
+			if($memberValue['photo']!=""){echo $memberValue['photo'];}
+			else echo "user-default.jpg"; ?>">
 		</div>
 		<div class='main clearfix'>
-			<span class="name">林彥丞</span>
-			<span class="status" data-val="0">正在找工作</span>
+			<span class="name"><?php echo $memberValue['name']; ?></span>
+			<span class="status"><?php echo $memberValue['jobStatus']; ?></span>
 		</div>
 		<div class="experience sub">
-			<span class="birth" data-birth="1991"><b>1991</b> 年出生・</span>
-			<span class="degree" data-degree="1"><b>硕士</b>学历・</span>
-			<span class="work-years"><b>1</b> 年工作经验</span>
+			<span class="birth"><b><?php echo $memberValue['bron']; ?></b> 年出生・</span>
+			<span class="degree"><b><?php echo $memberValue['lastEducation']; ?></b>學歷・</span>
+			<span class="work-years"><b><?php echo $memberValue['workYears']; ?></b> 年工作經驗</span>
 		</div>
 	</div>
 
 	<div class='profile-seg'>
-		<span class="seg-title"><span class="icon title-chart locked" data-tooltip="仅自己可见"></span>聯絡方式</span>
+		<span class="seg-title"><span class="icon title-chart locked"></span>聯絡方式</span>
 		<div class="seg-body">
 			<ul>
 				<li class="mail clearfix"> 
 					<span class="label">信箱</span>
-					<span class="value value-mail">q123wer2002@gmail.com</span>
+					<span class="value value-mail"><?php echo $memberValue['email']; ?></span>
 				</li>
 				<li class="phone edit-el clearfix" ng-repeat='p in phone'>
 					<a href="javascript:;" class='icon title-chart edit' ng-hide='p.editing' ng-click='edit(p)'></a>
@@ -36,6 +40,8 @@
 			</ul>
 		</div>
 	</div>
+
+	<?php }} ?>
 
 	<div class="profile-seg profile-job-wish">
 		<span class="seg-title">求職願望</span>
