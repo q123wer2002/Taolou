@@ -4,6 +4,9 @@
 	<?php if($this->laout_arr['member']!=""){
 			foreach($this->laout_arr['member'] as $memberKey => $memberValue) { ?>
 	<div class='profile'>
+		<a href="javascript:;" class='editProfile'>
+			<span id='iconEditProfile' class='icon'></span>編輯
+		</a>
 		<div class='avatar'>
 			<img ng-click='' src="images/userMe/<?php 
 			if($memberValue['photo']!=""){echo $memberValue['photo'];}
@@ -18,6 +21,11 @@
 			<span class="degree"><b><?php echo $memberValue['lastEducation']; ?></b>學歷・</span>
 			<span class="work-years"><b><?php echo $memberValue['workYears']; ?></b> 年工作經驗</span>
 		</div>
+	</div>
+
+	<div class='popEditProfileDiv'>
+		<div class='title'>修改基本訊息</div>
+		<a href="javascript:;" class='closePop'><span class='icon delete'></span></a>
 	</div>
 
 	<div class='profile-seg'>

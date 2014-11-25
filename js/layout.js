@@ -1,5 +1,5 @@
 
-var fixmeTop = '460'; // Get initial position
+/*var fixmeTop = '460'; // Get initial position
 $(window).scroll(function() {            // Assign scroll event listener
     var currentScroll = $(window).scrollTop(); // Get current position
     if (currentScroll >= fixmeTop) { // Make it fixed if you've scrolled to it
@@ -18,4 +18,4 @@ $(window).scroll(function() {            // Assign scroll event listener
             left: '0px',
         });
     }
-});
+});*/
