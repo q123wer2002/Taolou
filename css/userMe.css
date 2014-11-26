@@ -20,7 +20,7 @@
 			.status{color: #ffffff;font-size: 14px;text-shadow:0 1px 1px rgba(0,0,0,.5);}
 		.experience{line-height: 20px;margin-top: 10px;color: #ffffff;text-shadow:0 1px 1px rgba(0,0,0,.5);}
 
-	.popEditProfileDiv{background:#ffffff;width: 540px;border-radius: 3px;position: fixed;z-index: 5;bottom: -100%;box-shadow: 0px 0px 10px #46A3FF;}
+	.popEditProfileDiv{background:#ffffff;width: 540px;border-radius: 3px;position: fixed;z-index: 5;bottom: -100%;box-shadow: 0px 0px 10px #46A3FF;font-size: 13px;}
 		.title{font-size: 15px;font-weight: 500px;width: 507px;height: 24px;padding: 13px 13px 13px 24px;}
 		.closePop{padding: 5px;background-color: #ecedf0;width: 10px;height: 10px;float: right;}
 		.closePop span{margin:0;padding: 0;position: relative;}
@@ -29,8 +29,10 @@
 		.pop-inputWarp{width: 230px;height: 41px;display: inline-block;}
 		.pop-input{padding: 13px 15px 11px 15px;border:none;background: #ecedf0;border-radius: 3px;}
 		.pop-select:hover{cursor: pointer;}
-		.pop-selectUl{position: absolute;width: 199px;text-align: center;z-index: 6;}
+		.pop-selectUl{position: absolute;width: 186px;text-align: center;z-index: 6;height:250px;overflow: auto;display: none;}
+		.pop-selectUl a{text-decoration: none;}
 		.pop-selectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
+		.pop-selectUl li:hover{background-color: #d94600;}
 		.edit-hint{width: 170px;height: 40px;display: inline-block;}
 		.popSaveDiv{text-align: center;line-height: 40px;}
 		.pop_save{color: #ffffff;background: #17b385;text-decoration: none;font-weight: 500;padding: 10px 100px;border-radius: 3px;}

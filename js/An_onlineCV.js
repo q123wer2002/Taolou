@@ -55,15 +55,53 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
    		location.reload();
    	}
 
+   	//選單的 Angular JS
+   	$scope.educations=[
+   		{'name':'博士','eduTag':'1'},
+   		{'name':'碩士','eduTag':'2'},
+   		{'name':'大專院校','eduTag':'3'},
+   		{'name':'高中','eduTag':'4'},
+   		{'name':'國中','eduTag':'5'},
+   		{'name':'國小','eduTag':'6'},
+   		{'name':'其他','eduTag':'7'},
+	];
+	$scope.jobStatus=[
+   		{'name':'正在找工作','josTag':'1'},
+   		{'name':'觀望中，有好工作可以考慮','jbsTag':'2'},
+   		{'name':'目前不想換工作','jbsTag':'3'},
+	];
+	
 
 }]);
+
+TaoLou.filter('range', function() {
+
+	return function(input, total) {
+		total = parseInt(total);
+	    for (var i=2014; i>(2014-total); i--)
+	    	input.push(i);
+	    return input;
+	  };
+});
+
 
 //一般的Javascript
 $(document).ready(function(){
 	$('.editProfile').click(function(){
-		$('.popEditProfileDiv').animate({bottom:'30%'},500);
+		$('.popEditProfileDiv').animate({bottom:'10%'},500);
 	});
 	$('.closePop').click(function(){
 		$('.popEditProfileDiv').animate({bottom:'-100%'},500);
+	});
+
+	//點擊出現下拉選單
+	$('#showYears').click(function(){
+		$('#yearSelect').toggle('fast');
+	});
+	$('#showEducation').click(function(){
+		$('#educationSelect').toggle('fast');
+	});
+	$('#showJobStatus').click(function(){
+		$('#jobStatusSelect').toggle('fast');
 	});
 });

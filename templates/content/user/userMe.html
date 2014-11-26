@@ -39,9 +39,9 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>出生年份</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input pop-select' disabled="disabled">
-				<ul class='pop-selectUl'>
-					<li data-ng-repeat="i in 1 .. 100">{{i}}</li>
+				<a href="javascript:;" id='showYears'><input type='text' class='pop-input pop-select' disabled="disabled"></a>
+				<ul class='pop-selectUl' id='yearSelect'>
+					<a href="javascript:;" ng-repeat="n in [] | range:50" data-value='{{n}}'><li>{{n}}</li></a>
 				</ul>
 			</div>
 			<p class='edit-hint'>必選</p>
@@ -49,7 +49,10 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>最高學歷</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input pop-select' disabled="disabled">
+				<a href="javascript:;" id='showEducation'><input type='text' class='pop-input pop-select' disabled="disabled"></a>
+				<ul class='pop-selectUl' id='educationSelect'>
+					<a href="javascript:;" ng-repeat='edu in educations' data-value='{{edu.eduTag}}'><li>{{edu.name}}</li></a>
+				</ul>
 			</div>
 			<p class='edit-hint'>必選</p>
 		</div>
@@ -63,9 +66,12 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>求職狀態</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input pop-select' disabled="disabled">
+				<a href="javascript:;" id='showJobStatus'><input type='text' class='pop-input pop-select' disabled="disabled"></a>
+				<ul class='pop-selectUl' id='jobStatusSelect'>
+					<a href="javascript:;" ng-repeat='jbs in jobStatus' data-value='{{jbs.jbsTag}}'><li>{{jbs.name}}</li></a>
+				</ul>
 			</div>
-			<p class='edit-hint'>必填</p>
+			<p class='edit-hint'>必選</p>
 		</div>
 
 		<div class='pop-edit-line popSaveDiv'>
