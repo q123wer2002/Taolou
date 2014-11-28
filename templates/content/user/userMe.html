@@ -174,11 +174,11 @@
 				<div class='edit_div'>股票期權<div class='edittype one_check'><input type='checkbox' class='checkbox' <?php if($wantjobValue['stock_option']=='y'){echo "checked";} ?>>需要股票或期權</div></div>
 				<div class='edit_div'>工作地點
 					<div class='editloc'>
-						<div class='loctag' ng-repeat='loc in locations'>{{loc.name}}<a href='javascript:;' class='icon title-chart delete' data-list='{{loc.number}}' ng-click="deleteloca()"></a></div>
+						<div class='loctag' ng-repeat='loc in locations'>{{loc}}<a href='javascript:;' class='icon title-chart delete' ng-click="deleteloca(loc)"></a></div>
 						<br><br>
 						<input class='in_cv' ng-model='newLoca' placeholder='輸入地點名稱'><a href="javascript:;" ng-click="newaddloca()"><button class='b_cv'>添加</button></a>
 						<br>
-						<p>{{errorMes}}</p>
+						<p class='locationError'>{{errorMes}}</p>
 						<br>
 						<?php if(!empty($this->laout_arr['workLocation'])) { foreach($this->laout_arr['workLocation'] as $locaKey => $locaValue) { ?>
 						<a href='javascript:;' class='locationSelect' ng-click="addloca('<?php echo $locaValue['location']; ?>')"><div class='loctag'><?php echo $locaValue['location']; ?></div></a>

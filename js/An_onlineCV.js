@@ -34,20 +34,18 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		{'name':'兼職','status':''},
 		{'name':'實習','status':''},
 	];
+	
 	$scope.lcoationSplit=function(){
-		$scope.locations=jobwish_loc.split('|');
+		$scope.locations=$scope.jobwish_loc.split('|');
 	}
-	$scope.locnumber=0;
-	$scope.locations=[];
 	$scope.addloca=function(locname){
-		this.locations.push({name:locname,number:$scope.locnumber});
-		$scope.locnumber++;
+		var index = $scope.locations.indexOf(locname);
+		if(index!='-1'){$scope.errorMes='已經有此地區';}
+		else{this.locations.push(locname);$scope.errorMes="";}
 	}
-	$scope.deleteloca=function(){
-		var index = this.element()
-		alert(index);
-		//var index = $scope.locations.indexOf(locname);
-		//this.locations.splice(index,1);
+	$scope.deleteloca=function(locname){
+		var index = $scope.locations.indexOf(locname);
+		if(index!='-1'){this.locations.splice(index,1);}
 	}
 	$scope.newaddloca=function(){
 		if($scope.newLoca != ""){
@@ -64,7 +62,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 				}
 				else{
 					$scope.locanums = json.locaid;
-					$scope.locations.push({name:$scope.newLoca});
+					$scope.locations.push($scope.newLoca);
 					$scope.newLoca="";
 					$scope.errorMes="";
 				}
