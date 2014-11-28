@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/userMe.css">
 
 <div class='onlineCV' ng-controller='Taolou_onlineCV'>
-	<?php if($this->laout_arr['member']!=""){
+	<?php if(!empty($this->laout_arr['member'])){
 			foreach($this->laout_arr['member'] as $memberKey => $memberValue) { ?>
 	<div class='profile'>
 		<a href="javascript:;" class='editProfile'>
@@ -17,7 +17,7 @@
 			<span class="status"><?php echo $memberValue['jobStatus']; ?></span>
 		</div>
 		<div class="experience sub">
-			<span class="birth"><b><?php echo $memberValue['bron']; ?></b> 年出生・</span>
+			<span class="birth"><b><?php echo $memberValue['born']; ?></b> 年出生・</span>
 			<span class="degree"><b><?php echo $memberValue['lastEducation']; ?></b>學歷・</span>
 			<span class="work-years"><b><?php echo $memberValue['workYears']; ?></b> 年工作經驗</span>
 		</div>
@@ -32,16 +32,19 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>　　姓名</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input' value='<?php echo $memberValue['name']; ?>'>
+				<input type='text' class='pop-input' id='userName' value='<?php echo $memberValue['name']; ?>'>
 			</div>
 			<p class='edit-hint'>必填</p>
 		</div>
 		<div class='pop-edit-line'>
 			<span class='popLabel'>出生年份</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showYears'><input type='text' class='pop-input pop-select' disabled="disabled"></a>
+				<a href="javascript:;" id='showYears'><input type='text' class='pop-input pop-select' value='<?php echo $memberValue['born']; ?>' disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
 				<ul class='pop-selectUl' id='yearSelect'>
-					<a href="javascript:;" ng-repeat="n in [] | range:50" data-value='{{n}}'><li>{{n}}</li></a>
+					<a href="javascript:;" ng-repeat="n in [] | range:50">
+						<li class='yearsSelected' data-value='{{n}}'>{{n}}</li>
+						<a href="javascript:;" ng-if="n=='<?php echo $memberValue['born']; ?>'" class='pop_selected'><li>{{n}}</li></a>
+					</a>
 				</ul>
 			</div>
 			<p class='edit-hint'>必選</p>
@@ -49,9 +52,9 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>最高學歷</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showEducation'><input type='text' class='pop-input pop-select' disabled="disabled"></a>
+				<a href="javascript:;" id='showEducation'><input type='text' class='pop-input pop-select' value='<?php echo $memberValue['lastEducation']; ?>' disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
 				<ul class='pop-selectUl' id='educationSelect'>
-					<a href="javascript:;" ng-repeat='edu in educations' data-value='{{edu.eduTag}}'><li>{{edu.name}}</li></a>
+					<a href="javascript:;" ng-repeat='edu in educations'><li class='educationSelected' data-value='{{edu.name}}'>{{edu.name}}</li></a>
 				</ul>
 			</div>
 			<p class='edit-hint'>必選</p>
@@ -59,16 +62,16 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>工作年齡</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input ' value='<?php echo $memberValue['workYears']; ?>'>
+				<input type='text' class='pop-input' id='userWorkyear' value='<?php echo $memberValue['workYears']; ?>'>
 			</div>
 			<p class='edit-hint'>必填,單位為「年」</p>
 		</div>
 		<div class='pop-edit-line'>
 			<span class='popLabel'>求職狀態</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showJobStatus'><input type='text' class='pop-input pop-select' disabled="disabled"></a>
+				<a href="javascript:;" id='showJobStatus'><input type='text' class='pop-input pop-select' value='<?php echo $memberValue['jobStatus'] ?>' disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
 				<ul class='pop-selectUl' id='jobStatusSelect'>
-					<a href="javascript:;" ng-repeat='jbs in jobStatus' data-value='{{jbs.jbsTag}}'><li>{{jbs.name}}</li></a>
+					<a href="javascript:;" ng-repeat='jbs in jobStatus'><li class='jbsSelected' data-value='{{jbs.name}}'>{{jbs.name}}</li></a>
 				</ul>
 			</div>
 			<p class='edit-hint'>必選</p>
@@ -88,12 +91,12 @@
 					<span class="value value-mail"><?php echo $memberValue['email']; ?></span>
 				</li>
 				<li class="phone edit-el clearfix" ng-repeat='p in phone'>
-					<a href="javascript:;" class='icon title-chart edit' ng-hide='p.editing' ng-click='edit(p)'></a>
+					<a href="javascript:;" class='icon title-chart edit' ng-hide='p.editing' ng-click='editphone(p)'></a>
 					<span class="label">電話</span>
 					<span class="value value-phone">
 						<span ng-hide='p.editing'>{{p.phone}}</span>
-						<span ng-show='p.editing'><input class='in_cv' ng-model='p.phone' value='{{p.phone}}'></span>
-						<span ng-show='p.editing'><button class='b_cv' ng-click='save(p)'>保存</button></span>
+						<span ng-show='p.editing'><input class='in_cv' ng-model='p.phone' ng-init="p.phone = '<?php echo $memberValue['phone']; ?>'" value='{{p.phone}}'></span>
+						<span ng-show='p.editing'><button class='b_cv' ng-click='savephone(p)'>保存</button></span>
 					</span>
 				</li>
 			</ul>
@@ -101,31 +104,36 @@
 	</div>
 
 	<?php }} ?>
-
+	
 	<div class="profile-seg profile-job-wish">
 		<span class="seg-title">求職願望</span>
+		<!-- <?php if(empty($this->laout_arr['wantjob'][0]['name'])){ ?>
+		<a href="javascript:;" class='add_ee' id='addwantjob' ng-click='addjobwish()' ng-hide='addjobwishB'>
+			<span class='icon title-chart add'></span>
+			新增求職願望
+		</a>
+		<?php } ?> --> 
+		<?php foreach($this->laout_arr['wantjob'] as $wantjobKey => $wantjobValue) { ?>
 		<div class="seg-body">
-			<div class="edit-el clearfix" ng-repeat='jobwish in job_wish' ng-hide='jobwish.editing'>
-				<a class="edit-tgr" href="javascript:;" ng-click='edit(jobwish)'><span class="icon edit"></span></a>
+			<div class="edit-el clearfix" ng-hide='addjobwishB'>
+				<a class="edit-tgr" href="javascript:;" ng-click='addjobwish()'><span class="icon edit"></span></a>
 
 				<span>尋找</span>
-						<em class="type" data-val="2">全職</em>
-						<em class="type" data-val="1">兼職</em>
-						<em class="type" data-val="0">實習</em>
+					<em class="type"><?php echo $wantjobValue['jobType']; ?></em>
 				<span>的</span>
-				<em class="title">{{jobwish.name}}</em>
+				<em class="title" ng-model='jobwish_name' ng-init="jobwish_name = '<?php echo $wantjobValue['name']; ?>'">{{jobwish_name}}</em>
 				<span>工作</span>
 				<br>
 
 				<span>工作地点位于</span>
-					<em class="loc">{{jobwish.loc}}</em>
-				<span>，接受</span>
-					<em class="loc">遠程工作</em>
+					<em class="loc" ng-model='jobwish_loc' ng-init="jobwish_loc = '<?php echo $wantjobValue['location']; ?>'">{{jobwish_loc}}</em>
+				<span ng-model='jobwish_telework' ng-init="jobwish_telework ='<?php echo $wantjobValue['telework']; ?>'">，{{jobwish_telework}}</span>
+					<em class="farwork">遠程工作</em>
 				<br>
 
 				<span>月薪不低于</span>
-					<em class="salary-start">{{jobwish.min_salary}}</em>
-				<span>，要求提供</span>
+					<em class="salary-start" ng-model='jobwish_min_salary' ng-init="jobwish_min_salary = '<?php echo $wantjobValue['leastSalary']; ?>'">{{jobwish_min_salary}}</em>
+				<span ng-model='jobwish_stock_option' ng-init="jobwish_stock_option = '<?php echo $wantjobValue['stock_option']; ?>'">，{{jobwish_stock_option}}</span>
 					<em class='stock'>股票選擇權</em>
 			</div>
 
@@ -142,34 +150,43 @@
 				});
 			</script>
 
-			<div class="clearfix edit_jobwish" ng-repeat='jobwish in job_wish' ng-show='jobwish.editing'>
-
-				<div class='edit_div'>職位名稱 <input class='in_cv' ng-model='jobwish.name' value='{{jobwish.name}}'></div>
+			<div class="clearfix edit_jobwish" ng-show='addjobwishB'>
+				<div class='edit_div'>職位名稱 <input class='in_cv' ng-model='jobwish_name' value='{{jobwish_name}}'></div>
 				<div class='edit_div'>工作類型
 					<div class='editspan'>
-						<div class='edittype'><input type='checkbox' class='checkbox'>全職</div>
-						<div class='edittype'><input type='checkbox' class='checkbox'>兼職</div>
-						<div class='edittype'><input type='checkbox' class='checkbox'>實習</div>
+						<?php list($full, $parttime, $intern) = split('[|]', $wantjobValue['jobType']); ?>
+						<div class='edittype'><input type='checkbox' class='checkbox' <?php if($full != ""){echo "checked";} ?>>全職</div>
+						<div class='edittype'><input type='checkbox' class='checkbox' <?php if($parttime != ""){echo "checked";} ?>>兼職</div>
+						<div class='edittype'><input type='checkbox' class='checkbox' <?php if($intern != ""){echo "checked";} ?>>實習</div>
 					</div>
 				</div>
-				<div class='edit_div'>最低薪水 <input class='in_cv' ng-model='jobwish.min_salary' value='{{jobwish.min_salary}}'></div>
-				<div class='edit_div'>股票期權<div class='edittype one_check'><input type='checkbox' class='checkbox'>需要股票或期權</div></div>
+				<div class='edit_div'>最低薪水 <input class='in_cv' ng-model='jobwish_min_salary' value='{{jobwish_min_salary}}'></div>
+				<div class='edit_div'>股票期權<div class='edittype one_check'><input type='checkbox' class='checkbox' <?php if($wantjobValue['stock_option']=='y'){echo "checked";} ?>>需要股票或期權</div></div>
 				<div class='edit_div'>工作地點
 					<div class='editloc'>
-						<div class='loctag'>{{jobwish.loc}}<a href='javascript:;' class='icon title-chart delete'></a></div>
+						<div class='loctag' ng-repeat='loc in locations'>{{loc.name}}<a href='javascript:;' class='icon title-chart delete' data-list='{{loc.number}}' ng-click="deleteloca()"></a></div>
 						<br><br>
-						<input class='in_cv' placeholder='輸入台灣城市名稱'>
+						<input class='in_cv' ng-model='newLoca' placeholder='輸入地點名稱'><a href="javascript:;" ng-click="newaddloca()"><button class='b_cv'>添加</button></a>
 						<br>
+						<p>{{errorMes}}</p>
+						<br>
+						<?php if(!empty($this->laout_arr['workLocation'])) { foreach($this->laout_arr['workLocation'] as $locaKey => $locaValue) { ?>
+						<a href='javascript:;' class='locationSelect' ng-click="addloca('<?php echo $locaValue['location']; ?>')"><div class='loctag'><?php echo $locaValue['location']; ?></div></a>
+						<?php }} ?>
 					</div>
 				</div>
-				<div class='edit_div'>遠程工作<div class='edittype one_check'><input type='checkbox' class='checkbox'>接受遠程工作</div></div>
+				<div class='edit_div'>遠程工作
+					<div class='edittype one_check'><input type='checkbox' class='checkbox' ng-if="jobwish_telework == '接受'" checked>接受遠程工作</div>
+					<div class='edittype one_check'><input type='checkbox' class='checkbox' ng-if="jobwish_telework == '不接受'">接受遠程工作</div>
+				</div>
 
-				<a href="javascript:;" ng-click='save(jobwish)'><button class='button b_jobwish'>保存</button></a>
+				<a href="javascript:;" ng-click='save_jobwish()'><button class='button b_jobwish'>保存</button></a>
 				<a href="javascript:;" ng-click='reload()'><button class='button b_jobwish deny'>取消</button></a>
 
 			</div>
 
 		</div>
+		<?php } ?>
 	</div>
 
 	<div class='special_skill'>
@@ -220,7 +237,6 @@
 		<div class='experience2'>
 			<span class="seg-title">項目經歷</span>
 			<div class='clearfix experienceList'>
-
 				<a href="javascript:;" class='add_ee' ng-click='edit(eduexp)'>
 					<span class='icon title-chart add'></span>
 					新增教育經歷

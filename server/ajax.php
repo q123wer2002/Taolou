@@ -7,7 +7,7 @@ $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
-if($_POST['method'] == 'search'){
+if(@$_POST['method'] == 'search'){
 
 	$obj_tmp1->tmp_where=$_POST['keyword'];
 

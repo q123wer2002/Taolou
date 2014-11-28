@@ -6,6 +6,7 @@
 	.edit{background-position: -173px -67px;width: 14px;height: 15px;position: absolute;right: 0;}
 	.edit:hover{background-position: -173px -35px;}
 	.add{background-position: -190px -85px;width: 13px;height: 13px;}
+	.selectIcon{background-position: -135px -135px;width: 16px;height: 12px;position: absolute;right: 10px;top: 7px;}
 
 	.profile{width: 720px;height: 86px;padding: 42px 0px 42px 0px;background-image: url(../images/userMe/online_resume_head.jpg);border-radius:2px;position: relative;}
 		.editProfile{position: absolute;right: 5px;top: 5px;color: #ffffff;text-decoration: none;font-size: 15px;font-weight: 500;border: 2px solid #ffffff;border-radius: 2px;padding: 2px;}
@@ -27,12 +28,14 @@
 		.pop-edit-line{width: 540px;height: 40px;padding: 15px 0px 15px 0px;border-top: 1px solid #eceef1;position: relative;}
 		.popLabel{width: 70px;height: 50px;padding: 0px 20px 0px 30px;text-align: right;}
 		.pop-inputWarp{width: 230px;height: 41px;display: inline-block;}
+		.pop-inputWarp a{position: relative;}
 		.pop-input{padding: 13px 15px 11px 15px;border:none;background: #ecedf0;border-radius: 3px;}
 		.pop-select:hover{cursor: pointer;}
 		.pop-selectUl{position: absolute;width: 186px;text-align: center;z-index: 6;height:250px;overflow: auto;display: none;}
 		.pop-selectUl a{text-decoration: none;}
 		.pop-selectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
 		.pop-selectUl li:hover{background-color: #d94600;}
+		.pop_selected{background-color: #46A3FF;}
 		.edit-hint{width: 170px;height: 40px;display: inline-block;}
 		.popSaveDiv{text-align: center;line-height: 40px;}
 		.pop_save{color: #ffffff;background: #17b385;text-decoration: none;font-weight: 500;padding: 10px 100px;border-radius: 3px;}
@@ -46,17 +49,19 @@
 			.edit-el:hover{background: #eceef1;}
 
 	.profile-job-wish{background: #ffffff;height: auto;}
+		#addwantjob{margin-left: 18px;}
 	.profile-job-wish em{font-weight: 500;text-decoration: underline;}
-	.edit_jobwish{width: 525px;height: 505px;padding: 15px;background: #eceef1;}
+	.edit_jobwish{width: 525px;height: auto;padding: 15px;background: #eceef1;border-radius: 3px;}
 		.edit_div{position: relative;margin-top: 20px;}
 		.edittype{display: inline;padding: 10px;background: #f8f9fa;border-right: 5px;}
 		.edittype:hover{cursor: pointer;}
 		.editspan{position: absolute;top: 0;left: 60px;}
 			.checkbox{}
 		.editloc{width: 425px;height: auto;padding: 10px 15px 5px 15px;background: #ffffff;margin-left: 60px;margin-top: -15px;}
-			.loctag{display:inline-block;padding: 10px 10px 10px 10px;background: #ecedf0;border-radius: 5px;}
+			.loctag{display:inline-block;padding: 10px 10px 10px 10px;background: #ecedf0;border-radius: 5px;margin: 3px;}
+			.locationSelect{color: #000000;font-weight: 400;}
 		.one_check{position: absolute;top: -10px;left: 60px;width: 206px;}
-		.b_jobwish{width: 120px;height: 40px;position: relative;border-radius: 5px;font-size: 14px;margin-top: 100px;margin-left: 70px;}
+		.b_jobwish{width: 120px;height: 40px;position: relative;border-radius: 5px;font-size: 14px;margin-top: 80px;margin-left: 70px;}
 		.b_jobwish:hover{cursor: pointer;}
 		.deny{background: #a2a8b3;}
 		.delete{background-position: -190px -138px;width: 10px;height: 10px;margin-left: 5px;opacity: 0.8;}

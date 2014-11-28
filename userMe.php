@@ -9,6 +9,7 @@ $obj_tmp1->memberCV='taolou_member_cv';
 $obj_tmp1->memberExp='taolou_member_experience';
 $obj_tmp1->memberedu='taolou_member_education';
 $obj_tmp1->memberwanttjob='taolou_member_wantjob';
+$obj_tmp1->workLoc="taolou_system_location";
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
@@ -76,12 +77,22 @@ switch(@$action){
 	$sql_wantjob="SELECT ".$obj_tmp1->memberwanttjob.".*
 				  FROM ".$obj_tmp1->memberwanttjob."
 				  LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->member.".id=".$obj_tmp1->memberwanttjob.".memberId
-				  WHERE ".$obj_tmp1->memberwanttjob.".memberId=".$userId;
+				  WHERE ".$obj_tmp1->memberwanttjob.".memberId='".$userId."'";
 	$obj_tmp1->laout_arr['wantjob']=array();
 	$obj_tmp1->basic_select('laout_arr','wantjob',$sql_wantjob);
 		//echo $sql_wantjob;
 		//print_r($obj_tmp1->laout_arr['wantjob']);
+		//顯示工作地區
+		$sql_workLocation="SELECT ".$obj_tmp1->workLoc.".*
+						   FROM ".$obj_tmp1->workLoc."
+						   WHERE ".$obj_tmp1->workLoc.".status = 'y'
+						   ORDER BY ".$obj_tmp1->workLoc.".id";
+		$obj_tmp1->laout_arr['workLocation']=array();
+		$obj_tmp1->basic_select('laout_arr','workLocation',$sql_workLocation);
+			//echo $sql_workLocation;
+			//print_r($obj_tmp1->laout_arr['workLocation']);
 	//==========================
+
 
 	//專長技能
 	//==========================

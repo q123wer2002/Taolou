@@ -3,11 +3,12 @@ include_once '../share.php';
 
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->account='taolou_account';
+$obj_tmp1->wantjob='taolou_member_wantjob';
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
-if($_POST['method']=='login')
+if(@$_POST['method']=='login')
 {
 	$account=laout_check($_POST['email']);
 	$password=md5(laout_check($_POST['password']));
@@ -51,7 +52,7 @@ if($_POST['method']=='login')
 	exit;
 }
 
-else if($_POST['method']=='signup')
+else if(@$_POST['method']=='signup')
 {
 	$account=laout_check($_POST['email']);
 	$password=md5(laout_check($_POST['password']));
@@ -90,6 +91,12 @@ else if($_POST['method']=='signup')
 		mysql_query($sql_member);
 		//========================
 
+		//存入job_wish內
+		$sql_wantjob="INSERT INTO".$obj_tmp1->wantjob."
+					  VALUES (NULL,'".$memberID."','','','','','','','CURRENT_TIMESTAMP',CURRENT_TIMESTAMP)";
+		mysql_query($sql_wantjob);
+		//========================
+
 		//跳回登入頁面
 		$message=array('first'=>"成功",'url'=>'account.php?action=login',"actions"=>'signup');
 	}
@@ -97,7 +104,7 @@ else if($_POST['method']=='signup')
 	echo json_encode($message);
 	exit;
 }
-else if($_POST['method'] == 'logout'){
+else if(@$_POST['method'] == 'logout'){
 	
 	unset($_SESSION['user']);
 	$message=array('first'=>"success",'url'=>"index.php","actions"=>'logout');
