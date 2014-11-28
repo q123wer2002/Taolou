@@ -82,7 +82,8 @@ switch(@$action){
 	$obj_tmp1->basic_select('laout_arr','wantjob',$sql_wantjob);
 		//echo $sql_wantjob;
 		//print_r($obj_tmp1->laout_arr['wantjob']);
-		//顯示工作地區
+		
+		//顯示所有工作地區
 		$sql_workLocation="SELECT ".$obj_tmp1->workLoc.".*
 						   FROM ".$obj_tmp1->workLoc."
 						   WHERE ".$obj_tmp1->workLoc.".status = 'y'
@@ -91,6 +92,28 @@ switch(@$action){
 		$obj_tmp1->basic_select('laout_arr','workLocation',$sql_workLocation);
 			//echo $sql_workLocation;
 			//print_r($obj_tmp1->laout_arr['workLocation']);
+		
+		//顯示想要的地區
+		if(!empty($obj_tmp1->laout_arr['wantjob'][0]['location'])){
+			$wantLocationNum=array();
+			$wantLocationNum=split('[|]',$obj_tmp1->laout_arr['wantjob'][0]['location']);
+				//echo $obj_tmp1->laout_arr['wantjob'][0]['location'];
+				//print_r($wantLocationNum);
+			$obj_tmp1->wantLocation="";
+			foreach($wantLocationNum as $WLKey => $WLValue){
+				//echo $WLValue;
+				$sql_WL="SELECT ".$obj_tmp1->workLoc.".*
+						 FROM ".$obj_tmp1->workLoc."
+						 WHERE ".$obj_tmp1->workLoc.".id='".$WLValue."'";
+				$obj_tmp1->laout_arr['WL']=array();
+				$obj_tmp1->basic_select('laout_arr','WL',$sql_WL);
+					//echo $sql_WL;
+					//print_r($obj_tmp1->laout_arr['WL']);
+				$obj_tmp1->wantLocation=$obj_tmp1->wantLocation.$obj_tmp1->laout_arr['WL'][0]['location']."|";
+					//echo $obj_tmp1->laout_arr['WL'][0]['location'];
+			}
+			//print_r($obj_tmp1->wantLocation);
+		}
 	//==========================
 
 

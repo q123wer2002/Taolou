@@ -119,14 +119,18 @@
 				<a class="edit-tgr" href="javascript:;" ng-click='addjobwish()'><span class="icon edit"></span></a>
 
 				<span>尋找</span>
-					<em class="type"><?php echo $wantjobValue['jobType']; ?></em>
+				<?php list($full, $parttime, $intern) = split('[|]', $wantjobValue['jobType']); ?>
+					<em class="type"><?php 
+					if($full=='y'){echo"|全職";}
+					if($parttime=='y'){echo"|兼職";}
+					if($intern=='y'){echo"|實習";} ?></em>
 				<span>的</span>
 				<em class="title" ng-model='jobwish_name' ng-init="jobwish_name = '<?php echo $wantjobValue['name']; ?>'">{{jobwish_name}}</em>
 				<span>工作</span>
 				<br>
 
-				<span>工作地点位于</span>
-					<em class="loc" ng-model='jobwish_loc' ng-init="jobwish_loc = '<?php echo $wantjobValue['location']; ?>'">{{jobwish_loc}}</em>
+				<span>工作地點位於</span>
+					<em class="loc" ng-model='jobwish_loc' ng-init="jobwish_loc = '<?php echo $this->wantLocation; ?>'">{{jobwish_loc}}</em>
 				<span ng-model='jobwish_telework' ng-init="jobwish_telework ='<?php echo $wantjobValue['telework']; ?>'">，{{jobwish_telework}}</span>
 					<em class="farwork">遠程工作</em>
 				<br>
@@ -154,10 +158,16 @@
 				<div class='edit_div'>職位名稱 <input class='in_cv' ng-model='jobwish_name' value='{{jobwish_name}}'></div>
 				<div class='edit_div'>工作類型
 					<div class='editspan'>
-						<?php list($full, $parttime, $intern) = split('[|]', $wantjobValue['jobType']); ?>
-						<div class='edittype'><input type='checkbox' class='checkbox' <?php if($full != ""){echo "checked";} ?>>全職</div>
-						<div class='edittype'><input type='checkbox' class='checkbox' <?php if($parttime != ""){echo "checked";} ?>>兼職</div>
-						<div class='edittype'><input type='checkbox' class='checkbox' <?php if($intern != ""){echo "checked";} ?>>實習</div>
+						<!-- 開始設定職業許願職業類別  -->
+						<input type='hidden' ng-init="JobTypes[0].status = '<?php echo $full; ?>'">
+						<input type='hidden' ng-init="JobTypes[1].status = '<?php echo $parttime; ?>'">
+						<input type='hidden' ng-init="JobTypes[2].status = '<?php echo $intern; ?>'">
+						<!-- 設定checkbox -->
+						<div class='edittype' ng-repeat='jobtype in JobTypes'>
+						<input type='checkbox' class='checkbox' ng-if="jobtype.status == 'y'" checked>
+						<input type='checkbox' class='checkbox' ng-if="jobtype.status == 'n'">
+						<input type='checkbox' class='checkbox' ng-if="jobtype.status == ''">
+						{{jobtype.name}}</div>
 					</div>
 				</div>
 				<div class='edit_div'>最低薪水 <input class='in_cv' ng-model='jobwish_min_salary' value='{{jobwish_min_salary}}'></div>
@@ -176,8 +186,10 @@
 					</div>
 				</div>
 				<div class='edit_div'>遠程工作
-					<div class='edittype one_check'><input type='checkbox' class='checkbox' ng-if="jobwish_telework == '接受'" checked>接受遠程工作</div>
-					<div class='edittype one_check'><input type='checkbox' class='checkbox' ng-if="jobwish_telework == '不接受'">接受遠程工作</div>
+					<div class='edittype one_check'>
+					<input type='checkbox' class='checkbox' ng-if="jobwish_telework == '接受'" checked>
+					<input type='checkbox' class='checkbox' ng-if="jobwish_telework == '不接受'">
+					接受遠程工作</div>
 				</div>
 
 				<a href="javascript:;" ng-click='save_jobwish()'><button class='button b_jobwish'>保存</button></a>

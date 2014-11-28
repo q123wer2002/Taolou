@@ -27,8 +27,16 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	
 	//求職願望 setting
 	$scope.addjobwishB=false;
-	$scope.addjobwish=function(){$scope.addjobwishB=true;}
+	$scope.addjobwish=function(){$scope.addjobwishB=true;$scope.lcoationSplit();}
 	$scope.closejobwish=function(){$scope.addjobwishB=false;}
+	$scope.JobTypes=[
+		{'name':'全職','status':''},
+		{'name':'兼職','status':''},
+		{'name':'實習','status':''},
+	];
+	$scope.lcoationSplit=function(){
+		$scope.locations=jobwish_loc.split('|');
+	}
 	$scope.locnumber=0;
 	$scope.locations=[];
 	$scope.addloca=function(locname){
