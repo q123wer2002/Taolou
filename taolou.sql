@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2014 at 01:05 PM
+-- Generation Time: Nov 29, 2014 at 07:47 AM
 -- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -233,9 +233,9 @@ CREATE TABLE IF NOT EXISTS `taolou_member_wantjob` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `jobType` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `leastSalary` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `stock_option` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '需要提供',
+  `stock_option` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'true',
   `location` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `telework` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '接受',
+  `telework` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'true',
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -246,10 +246,10 @@ CREATE TABLE IF NOT EXISTS `taolou_member_wantjob` (
 --
 
 INSERT INTO `taolou_member_wantjob` (`id`, `memberId`, `name`, `jobType`, `leastSalary`, `stock_option`, `location`, `telework`, `updateDate`, `createDate`) VALUES
-(1, 4, 'iOS develop', '', '', '需要提供', '', '接受', '2014-11-27 10:13:25', '2014-11-27 10:13:25'),
-(2, 1, '', '', '', '需要提供', '', '接受', '2014-11-27 10:13:41', '2014-11-27 10:13:41'),
-(3, 2, '', '', '', '需要提供', '', '接受', '2014-11-27 10:13:41', '2014-11-27 10:13:41'),
-(4, 3, '', '', '', '需要提供', '', '接受', '2014-11-27 10:13:46', '2014-11-27 10:13:46');
+(1, 4, 'iOS develop', '', '', 'true', '', 'true', '2014-11-27 10:13:25', '2014-11-27 10:13:25'),
+(2, 1, '', '', '', 'true', '', 'true', '2014-11-27 10:13:41', '2014-11-27 10:13:41'),
+(3, 2, 'Android', 'true|false|false', '40000', 'true', '1|2|3|5', 'true', '2014-11-29 06:38:49', '2014-11-27 10:13:41'),
+(4, 3, '', '', '', 'true', '', 'true', '2014-11-27 10:13:46', '2014-11-27 10:13:46');
 
 -- --------------------------------------------------------
 

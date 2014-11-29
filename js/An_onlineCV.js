@@ -34,7 +34,6 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		{'name':'兼職','status':''},
 		{'name':'實習','status':''},
 	];
-	
 	$scope.lcoationSplit=function(){
 		$scope.locations=$scope.jobwish_loc.split('|');
 	}
@@ -74,7 +73,26 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	}
 		//save
 	$scope.save_jobwish=function(){
-
+		if($scope.jobwish_name==""){$scope.errorMess="請填入職位名稱";}
+		else if($scope.jobwish_min_salary==""){$scope.errorMess="請填入最低薪水";}
+		else if($scope.locations==""){$scope.errorMess="請選擇工作地點";}
+		else{
+			$scope.errorMess="";
+			var jobWishObject={"method":"jobwish","name":$scope.jobwish_name,"jobType":$scope.JobTypes,"leastSalary":$scope.jobwish_min_salary,"stock_option":$scope.jobwish_stock_option,"location":$scope.locations,"telework":$scope.jobwish_telework};
+			$http({
+				method:'POST',
+				url:'server/onlineCVAjax.php',
+				data: $.param(jobWishObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+				if(json.first=="success"){$scope.reload();}
+			}).
+			error(function(json){
+				console.warn(json);
+			});
+		}
 	}
 
 	$scope.divskills=[{'name':'show'}];

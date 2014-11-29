@@ -101,7 +101,7 @@ switch(@$action){
 				//print_r($wantLocationNum);
 			$obj_tmp1->wantLocation="";
 			foreach($wantLocationNum as $WLKey => $WLValue){
-				//echo $WLValue;
+				//echo $WLKey;
 				$sql_WL="SELECT ".$obj_tmp1->workLoc.".*
 						 FROM ".$obj_tmp1->workLoc."
 						 WHERE ".$obj_tmp1->workLoc.".id='".$WLValue."'";
@@ -112,6 +112,7 @@ switch(@$action){
 				$obj_tmp1->wantLocation=$obj_tmp1->wantLocation.$obj_tmp1->laout_arr['WL'][0]['location']."|";
 					//echo $obj_tmp1->laout_arr['WL'][0]['location'];
 			}
+			$obj_tmp1->wantLocation=substr($obj_tmp1->wantLocation,0,-1);
 			//print_r($obj_tmp1->wantLocation);
 		}
 	//==========================

@@ -63,3 +63,30 @@ else if(@$_POST['method'] == 'newLoca'){
 	echo json_encode($message);
 	exit;
 }
+else if(@$_POST['method'] == 'jobwish'){
+	//先確定工作地點代號
+	$locationId="";
+	foreach($_POST['location'] as $LocaKey => $LocaValue){
+		$sql_checkLoca="SELECT ".$obj_tmp1->workLoc.".*
+						FROM ".$obj_tmp1->workLoc."
+						WHERE ".$obj_tmp1->workLoc.".location='".$LocaValue."'";
+		$obj_tmp1->laout_arr['checkLoca']=array();
+		$obj_tmp1->basic_select('laout_arr','checkLoca',$sql_checkLoca);
+		$locationId=$locationId.$obj_tmp1->laout_arr['checkLoca'][0]['id']."|";
+	}
+	$locationId=substr($locationId,0,-1);
+	//print_r($locationId);
+
+	//工作類型 標準化
+	$jobType=$_POST['jobType'][0]['status']."|".$_POST['jobType'][1]['status']."|".$_POST['jobType'][2]['status'];
+
+	//開始存入資料庫
+	$sql_jobwish="UPDATE ".$obj_tmp1->memberwanttjob."
+				  SET name='".$_POST['name']."', jobType='".$jobType."', leastSalary='".$_POST['leastSalary']."', stock_option='".$_POST['stock_option']."', location='".$locationId."', telework='".$_POST['telework']."', updateDate=CURRENT_TIMESTAMP
+				  WHERE ".$obj_tmp1->memberwanttjob.".memberId='".$userId."'";
+	mysql_query($sql_jobwish);
+
+	$message=array("first"=>"success");
+	echo json_encode($message);
+	exit;
+}
