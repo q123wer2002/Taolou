@@ -194,7 +194,7 @@
 	<div class='special_skill'>
 		<span class="seg-title">特殊技能</span>
 		
-		<div  class="clearfix showskills" ng-repeat='divskill in divskills' ng-hide='divskill.editing'>
+		<div  class="clearfix showskills" ng-repeat='divskill in divskills' ng-hide='showSpecial'>
 			<a href="javascript:;" class='icon title-chart edit' ng-click='edit(divskill)'></a>
 			<ul class='skillList'>
 				<li class='skill' ng-repeat='skill in skills | filter:{isDelete:false}'>{{skill.name}}</li>

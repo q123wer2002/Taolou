@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2014 at 07:47 AM
+-- Generation Time: Nov 30, 2014 at 02:51 PM
 -- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -224,6 +224,31 @@ CREATE TABLE IF NOT EXISTS `taolou_member_experience` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `taolou_member_specialskill`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_member_specialskill` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `memberId` int(11) NOT NULL,
+  `skillList` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `taolou_member_specialskill`
+--
+
+INSERT INTO `taolou_member_specialskill` (`id`, `memberId`, `skillList`, `updateDate`, `createDate`) VALUES
+(1, 1, '', '2014-11-30 13:51:13', '2014-11-30 13:51:13'),
+(2, 2, '', '2014-11-30 13:51:13', '2014-11-30 13:51:13'),
+(3, 3, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20'),
+(4, 4, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `taolou_member_wantjob`
 --
 
@@ -246,10 +271,24 @@ CREATE TABLE IF NOT EXISTS `taolou_member_wantjob` (
 --
 
 INSERT INTO `taolou_member_wantjob` (`id`, `memberId`, `name`, `jobType`, `leastSalary`, `stock_option`, `location`, `telework`, `updateDate`, `createDate`) VALUES
-(1, 4, 'iOS develop', '', '', 'true', '', 'true', '2014-11-27 10:13:25', '2014-11-27 10:13:25'),
+(1, 4, 'iOS develop', 'true|true|true', '40000', 'true', '1', 'true', '2014-11-30 07:50:28', '2014-11-27 10:13:25'),
 (2, 1, '', '', '', 'true', '', 'true', '2014-11-27 10:13:41', '2014-11-27 10:13:41'),
 (3, 2, 'Android', 'true|false|false', '40000', 'true', '1|2|3|5', 'true', '2014-11-29 06:38:49', '2014-11-27 10:13:41'),
 (4, 3, '', '', '', 'true', '', 'true', '2014-11-27 10:13:46', '2014-11-27 10:13:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taolou_system_class_speaicalskill`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_system_class_speaicalskill` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `className` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -277,6 +316,21 @@ INSERT INTO `taolou_system_location` (`id`, `location`, `status`, `createDate`) 
 (5, '新北', 'y', '2014-11-28 08:14:32'),
 (6, '中國大陸', 'y', '2014-11-28 08:27:42'),
 (7, '台灣全地區', 'y', '2014-11-28 08:30:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taolou_system_specialskill`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_system_specialskill` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `classId` int(11) NOT NULL,
+  `skill` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

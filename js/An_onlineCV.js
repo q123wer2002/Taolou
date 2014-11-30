@@ -95,6 +95,12 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		}
 	}
 
+	//特蘇技能 setting
+	$scope.showSpecial=false;
+	$scope.showSpecialFun=function(){
+		if($scope.showSpecial){$scope.showSpecial=false;}
+		else{$scope.showSpecial=true;}
+	}
 	$scope.divskills=[{'name':'show'}];
 
 	$scope.skills=[
