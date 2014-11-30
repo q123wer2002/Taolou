@@ -167,7 +167,7 @@
 						<br><br>
 						<input class='in_cv' ng-model='newLoca' placeholder='輸入地點名稱'><a href="javascript:;" ng-click="newaddloca()"><button class='b_cv'>添加</button></a>
 						<br>
-						<p class='locationError'>{{errorMes}}</p>
+						<p class='ErrorMessageInUserMe'>{{errorMes}}</p>
 						<br>
 						<?php if(!empty($this->laout_arr['workLocation'])) { foreach($this->laout_arr['workLocation'] as $locaKey => $locaValue) { ?>
 						<a href='javascript:;' class='locationSelect' ng-click="addloca('<?php echo $locaValue['location']; ?>')"><div class='loctag'><?php echo $locaValue['location']; ?></div></a>
@@ -180,7 +180,7 @@
 					<input type='checkbox' class='checkbox' ng-model='jobwish_telework'>
 					接受遠程工作</div>
 				</div>
-				<p class='locationError' id='jobwishError'>{{errorMess}}<p>
+				<p class='ErrorMessageInUserMe' id='jobwishError'>{{errorMess}}<p>
 
 				<a href="javascript:;" ng-click='save_jobwish()'><button class='button b_jobwish'>保存</button></a>
 				<a href="javascript:;" ng-click='reload()'><button class='button b_jobwish deny'>取消</button></a>
@@ -193,47 +193,94 @@
 
 	<div class='special_skill'>
 		<span class="seg-title">特殊技能</span>
-		
-		<div  class="clearfix showskills" ng-repeat='divskill in divskills' ng-hide='showSpecial'>
-			<a href="javascript:;" class='icon title-chart edit' ng-click='edit(divskill)'></a>
+		<!-- 開始設定特殊技能 -->
+		<?php if(!empty($this->mySkillLists)){?>
+			<!-- 設定我自己的技能 -->
+		<input type="hidden" ng-init="myallSkillList = '<?php echo $this->mySkillLists; ?>'">
+			<!-- 設定技能總攬 -->
+		<input type="hidden" ng-init="allSkillList = '<?php echo $this->allSkillList; ?>'">
+		<?php } ?>
+
+		<!-- 顯示技能 -->
+		<div  class="clearfix showskills" 
+		ng-init="skillListInit()" 
+		ng-hide='showSpecial'>
+			<a href="javascript:;" class='icon title-chart edit' ng-click='showSpecialFun()'></a>
 			<ul class='skillList'>
-				<li class='skill' ng-repeat='skill in skills | filter:{isDelete:false}'>{{skill.name}}</li>
+				<li class='skill' ng-repeat='skill in myskills'>{{skill}}</li>
 			</ul>
 		</div>
 			
-		<div class='clearfix' ng-repeat='divskill in divskills' ng-show='divskill.editing'>
+		<div class='clearfix' ng-show='showSpecial'>
 			<ul class='skillList'>
-				<li class='skill' ng-repeat='skill in skills | filter:{isDelete:false}'>{{skill.name}}<a href='javascript:;' class='icon title-chart delete' ng-click='delete(skill)'></a></li>
+				<li class='skill' ng-repeat='skill in myskills'>{{skill}}<a href='javascript:;' class='icon title-chart delete' ng-click='deleteskill(skill)'></a></li>
 			</ul>
 
 			<div class='addskills'>
-				<form ng-submit='addskills()' >
-					<input type='text' class='in_cv' placeholder='請輸入技能標籤' ng-model='newitem' name='newitem'>
+				<!-- 輸入本來沒有的技能清單 -->
+				<form ng-submit='newaddskill()' >
+					<input type='text' class='in_cv' placeholder='請輸入技能標籤' ng-model='newskill' ng-init="newskill=''">
 					<input class='in_submit' type='submit' value='新增'>
 				</form>
+				<!-- 點選增加技能 -->
 				<ul class='skillList' id='addskill'>
-					<li class='addskillLi' ng-repeat='skill in allskills'>{{skill.name}}<input type="hidden" ng-model='newitem' name='newitem' value="{{skill.name}}"></li>
+					<li class='addskillLi' ng-repeat='Askill in allskills' ng-click="addskill(Askill)">{{Askill}}</li>
 				</ul>
-				<button class='button b_jobwish'>保存</button>
-				<button class='button b_jobwish deny'>取消</button>
+				<p class='ErrorMessageInUserMe' id='skillError'>{{skillErrorMess}}</p>
+				<button class='button b_jobwish' ng-click="saveSkill()">保存</button>
+				<button class='button b_jobwish deny' ng-click="reload()">取消</button>
 			</div>
 		</div>
 
 		<div class="education_experience">
 			<span class="seg-title">教育經歷</span>
 			<div class='clearfix educationList'>
+			<!-- 開始設定教育 -->
+				<div class='editEducationDiv'>
+					<div class='editListDiv'>
+					<span class='editTitle'>學歷　　</span>
+					<a href="javascript:;" ng-click='change()'><div class='editSelecter'>請選擇學歷<span class='icon educaSel selectIcon'></span></div></a>
+					<ul class='pop-selectUl' id='editEducaSelect' ng-show='showEducSelect'>
+						<a href="javascript:;" ng-repeat='edu in educations'><li class='educationSelected' data-value='{{edu.name}}'>{{edu.name}}</li></a>
+					</ul>
+					</div>
+
+					<div class='editListDiv'>
+					<span class='editTitle'>在校年份</span>
+					<a href="javascript:;"><div class='editSelecter'>起始年份<span class='icon educaSel selectIcon'></span></div></a>
+					~
+					<a href="javascript:;"><div class='editSelecter'>結束年份<span class='icon educaSel selectIcon'></span></div></a>
+					
+					</div>
+
+					<div class='editListDiv'>
+					<span class='editTitle'>學校名稱</span>
+					<div class='editwrapper'><input type='text' class='editEdu_input'></div>
+					</div>
+
+					<div class='editListDiv'>
+					<span class='editTitle'>專業名稱</span>
+					<div class='editwrapper'><input type='text' class='editEdu_input'></div>
+					</div>
+
+					<button class='editEdu_bon' id='editEduSave'>保存</button>
+					<button class='editEdu_bon' id='editEduCancel'>取消</button>
+					<button class='editEdu_bon' id='editEduDelete'>刪除</button>
+				</div>
 				<ul class='educationListUl'>
-					<li ng-repeat='eduexp in eduexps'>
-						<a href="javascript:;" class='icon title-chart edit' ng-click='edit(eduexp)'></a>
-						<p>{{eduexp.start_edu}}-{{eduexp.end_edu}} ● {{eduexp.school}}</p>
-						<p class='sub'>{{eduexp.education}} ● {{eduexp.marjor}}</p>
+					<li ng-repeat='eduexp in eduexps' ng-hide="eduexp.status">
+						<a href="javascript:;" class='icon title-chart edit' ng-click='showEducationFun(eduexp)'></a>
+						<p>{{eduexp.start_edu}}-{{eduexp.end_edu}} . {{eduexp.school}}</p>
+						<p class='sub'>{{eduexp.education}} . {{eduexp.marjor}}</p>
 					</li>
 				</ul>
+
 				<a href="javascript:;" class='add_ee' ng-click='edit(eduexp)'>
 					<span class='icon title-chart add'></span>
 					新增教育經歷
 				</a>
 			</div>
+
 		</div>
 
 		<div class='experience2'>

@@ -101,33 +101,82 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		if($scope.showSpecial){$scope.showSpecial=false;}
 		else{$scope.showSpecial=true;}
 	}
-	$scope.divskills=[{'name':'show'}];
-
-	$scope.skills=[
-		{'name':'PHP','isDelete':'false'},
-		{'name':'JAVASCRIPT','isDelete':'false'},
-		{'name':'HTML5','isDelete':'false'},
-		{'name':'前端設計','isDelete':'false'},
-	];
-
-	$scope.allskills=[
-		{'name':'PHP'},
-		{'name':'Angular'},
-		{'name':'WebServer'},
-	];
-
-	$scope.eduexps=[
-		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information'},
-		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information'},
-	];
-
-	$scope.newitem='';
-	$scope.addskills = function(){
-		if(this.newitem != ''){
-			this.skills.push({name:this.newitem,isDelete:false});
-			this.newitem='';
+	$scope.skillListInit=function(){
+		$scope.myskills=$scope.myallSkillList.split('|');
+		$scope.allskills=$scope.allSkillList.split('|');
+	}
+	$scope.allskills=[];
+	$scope.myskills=[];
+	$scope.addskill=function(skill){
+		var index = $scope.myskills.indexOf(skill);
+		if(index!='-1'){$scope.skillErrorMess='你已經有此技能';}
+		else{this.myskills.push(skill);$scope.skillErrorMess="";}
+	}
+	$scope.deleteskill=function(skill){
+		var index = $scope.myskills.indexOf(skill);
+		if(index!='-1'){this.myskills.splice(index,1);}
+	}
+	$scope.newaddskill=function(){
+		if($scope.newskill != ""){
+			var index = $scope.allskills.indexOf($scope.newskill);
+			if(index == '-1'){
+				var newSkillObject={"method":"newSkill","skill":$scope.newskill};
+				$http({
+					method:'POST',
+					url:'server/onlineCVAjax.php',
+					data: $.param(newSkillObject),
+					headers: {'Content-type': 'application/x-www-form-urlencoded'},
+				}).
+				success(function(json){
+					console.log(json);
+					$scope.myskills.push($scope.newskill);
+					$scope.allskills.push($scope.newskill);
+					$scope.newskill="";
+				}).
+				error(function(json){
+					console.warn(json);
+					$scope.skillErrorMess='發生不可預測的錯誤';
+				});
+			}else{$scope.skillErrorMess='已經有此技能';}
+		}else{$scope.skillErrorMess='未填入技能';}
+	}
+	$scope.saveSkill=function(){
+		if($scope.myskills == ""){$scope.skillErrorMess="尚未填入你的技能";}
+		else{
+			$scope.skillErrorMess="";
+			var mySkillObject={"method":"mySkill","skillList":$scope.myskills};
+			$http({
+				method:'POST',
+				url:'server/onlineCVAjax.php',
+				data: $.param(mySkillObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+				$scope.showSpecialFun();
+			}).
+			error(function(json){
+				console.warn(json);
+				$scope.skillErrorMess='發生不可預測的錯誤';
+			});
 		}
 	}
+
+	//教育 setting
+	$scope.showEducation=false;
+	$scope.showEducSelect=false;
+	$scope.showEducationFun=function(item){
+		if(item.status){item.status=false;}
+		else{item.status=true;}
+	}
+	$scope.change=function(){
+		if($scope.showEducSelect){$scope.showEducSelect=false;}
+		else{$scope.showEducSelect=true;}
+	}
+	$scope.eduexps=[
+		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information','status':false},
+		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information','status':false},
+	];
 
 	$scope.delete = function(item){
 		item.isDelete=true;

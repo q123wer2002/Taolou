@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2014 at 02:51 PM
+-- Generation Time: Nov 30, 2014 at 06:53 PM
 -- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_specialskill` (
 
 INSERT INTO `taolou_member_specialskill` (`id`, `memberId`, `skillList`, `updateDate`, `createDate`) VALUES
 (1, 1, '', '2014-11-30 13:51:13', '2014-11-30 13:51:13'),
-(2, 2, '', '2014-11-30 13:51:13', '2014-11-30 13:51:13'),
+(2, 2, '3|5', '2014-11-30 15:48:39', '2014-11-30 13:51:13'),
 (3, 3, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20'),
 (4, 4, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20');
 
@@ -330,7 +330,18 @@ CREATE TABLE IF NOT EXISTS `taolou_system_specialskill` (
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `taolou_system_specialskill`
+--
+
+INSERT INTO `taolou_system_specialskill` (`id`, `classId`, `skill`, `status`, `createDate`) VALUES
+(1, 0, 'PHP', 'y', '2014-11-30 14:07:02'),
+(2, 0, 'JAVASCRIPT', 'y', '2014-11-30 14:07:02'),
+(3, 0, 'HTML5', 'y', '2014-11-30 14:07:21'),
+(4, 0, 'AngularJS', 'y', '2014-11-30 14:07:21'),
+(5, 0, 'CSS3', 'n', '2014-11-30 15:14:24');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

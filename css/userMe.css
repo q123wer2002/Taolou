@@ -6,7 +6,8 @@
 	.edit{background-position: -173px -67px;width: 14px;height: 15px;position: absolute;right: 0;}
 	.edit:hover{background-position: -173px -35px;}
 	.add{background-position: -190px -85px;width: 13px;height: 13px;}
-	.selectIcon{background-position: -135px -135px;width: 16px;height: 12px;position: absolute;right: 10px;top: 7px;}
+	.selectIcon{background-position: -136px -135px;width: 16px;height: 12px;position: absolute;right: 10px;top: 7px;}
+	.ErrorMessageInUserMe{font-size: 9px;font-weight: 400;color: red;}
 
 	.profile{width: 720px;height: 86px;padding: 42px 0px 42px 0px;background-image: url(../images/userMe/online_resume_head.jpg);border-radius:2px;position: relative;}
 		.editProfile{position: absolute;right: 5px;top: 5px;color: #ffffff;text-decoration: none;font-size: 15px;font-weight: 500;border: 2px solid #ffffff;border-radius: 2px;padding: 2px;}
@@ -60,10 +61,9 @@
 		.editloc{width: 425px;height: auto;padding: 10px 15px 5px 15px;background: #ffffff;margin-left: 60px;margin-top: -15px;}
 			.loctag{display:inline-block;padding: 10px 10px 10px 10px;background: #ecedf0;border-radius: 5px;margin: 3px;}
 			.locationSelect{color: #000000;font-weight: 400;}
-			.locationError{font-size: 9px;font-weight: 400;color: red;}
 		.one_check{position: absolute;top: -10px;left: 60px;width: 206px;}
 		#jobwishError{position: absolute;bottom: 70px;left: 200px;}
-		.b_jobwish{width: 120px;height: 40px;position: relative;border-radius: 5px;font-size: 14px;margin-top: 80px;margin-left: 70px;}
+		.b_jobwish{width: 120px;height: 40px;position: relative;border-radius: 5px;font-size: 14px;margin: 50px 0px 10px 70px;}
 		.b_jobwish:hover{cursor: pointer;}
 		.deny{background: #a2a8b3;}
 		.delete{background-position: -190px -138px;width: 10px;height: 10px;margin-left: 5px;opacity: 0.8;}
@@ -78,8 +78,28 @@
 		.addskillLi{display: inline;padding: 10px 10px 10px 10px;background: #f8f9fa;border-radius: 5px;margin: 0px 5px 10px 5px;position: relative;}
 		.addskillLi:hover{cursor: pointer;}
 			.hidden{width: 100%;height: 100%;opacity: 0;position: absolute;}
+		#skillError{position: absolute;bottom: 70px;left: 200px;}
 
 	.education_experience{width: 660px;height: auto;padding: 30px 0px 30px 0px;border-top:1px solid #eceef1;background: #ffffff;font-size: 14px;position: relative;}
+		.editEducationDiv{height: 525px;height: 260px;padding: 15px;background-color:#f5f6f7;}
+			.editListDiv{width: 525px;height: 40px;line-height: 40px;zoom:1;border-radius: 3px;margin: 5px;}
+			.editListDiv a{color: #a2a8b3;}
+				.editDivSelectUl{position: absolute;width: 186px;text-align: center;z-index: 6;height:250px;overflow: auto;}
+				.editDivSelectUl a{text-decoration: none;}
+				.editDivSelectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
+				.editDivSelectUl li:hover{background-color: #d94600;}
+				#editEducaSelect{width: 111px;height: 200px;}
+				.editTitle{margin-right: 5px;width: 65px;color: #a2a8b3;overflow: hidden;}
+				.editSelecter{width:81px;height: 16px;padding: 12px 15px;font-size:14px;line-height: 16px;background-color: #ecedf0;display: inline-block;border-radius: 3px;margin: 0px 10px;position: relative;}
+					.educaSel{top: 17px;right: 5px;}
+				.editwrapper{width: 226px;height: 16px;padding: 12px 15px;font-size:14px;line-height: 16px;background-color: #ecedf0;display: inline-block;border-radius: 3px;margin-left: 10px;}
+					.editEdu_input{border: none;background-color: #ecedf0;width: 226px;height: 16px;line-height: 16px;color: #a2a8b3;}
+			.editEdu_bon{width: 120px;height: 40px;margin: 20px 15px 20px 0px;color: #ffffff;border-radius: 5px;line-height: 30px;border: none;font-weight: 500;font-family: '微軟正黑體';}
+			.editEdu_bon:hover{cursor: pointer;}
+			#editEduSave{background-color: #46A3FF;}
+			#editEduCancel{background-color: #a2a8b3;}
+			#editEduDelete{width:60px;background-color: #f5f6f7;color: #a2a8b3;}
+			#editEduDelete:hover{background-color: #eb6a64;color: #ffffff;}
 		.educationList{margin-left: 105px;}
 			.educationListUl{list-style: none;}
 			.educationListUl li{list-style: none;line-height: 25px;margin-bottom: 20px;}

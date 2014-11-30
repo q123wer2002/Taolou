@@ -9,7 +9,11 @@ $obj_tmp1->memberCV='taolou_member_cv';
 $obj_tmp1->memberExp='taolou_member_experience';
 $obj_tmp1->memberedu='taolou_member_education';
 $obj_tmp1->memberwanttjob='taolou_member_wantjob';
+$obj_tmp1->memberSkill="taolou_member_specialskill";
+
 $obj_tmp1->workLoc="taolou_system_location";
+$obj_tmp1->skillList="taolou_system_specialskill";
+
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
@@ -119,6 +123,52 @@ switch(@$action){
 
 
 	//專長技能
+		//顯示所有技能
+		$sql_skillList="SELECT ".$obj_tmp1->skillList.".*
+						   FROM ".$obj_tmp1->skillList."
+						   WHERE ".$obj_tmp1->skillList.".status = 'y'
+						   ORDER BY ".$obj_tmp1->skillList.".id";
+		$obj_tmp1->laout_arr['skillList']=array();
+		$obj_tmp1->basic_select('laout_arr','skillList',$sql_skillList);
+			//echo $sql_skillList;
+			//print_r($obj_tmp1->laout_arr['skillList']);
+		foreach($obj_tmp1->laout_arr['skillList'] as $allSkillKey => $allSkillValue){
+			$obj_tmp1->allSkillList=$obj_tmp1->allSkillList.$allSkillValue['skill']."|";
+		}
+		$obj_tmp1->allSkillList=substr($obj_tmp1->allSkillList,0,-1);
+			//print_r($obj_tmp1->allSkillList);
+
+		//列出我的技能
+		$sql_memberSkill="SELECT ".$obj_tmp1->memberSkill.".*
+						   FROM ".$obj_tmp1->memberSkill."
+						   WHERE ".$obj_tmp1->memberSkill.".memberId = '".$userId."'";
+		$obj_tmp1->laout_arr['memberSkill']=array();
+		$obj_tmp1->basic_select('laout_arr','memberSkill',$sql_memberSkill);
+			//echo $sql_memberSkill;
+			//print_r($obj_tmp1->laout_arr['memberSkill']);
+
+			//顯示我的技能
+			if(!empty($obj_tmp1->laout_arr['memberSkill'][0]['skillList'])){
+				$skillLists=array();
+				$skillLists=split('[|]',$obj_tmp1->laout_arr['memberSkill'][0]['skillList']);
+					//echo $obj_tmp1->laout_arr['memberSkill'][0]['skillList'];
+					//print_r($skillLists);
+				$obj_tmp1->mySkillLists="";
+				foreach($skillLists as $skListKey => $skListValue){
+					//echo $skListValue;
+					$sql_SL="SELECT ".$obj_tmp1->skillList.".*
+						 	 FROM ".$obj_tmp1->skillList."
+						 	 WHERE ".$obj_tmp1->skillList.".id='".$skListValue."'";
+					$obj_tmp1->laout_arr['SL']=array();
+					$obj_tmp1->basic_select('laout_arr','SL',$sql_SL);
+						//echo $sql_SL;
+						//print_r($obj_tmp1->laout_arr['SL']);
+					$obj_tmp1->mySkillLists=$obj_tmp1->mySkillLists.$obj_tmp1->laout_arr['SL'][0]['skill']."|";
+						//echo $obj_tmp1->laout_arr['SL'][0]['skill'];
+				}
+				$obj_tmp1->mySkillLists=substr($obj_tmp1->mySkillLists,0,-1);
+				//print_r($obj_tmp1->mySkillLists);
+			}
 	//==========================
 
 	//教育狀況
