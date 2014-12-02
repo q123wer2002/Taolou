@@ -1,0 +1,127 @@
+.container{width: 80%;
+	height: 40%;
+	margin-top: 20px;
+	margin-left:10%;
+	margin-bottom:20px;
+	background: white;
+}
+
+.left{
+	float: left;
+}
+.right{
+	
+}
+
+
+.nsb-block .nsb-block-content {
+	width: 100%;
+    border-top: 1px solid #ECEEF1;
+}
+
+.edit-unit:after {
+    clear: both;
+}
+.edit-unit:after, .edit-unit:before {
+    content: "";
+    display: table;
+}
+
+.edit-name {
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    width: 75px;
+    padding-right: 20px;
+    text-align: right;
+    font-size: 16px;
+}
+.edit-body {
+    position: relative;
+    float: left;
+    width: 200px;
+}
+
+a {
+    color: #36A9E5;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s ease 0s, color 0.2s ease 0s, #F2F1F0 0.2s ease 0s, box-shadow 0.2s ease 0s;
+}
+
+input[type="email"], input[type="password"], input[type="text"] {
+    font-size: 16px;
+    height: 16px;
+    line-height: 16px;
+    padding: 18px 15px 16px;
+    width: 270px;
+    border: medium none;
+    border-radius: 3px;
+    background-color: #ECEDF0;
+}
+
+.nsb-block-ctrl {
+    padding: 25px;
+    width: 100%;
+    border-top: 1px solid #ECEEF1;
+    text-align: center;
+}
+
+.nsb-block-ctrl .submit {
+    text-align: left;
+    margin-left: 100px;
+}
+
+.submit-btn {
+    width: 150px;
+}
+
+.blue-btn {
+    background-color: #36A9E5;
+}
+
+.blue-btn, .gray-btn, .green-btn, .purple-btn, .red-btn, .yellow-btn {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: medium none;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #FFF;
+}
+
+
+
+.pwd-lost {
+    color: #A2A8B3;
+    float: right;
+    line-height: 50px;
+}
+
+.split {
+    margin: 20px auto;
+    line-height: 21px;
+    color: #A2A8B3;
+}
+
+.red-btn {
+    background-color: #EB6A64;
+}
+
+.green-btn {
+    background-color: #17B385;
+}
+
+.nsb-block .left {
+    width: 56%;
+}
+
+.nsb-block .right {
+    float: right;
+    height: 100%;
+    padding: 30px;
+    width: 30%;
+    border-left: 1px solid #ECEEF1;
+    text-align: center;
+}
