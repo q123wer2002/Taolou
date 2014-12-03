@@ -175,11 +175,13 @@ switch(@$action){
 	$sql_education="SELECT ".$obj_tmp1->memberedu.".*
 					FROM ".$obj_tmp1->memberedu."
 					LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->member.".id=".$obj_tmp1->memberedu.".memberId
-					WHERE ".$obj_tmp1->memberedu.".memberId=".$userId;
+					WHERE ".$obj_tmp1->memberedu.".memberId='".$userId."'";
 	$obj_tmp1->laout_arr['education']=array();
 	$obj_tmp1->basic_select('laout_arr','education',$sql_education);
 		//echo $sql_education;
 		//print_r($obj_tmp1->laout_arr['education']);
+
+
 	//==========================
 
 	//經歷

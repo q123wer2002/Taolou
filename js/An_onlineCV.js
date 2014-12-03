@@ -162,21 +162,95 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		}
 	}
 
-	//教育 setting
+	//教育 setting 一般按鍵function
 	$scope.showEducation=false;
-	$scope.showEducSelect=false;
 	$scope.showEducationFun=function(item){
 		if(item.status){item.status=false;}
 		else{item.status=true;}
 	}
-	$scope.change=function(){
-		if($scope.showEducSelect){$scope.showEducSelect=false;}
-		else{$scope.showEducSelect=true;}
+	$scope.showlastEducation=function(item){
+		if(item.eduSelector){item.eduSelector=false;}
+		else{item.eduSelector=true;}
 	}
+	$scope.showStartSelectoe=function(item){
+		if(item.startSelector){item.startSelector=false;}
+		else{item.startSelector=true;}
+	}
+	$scope.showEndSelector=function(item){
+		if(item.endSelector){item.endSelector=false;}
+		else{item.endSelector=true;}
+	}
+	$scope.settingEduc=function(saver,item){
+		saver.education=item.name;
+		$scope.showlastEducation(saver);
+	}
+	$scope.settingStart=function(saver,item){
+		saver.start_edu=item;
+		$scope.showStartSelectoe(saver);
+	}
+	$scope.settingEnd=function(saver,item){
+		saver.end_edu=item;
+		$scope.showEndSelector(saver);
+	}
+		//教育陣列
 	$scope.eduexps=[
-		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information','status':false},
-		{'education':'碩士','start_edu':'2013','end_edu':'2014','school':'NCTU','marjor':'information','status':false},
+		//{'status':false,'eduSelector':false,'startSelector':false,'endSelector':false},
 	];
+		//初始化function
+	$scope.initEducatinoFun=function(){
+		this.eduexps.push({'id':$scope.EDU_ID,'education':$scope.EDU_eduBG,'start_edu':$scope.EDU_startEdu,'end_edu':$scope.EDU_endEdu,'school':$scope.EDU_school,'marjor':$scope.EDU_marjor,'status':false,'eduSelector':false,'startSelector':false,'endSelector':false});
+	}
+		//新增education Function
+	$scope.addEducationFun=function(){
+		var EducaObject={"method":"myAddEducation"};
+		$http({
+			method:'POST',
+			url:'server/onlineCVAjax.php',
+			data: $.param(EducaObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			$scope.eduexps.push({'id':json.id,'education':'','start_edu':'','end_edu':'','school':'','marjor':'','status':true,'eduSelector':false,'startSelector':false,'endSelector':false});
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.eduErrorMes='發生不可預測的錯誤';
+		});
+	}
+		//儲存edcation function
+	$scope.saveEducaFun=function(item){
+		if(item.education==''){$scope.eduErrorMes="學歷還沒有選填喔";}
+		else if(item.start_edu==''){$scope.eduErrorMes="開始年份還沒有選填喔";}
+		else if(item.end_edu==''){$scope.eduErrorMes="結束年份還沒有選填喔";}
+		else if(item.start_edu>item.end_edu){$scope.eduErrorMes="開始與結束年份有填錯";}
+		else if(item.school==''){$scope.eduErrorMes="學校還沒有填寫喔";}
+		else if(item.marjor==''){$scope.eduErrorMes="主修還沒有填寫喔";}
+		else{
+			$scope.eduErrorMes="";
+			var EducaObject={"method":"myEducation","educaObject":$scope.eduexps};
+
+			$http({
+				method:'POST',
+				url:'server/onlineCVAjax.php',
+				data: $.param(EducaObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+				$scope.showSpecialFun();
+			}).
+			error(function(json){
+				console.warn(json);
+				$scope.eduErrorMes='發生不可預測的錯誤';
+			});
+		}
+	}
+		//刪除education function
+	$scope.deleteEdu=function(item){
+		var index=$scope.eduexps.indexOf(item);
+    	$scope.eduexps.splice(index,1);
+	}
+
 
 	$scope.delete = function(item){
 		item.isDelete=true;

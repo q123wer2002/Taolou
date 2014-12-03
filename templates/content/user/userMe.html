@@ -234,39 +234,59 @@
 
 		<div class="education_experience">
 			<span class="seg-title">教育經歷</span>
+			<?php if(!empty($this->laout_arr['education'])){ foreach($this->laout_arr['education'] as $EduKey => $EduValue){ ?>
+				<input type='hidden' ng-init="EDU_ID='<?php echo $EduValue['id']; ?>'">
+				<input type='hidden' ng-init="EDU_eduBG='<?php echo $EduValue['educationBG']; ?>'">
+				<input type='hidden' ng-init="EDU_startEdu='<?php echo $EduValue['startYear']; ?>'">
+				<input type='hidden' ng-init="EDU_endEdu='<?php echo $EduValue['endYear']; ?>'">
+				<input type='hidden' ng-init="EDU_school='<?php echo $EduValue['school']; ?>'">
+				<input type='hidden' ng-init="EDU_marjor='<?php echo $EduValue['major']; ?>'">
+				<input type='hidden' ng-onload='initEducatinoFun()'>
+			<?php }} ?>
 			<div class='clearfix educationList'>
+			<!-- 初始化教育設定 -->
 			<!-- 開始設定教育 -->
-				<div class='editEducationDiv'>
+				<div class='editEducationDiv' ng-repeat='eduexp in eduexps' ng-show="eduexp.status">
+				{{eduexp.id}}
+					<!-- 編輯教育內容 -->
 					<div class='editListDiv'>
-					<span class='editTitle'>學歷　　</span>
-					<a href="javascript:;" ng-click='change()'><div class='editSelecter'>請選擇學歷<span class='icon educaSel selectIcon'></span></div></a>
-					<ul class='pop-selectUl' id='editEducaSelect' ng-show='showEducSelect'>
-						<a href="javascript:;" ng-repeat='edu in educations'><li class='educationSelected' data-value='{{edu.name}}'>{{edu.name}}</li></a>
-					</ul>
+						<span class='editTitle'>學歷　　</span>
+						<a href="javascript:;" ng-click='showlastEducation(eduexp)'><div class='editSelecter'>{{eduexp.education}}<span class='icon educaSel selectIcon'></span></div></a>
+						<ul class='editDivSelectUl' id='editEducaSelect' ng-show='eduexp.eduSelector'>
+							<a href="javascript:;" ng-repeat='edu in educations'><li class='educationSelected' ng-click='settingEduc(eduexp,edu)'>{{edu.name}}</li></a>
+						</ul>
 					</div>
 
 					<div class='editListDiv'>
-					<span class='editTitle'>在校年份</span>
-					<a href="javascript:;"><div class='editSelecter'>起始年份<span class='icon educaSel selectIcon'></span></div></a>
-					~
-					<a href="javascript:;"><div class='editSelecter'>結束年份<span class='icon educaSel selectIcon'></span></div></a>
-					
+						<span class='editTitle'>在校年份</span>
+						<a href="javascript:;" ng-click='showStartSelectoe(eduexp)'><div class='editSelecter'>{{eduexp.start_edu}}<span class='icon educaSel selectIcon'></span></div></a>
+						<ul class='editDivSelectUl' id='educationStart' ng-show='eduexp.startSelector'>
+						<a href="javascript:;" ng-repeat='n in []| range:50' ng-click='settingStart(eduexp,n)'><li>{{n}}</li></a>
+						</ul>
+						~
+						<a href="javascript:;" ng-click='showEndSelector(eduexp)'><div class='editSelecter'>{{eduexp.end_edu}}<span class='icon educaSel selectIcon'></span></div></a>
+						<ul class='editDivSelectUl' id='educationEnd' ng-show='eduexp.endSelector'>
+						<a href="javascript:;" ng-repeat='n in []| range:50' ng-click='settingEnd(eduexp,n)'><li>{{n}}</li></a>
+						</ul>
 					</div>
 
 					<div class='editListDiv'>
-					<span class='editTitle'>學校名稱</span>
-					<div class='editwrapper'><input type='text' class='editEdu_input'></div>
+						<span class='editTitle'>學校名稱</span>
+						<div class='editwrapper'><input type='text' class='editEdu_input' ng-model='eduexp.school' ng-value='eduexp.school'></div>
 					</div>
 
 					<div class='editListDiv'>
-					<span class='editTitle'>專業名稱</span>
-					<div class='editwrapper'><input type='text' class='editEdu_input'></div>
+						<span class='editTitle'>專業名稱</span>
+						<div class='editwrapper'><input type='text' class='editEdu_input' ng-model='eduexp.marjor' ng-value='eduexp.marjor'></div>
 					</div>
 
-					<button class='editEdu_bon' id='editEduSave'>保存</button>
-					<button class='editEdu_bon' id='editEduCancel'>取消</button>
-					<button class='editEdu_bon' id='editEduDelete'>刪除</button>
+					<p class='eduErrorMes'>{{eduErrorMes}}</p>
+
+					<button class='editEdu_bon' id='editEduSave' ng-click='saveEducaFun(eduexp)'>保存</button>
+					<button class='editEdu_bon' id='editEduCancel' ng-click='reload()'>取消</button>
+					<button class='editEdu_bon' id='editEduDelete' ng-click='deleteEdu(eduexp)'>刪除</button>
 				</div>
+				<!-- 顯示教育列表 -->
 				<ul class='educationListUl'>
 					<li ng-repeat='eduexp in eduexps' ng-hide="eduexp.status">
 						<a href="javascript:;" class='icon title-chart edit' ng-click='showEducationFun(eduexp)'></a>
@@ -275,7 +295,7 @@
 					</li>
 				</ul>
 
-				<a href="javascript:;" class='add_ee' ng-click='edit(eduexp)'>
+				<a href="javascript:;" class='add_ee' ng-click='addEducationFun()'>
 					<span class='icon title-chart add'></span>
 					新增教育經歷
 				</a>
@@ -285,10 +305,11 @@
 
 		<div class='experience2'>
 			<span class="seg-title">項目經歷</span>
+			<!-- 開始設定經歷 -->
 			<div class='clearfix experienceList'>
 				<a href="javascript:;" class='add_ee' ng-click='edit(eduexp)'>
 					<span class='icon title-chart add'></span>
-					新增教育經歷
+					新增經歷
 				</a>
 			</div>
 		</div>

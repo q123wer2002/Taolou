@@ -32,7 +32,7 @@
 		.pop-inputWarp a{position: relative;}
 		.pop-input{padding: 13px 15px 11px 15px;border:none;background: #ecedf0;border-radius: 3px;}
 		.pop-select:hover{cursor: pointer;}
-		.pop-selectUl{position: absolute;width: 186px;text-align: center;z-index: 6;height:250px;overflow: auto;display: none;}
+		.pop-selectUl{position: absolute;width: 186px;text-align: center;z-index: 6;height:250px;overflow: auto;}
 		.pop-selectUl a{text-decoration: none;}
 		.pop-selectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
 		.pop-selectUl li:hover{background-color: #d94600;}
@@ -84,11 +84,13 @@
 		.editEducationDiv{height: 525px;height: 260px;padding: 15px;background-color:#f5f6f7;}
 			.editListDiv{width: 525px;height: 40px;line-height: 40px;zoom:1;border-radius: 3px;margin: 5px;}
 			.editListDiv a{color: #a2a8b3;}
-				.editDivSelectUl{position: absolute;width: 186px;text-align: center;z-index: 6;height:250px;overflow: auto;}
+				.editDivSelectUl{position: absolute;text-align: center;z-index: 6;overflow: auto;width: 111px;height: 200px;}
 				.editDivSelectUl a{text-decoration: none;}
 				.editDivSelectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
 				.editDivSelectUl li:hover{background-color: #d94600;}
-				#editEducaSelect{width: 111px;height: 200px;}
+				#editEducaSelect{left: 97px;top:60px;}
+				#educationStart{left: 95px;top:100px;}
+				#educationEnd{left: 244px;top:100px;}
 				.editTitle{margin-right: 5px;width: 65px;color: #a2a8b3;overflow: hidden;}
 				.editSelecter{width:81px;height: 16px;padding: 12px 15px;font-size:14px;line-height: 16px;background-color: #ecedf0;display: inline-block;border-radius: 3px;margin: 0px 10px;position: relative;}
 					.educaSel{top: 17px;right: 5px;}
@@ -100,6 +102,7 @@
 			#editEduCancel{background-color: #a2a8b3;}
 			#editEduDelete{width:60px;background-color: #f5f6f7;color: #a2a8b3;}
 			#editEduDelete:hover{background-color: #eb6a64;color: #ffffff;}
+			.eduErrorMes{position: absolute;color: red;font-size: 13px;font-weight: 400;}
 		.educationList{margin-left: 105px;}
 			.educationListUl{list-style: none;}
 			.educationListUl li{list-style: none;line-height: 25px;margin-bottom: 20px;}
