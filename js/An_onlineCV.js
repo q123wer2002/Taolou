@@ -198,7 +198,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	];
 		//初始化function
 	$scope.initEducatinoFun=function(){
-		this.eduexps.push({'id':$scope.EDU_ID,'education':$scope.EDU_eduBG,'start_edu':$scope.EDU_startEdu,'end_edu':$scope.EDU_endEdu,'school':$scope.EDU_school,'marjor':$scope.EDU_marjor,'status':false,'eduSelector':false,'startSelector':false,'endSelector':false});
+		this.eduexps.push({'id':$scope.EDU_ID,'education':$scope.EDU_eduBG,'start_edu':$scope.EDU_startEdu,'end_edu':$scope.EDU_endEdu,'school':$scope.EDU_school,'major':$scope.EDU_major,'status':false,'eduSelector':false,'startSelector':false,'endSelector':false});
 	}
 		//新增education Function
 	$scope.addEducationFun=function(){
@@ -210,7 +210,9 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
-			$scope.eduexps.push({'id':json.id,'education':'','start_edu':'','end_edu':'','school':'','marjor':'','status':true,'eduSelector':false,'startSelector':false,'endSelector':false});
+			alert(json.Eduid);
+			console.log(json.Eduid);
+			$scope.eduexps.push({'id':json.Eduid,'education':'','start_edu':'','end_edu':'','school':'','major':'','status':true,'eduSelector':false,'startSelector':false,'endSelector':false});
 		}).
 		error(function(json){
 			console.warn(json);
@@ -224,10 +226,10 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		else if(item.end_edu==''){$scope.eduErrorMes="結束年份還沒有選填喔";}
 		else if(item.start_edu>item.end_edu){$scope.eduErrorMes="開始與結束年份有填錯";}
 		else if(item.school==''){$scope.eduErrorMes="學校還沒有填寫喔";}
-		else if(item.marjor==''){$scope.eduErrorMes="主修還沒有填寫喔";}
+		else if(item.major==''){$scope.eduErrorMes="主修還沒有填寫喔";}
 		else{
 			$scope.eduErrorMes="";
-			var EducaObject={"method":"myEducation","educaObject":$scope.eduexps};
+			var EducaObject={"method":"myEducation", "id":item.id, "educationBG":item.education, "startYear":item.start_edu, "endYear":item.end_edu, "school":item.school, "major":item.major};
 
 			$http({
 				method:'POST',
@@ -237,7 +239,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 			}).
 			success(function(json){
 				console.log(json);
-				$scope.showSpecialFun();
+				item.status=false;
 			}).
 			error(function(json){
 				console.warn(json);
@@ -247,8 +249,22 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	}
 		//刪除education function
 	$scope.deleteEdu=function(item){
-		var index=$scope.eduexps.indexOf(item);
-    	$scope.eduexps.splice(index,1);
+		var EducaObject={"method":"mydeleteEducation", "id":item.id};
+		$http({
+			method:'POST',
+			url:'server/onlineCVAjax.php',
+			data: $.param(EducaObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+			var index=$scope.eduexps.indexOf(item);
+    		$scope.eduexps.splice(index,1);
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.eduErrorMes='發生不可預測的錯誤';
+		});
 	}
 
 

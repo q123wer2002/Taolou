@@ -240,14 +240,13 @@
 				<input type='hidden' ng-init="EDU_startEdu='<?php echo $EduValue['startYear']; ?>'">
 				<input type='hidden' ng-init="EDU_endEdu='<?php echo $EduValue['endYear']; ?>'">
 				<input type='hidden' ng-init="EDU_school='<?php echo $EduValue['school']; ?>'">
-				<input type='hidden' ng-init="EDU_marjor='<?php echo $EduValue['major']; ?>'">
-				<input type='hidden' ng-onload='initEducatinoFun()'>
+				<input type='hidden' ng-init="EDU_major='<?php echo $EduValue['major']; ?>'">
+				<input type='hidden' ng-init='initEducatinoFun()'>
 			<?php }} ?>
 			<div class='clearfix educationList'>
 			<!-- 初始化教育設定 -->
 			<!-- 開始設定教育 -->
 				<div class='editEducationDiv' ng-repeat='eduexp in eduexps' ng-show="eduexp.status">
-				{{eduexp.id}}
 					<!-- 編輯教育內容 -->
 					<div class='editListDiv'>
 						<span class='editTitle'>學歷　　</span>
@@ -277,7 +276,7 @@
 
 					<div class='editListDiv'>
 						<span class='editTitle'>專業名稱</span>
-						<div class='editwrapper'><input type='text' class='editEdu_input' ng-model='eduexp.marjor' ng-value='eduexp.marjor'></div>
+						<div class='editwrapper'><input type='text' class='editEdu_input' ng-model='eduexp.major' ng-value='eduexp.major'></div>
 					</div>
 
 					<p class='eduErrorMes'>{{eduErrorMes}}</p>
@@ -291,7 +290,7 @@
 					<li ng-repeat='eduexp in eduexps' ng-hide="eduexp.status">
 						<a href="javascript:;" class='icon title-chart edit' ng-click='showEducationFun(eduexp)'></a>
 						<p>{{eduexp.start_edu}}-{{eduexp.end_edu}} . {{eduexp.school}}</p>
-						<p class='sub'>{{eduexp.education}} . {{eduexp.marjor}}</p>
+						<p class='sub'>{{eduexp.education}} . {{eduexp.major}}</p>
 					</li>
 				</ul>
 

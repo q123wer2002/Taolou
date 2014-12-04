@@ -138,24 +138,37 @@ else if(@$_POST['method'] == 'mySkill'){
 	echo json_encode($message);
 	exit;
 }
-else if($_POST['method'] == 'myAddEducation'){
+else if(@$_POST['method'] == 'myAddEducation'){
 	$datatime=date("Y-m-d H:i:s");
 	$sql_addEducation="INSERT INTO ".$obj_tmp1->memberedu."
 					   VALUES (NULL,'".$userId."','','','','','','".$datatime."','".$datatime."')";
-	//mysql_query($sql_addEducation);
+	mysql_query($sql_addEducation);
 	
 	//找出剛剛存入的id
-    $sql_searchID="SELECT ".$obj_tmp1->memberedu."
+    $sql_searchID="SELECT ".$obj_tmp1->memberedu.".*
     			   FROM ".$obj_tmp1->memberedu."
     			   WHERE ".$obj_tmp1->memberedu.".createDate='".$datatime."'";
     $obj_tmp1->laout_arr['searchID']=array();
 	$obj_tmp1->basic_select('laout_arr','searchID',$sql_searchID);
 	//======================
 
-	$message=array("first"=>"success","id"=>$obj_tmp1->laout_arr['searchID'][0]['id']);
+	$message=array("first"=>"success","Eduid"=>$obj_tmp1->laout_arr['searchID'][0]['id']);
 	echo json_encode($message);
 	exit;
 }
-else if($_POST['method'] == 'myEducation'){
+else if(@$_POST['method'] == 'myEducation'){
+	$sql_saveEdu="UPDATE ".$obj_tmp1->memberedu." SET educationBG='".$_POST['educationBG']."', startYear='".$_POST['startYear']."', endYear='".$_POST['endYear']."', school='".$_POST['school']."', major='".$_POST['major']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->memberedu.".id='".$_POST['id']."'";
+	mysql_query($sql_saveEdu);
 
+	$message=array("first"=>"success");
+	echo json_encode($message);
+	exit;
+}
+else if(@$_POST['method'] == 'mydeleteEducation'){
+	$sql_deleteEdu="DELETE FROM ".$obj_tmp1->memberedu."
+					WHERE ".$obj_tmp1->memberedu.".id='".$_POST['id']."'";
+	mysql_query($sql_deleteEdu);
+	$message=array("first"=>"success");
+	echo json_encode($message);
+	exit;
 }
