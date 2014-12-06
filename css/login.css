@@ -113,14 +113,14 @@ input[type="email"], input[type="password"], input[type="text"] {
 
 .nsb-block .left {
     float: left;
-    width: 56%;
+    width: 60%;
 }
 
 .nsb-block .right {
     float: right;
     height: 100%;
     padding: 30px;
-    width: 35%;
+    width: 30%;
     border-left: 1px solid #ECEEF1;
     text-align: center;
 }

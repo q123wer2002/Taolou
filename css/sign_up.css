@@ -1,51 +1,71 @@
-.container{width: 80%;
-	height: 40%;
+.container{width: 60%;
+	height: 60%;
 	margin-top: 20px;
-	margin-left:10%;
+	margin-left:20%;
 	margin-bottom:20px;
 	background: white;
 }
 
 .nsb-block .left {
     float: left;
-    height: 100%;
     padding: 30px;
 }
-
 
 .nsb-block .right {
     float: right;
     height: 100%;
     padding: 30px;
-    width: 30%;
+    width: 40%;
     border-left: 1px solid #ECEEF1;
     text-align: center;
 }
 
+
 .nsb-block .nsb-block-content {
     border-top: 1px solid #ECEEF1;
-    overflow: hidden;
 }
 
-.edit-unit:after {
-    clear: both;
+.edit-unit{
+    border-top: 1px solid #ECEEF1;
 }
-.edit-unit:after, .edit-unit:before {
-    content: "";
-    display: table;
-}
-
-
 
 input[type="email"], input[type="password"], input[type="text"] {
     font-size: 16px;
     height: 16px;
     line-height: 16px;
     padding: 18px 15px 16px;
-    width: 170px;
+    width: 200px;
     border: medium none;
     border-radius: 3px;
     background-color: #ECEDF0;
 }
+a {
+    color: #36A9E5;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s ease 0s, color 0.2s ease 0s, #F2F1F0 0.2s ease 0s, box-shadow 0.2s ease 0s;
+}
 
+.blue-btn, .gray-btn, .green-btn, .purple-btn, .red-btn, .yellow-btn {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: medium none;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #FFF;
+}
+.blue-btn {
+    padding: 10px; 
+    background-color: #36A9E5;
+}
 
+.red-btn {
+    padding: 10px;   
+    background-color: #EB6A64;
+}
+
+.green-btn {
+    padding: 10px; 
+    background-color: #17B385;
+}

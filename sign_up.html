@@ -83,9 +83,22 @@
                             <input class="required" type="password" placeholder="" name="password"></input>
                         </div>
                     </div>
-                </div>
-                <div class="nsb-block-ctrl">
-                    <div class="submit"></div>
+                    <div class="nsb-block-ctrl">
+                        <div class="submit">
+                            <div class="nsb-policy">
+                                <input id="nsb_policy" type="checkbox"></input>
+                                <label for="nsb_policy">
+                                    agree
+                                </label>
+                                <a target="_blank" href="/privacy">
+                                    consent
+                                </a>
+                            </div>
+                            <a class="green-btn submit-btn">
+                                sign up
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <aside class="right">
@@ -98,15 +111,13 @@
                 <span class="split">
                     or
                 </span>
+                <br></br>
                 <a class="red-btn weibo" href="/oauth/sina">
-                    <span class="icon weibo-white"></span>
-                    <span class="text">
-                        log in with facebook
-                    </span>
+                    log in with facebook
                 </a>
+                <br></br>
                 <a class="blue-btn mingdao" href="/oauth/mingdao">
-                    <span class="icon mindao-white"></span>
-                    <span class="text"></span>
+                    log in with google
                 </a>
             </aside>
         </section>
