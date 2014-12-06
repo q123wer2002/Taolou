@@ -140,19 +140,19 @@ else if(@$_POST['method'] == 'mySkill'){
 }
 else if(@$_POST['method'] == 'myAddEducation'){
 	$datatime=date("Y-m-d H:i:s");
-	$sql_addEducation="INSERT INTO ".$obj_tmp1->memberedu."
-					   VALUES (NULL,'".$userId."','','','','','','".$datatime."','".$datatime."')";
+	$sql_addEducation="INSERT INTO ".$obj_tmp1->memberedu." VALUES (NULL,'".$userId."','','','','','','".$datatime."','".$datatime."')";
 	mysql_query($sql_addEducation);
 	
 	//找出剛剛存入的id
-    $sql_searchID="SELECT ".$obj_tmp1->memberedu.".*
-    			   FROM ".$obj_tmp1->memberedu."
-    			   WHERE ".$obj_tmp1->memberedu.".createDate='".$datatime."'";
+    $sql_searchID="SELECT ".$obj_tmp1->memberedu.".* FROM ".$obj_tmp1->memberedu." WHERE ".$obj_tmp1->memberedu.".createDate='".$datatime."'";
     $obj_tmp1->laout_arr['searchID']=array();
 	$obj_tmp1->basic_select('laout_arr','searchID',$sql_searchID);
 	//======================
 
-	$message=array("first"=>"success","Eduid"=>$obj_tmp1->laout_arr['searchID'][0]['id']);
+	if(!empty($obj_tmp1->laout_arr['searchID'][0]['id'])){$EducationID=$obj_tmp1->laout_arr['searchID'][0]['id'];}
+	else{$EducationID="noID";}
+
+	$message=array("first"=>"success","Eduid"=>$EducationID);
 	echo json_encode($message);
 	exit;
 }
@@ -168,6 +168,47 @@ else if(@$_POST['method'] == 'mydeleteEducation'){
 	$sql_deleteEdu="DELETE FROM ".$obj_tmp1->memberedu."
 					WHERE ".$obj_tmp1->memberedu.".id='".$_POST['id']."'";
 	mysql_query($sql_deleteEdu);
+	$message=array("first"=>"success");
+	echo json_encode($message);
+	exit;
+}
+else if(@$_POST['method'] == "myAddExperience"){
+	$datatime=date("Y-m-d H:i:s");
+	$sql_addexperience="INSERT INTO ".$obj_tmp1->memberExp." VALUES (NULL,'".$userId."','','','','','','','".$datatime."','".$datatime."')";
+	mysql_query($sql_addexperience);
+
+	//找出剛剛存入的id
+    $sql_searchID="SELECT ".$obj_tmp1->memberExp.".* FROM ".$obj_tmp1->memberExp." WHERE ".$obj_tmp1->memberExp.".createDate='".$datatime."'";
+    $obj_tmp1->laout_arr['searchID']=array();
+	$obj_tmp1->basic_select('laout_arr','searchID',$sql_searchID);
+	//======================
+
+	if(!empty($obj_tmp1->laout_arr['searchID'][0]['id'])){$ExperienceID=$obj_tmp1->laout_arr['searchID'][0]['id'];}
+	else{$ExperienceID="noID";}
+
+	$message=array("first"=>"success","Expid"=>$ExperienceID);
+	echo json_encode($message);
+	exit;
+}
+else if(@$_POST['method'] == "myExperience"){
+	$sql_saveExp="UPDATE ".$obj_tmp1->memberExp." SET name='".$_POST['name']."', year='".$_POST['year']."', continueTime='".$_POST['continueTime']."', company='".$_POST['company']."', role='".$_POST['role']."', detail='".$_POST['detail']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->memberExp.".id='".$_POST['id']."'";
+	mysql_query($sql_saveExp);
+
+	$message=array("first"=>"success","sql"=>$sql_saveExp);
+	echo json_encode($message);
+	exit;
+}
+else if(@$_POST['method'] == "mydeleteExperience"){
+	$sql_deleteExp="DELETE FROM ".$obj_tmp1->memberExp."
+					WHERE ".$obj_tmp1->memberExp.".id='".$_POST['id']."'";
+	mysql_query($sql_deleteExp);
+	$message=array("first"=>"success");
+	echo json_encode($message);
+	exit;
+}
+else if(@$_POST['method'] == "addself"){
+	$sql_addself="UPDATE ".$obj_tmp1->member." SET selfIntro='".$_POST['selfIntro']."' WHERE ".$obj_tmp1->member.".id='".$userId."'";
+	mysql_query($sql_addself);
 	$message=array("first"=>"success");
 	echo json_encode($message);
 	exit;

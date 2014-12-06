@@ -1,8 +1,6 @@
 TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$http){
-	
-	$scope.phone=[
-		{'phone':''},
-	];
+
+	$scope.phone=[{'phone':''},];
 
 	//編輯,儲存手機
 	$scope.editphone = function(item) {
@@ -210,8 +208,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
-			alert(json.Eduid);
-			console.log(json.Eduid);
+			console.log(json);
 			$scope.eduexps.push({'id':json.Eduid,'education':'','start_edu':'','end_edu':'','school':'','major':'','status':true,'eduSelector':false,'startSelector':false,'endSelector':false});
 		}).
 		error(function(json){
@@ -268,9 +265,128 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	}
 
 
-	$scope.delete = function(item){
-		item.isDelete=true;
+	//項目經歷setting 
+	$scope.experiences=[];
+	$scope.showEditExperienceFun=function(item){
+		if(item.showEdit){item.showEdit=false;}
+		else{item.showEdit=true;}
 	}
+	$scope.showYearFun=function(item){
+		if(item.showYear){item.showYear=false;}
+		else{item.showYear=true;}
+	}
+	$scope.showHowlongFun=function(item){
+		if(item.showHowlong){item.showHowlong=false;}
+		else{item.showHowlong=true;}
+	}
+		//年份選擇
+	$scope.setExperYear=function(item,year){
+		item.year=year;
+		$scope.showYearFun(item);
+	}
+		//周期選擇
+	$scope.setExperHowlong=function(item,hlong){
+		item.howlong=hlong.name;
+		$scope.showHowlongFun(item);
+	}
+		//初始化 經驗列表
+	$scope.EXPINIT=function(){
+		this.experiences.push({"id":$scope.EXP_ID, "name":$scope.EXP_NAME, "year":$scope.YEAR, "howlong":$scope.EXP_HOWLONG, "company":$scope.EXP_COMPANY, "role":$scope.EXP_ROLE, "detail":$scope.EXP_DETAIL, "showEdit":false, "showYear":false, "showHowlong":false});
+	}
+		//新增experience Function
+	$scope.addExperienceFun=function(){
+		var ExperienceObject={"method":"myAddExperience"};
+		$http({
+			method:'POST',
+			url:'server/onlineCVAjax.php',
+			data: $.param(ExperienceObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+			$scope.experiences.push({'id':json.Expid,'name':'','year':'','howlong':'','company':'','role':'','detail':'','showEdit':true,'showYear':false,'showHowlong':false});
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.expErrorMes='發生不可預測的錯誤';
+		});
+	}
+		//儲存experience function
+	$scope.saveExperienceFun=function(item){
+		if(item.name==''){$scope.expErrorMes="經歷名稱還沒有選填喔";}
+		else if(item.year==''){$scope.expErrorMes="經歷年份還沒有選填喔";}
+		else if(item.howlong==''){$scope.expErrorMes="經歷時期還沒有選填喔";}
+		else if(item.company == ''){$scope.expErrorMes="經歷機構還沒有填寫喔";}
+		else if(item.role==''){$scope.expErrorMes="經歷職位還沒有填寫喔";}
+		else if(item.detail==''){$scope.expErrorMes="經歷細節還沒有填寫喔";}
+		else{
+			$scope.expErrorMes="";
+			var ExperienceObject={"method":"myExperience", "id":item.id, "name":item.name, "year":item.year, "continueTime":item.howlong, "company":item.company, "role":item.role, "detail":item.detail};
+
+			$http({
+				method:'POST',
+				url:'server/onlineCVAjax.php',
+				data: $.param(ExperienceObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json.sql);
+				item.showEdit=false;
+			}).
+			error(function(json){
+				console.warn(json);
+				$scope.expErrorMes='發生不可預測的錯誤';
+			});
+		}
+	}
+		//刪除experience function
+	$scope.deleteExperience=function(item){
+		var ExperienceObject={"method":"mydeleteExperience", "id":item.id};
+		$http({
+			method:'POST',
+			url:'server/onlineCVAjax.php',
+			data: $.param(ExperienceObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+			var index=$scope.experiences.indexOf(item);
+    		$scope.experiences.splice(index,1);
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.expErrorMes='發生不可預測的錯誤';
+		});
+	}
+
+	//自我描述setting 設定
+	$scope.addSelfStatus=false;
+	$scope.showAddselfFun=function(item){
+		if($scope.addSelfStatus){$scope.addSelfStatus=false;}
+		else{$scope.addSelfStatus=true;}
+	}
+	$scope.saveAddself=function(){
+		if($scope.Addself == "請添加自我描述" || $scope.Addself == ""){$scope.addselfError="請填入自我描述";}
+		else{
+			var AddselfObject={"method":"addself","selfIntro":$scope.Addself};
+
+			$http({
+				method:'POST',
+				url:'server/onlineCVAjax.php',
+				data: $.param(AddselfObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+				$scope.addSelfStatus=false;
+			}).
+			error(function(json){
+				console.warn(json);
+				$scope.expErrorMes='發生不可預測的錯誤';
+			});
+		}
+	}
+
 	$scope.reload = function() {
    		location.reload();
    	}
@@ -289,6 +405,13 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
    		{'name':'正在找工作'},
    		{'name':'觀望中，有好工作可以考慮'},
    		{'name':'目前不想換工作'},
+	];
+	$scope.howLongs=[
+		{"name":"一個月"},
+		{"name":"三個月"},
+		{"name":"半年"},
+		{"name":"一年"},
+		{"name":"一年以上"},
 	];
 
 
@@ -309,6 +432,11 @@ TaoLou.filter('range', function() {
 
 //一般的Javascript
 $(document).ready(function(){
+	//點擊上傳檔案
+	$('.avatar').click(function(){
+		$('#uploadfile').click();
+	});
+
 	$('.editProfile').click(function(){
 		$('.popEditProfileDiv').animate({bottom:'15%'},500);
 	});

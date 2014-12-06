@@ -7,11 +7,16 @@
 		<a href="javascript:;" class='editProfile'>
 			<span id='iconEditProfile' class='icon'></span>編輯
 		</a>
-		<div class='avatar'>
+
+		<div class='avatar clearfix'>
+			<span id='iconEditProfile' class='icon profileEdit'></span>
+			<div class='blackBG'></div>
 			<img ng-click='' src="images/userMe/<?php 
 			if($memberValue['photo']!=""){echo $memberValue['photo'];}
 			else echo "user-default.jpg"; ?>">
+			<input type='file' id="uploadfile" style="display:none">
 		</div>
+		{{openfile}}
 		<div class='main clearfix'>
 			<span class="name"><?php echo $memberValue['name']; ?></span>
 			<span class="status"><?php echo $memberValue['jobStatus']; ?></span>
@@ -306,7 +311,73 @@
 			<span class="seg-title">項目經歷</span>
 			<!-- 開始設定經歷 -->
 			<div class='clearfix experienceList'>
-				<a href="javascript:;" class='add_ee' ng-click='edit(eduexp)'>
+				<!-- 初始化經驗列表 -->
+				<?php if(!empty($this->laout_arr['experience'])){ foreach($this->laout_arr['experience'] as $ExpKey => $ExpValue){ ?>
+				<input type='hidden' ng-init="EXP_ID = '<?php echo $ExpValue['id']; ?>'">
+				<input type='hidden' ng-init="EXP_NAME = '<?php echo $ExpValue['name']; ?>'">
+				<input type='hidden' ng-init="EXP_YEAR = '<?php echo $ExpValue['year']; ?>'">
+				<input type='hidden' ng-init="EXP_HOWLONG = '<?php echo $ExpValue['continueTime']; ?>'">
+				<input type='hidden' ng-init="EXP_COMPANY = '<?php echo $ExpValue['company']; ?>'">
+				<input type='hidden' ng-init="EXP_ROLE = '<?php echo $ExpValue['role']; ?>'">
+				<input type='hidden' ng-init="EXP_DETAIL = '<?php echo $ExpValue['detail']; ?>'">
+				<input type='hidden' ng-init="EXPINIT()">
+				<?php }} ?>
+				<!-- 編輯經驗項目 -->
+				<div class='editExperienceDiv' ng-repeat='experience in experiences' ng-show="experience.showEdit">
+					<div class='editListDiv'>
+						<span class='editTitle'>項目名稱</span>
+						<div class='editwrapper'><input type='text' class='editEdu_input' ng-model='experience.name' ng-value='experience.name'></div>
+					</div>
+
+					<div class='editListDiv'>
+						<span class='editTitle'>項目年份</span>
+						<a href="javascript:;" ng-click='showYearFun(experience)'><div class='editSelecter'>{{experience.year}}<span class='icon educaSel selectIcon'></span></div></a>
+						<ul class='editDivSelectUl' id='experienceYear' ng-show='experience.showYear'>
+							<a href="javascript:;" ng-repeat='n in []| range:50'><li ng-click="setExperYear(experience,n)">{{n}}</li></a>
+						</ul>
+					</div>
+
+					<div class='editListDiv'>
+						<span class='editTitle'>項目周期</span>
+						<a href="javascript:;" ng-click='showHowlongFun(experience)'><div class='editSelecter'>{{experience.howlong}}<span class='icon educaSel selectIcon'></span></div></a>
+						<ul class='editDivSelectUl' id='experienceHowLong' ng-show='experience.showHowlong'>
+							<a href="javascript:;" ng-repeat='long in howLongs'><li ng-click="setExperHowlong(experience,long)">{{long.name}}</li></a>
+						</ul>
+					</div>
+
+					<div class='editListDiv'>
+						<span class='editTitle'>所在公司</span>
+						<div class='editwrapper'><input type='text' class='editEdu_input' ng-model='experience.company' ng-value='experience.company'></div>
+					</div>
+
+					<div class='editListDiv'>
+						<span class='editTitle'>項目角色</span>
+						<div class='editwrapper'><input type='text' class='editEdu_input' ng-model='experience.role' ng-value='experience.role'></div>
+					</div>
+
+					<div class='editListDiv'>
+						<span class='editTitle experienceTop'>項目描述</span>
+						<div class='editwrapper textarea'><textarea class='exper_textarea' ng-model='experience.detail' cols='58' rows='8'>{{experience.detail}}</textarea></div>
+					</div>
+
+					<p class='eduErrorMes'>{{expErrorMes}}</p>
+
+					<button class='editEdu_bon experienceB' id='editEduSave' ng-click='saveExperienceFun(experience)'>保存</button>
+					<button class='editEdu_bon experienceB' id='editEduCancel' ng-click='reload()'>取消</button>
+					<button class='editEdu_bon experienceB' id='editEduDelete' ng-click='deleteExperience(experience)'>刪除</button>
+				</div>
+
+				<!-- 顯示經驗列表 -->
+				<ul class='educationListUl'>
+					<li ng-repeat='experience in experiences' ng-hide="experience.showEdit">
+						<a href="javascript:;" class='icon title-chart edit' ng-click="showEditExperienceFun(experience)"></a>
+						<p>{{experience.name}} . {{experience.company}}</p>
+						<p>{{experience.role}} . {{experience.year}},{{experience.howlong}}</p>
+						<p class='sub'>{{experience.detail}}</p>
+					</li>
+				</ul>
+
+				<a href="javascript:;" class='add_ee' ng-click='addExperienceFun()'>
 					<span class='icon title-chart add'></span>
 					新增經歷
 				</a>
@@ -318,9 +389,18 @@
 
 			<div class='clearfix experienceList'>
 
-				<div class='addSelf'>
-					<a href="javascript:;" class='icon title-chart edit'></a>
-					<p>請添加自我描述</p>
+				<div class='addSelf' ng-hide='addSelfStatus'>
+					<a href="javascript:;" class='icon title-chart edit' ng-click="showAddselfFun()"></a>
+					<input type='hidden' ng-init="Addself = '請添加自我描述'">
+					<?php if(!empty($this->laout_arr['member'][0]['selfIntro'])){ ?>
+					<input type='hidden' ng-init="Addself = '<?php echo $this->laout_arr['member'][0]['selfIntro']; ?>'">
+					<?php } ?>
+					<p>{{Addself}}</p>
+				</div>
+
+				<div class='addSelf' ng-show='addSelfStatus'>
+					<input type='text' class='in_cv' ng-model='Addself' ng-value='Addself'>
+					<button class='b_cv' ng-click='saveAddself()'>保存</button>
 				</div>
 			</div>
 		</div>

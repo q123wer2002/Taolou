@@ -188,7 +188,7 @@ switch(@$action){
 	$sql_experience="SELECT ".$obj_tmp1->memberExp.".*
 				  	 FROM ".$obj_tmp1->memberExp."
 				  	 LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->member.".id=".$obj_tmp1->memberExp.".memberId
-				  	 WHERE ".$obj_tmp1->memberExp.".memberId=".$userId;
+				  	 WHERE ".$obj_tmp1->memberExp.".memberId='".$userId."'";
 	$obj_tmp1->laout_arr['experience']=array();
 	$obj_tmp1->basic_select('laout_arr','experience',$sql_experience);
 		//echo $sql_experience;
