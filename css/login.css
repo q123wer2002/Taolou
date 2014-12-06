@@ -6,13 +6,6 @@
 	background: white;
 }
 
-.left{
-	float: left;
-}
-.right{
-	
-}
-
 
 .nsb-block .nsb-block-content {
 	width: 100%;
@@ -63,23 +56,21 @@ input[type="email"], input[type="password"], input[type="text"] {
 
 .nsb-block-ctrl {
     padding: 25px;
-    width: 100%;
+
     border-top: 1px solid #ECEEF1;
     text-align: center;
 }
 
 .nsb-block-ctrl .submit {
     text-align: left;
-    margin-left: 100px;
+    margin-left: 60%;
 }
 
 .submit-btn {
     width: 150px;
 }
 
-.blue-btn {
-    background-color: #36A9E5;
-}
+
 
 .blue-btn, .gray-btn, .green-btn, .purple-btn, .red-btn, .yellow-btn {
     height: 50px;
@@ -105,15 +96,23 @@ input[type="email"], input[type="password"], input[type="text"] {
     color: #A2A8B3;
 }
 
+.blue-btn {
+    padding: 10px; 
+    background-color: #36A9E5;
+}
+
 .red-btn {
+    padding: 10px;   
     background-color: #EB6A64;
 }
 
 .green-btn {
+    padding: 10px; 
     background-color: #17B385;
 }
 
 .nsb-block .left {
+    float: left;
     width: 56%;
 }
 
@@ -121,7 +120,7 @@ input[type="email"], input[type="password"], input[type="text"] {
     float: right;
     height: 100%;
     padding: 30px;
-    width: 30%;
+    width: 35%;
     border-left: 1px solid #ECEEF1;
     text-align: center;
 }

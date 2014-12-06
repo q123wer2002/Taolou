@@ -1,0 +1,51 @@
+.container{width: 80%;
+	height: 40%;
+	margin-top: 20px;
+	margin-left:10%;
+	margin-bottom:20px;
+	background: white;
+}
+
+.nsb-block .left {
+    float: left;
+    height: 100%;
+    padding: 30px;
+}
+
+
+.nsb-block .right {
+    float: right;
+    height: 100%;
+    padding: 30px;
+    width: 30%;
+    border-left: 1px solid #ECEEF1;
+    text-align: center;
+}
+
+.nsb-block .nsb-block-content {
+    border-top: 1px solid #ECEEF1;
+    overflow: hidden;
+}
+
+.edit-unit:after {
+    clear: both;
+}
+.edit-unit:after, .edit-unit:before {
+    content: "";
+    display: table;
+}
+
+
+
+input[type="email"], input[type="password"], input[type="text"] {
+    font-size: 16px;
+    height: 16px;
+    line-height: 16px;
+    padding: 18px 15px 16px;
+    width: 170px;
+    border: medium none;
+    border-radius: 3px;
+    background-color: #ECEDF0;
+}
+
+
