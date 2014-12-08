@@ -14,9 +14,9 @@
 			<img ng-click='' src="images/userMe/<?php 
 			if($memberValue['photo']!=""){echo $memberValue['photo'];}
 			else echo "user-default.jpg"; ?>">
-			<input type='file' id="uploadfile" style="display:none">
+			<input type='file' id="uploadfile" style="display:none" accept='image/*' onchange='handleFiles(this.files)'>
 		</div>
-		{{openfile}}
+		<div id='fileList'></div>		
 		<div class='main clearfix'>
 			<span class="name"><?php echo $memberValue['name']; ?></span>
 			<span class="status"><?php echo $memberValue['jobStatus']; ?></span>
