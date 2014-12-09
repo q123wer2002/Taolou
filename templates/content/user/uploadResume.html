@@ -1,17 +1,27 @@
-<link href="css/resume_management.css" rel="stylesheet">
 <link href="css/index.css" rel="stylesheet">
+<link href="css/resume_management.css" rel="stylesheet">
 
-<div class="center">
-	<section class='selectCompany' ng-controller='TaoLoujob-index'>
-        <h3>
-            <span class='resume_management'>履歷管理</span>
-            
-            <div class="clearfix"></div>
-        </h3>
-		<div class='selector'>
-			 <p class='introduciton'>智能投递：哪上班智能投递系统通过后台的算法直接代您投递匹配的职位。</p>
-             <div class="upload-space"><p>請拖曳你的履歷到這裡或</p><span class='hand'> 手動上傳 </span></div>
-		</div>
-        <div class="submit"><a href="" class='btn'>開始上傳</a></div>
-	</section>
+<script type="text/javascript" src="js/AN_resume.js"></script>
+
+<div class='Resume' ng-controller="Taolou_userResume">
+    <div class="center">
+    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+            <h3>
+                <span class='Retitle'>簡歷管理</span>
+                <div class="clearfix"></div>
+            </h3>
+    		<div class='selector'>
+    			 <p class='introduciton'><span class='icon Reintro'></span>智能投遞：智能投遞系统通過後台的算法直接代您投遞匹配的職位。</p>
+
+
+                 <div class="upload-space">
+                    <p>請拖曳你的簡歷到這裡<br>或</p>
+                    <span class='hand'><a href="javascript:;">手動上傳</a></span>
+                </div>
+    		</div>
+            <div class="submit">
+                <a href="javascript:;" class='btn'>開始上傳</a>
+            </div>
+    	</section>
+    </div>
 </div>

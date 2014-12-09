@@ -242,9 +242,14 @@ switch(@$action){
 			mysql_query($sql_updatePhoto);
 			//end update
 
-			header("Location: userMe.php");
+			sleep(1);
+			header("Location: userMe.php?action=refresh");
 		}
 		else{header("Location: userMe.php");}
+	break;
+
+	case "refresh":
+		header("Location: userMe.php");
 	break;
 
 	default:

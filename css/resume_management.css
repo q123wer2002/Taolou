@@ -8,14 +8,15 @@
 .upload {
   float: right;
   padding: 0px 10px;
-  color: green;
+  color: #17b385;
   text-decoration: none;
+  font-size: 16px;
 }
 
 /* line 10, ../sass/resume_management.sass */
 .upload-space {
   text-align: center;
-  border: 1px dotted gray;
+  border: 1px dashed gray;
   padding: 50px;
   margin: 20px;
 }
@@ -23,7 +24,6 @@
 /* line 15, ../sass/resume_management.sass */
 .hand {
   color: blue;
-  cursor: pointer;
 }
 
 /* line 18, ../sass/resume_management.sass */
@@ -33,7 +33,8 @@
   background: gray;
   color: white;
   display: inline-block;
-  border-radius: 10px;
+  border-radius: 5px;
+  font-size: 15px;
 }
 
 /* line 25, ../sass/resume_management.sass */
@@ -46,7 +47,6 @@
 .banner {
   text-align: center;
   color: red;
-  display: none;
   background: rgba(255, 0, 0, 0.5);
   margin: 0 auto;
   height: 50px;
@@ -82,3 +82,26 @@
 .formargin {
   margin-top: 50px;
 }
+.Resume{position: relative;margin-top: 50px;}
+  .NoRE{width: 100%;text-align: center;font-size: 15px;padding: 10px 0px 10px 0px;font-weight: 400;}
+  .NoRE a{text-decoration: none;color: #17b385;}
+  .Retitle{font-size: 16px;}
+  .Remanege{background-position: -43px -164px;width: 14px;height: 11px;}
+  .Renewupload{background-position: -190px -40px;height: 14px;width: 14px;}
+  .introduciton{font-size: 15px;margin: 10px 0px 10px 30px;}
+    .Reintro{background-position: -101px -76px;width: 16px;height: 17px;}
+
+  .jobInfo{font-size: 15px;}
+  .jobInfo:hover{background: #ffffff;}
+    .REPDF{background-position: -68px -101px;width: 33px;height: 45px;}
+    .REDOC{background-position: -33px -101px;width: 33px;height: 45px;}
+    .RETEXT{background-position: -103px -101px;width: 33px;height: 45px;}
+    .REX{background-position: -0px -101px;width: 33px;height: 45px;}
+    .author{}
+      .name{}
+    .job-meta{font-size: 13px;}
+    .status a{text-decoration: none;color: #6b7485;}
+      .Rereview{background-position: -190px -75px;width: 14px;height: 10px;margin-bottom: 1px;}
+      .Redownload{background-position: 0 -164px;width: 12px;height: 14px;}
+      .Reskill{background-position: -103px -59.5px;width: 16px;height: 16px;}
+      .Redelete{background-position: -173px -128px;width: 13px;height: 14px;margin-right: 2px;}

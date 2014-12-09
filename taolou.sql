@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2014 at 01:08 PM
+-- Generation Time: Dec 09, 2014 at 06:22 PM
 -- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -140,9 +140,11 @@ CREATE TABLE IF NOT EXISTS `taolou_member_cv` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `memberId` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `skill` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `intelligent` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `intelligence` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `size` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `src` longtext COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;

@@ -437,11 +437,11 @@ TaoLou.filter('range', function() {
       else {
       	var file = files[0];
         document.forms["userPhotoForm"].submit();
-        var reader = new FileReader();
+        /*var reader = new FileReader();
   		reader.readAsDataURL(file);
   		reader.onload = function(e){
   		$('#userPhoto').attr('src', e.target.result);
-  		}
+  		}*/
       }
     }
 

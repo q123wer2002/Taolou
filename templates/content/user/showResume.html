@@ -1,49 +1,67 @@
-<link href="css/resume_management.css" rel="stylesheet">
 <link href="css/index.css" rel="stylesheet">
+<link href="css/resume_management.css" rel="stylesheet">
 
-<div class="showsmart">
-    <div class="banner" id='open'><p class='opentext'>履歷已<span class='keyword'>開啟</span>智能投遞</p></div>
-    <div class="banner" id='close'><p class='opentext'>履歷已<span class='keyword'>取消</span>智能投遞</p></div>
-</div>
-<div class="center">
-<section class='selectCompany' ng-controller='TaoLoujob-index'>
-    <h3>
-        <span class='resume_management' id='a'>履歷管理</span>
-        <a href="userResume.php?action=upload" class='upload'>上傳履歷</a>
-        <div class="clearfix"></div>
-    </h3>
-	<div class='selector'>
-		 <p class='introduciton'>智能投递：哪上班智能投递系统通过后台的算法直接代您投递匹配的职位。</p>
-	</div>
-</section>
+<script type="text/javascript" src="js/AN_resume.js"></script>
 
-<div class='showJobs'>
-    <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3]'>
-        <div class='jobInfo'>
-            <figure>
-                <img src="images/taolou_logo.jpg">
-            </figure>
-            <div class='author'>
-                <b class="name">林彥丞的履歷.pdf</b>
+<div class='Resume' ng-controller="Taolou_userResume">
+
+    <div class="showsmart" ng-repeat='resume in userResumes'>
+        <div class="banner" id='open' ng-show='resume.intelligence'><p class='opentext'>履歷已<span class='keyword'>開啟</span>智能投遞</p></div>
+        <div class="banner" id='close' ng-hide='resume.intelligence'><p class='opentext'>履歷已<span class='keyword'>取消</span>智能投遞</p></div>
+    </div>
+
+    <!-- 讀取資料庫 -->
+    <?php if(!empty($this->laout_arr['CV'])){ foreach($this->laout_arr['CV'] as $CVKey => $CVValue){ ?>
+        <input type="hidden" ng-init="RESUME_name='<?php echo $CVValue['name']; ?>'">
+        <input type="hidden" ng-init="RESUME_type='<?php echo $CVValue['type']; ?>'">
+        <input type="hidden" ng-init="RESUME_skill='<?php echo $CVValue['skill']; ?>'">
+        <input type="hidden" ng-init="RESUME_intelligence='<?php echo $CVValue['intelligence']; ?>'">
+        <input type="hidden" ng-init="RESUME_size='<?php echo $CVValue['size']; ?>'">
+        <input type="hidden" ng-init="RESUME_src='<?php echo $CVValue['src']; ?>'">
+        <input type="hidden" ng-init="RESUME_createDate='<?php echo $CVValue['createDate']; ?>'">
+        <input type='hidden' ng-init="RESUME_INIT()">
+    <?php }} ?>
+    <!-- 讀取結束 -->
+
+    <div class="center">
+        <section class='selectCompany'>
+            <h3>
+                <span class='Retitle' id='a'><span class='icon Remanege'></span>簡歷管理</span>
+                <a href="userResume.php?action=upload" class='upload'><span class='icon Renewupload'></span>上傳新簡歷</a>
+                <div class="clearfix"></div>
+            </h3>
+        	<div class='selector'>
+        		 <p class='introduciton'><span class='icon Reintro'></span>智能投遞：智能投遞系统通過後台的算法直接代您投遞匹配的職位。</p>
+        	</div>
+        </section>
+
+        <div class='showJobs'>
+            <div class='NoRE' ng-if="userResumes==''">
+                沒有你的簡歷,
+                <a href="userResume.php?action=upload"><span class='icon Renewupload'></span>請上傳新簡歷</a>
             </div>
-            <div class='job-meta'>
-                <span class="time"><b>2014-11-14 20:54:39</b></span>
-                <span class="size"><b>文件大小</b>KB</span>
+            <div class='reitemList' ng-repeat='resume in userResumes'>
+                <div class='selectSkill' ng-show='resume.selectSkill'>
+                    製作中....
+                    <a href="javascipt:;" ng-click='selectSkillFun(resume)'>BACK</a>
+                </div>
+                <div class='jobInfo' ng-hide='resume.selectSkill'>
+                    <figure class='icon {{resume.type}}'></figure>
+                    <div class='author'>
+                        <b class="name">{{resume.name}}</b>
+                    </div>
+                    <div class='job-meta'>
+                        <span class="time"><b>{{resume.createDate}}</b></span>
+                        <span class="size"><b>{{resume.size}}</b>KB</span>
+                    </div>
+                    <div class="status">
+                        <a href="javascript:;" ng-click='checkboxModeFun(resume)'> <input type="checkbox" ng-model='resume.intelligence' ng-checked="resume.intelligence">智能投遞 </a>｜
+                        <a href="{{resume.src}}"><span> <span class='icon Redownload'></span>下載 </span></a>｜
+                        <a href="javascript:;" ng-click='selectSkillFun(resume)'><span> <span class='icon Reskill'></span>選擇簡歷技能 </span></a>｜
+                        <a href="javascript:;"><span> <span class='icon Redelete'></span>刪除 </span></a>
+                    </div>
+                </div>
             </div>
-            <div class="status"><span> <input type="checkbox" id='smart-checkbox' onclick="checkboxOnclick(this)">智能投遞 </span>｜<span> 預覽 </span>｜<span> 刪除 </span></div>
         </div>
-    </a>
+    </div>
 </div>
-
-<script>
-    function checkboxOnclick(checkbox){
-    	if ( checkbox.checked == true){
-    		$("#open").slideDown(300).delay(2000).slideUp(300);
-			// alert('這份履歷已啟用智能投遞簡歷')
-		}
-		else{
-			$("#close").slideDown(300).delay(2000).slideUp(300);
-			// alert('這份履歷已取消智能投遞簡歷')
-		}
-	}
-</script>
