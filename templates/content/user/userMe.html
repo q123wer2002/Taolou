@@ -14,7 +14,9 @@
 			<img id='userPhoto' src="<?php 
 			if($memberValue['photo']!=""){echo $memberValue['photo'];}
 			else echo "images/userMe/user-default.jpg"; ?>">
-			<input type='file' id="uploadfile" style="display:none" accept='image/*' onchange='handleFiles(this.files)'>
+			<form id='userPhotoForm' action='userMe.php?action=userPhoto' method='POST' enctype="multipart/form-data">
+				<input type='file' name='file' id="file" style="display:none"  accept='image/*' onchange='handleFiles(this.files)'>
+			</form>
 		</div>
 		<div id='fileList'></div>		
 		<div class='main clearfix'>

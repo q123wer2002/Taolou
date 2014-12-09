@@ -435,12 +435,13 @@ TaoLou.filter('range', function() {
       var d = document.getElementById("fileList");
       if (!files.length) {} 
       else {
-      	var reader = new FileReader();
-      	reader.readAsDataURL(files[0]);
-      	reader.onload = function(e){
-      		$('#userPhoto').attr('src', e.target.result);
-      	}
-        console.log(files[0]);
+      	var file = files[0];
+        document.forms["userPhotoForm"].submit();
+        var reader = new FileReader();
+  		reader.readAsDataURL(file);
+  		reader.onload = function(e){
+  		$('#userPhoto').attr('src', e.target.result);
+  		}
       }
     }
 
@@ -449,7 +450,7 @@ TaoLou.filter('range', function() {
 $(document).ready(function(){
 	//點擊上傳檔案
 	$('.avatar').click(function(){
-		var el = document.getElementById("uploadfile");
+		var el = document.getElementById("file");
       	if (el) {el.click();}
 	});
 

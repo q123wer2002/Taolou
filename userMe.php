@@ -19,12 +19,13 @@ $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //確認使用者是誰
-if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}
-if(@$_SESSION['user']['userType'] != ""){
+if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);}else{$getAction="";}
+if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='none';}
+if(@$_SESSION['user']['userType'] != "" && @$getAction==""){
 	if(@$_SESSION['user']['userType'] == '1'){$action='user';}
 	else if(@$_SESSION['user']['userType'] == '2'){$action='hr';}
 	else{$action='none';}
-}else{$action='none';}
+}else{$action=laout_check($_GET['action']);}
 //===================
 
 
@@ -212,6 +213,35 @@ switch(@$action){
     $obj_tmp1->laout('templates.html');
 //=======================================
 
+	break;
+
+	case "userPhoto":
+		if(!empty($_FILES)){
+			$filePhoto=array();
+			
+			$sql_member="SELECT ".$obj_tmp1->member.".*
+						 FROM ".$obj_tmp1->member."
+						 WHERE ".$obj_tmp1->member.".id='".$userId."'";
+			$obj_tmp1->laout_arr['member']=array();
+			$obj_tmp1->basic_select('laout_arr','member',$sql_member);
+				//echo $sql_member;
+				//print_r($obj_tmp1->laout_arr['member']);
+			//==========================
+
+			//upload
+			$file_path=APP_PATH."/userObject/".$obj_tmp1->laout_arr['member'][0]['email']."/profilePhoto/";
+      		$file_type='image/jpeg,image/gif,png';
+    	  	$file_name=upload_file_to_fd($file_path,$file_type,null,'','150',"file");
+	      	if($file_name != null){
+        		$filePhoto['file_name']=$file_name;
+    	    	$filePhoto['file_path']=$file_path;
+	      	}
+	      	print_r($file_name);
+			//end upload
+
+			//move_uploaded_file($_FILES["uploadfile"]["tmp_name"],"userObjext/".$obj_tmp1->laout_arr['member'][0]['email']."/profilePhoto/userPhoto.".$_FILES["uploadfile"]["type"]);
+		}
+		else{echo "no files";}
 	break;
 
 	default:

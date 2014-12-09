@@ -213,3 +213,8 @@ else if(@$_POST['method'] == "addself"){
 	echo json_encode($message);
 	exit;
 }
+else if(@$_POST['method'] == "userPhoto"){
+	$message=$_POST['photo'];
+	echo json_encode($message);
+	exit;
+}

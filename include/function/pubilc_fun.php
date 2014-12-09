@@ -145,7 +145,7 @@ function upload_file($first_name,$next_index,$type)
 function upload_file_to_fd($first_path,$file_type=null,$old_file_name=null,$w=null,$h=null,$session_name="file")
 {
 	
-  foreach ($_FILES[$session_name]["name"] as $key =>&$value) {
+  foreach ($_FILES[$session_name] as $key => &$value) {
     $check_pass=null; //mine是否通過
     $value1=null; 
     $check_type=null; //確認mine副檔名
@@ -164,18 +164,19 @@ function upload_file_to_fd($first_path,$file_type=null,$old_file_name=null,$w=nu
     else{
       $check_pass=1;
     }
-    /*
-          echo "Upload: " . $_FILES["file"]["name"][$key] . "<br />";
-          echo "Type: " . $_FILES["file"]["type"][$key] . "<br />";
-          echo "Size: " . ($_FILES["file"]["size"][$key] / 1024) . " Kb<br />";
-          echo "Temp file: " . $_FILES["file"]["tmp_name"][$key] . "<br />";
-           exit;
-  */
-    if(!empty($_FILES[$session_name]["tmp_name"][$key]) || $check_pass =='1'){ //確認檔案存在，並且有
-          if($w && $h)resizeTo($_FILES[$session_name]["tmp_name"][$key],$_FILES[$session_name]["tmp_name"][$key],$w,$h);
+    
+
+          echo "Upload: " . $_FILES[$session_name]["name"] . "<br />";
+          echo "Type: " . $_FILES[$session_name]["type"] . "<br />";
+          echo "Size: " . ($_FILES[$session_name]["size"] / 1024) . " Kb<br />";
+          echo "Temp file: " . $_FILES[$session_name]["tmp_name"] . "<br />";
+          exit;
+    
+    if(!empty($_FILES[$session_name]["tmp_name"]) || $check_pass =='1'){ //確認檔案存在，並且有
+          if($w && $h)resizeTo($_FILES[$session_name]["tmp_name"],$_FILES[$session_name]["tmp_name"],$w,$h);
     
           if ($_FILES[$session_name]["error"][$type] > 0){
-            echo "Return Code: " . $_FILES[$session_name]["error"][$key] . "<br />";
+            echo "Return Code: " . $_FILES[$session_name]["error"] . "<br />";
           }
           else
           {
@@ -214,7 +215,7 @@ function upload_file_to_fd($first_path,$file_type=null,$old_file_name=null,$w=nu
               }
               //end  確認檔案是否有重複
               
-              if(@move_uploaded_file($_FILES[$session_name]["tmp_name"][$key],"$first_path".$name)){
+              if(@move_uploaded_file($_FILES[$session_name]["tmp_name"],"$first_path".$name)){
                 //刪除update之前的圖片
                 if($old_file_name !=null){
                     @unlink($first_path."$old_file_name");
