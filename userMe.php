@@ -230,18 +230,21 @@ switch(@$action){
 
 			//upload
 			$file_path=APP_PATH."/userObject/".$obj_tmp1->laout_arr['member'][0]['email']."/profilePhoto/";
-      		$file_type='image/jpeg,image/gif,png';
-    	  	$file_name=upload_file_to_fd($file_path,$file_type,null,'','150',"file");
-	      	if($file_name != null){
-        		$filePhoto['file_name']=$file_name;
-    	    	$filePhoto['file_path']=$file_path;
-	      	}
-	      	print_r($file_name);
-			//end upload
+      		$type=split("/",$_FILES['file']['type']);
+      		$file_name=$file_path."userPhoto.".$type[1];
+    	  	move_uploaded_file($_FILES["file"]["tmp_name"],$file_name);
 
-			//move_uploaded_file($_FILES["uploadfile"]["tmp_name"],"userObjext/".$obj_tmp1->laout_arr['member'][0]['email']."/profilePhoto/userPhoto.".$_FILES["uploadfile"]["type"]);
+    	  	$file_path="userObject/".$obj_tmp1->laout_arr['member'][0]['email']."/profilePhoto/"."userPhoto.".$type[1];
+			//end Upload
+
+			//update user profile_photo
+			$sql_updatePhoto="UPDATE ".$obj_tmp1->member." SET photo='".$file_path."' WHERE ".$obj_tmp1->member.".id='".$userId."'";
+			mysql_query($sql_updatePhoto);
+			//end update
+
+			header("Location: userMe.php");
 		}
-		else{echo "no files";}
+		else{header("Location: userMe.php");}
 	break;
 
 	default:

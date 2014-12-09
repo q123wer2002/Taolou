@@ -156,7 +156,7 @@ function upload_file_to_fd($first_path,$file_type=null,$old_file_name=null,$w=nu
     if($file_type !=null){
       $check_type=explode(',',$file_type);
       foreach ($check_type as &$value1) {
-        if($value1 == $_FILES[$session_name]["type"][$key] ){
+        if($value1 == $_FILES[$session_name]["type"]){
           $check_pass=1;
         }
       }
@@ -183,10 +183,10 @@ function upload_file_to_fd($first_path,$file_type=null,$old_file_name=null,$w=nu
           
             //抓取副檔名
             if(substr($_FILES[$session_name]["name"][$type],-4,4) =='html'){
-              $limit_name=substr($_FILES[$session_name]["name"][0],-5,5);
+              $limit_name=substr($_FILES[$session_name]["name"],-5,5);
             }
             else{
-              $limit_name=substr($_FILES[$session_name]["name"][0],-4,4);
+              $limit_name=substr($_FILES[$session_name]["name"],-4,4);
             }
             //end 抓取副檔名
             
