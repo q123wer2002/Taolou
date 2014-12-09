@@ -11,9 +11,9 @@
 		<div class='avatar clearfix'>
 			<span id='iconEditProfile' class='icon profileEdit'></span>
 			<div class='blackBG'></div>
-			<img ng-click='' src="images/userMe/<?php 
+			<img id='userPhoto' src="<?php 
 			if($memberValue['photo']!=""){echo $memberValue['photo'];}
-			else echo "user-default.jpg"; ?>">
+			else echo "images/userMe/user-default.jpg"; ?>">
 			<input type='file' id="uploadfile" style="display:none" accept='image/*' onchange='handleFiles(this.files)'>
 		</div>
 		<div id='fileList'></div>		
