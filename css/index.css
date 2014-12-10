@@ -5,6 +5,10 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	.partnerList a:hover{background: #eceef1;}
 	.partnerList img{width: 25px;height: 25px;margin-top: 5px;}
 	.title-icon{background-position: -190px -113px;}
+.locationicon{background-position: -68px -147px;width: 16px;height: 16px;}
+.jobtypeicon{background-position: -120px -59px;width: 16px;height: 17px;}
+.salaryicon{background-position: -156px -111px;width: 16px;height: 16px;}
+.stockicon{background-position: -153px -147px;width: 16px;height: 16px;}
 
 .selectCompany{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;border-bottom: 1px solid #eceef1;}
 	.title-box{background-position: -190px 0px;}
@@ -23,7 +27,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 			.author{position:absolute;width: 610px;height: 28px;top: 18px;left: 94px;}
 			.author b{margin-right: 10px;}
 			.job-meta{position:absolute;width: 610px;height: 24px;bottom: 18px;left: 94px;}
-			.job-meta span{margin-right: 25px;}
+			.job-meta b{margin-right: 20px;}
 
 .dividePage{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;}
 	.pageBar{width: 670px;height: 30px;padding: 25px 25px 25px 25px;}
@@ -31,7 +35,14 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 		.pageTag:hover{background:#707b91;color: white;}
 		.page{background:#6b7485;color: white;}
 		.page:hover{background:#6b7485;};
+
+
 .introduciton{padding: 20px;}
 .smart_apply{text-decoration: none; color:red;}
 .status{position:absolute; top: 18px;right: 34px;}
 .resume_status{color: rgb(68,144,255);}
+.jobmanageDiv{margin: 50px 0px 50px 0px;height: auto;}
+	.h3titile{font-size: 18px;font-weight: 500;}
+	.introduciton{font-size: 15px;margin: 10px 0px 10px 30px;}
+    	.Reintro{background-position: -101px -76px;width: 16px;height: 17px;}
+.menubar{}

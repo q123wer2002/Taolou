@@ -24,3 +24,34 @@ TaoLou.controller('Taolou_userResume',['$scope','$http',function userResume($sco
 	}
 
 }]);
+
+//一般的javascript
+
+$(document).ready(function(){
+
+	//點擊觸發上傳
+	$('#clickUpload').click(function(){
+		var el = document.getElementById("resumeUploadInput");
+      	if (el) {el.click();}
+	});
+	//============
+
+	//拖曳上傳
+	$(function(){
+		$('#file_dropupload').on('drop',function(e){ // 綁定drop到指定DOM上
+			e.preventDefault(); //防止預設事件處理
+			var files = e.originalEvent.dataTransfer.files; //取得drop的檔案
+			var formData = new FormData(); 
+			formData.append('foo',files[0]); // 這裡只抓所有拖曳檔案中的第一個檔案, files[0].size可取得檔案大小(byte)
+			$.ajax({
+			    url:"server/resumeAjax.php", // 這裡指定檔案處理的地方
+			    data:formData,
+			    type:'POST',
+			    processData: false, //請務必指定, 否則jQuery會幫你處理檔案, 可能造成檔案編碼錯誤的問題
+			    contentType: false, //同上
+			    cache: false
+			});
+		});
+	});
+	//==============
+});

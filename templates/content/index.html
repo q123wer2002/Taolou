@@ -50,10 +50,12 @@
                         发布了 <b class="job-title"><?php echo $jobValue['jobName'] ?></b>
                     </div>
                     <div class='job-meta'>
-                        <span class="location">地点<b><?php echo $jobValue['location'] ?></b></span>
-                        <span class="type">工作性质<b><?php echo $jobValue['jobType'] ?></b></span>
-                        <span class="salary-start">起薪<b><?php echo $jobValue['salary'] ?></b></span>
-                        <span class="stock-share">股票或期权<b><?php echo $jobValue['stock_option'] ?></b></span>
+                        <span class="location"><span class='icon locationicon'></span><b><?php echo $jobValue['location'] ?></b></span>
+                        <span class="type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType'] ?></b></span>
+                        <span class="salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary'] ?></b></span>
+                        <?php if($jobValue['stock_option']=='y'){ ?>
+                        <span class="stock-share"><span class='icon stockicon'></span>提供股票或期权<b></b></span>
+                        <?php } ?>
                     </div>
                 </div>
             </a>

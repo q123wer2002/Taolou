@@ -1,42 +1,45 @@
 <link href="css/index.css" rel="stylesheet">
 
-<section class='selectCompany'>
-    <h3>
-        <span>已投遞工作</span>
-    </h3>
-	<div class='selector'>
-		 <p class='introduciton'>過期職位已從列表移除</p>
-	</div>
-</section>
 
-<div class='showJobs'>
-    <a class='jobitem' href="http://tw.yahoo.com">
-        <div class='jobInfo'>
-            <figure>
-                <img src="images/taolou_logo.jpg">
-            </figure>
-            <div class='author'>
-                <b class="name">狸狗信息</b>
-                <b class="job-creator-type">HR</b>
-                <span class="company-domain">*@meidebi.com </span>
-                发布了 <b class="job-title">移动产品经理</b>
-            </div>
-            <div class='job-meta'>
-                <span class="location"><b>重庆</b></span>
-                <span class="type"><b>全职</b></span>
-                <span class="salary-start"><b>4000</b></span>
-                <span class="stock-share">股票或期权<b>提供</b></span>
-            </div>
-            <div class="status"><span class='resume_status'>履歷未通過</span><br><span>於一個月前</span></div>
-        </div>
-    </a>
-</div>
+<div class='jobmanageDiv'>
+    <section class='selectCompany'>
+        <h3 class='h3titile'>
+            <span>已投遞工作</span>
+        </h3>
+    	<div class='selector'>
+    		 <p class='introduciton'><span class='icon Reintro'></span>
+                過期職位已從列表移除
+            </p>
+    	</div>
+    </section>
 
-<div class='dividePage'>
-    <div class='pageBar'>
-        <a class='home pageTag' href="">首頁</a>
-        <a class='pre pageTag' href="">上一頁</a>
-        <a class='page pageTag' href="" ng-repeat='i in [3,4,5,6,7]'>{{i}}</a>
-        <a class='next pageTag' href="">下一頁</a>
+    <div class='showJobs'>
+        <a class='jobitem' href="http://tw.yahoo.com">
+            <div class='jobInfo'>
+                <figure>
+                    <img src="images/taolou_logo.jpg">
+                </figure>
+                <div class='author'>
+                    <b class="name">狸狗信息</b>
+                    <b class="job-creator-type">HR</b>
+                    <span class="company-domain">*@meidebi.com </span>
+                    发布了 <b class="job-title">移动产品经理</b>
+                </div>
+                <div class='job-meta'>
+                    <span class="location"><b>重庆</b></span>
+                    <span class="type"><b>全职</b></span>
+                    <span class="salary-start"><b>4000</b></span>
+                    <span class="stock-share">股票或期权<b>提供</b></span>
+                </div>
+                <div class="status"><span class='resume_status'>履歷未通過</span><br><span>於一個月前</span></div>
+            </div>
+        </a>
     </div>
+
+
+    <div class='dividePage'>
+        <div class='pageBar'>
+        </div>
+    </div>
+
 </div>
