@@ -243,6 +243,15 @@ switch(@$action){
 			//end update
 
 			sleep(1);
+			//讀取使用者資訊
+			$sql_loadUser="SELECT ".$obj_tmp1->member.".*
+						   FROM ".$obj_tmp1->member."
+						   WHERE ".$obj_tmp1->member.".id='".$userId."'";
+			$obj_tmp1->laout_arr['loadUser']=array();
+			$obj_tmp1->basic_select('laout_arr','loadUser',$sql_loadUser);
+			//=======================
+			$_SESSION['user']['userPicture']=$obj_tmp1->laout_arr['loadUser'][0]['photo'];
+			
 			header("Location: userMe.php?action=refresh");
 		}
 		else{header("Location: userMe.php");}

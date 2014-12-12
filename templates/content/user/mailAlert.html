@@ -2,21 +2,43 @@
 <link href="css/message.css" rel="stylesheet">
 <link href="css/account.css" rel="stylesheet">
 
+<div ng-controller='TaolouAccount'>
 
-<section class='selectCompany'>
-    <h3>
-        <span>郵件提醒</span>
-    </h3>
-</section>
-<div class='checkbox'>
-    <div class="checkcontent">
-    
-    <div class="select"><input type="checkbox"><p class='text'>有人私信我</p></div>
-    <div class="select"><input type="checkbox"><p class='text'>履歷被下載或打開</p><p class='mail'>寄e-mail提醒我</p></div>
-    
+	<div class='changeOK'>
+        更改成功！
     </div>
-</div>
 
-<div class='save' ng-controller='TaoLoujob-index'>
-        <a href="" class='sure'>確定</a>
+	<section class='selectCompany'>
+	    <h3>
+	        <span>郵件提醒</span>
+	    </h3>
+	</section>
+
+	<?php if(!empty($this->laout_arr['loadUser'])){
+			foreach($this->laout_arr['loadUser'] as $UKey => $UValue){ ?>
+	<input type='hidden' ng-init="messageAlert = <?php if($UValue['messageEmail'] == 'y'){echo "true";}else{echo "false";} ?>">
+	<input type='hidden' ng-init="resumeAlert = <?php if($UValue['CVupdateEmail'] == 'y'){echo "true";}else{echo "false";} ?>">
+	<?php }} ?>
+	
+
+	<div class='checkbox'>
+	    <div class="checkcontent">
+	    
+		    <div class="select">
+		    	<input type="checkbox" ng-model="messageAlert" ng-checked='messageAlert'>
+		    	<a href="javascript:;" ng-click="changeModeMessageFun()"><p class='text'>有人私信我</p></a>
+		    </div>
+		    
+		    <div class="select">
+		    	<input type="checkbox" ng-model='resumeAlert' ng-checked='resumeAlert'>
+		    	<a href="javascript:;" ng-click="changeModeResumeFun()"><p class='text'>履歷被下載或打開，寄e-mail提醒我</p></a>
+		    </div>
+
+	    </div>
+	</div>
+
+	<div class='save'>
+	        <a href="javascript:;" class='sure' ng-click="changeAlert()">確定</a>
+	</div>
+
 </div>

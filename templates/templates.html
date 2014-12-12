@@ -37,7 +37,7 @@
 			<div class='userProfile' ng-controller='TaolouAccount'>
 				<a href="userMessage.php" class='icon title-chart userMessages'></a>
 				<span class='mailMessage'>私信</span>
-				<div class='userPicture'>
+				<div class='userPicture' style="background-image: url(<?php if(!empty($_SESSION['user']['userPicture'])){echo $_SESSION['user']['userPicture'];}else{echo "images/userMe/user-default.jpg";} ?>);">
 					<ul class='userMenuListUl'>
 						<a href="userMe.php"><li>線上履歷</li></a>
 						<a href="userSetting.php"><li>設定</li></a>
@@ -54,7 +54,7 @@
 				<span class='postJobMessage'>發布職位</span>
 				<a href="userMessage.php" class='icon title-chart userMessages'></a>
 				<span class='mailMessage'>私信</span>
-				<div class='userPicture'>
+				<div class='userPicture' style="background-image: url(<?php if(!empty($_SESSION['user']['userPicture'])){echo $_SESSION['user']['userPicture'];}else{echo "images/userMe/user-default.jpg";} ?>);">
 					<ul class='userMenuListUl'>
 						<a href="userMe.php"><li>個人資料</li></a>
 						<a href="userSetting.php"><li>設定</li></a>

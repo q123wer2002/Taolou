@@ -1,11 +1,15 @@
 <nav class='partner'>
 	<h3>
-        <span>聯繫人列表</span>
+        <span class='Mstitle'>聯繫人列表</span>
     </h3>
 	<div class='partnerList peoplelist'>
-		<a href="userMessage.php?action=100">
-            <span><img class='contact-people-photo'src="images/cto.jpg" alt=""></span>
-            <span class='contact-people'>林彥丞</span>
+		<?php if(!empty($this->UserMenu)){
+				foreach($this->UserMenu as $UMKey){
+					foreach($UMKey as $UMSUBKey => $UMValue){ ?>
+		<a href="userMessage.php?action=<?php echo $this->encode($UMValue['id']); ?>">
+            <span><img class='contact-people-photo' src="images/<?php if(!empty($UMValue['photo'])){echo $UMValue['photo'];}else{echo "userMe/user-default.jpg";} ?>" alt=""></span>
+            <span class='contact-people'><?php echo $UMValue['name']; ?></span>
 		</a>
+		<?php }}} ?>
 	</div>
 </nav>

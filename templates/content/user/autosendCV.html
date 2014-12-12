@@ -7,32 +7,60 @@
         </h3>
 		<div class='selector'>
 			 <p class='introduciton'><span class='icon Reintro'></span>智能投遞將通過聰明的演算法幫您投遞對應的職缺，馬上使用
-                <a href="" class='smart_apply'>「智能投遞」</a>！
+                <a href="userResume.php" class='smart_apply'>「智能投遞」</a>！
             </p>
 		</div>
 	</section>
 
    <div class='showJobs'>
-        <?php foreach($this->saveJob['showJob'] as $jobKey => $jobValue) { ?>
-        <a class='jobitem' href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>">
+        <?php if(!empty($this->laout_arr['Imanage'])){
+                foreach($this->saveJob as $jobKey) { 
+                    foreach($jobKey as $jobSubKey => $jobValue){?>
+        <a class='jobitem'>
             <div class='jobInfo'>
                 <figure>
                     <img src="images/<?php echo $jobValue['logo'] ?>">
                 </figure>
                 <div class='author'>
-                    <b class="name"><?php echo $jobValue['companyName'] ?></b>
-                    <b class="job-creator-type">HR</b>
-                    <span class="company-domain">*@meidebi.com </span>
-                    发布了 <b class="job-title"><?php echo $jobValue['jobName'] ?></b>
+                    <a href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>"><b class="job-title"><?php echo $jobValue['jobName'] ?></b></a>-
+                    <a href="companies.php?company=<?php echo $this->encode($jobValue['companyId']); ?>"><b class="name"><?php echo $jobValue['companyName'] ?></b></a>
                 </div>
                 <div class='job-meta'>
                     <span class="location"><span class='icon locationicon'></span><b><?php echo $jobValue['location'] ?></b></span>
                     <span class="type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType'] ?></b></span>
                     <span class="salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary'] ?></b></span>
-                    <span class="stock-share"><span class='icon stockicon'></span>股票或期权<b><?php echo $jobValue['stock_option'] ?></b></span>
+                    <?php if($jobValue['stock_option']=='y'){ ?>
+                    <span class="stock-share"><span class='icon stockicon'></span>提供股票或期权<b></b></span>
+                    <?php } ?>
+                </div>
+                <div class="status">
+                    <span class='resume_status'>
+                        <?php
+                        if($jobValue['jobstatus'] == 'download'){echo "履歷已被下載";}
+                        else if($jobValue['jobstatus'] == 'wait'){echo "已面試";}
+                        else if($jobValue['jobstatus'] == 'reject'){echo "系統拒絕";}
+                        ?>
+                    </span>
+                    <br>
+                    <span>於
+                        <?php 
+                        $datatime=date("Y-m-d H:i:s");
+                        $times=strtotime($datatime)-strtotime($jobValue['jobDate']);    //计算出两个时间差，得到相差的秒数
+                        $timei=round($times/(60*60*24));    //可以得出相差的分钟数，round()是四舍五入
+                        $timey=round($timei/(30*12));
+                        if($times < 86400){echo ($times/3600)."個小時";}
+                        else if($timei < 30){echo ($timei)."天";}
+                        else if($timei > 30){echo ($timei/30)."個月";}
+                        else if($timei > 360){echo "約".($timey)."年";}
+                        ?>前
+                    </span>
                 </div>
             </div>
         </a>
+        <?php }}}else{ ?>
+        <div class='Nojobitem'>
+            還沒有相對應的工作
+        </div>
         <?php } ?>
     </div>
     

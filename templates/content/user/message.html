@@ -1,17 +1,67 @@
-<link href="css/message.css" rel="stylesheet">
 <link href="css/index.css" rel="stylesheet">
+<link href="css/message.css" rel="stylesheet">
+<script type="text/javascript" src='js/AN_message.js'></script>
 
-<section class='selectCompany'>
-    <h3>
-        <span>與<a href="">公司名稱</a><span class="name">HR名字</span>的對話</span>
-    </h3>
-</section>
+<div ng-controller='Taolou_Message'>
+	<input type='hidden' ng-init="receiver = '<?php echo $this->receiveUserId; ?>'">
+	<section class='selectCompany'>
+	    <h3>
+	    	<?php if(!empty($this->laout_arr['UserInfo'])){
+	    		foreach($this->laout_arr['UserInfo'] as $InfoKey => $InfoValue){ ?>
+	    	<span class='icon MessageBox'></span>
+	        <span class='MsSubTitle'>與
+	        	「<a class='companyName' href="companies.php?company=<?php echo $this->encode($InfoValue['companyId']); ?>"><?php echo $InfoValue['companyName']; ?></a>」的HR 
+	        	<span class="name"><?php echo $InfoValue['name']; ?></span>
+	        	的對話
+	        </span>
+	        <?php }} ?>
 
-<div class='rule hr'>
-    <div class="hr-say"><p class='hr-left saying'>您好 我是北京鲜旅科技有限公司 请问您有意向和时间来公司面试吗？http://www.xianlvke.com/ 这是鲜旅客网站</p></div>
-    <div class="job-seeker-say"><p class='job-seker-right saying'>請問什麼時間比較方便？</p></div>
+	        <a class='backMessTitle' href="userMessage.php"><span class='icon backIconMess'></span>返回私訊首頁</a>
+	    </h3>
+	</section>
+
+	<div class='rule hr' id='MessageDiv'>
+		<?php if(!empty($this->laout_arr['MessageCont'])){
+				foreach($this->laout_arr['MessageCont'] as $MesKey => $MesValue){ ?>
+			
+			<?php
+	            $datatime=date("Y-m-d H:i:s");
+	            $times=strtotime($datatime)-strtotime($MesValue['createDate']);    
+	            //计算出两个时间差，得到相差的秒数
+	            if($times < 60){$divTime="剛剛";}
+	            else if($times < 3600){$divTime=round($times/(60))."分鐘前";}
+	            else if($times < 86400){$divTime=round($times/(3600))."個小時前";}
+	            else if($times < 259200){$divTime=round($times/(86400))."天前";}
+	            else{$divTime=round($times/(259200))."個月前";}
+	        
+			?>
+		
+			<?php if($MesValue['receiveUserId']==$_SESSION['user']['id']) { ?>
+			<div class='SayBG LeftSay saying'>
+				<p><?php echo $MesValue['message']; ?></p>
+				<span class='timestamp'><?php echo $divTime; ?></span>
+			</div>
+			<?php } ?>
+
+			<?php if($MesValue['sendUserId']==$_SESSION['user']['id']) { ?>
+			<div class='SayBG RightSay saying'>
+				<p><?php echo $MesValue['message']; ?></p>
+				<span class='timestamp'><?php echo $divTime; ?></span>
+			</div>
+			<?php } ?>
+		
+		<?php }} ?>
+		<div class='whiteBG'></div>
+	</div>
+
+	<div class='rule job-seeker'>
+    	<textarea class="job-seeker-send" placeholder='填入訊息內容' ng-model='messageArea'></textarea>
+    	<span class='errorMes'>{{Error}}</span>
+   		<a href="javascript:;" class='btn' ng-click='sendMessage()'>傳送</a>
+	</div>
 </div>
-<div class='rule job-seeker'>
-    <textarea class="job-seeker-send" placeholder='您可以在這裡私訊您想聯絡的人'></textarea>
-    <a href="" class='btn'>傳送</a>
-</div>
+
+<script type="text/javascript">
+	var objDiv = document.getElementById("MessageDiv");
+	objDiv.scrollTop = objDiv.scrollHeight;
+</script>

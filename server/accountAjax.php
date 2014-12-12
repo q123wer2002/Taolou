@@ -8,6 +8,10 @@ $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
+if(!empty($_SESSION['user']['id'])){
+	$userId=$_SESSION['user']['id'];
+}
+
 if(@$_POST['method']=='login')
 {
 	$account=laout_check($_POST['email']);
@@ -38,6 +42,7 @@ if(@$_POST['method']=='login')
 			$userId=$obj_tmp1->laout_arr['loadUser'][0]['id'];
 			$_SESSION['user']=array();
 			$_SESSION['user']['id']=$userId;
+			$_SESSION['user']['userPicture']=$obj_tmp1->laout_arr['loadUser'][0]['photo'];
 			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){$_SESSION['user']['userType']="2";}
 			else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){$_SESSION['user']['userType']="1";}
 			
@@ -46,7 +51,6 @@ if(@$_POST['method']=='login')
 		}else{$message=array('first'=>"帳號密碼不正確",'url'=>"X","actions"=>'login');}
 	}else{$message=array('first'=>"請先註冊後登入",'url'=>"X","actions"=>'login');}
 	//=========================
-
 	echo json_encode($message);
 	
 	exit;
@@ -87,7 +91,7 @@ else if(@$_POST['method']=='signup')
 
 		//存入member內
 		$sql_member="INSERT INTO ".$obj_tmp1->member."
-					 VALUES (NULL,'".$_POST['memberType']."','','','".$account."','','','','','','','','','','','','',CURRENT_TIMESTAMP)";
+					 VALUES (NULL,'".$_POST['memberType']."','','','".$account."','','','','','','','','','','','y','y',CURRENT_TIMESTAMP)";
 		mysql_query($sql_member);
 		//========================
 
@@ -109,6 +113,42 @@ else if(@$_POST['method'] == 'logout'){
 	unset($_SESSION['user']);
 	$message=array('first'=>"success",'url'=>"index.php","actions"=>'logout');
 
+	echo json_encode($message);
+	exit;
+}//設定開始
+else if(@$_POST['method'] == "changePassword"){
+	
+	$ex_pass=md5(laout_check($_POST['ex_pass']));
+	$new_pass=md5(laout_check($_POST['new_pass']));
+
+	$sql_checkPass="SELECT ".$obj_tmp1->account.".*
+					FROM ".$obj_tmp1->account."
+					WHERE ".$obj_tmp1->account.".password ='".$ex_pass."'";
+	$obj_tmp1->laout_arr['checkPass']=array();
+	$obj_tmp1->basic_select('laout_arr','checkPass',$sql_checkPass);
+	//=======================
+
+	if(empty($obj_tmp1->laout_arr['checkPass'])){
+		$message=array("mes"=>"error",'first'=>"舊密碼輸入錯誤");
+		echo json_encode($message);
+		exit;
+	}
+	else{
+		$sql_updatePass="UPDATE ".$obj_tmp1->account." SET password='".$new_pass."' WHERE memberId='".$userId."'";
+		mysql_query($sql_updatePass);
+
+		$message=array("mes"=>"OK");
+		echo json_encode($message);
+		exit;
+	}
+}
+else if(@$_POST['method'] == "changeAlert"){
+	if($_POST['messageAlert']){$messageEmail='y';}else{$messageEmail='n';}
+	if($_POST['resumeAlert']){$CVupdateEmail='y';}else{$CVupdateEmail='n';}
+	$sql_updateAlert="UPDATE ".$obj_tmp1->member." SET messageEmail='".$messageEmail."', CVupdateEmail='".$CVupdateEmail."' WHERE ".$obj_tmp1->member.".id='".$userId."'";
+	mysql_query($sql_updateAlert);
+
+	$message=array("mes"=>"OK");
 	echo json_encode($message);
 	exit;
 }

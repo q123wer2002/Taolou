@@ -21,7 +21,7 @@
 /* line 14, ../sass/account.sass */
 .password input {
   margin: 0px 10px;
-  background: gray;
+  background: #eceef1;
   border: none;
   height: 30px;
   width: 200px;
@@ -30,14 +30,15 @@
 /* line 22, ../sass/account.sass */
 .confirm {
   background: gray;
-  padding: 6px 0px;
+  padding: 6px 10px;
   margin-top: 25px;
   margin-left: 354px;
-  width: 200px;
+  width: 100px;
   text-decoration: none;
   color: white;
   display: inline-block;
   text-align: center;
+  border-radius: 3px;
 }
 
 /* line 32, ../sass/account.sass */
@@ -55,17 +56,22 @@
 /* line 38, ../sass/account.sass */
 .sure {
   background: gray;
-  padding: 6px 0px;
+  padding: 6px 10px;
   margin-top: 25px;
-  margin-left: 245px;
-  width: 200px;
+  margin-left: 354px;
+  width: 100px;
   text-decoration: none;
   color: white;
   display: inline-block;
   text-align: center;
+  border-radius: 3px;
 }
 
 /* line 48, ../sass/account.sass */
 .select {
   padding: 5px;
 }
+  .select a{color: #6b7485;}
+
+  .changeOK{position: absolute;text-align: center;width: 1024px;height: auto;color: white;font-weight: 700;font-size: 20px;background-color: #eb6a64;z-index: 10;padding: 50px 0px;top:-300px;}
+  .passErrorMes{position: absolute;color: red;font-weight: 400;font-size: 12px;z-index: 12;left: 200px;top:30px;}

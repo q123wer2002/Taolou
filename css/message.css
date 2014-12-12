@@ -23,6 +23,7 @@
   background: white;
   height: 500px;
   text-align: center;
+  overflow: auto;
 }
 
 /* line 19, ../sass/message.sass */
@@ -57,49 +58,55 @@
   height: 400px;
 }
 
-/* line 37, ../sass/message.sass */
-.hr-left {
-  text-align: left;
-  float: left;
-}
-
-/* line 41, ../sass/message.sass */
-.job-seker-right {
-  text-align: left;
-  float: right;
-}
-
-/* line 45, ../sass/message.sass */
-.saying {
-  padding: 20px 30px;
-}
-
 /* line 47, ../sass/message.sass */
 .job-seeker {
-  height: 200px;
+  height: 180px;
   margin-top: 10px;
   padding-top: 10px;
+  position: relative;
 }
 
 /* line 51, ../sass/message.sass */
 .job-seeker-send {
-  background: gray;
+  background: #eceef1;
   position: relative;
   top: 10px;
-  height: 120px;
+  height: 100px;
   width: 650px;
   margin: 5px auto;
   display: block;
+  border: none;
+  padding: 10px 15px;
 }
 
 /* line 59, ../sass/message.sass */
 .btn {
-  background: gray;
+  background: #36a9e5;
   color: white;
   float: right;
   margin: 10px 35px;
   text-decoration: none;
   height: 20px;
-  padding: 5px 20px;
+  padding: 10px 20px;
   font-size: 16px;
+  font-weight: 500;
+  border-radius: 3px;
 }
+
+  .Mstitle{font-size: 15px;font-weight: 400;}
+  .partnerList a{padding: 5px 5px;}
+  .MsSubTitle{font-size: 15px;font-weight: 400;}
+    .MessageBox{background-position: -190px 0;width: 14px;height: 14px;}
+  .backMessTitle{font-size: 15px;font-weight: 400;color: #36a9e5;z-index: 10;text-decoration: none;float: right;}
+    .backIconMess{background-position: -173px -98px;width: 14px;height: 14px;}
+  .companyName{color: #36a9e5;font-weight: 400;text-decoration: none;}
+  .SayBG{background: #eceef1;}
+
+
+  .saying{width: 350px;padding: 10px 7px;margin-top: 10px;position: relative;font-size: 15px;}
+  .LeftSay{text-align: left;margin-left: 10px;float: left;}
+  .RightSay{text-align: right;float: right;margin-right: 10px;}
+  .whiteBG{width: 500px;height: 30px;position: relative;float: left;}
+  .timestamp{font-size: 9px;color: black;}
+
+  .errorMes{color: #eb6a64;font-size: 9px;font-weight: 400;position: absolute;left: 50px;bottom: 45px;}

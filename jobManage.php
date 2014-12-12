@@ -53,7 +53,7 @@ switch(@$action){
 
             //開始尋找
             $sql_showJob="SELECT distinct ".$obj_tmp1->jobtable.".*,
-                          ".$obj_tmp1->companyTable.".companyName,".$obj_tmp1->companyTable.".logo,".$obj_tmp1->companyTable.".memberSize
+                          ".$obj_tmp1->companyTable.".id as companyId,".$obj_tmp1->companyTable.".companyName,".$obj_tmp1->companyTable.".logo,".$obj_tmp1->companyTable.".memberSize
                           FROM ".$obj_tmp1->jobtable."
                           LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companyTable.".id=".$obj_tmp1->jobtable.".companyId 
                           WHERE ".$obj_tmp1->jobtable.".id='".$IValue['jobId']."' 
@@ -67,6 +67,8 @@ switch(@$action){
             //======================
 
             $obj_tmp1->saveJob[$IValue['id']]=$obj_tmp1->laout_arr['showJob'];
+            $obj_tmp1->saveJob[$IValue['id']][0]['jobstatus']=$IValue['status'];
+            $obj_tmp1->saveJob[$IValue['id']][0]['jobDate']=$IValue['createDate'];
         }
         //print_r($obj_tmp1->saveJob);
     }
@@ -87,7 +89,53 @@ switch(@$action){
 
 	break;
 
-	case "aleadysend":	
+	case "aleadysend":
+
+    //找求職資訊
+    $sql_Imanage="SELECT ".$obj_tmp1->memberJM.".*
+                  FROM ".$obj_tmp1->memberJM."
+                  LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->member.".id=".$obj_tmp1->memberJM.".memberId
+                  LEFT JOIN ".$obj_tmp1->jobtable." ON ".$obj_tmp1->jobtable.".id=".$obj_tmp1->memberJM.".jobId
+                  LEFT JOIN ".$obj_tmp1->memberCV." ON ".$obj_tmp1->memberCV.".id=".$obj_tmp1->memberJM.".CVId
+                  WHERE ".$obj_tmp1->memberJM.".memberId='".$userId."' 
+                  AND ".$obj_tmp1->memberJM.".intelligence='n' 
+                  AND ".$obj_tmp1->memberJM.".status <> 'collect'";
+    $obj_tmp1->laout_arr['Imanage']=array();
+    $obj_tmp1->basic_select('laout_arr','Imanage',$sql_Imanage);
+        //echo $sql_Imanage;
+        //print_r($obj_tmp1->laout_arr['Imanage']);
+    //==========================
+
+    $obj_tmp1->saveJob=array();
+
+    //找每個求才資訊
+    if(!empty($obj_tmp1->laout_arr['Imanage'])){
+        foreach($obj_tmp1->laout_arr['Imanage'] as $IKey => $IValue){
+            //設定變數儲存
+            $obj_tmp1->saveJob[$IValue['id']]=array();
+
+            //開始尋找
+            $sql_showJob="SELECT distinct ".$obj_tmp1->jobtable.".*,
+                          ".$obj_tmp1->companyTable.".id as companyId,".$obj_tmp1->companyTable.".companyName,".$obj_tmp1->companyTable.".logo,".$obj_tmp1->companyTable.".memberSize
+                          FROM ".$obj_tmp1->jobtable."
+                          LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companyTable.".id=".$obj_tmp1->jobtable.".companyId 
+                          WHERE ".$obj_tmp1->jobtable.".id='".$IValue['jobId']."' 
+                          AND ".$obj_tmp1->jobtable.".status='y'
+                          ORDER BY ".$obj_tmp1->jobtable.".createDate ";
+                          //LIMIT ".$jobshow_start.",20";
+            $obj_tmp1->laout_arr['showJob']=array();
+            $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
+                //echo $sql_showJob;
+                //print_r($obj_tmp1->laout_arr['showJob']);
+            //======================
+
+            $obj_tmp1->saveJob[$IValue['id']]=$obj_tmp1->laout_arr['showJob'];
+            $obj_tmp1->saveJob[$IValue['id']][0]['jobstatus']=$IValue['status'];
+            $obj_tmp1->saveJob[$IValue['id']][0]['jobDate']=$IValue['createDate'];
+        }
+        //print_r($obj_tmp1->saveJob);
+    }
+    //==========================
 
 
     //echo $obj_tmp1->encode("1"),"<BR>";
@@ -107,7 +155,53 @@ switch(@$action){
 
 	break;
 
-    case "aleadylove":  
+    case "aleadylove":
+
+    //找求職資訊
+    $sql_Imanage="SELECT ".$obj_tmp1->memberJM.".*
+                  FROM ".$obj_tmp1->memberJM."
+                  LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->member.".id=".$obj_tmp1->memberJM.".memberId
+                  LEFT JOIN ".$obj_tmp1->jobtable." ON ".$obj_tmp1->jobtable.".id=".$obj_tmp1->memberJM.".jobId
+                  LEFT JOIN ".$obj_tmp1->memberCV." ON ".$obj_tmp1->memberCV.".id=".$obj_tmp1->memberJM.".CVId
+                  WHERE ".$obj_tmp1->memberJM.".memberId='".$userId."' 
+                  AND ".$obj_tmp1->memberJM.".intelligence='y' 
+                  AND ".$obj_tmp1->memberJM.".status = 'collect'";
+    $obj_tmp1->laout_arr['Imanage']=array();
+    $obj_tmp1->basic_select('laout_arr','Imanage',$sql_Imanage);
+        //echo $sql_Imanage;
+        //print_r($obj_tmp1->laout_arr['Imanage']);
+    //==========================
+
+    $obj_tmp1->saveJob=array();
+
+    //找每個求才資訊
+    if(!empty($obj_tmp1->laout_arr['Imanage'])){
+        foreach($obj_tmp1->laout_arr['Imanage'] as $IKey => $IValue){
+            //設定變數儲存
+            $obj_tmp1->saveJob[$IValue['id']]=array();
+
+            //開始尋找
+            $sql_showJob="SELECT distinct ".$obj_tmp1->jobtable.".*,
+                          ".$obj_tmp1->companyTable.".id as companyId,".$obj_tmp1->companyTable.".companyName,".$obj_tmp1->companyTable.".logo,".$obj_tmp1->companyTable.".memberSize
+                          FROM ".$obj_tmp1->jobtable."
+                          LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companyTable.".id=".$obj_tmp1->jobtable.".companyId 
+                          WHERE ".$obj_tmp1->jobtable.".id='".$IValue['jobId']."' 
+                          AND ".$obj_tmp1->jobtable.".status='y'
+                          ORDER BY ".$obj_tmp1->jobtable.".createDate ";
+                          //LIMIT ".$jobshow_start.",20";
+            $obj_tmp1->laout_arr['showJob']=array();
+            $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
+                //echo $sql_showJob;
+                //print_r($obj_tmp1->laout_arr['showJob']);
+            //======================
+
+            $obj_tmp1->saveJob[$IValue['id']]=$obj_tmp1->laout_arr['showJob'];
+            $obj_tmp1->saveJob[$IValue['id']][0]['jobstatus']=$IValue['status'];
+            $obj_tmp1->saveJob[$IValue['id']][0]['jobDate']=$IValue['createDate'];
+        }
+        //print_r($obj_tmp1->saveJob);
+    }
+    //==========================
 
 
     //echo $obj_tmp1->encode("1"),"<BR>";

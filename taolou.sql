@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2014 at 06:22 PM
+-- Generation Time: Dec 12, 2014 at 03:57 PM
 -- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -65,14 +65,15 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `taolou_company`
 --
 
 INSERT INTO `taolou_company` (`id`, `recommendation`, `productName`, `companyName`, `CEO`, `logo`, `location`, `memberSize`, `website`, `createDate`, `detail`) VALUES
-(1, 'y', 'test', 'taoloutest', 'yenchen', 'taolou/logo.img', 'taiwan', '50-100', 'http://taolou.com', '0000-00-00 00:00:00', '456');
+(1, 'y', 'test', 'taoloutest', 'yenchen', 'taolou_logo.jpg', 'taiwan', '50-100', 'http://taolou.com', '0000-00-00 00:00:00', '456'),
+(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', 'ASDFAS', 'QWW', '10', '4040', '2014-12-12 11:18:38', '');
 
 -- --------------------------------------------------------
 
@@ -127,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 --
 
 INSERT INTO `taolou_job` (`id`, `title`, `companyId`, `jobName`, `location`, `jobType`, `salary`, `stock_option`, `detail`, `status`, `createDate`) VALUES
-(1, 'show something title', 1, 'IOS', 'taiwan', 'software', '50000', '', '', 'y', '2014-11-13 02:19:36'),
-(2, 'show something title', 1, 'IOS', 'taiwan', 'software', '50000', '', '', 'y', '2014-11-13 04:42:02');
+(1, 'show something title', 1, 'IOS工程師', 'taiwan', 'software', '50000', 'y', '', 'y', '2014-12-12 06:04:05'),
+(2, 'show something title', 1, 'Android工程師', 'taiwan', 'software', '50000', '', '', 'y', '2014-12-12 06:04:09');
 
 -- --------------------------------------------------------
 
@@ -182,11 +183,11 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
 --
 
 INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `name`, `email`, `phone`, `facebook`, `google+`, `photo`, `born`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
-(1, 'n', 0, '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2014-11-23 17:22:10'),
-(2, 'n', 0, '林彥丞', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '123456789', '', '', '2014-12-09 12:07:21', '2014-11-23 17:25:35'),
-(3, 'y', 0, '', 'q123wer2002@gmail', '', '', '', '', '', '', '', '', '', '', '', '2014-11-24 13:12:29', '2014-11-24 12:38:25'),
-(4, 'n', 0, 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', '', '1994', '博士', '3', '正在找工作', '', '', '', '2014-11-28 04:47:37', '2014-11-27 10:01:07'),
-(5, 'n', 0, '', 'test@test.com', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '2014-12-02 13:39:23');
+(1, 'n', 0, '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:01', '2014-11-23 17:22:10'),
+(2, 'n', 0, '林彥丞', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '123456789', 'y', 'n', '2014-12-12 14:56:03', '2014-11-23 17:25:35'),
+(3, 'y', 1, 'yoyoMan', 'q123wer2002@gmail', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:04', '2014-11-24 12:38:25'),
+(4, 'y', 2, 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', '', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-12 14:36:05', '2014-11-27 10:01:07'),
+(5, 'n', 0, '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23');
 
 -- --------------------------------------------------------
 
@@ -240,6 +241,65 @@ CREATE TABLE IF NOT EXISTS `taolou_member_experience` (
 
 INSERT INTO `taolou_member_experience` (`id`, `memberId`, `name`, `year`, `continueTime`, `company`, `role`, `detail`, `updateDate`, `createDate`) VALUES
 (2, 2, 'PPPPPPPPPPP', 2012, '一年以上', 'QQQQQQQQQQQ', 'RRRRRRRRRRRRR', 'BBBBBBBBBBBBB', '2014-12-05 14:33:59', '2014-12-05 14:33:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taolou_member_jobmanage`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `memberId` int(11) NOT NULL,
+  `jobId` int(11) NOT NULL,
+  `cvId` int(11) NOT NULL,
+  `intelligence` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `taolou_member_jobmanage`
+--
+
+INSERT INTO `taolou_member_jobmanage` (`id`, `memberId`, `jobId`, `cvId`, `intelligence`, `status`, `createDate`) VALUES
+(1, 2, 1, 0, 'y', 'wait', '2014-12-10 09:19:31'),
+(2, 2, 2, 0, 'y', 'collect', '2014-12-10 09:21:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taolou_member_message`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_member_message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sendUserId` int(11) NOT NULL,
+  `receiveUserId` int(11) NOT NULL,
+  `message` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `taolou_member_message`
+--
+
+INSERT INTO `taolou_member_message` (`id`, `sendUserId`, `receiveUserId`, `message`, `status`, `createDate`) VALUES
+(1, 2, 4, 'yo', 'y', '2014-12-12 07:04:49'),
+(2, 4, 2, 'good', 'y', '2014-12-12 07:04:50'),
+(3, 4, 2, 'what''s up?', 'y', '2014-12-12 07:10:21'),
+(4, 3, 2, 'haha', 'y', '2014-12-12 07:10:48'),
+(5, 2, 4, 'hi,你好，我想加入貴公司一起打拼', 'y', '2014-12-12 11:58:39'),
+(6, 4, 2, '謝謝你們的回覆，我目前還在台灣讀研究所，我很樂意也很願意與你們多聊 我的信箱與QQ： q123wer2002@gmail.com 謝謝你', 'y', '2014-12-12 12:05:38'),
+(7, 2, 4, '謝謝你', 'y', '2014-12-12 12:41:34'),
+(8, 2, 4, '對了，順便問一下，貴公司很厲害嗎？', 'y', '2014-12-12 12:42:32'),
+(9, 2, 4, '謝謝', 'y', '2014-12-12 12:55:33'),
+(10, 2, 3, 'yoyoMan', 'y', '2014-12-12 12:56:10'),
+(11, 2, 3, '123456', 'y', '2014-12-12 13:12:02'),
+(12, 2, 4, '123456', 'y', '2014-12-12 13:12:18');
 
 -- --------------------------------------------------------
 
