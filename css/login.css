@@ -6,9 +6,14 @@
 	background: white;
 }
 
+.title{
+    padding: 18px;
+}
+
 
 .nsb-block .nsb-block-content {
 	width: 100%;
+    padding: 18px 15px 16px;
     border-top: 1px solid #ECEEF1;
 }
 
