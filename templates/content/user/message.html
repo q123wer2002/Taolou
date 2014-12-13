@@ -14,6 +14,13 @@
 	        	<span class="name"><?php echo $InfoValue['name']; ?></span>
 	        	的對話
 	        </span>
+	        <?php }}else{ 
+	        	foreach($this->laout_arr['ComToUser'] as $CTUKey => $CTUValue){?>
+	        <span class='icon MessageBox'></span>
+	        <span class='MsSubTitle'>與
+	        	「<a class='companyName' href="javascript:;"><?php echo $CTUValue['name']; ?></a>」的
+	        	的對話
+	        </span>
 	        <?php }} ?>
 
 	        <a class='backMessTitle' href="userMessage.php"><span class='icon backIconMess'></span>返回私訊首頁</a>

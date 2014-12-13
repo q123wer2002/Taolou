@@ -37,7 +37,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 		.page{background:#6b7485;color: white;}
 		.page:hover{background:#6b7485;};
 
-
+.showTopics{position: relative;width: 720px;height: auto;left:150px;top:0px;background: white;}
 .introduciton{padding: 20px;}
 .smart_apply{text-decoration: none; color:red;}
 .status{position:absolute; top: 18px;right: 34px;}

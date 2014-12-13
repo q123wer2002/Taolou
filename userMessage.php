@@ -110,7 +110,7 @@ else{
 	    $obj_tmp1->receiveUserId=$action;
 	    //==========================
 
-	    //抓取對話者資訊
+	    //抓取與企業對話者資訊
 	    $sql_UserInfo="SELECT ".$obj_tmp1->member.".*, ".$obj_tmp1->companyTable.".companyName
 	    			   FROM ".$obj_tmp1->member."
 	    			   LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companyTable.".id=".$obj_tmp1->member.".companyId
@@ -120,6 +120,17 @@ else{
 	    $obj_tmp1->basic_select('laout_arr','UserInfo',$sql_UserInfo);
 	        //echo $sql_UserInfo;
 	        //print_r($obj_tmp1->laout_arr['UserInfo']);
+	    //==========================
+
+	    //抓取與使用者對話資訊
+	    $sql_ComToUser="SELECT ".$obj_tmp1->member.".*
+	    				FROM ".$obj_tmp1->member."
+	    				WHERE ".$obj_tmp1->member.".id='".$action."'
+	    				AND ".$obj_tmp1->member.".companyHr='n'";
+	    $obj_tmp1->laout_arr['ComToUser']=array();
+	    $obj_tmp1->basic_select('laout_arr','ComToUser',$sql_ComToUser);
+	        //echo $sql_ComToUser;
+	        //print_r($obj_tmp1->laout_arr['ComToUser']);
 	    //==========================
 	    
 

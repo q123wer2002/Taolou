@@ -14,7 +14,9 @@ $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //decode company id
-
+if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='showTopicCom';}
+if(@$_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
+else {@$action='showTopicCom';}
 //==================
 
 
@@ -32,7 +34,7 @@ switch($action){
 		//print_r($obj_tmp1->laout_arr['job']);
 	//===========================
 
-	$obj_tmp1->tmp_comanyId=$obj_tmp1->laout_arr['job'][0]['companyId'];
+	@$obj_tmp1->tmp_comanyId=$obj_tmp1->laout_arr['job'][0]['companyId'];
 	//echo $obj_tmp1->tmp_jobsId;
 	//echo $obj_tmp1->tmp_comanyId;
 

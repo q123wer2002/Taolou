@@ -1,6 +1,12 @@
 
 <style type="text/css">
 	.error{color: red;font-weight: 400;font-size: 12px;}
+	.right {position: relative;height: auto;padding: 30px;width: 40%;border-left: 1px solid #ECEEF1;text-align: center;}
+	.blue-btn, .gray-btn, .green-btn, .purple-btn, .red-btn, .yellow-btn {height: 50px;line-height: 50px;text-align: center;border: medium none;border-radius: 3px;font-size: 16px;color: #FFF;}
+	.blue-btn {padding: 10px;background-color: #36A9E5;}
+	.red-btn {padding: 10px;background-color: #EB6A64;}
+	.green-btn {padding: 10px;background-color: #17B385;}
+	a {color: #36A9E5;cursor: pointer;text-decoration: none;transition: opacity 0.2s ease 0s, color 0.2s ease 0s, #F2F1F0 0.2s ease 0s, box-shadow 0.2s ease 0s;}
 </style>
 
 
@@ -13,11 +19,23 @@
 		<p class='error'>{{errorMessage}}</p>
 	</form>
 
-	<div class='anotherSignup'>
-		其他登入方式
-		<ul class='signupListUl'>
-			<li><a href=""><div class='facebook Sicon'></div></a></li>
-			<li><a href=""><div class='google Sicon'></div></a></li>
-		</ul>
-	</div>
+	<aside class="right">
+        <h3>
+            have account yet?
+        </h3>
+        <a class="blue-btn" href="/login">
+            sign up
+        </a>
+        <span class="split">
+            or
+        </span>
+        <br></br>
+        <a class="red-btn weibo" href="/oauth/sina">
+            log in with facebook
+        </a>
+        <br></br>
+        <a class="blue-btn mingdao" href="/oauth/mingdao">
+            log in with google
+        </a>
+    </aside>
 </div>

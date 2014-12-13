@@ -7,7 +7,7 @@
 				foreach($this->UserMenu as $UMKey){
 					foreach($UMKey as $UMSUBKey => $UMValue){ ?>
 		<a href="userMessage.php?action=<?php echo $this->encode($UMValue['id']); ?>">
-            <span><img class='contact-people-photo' src="images/<?php if(!empty($UMValue['photo'])){echo $UMValue['photo'];}else{echo "userMe/user-default.jpg";} ?>" alt=""></span>
+            <span><img class='contact-people-photo' src="<?php if(!empty($UMValue['photo'])){echo $UMValue['photo'];}else{echo "images/userMe/user-default.jpg";} ?>" alt=""></span>
             <span class='contact-people'><?php echo $UMValue['name']; ?></span>
 		</a>
 		<?php }}} ?>
