@@ -1,0 +1,70 @@
+.container{
+	width: 80%;
+	margin-top: 20px;
+	margin-left:10%;
+	margin-bottom:20px;
+	padding: 20px;
+	background: white;
+}
+
+
+button {
+    position: relative;
+    float: right;
+    line-height: 40px;
+    height: 40px;
+    padding: 0px;
+    width: 100px;
+    margin: -10px 0px 0px;
+    font-size: 14px;
+}
+.green-btn {
+    background-color: #17B385;
+}
+.purple-btn {
+    background-color: #707B91;
+}
+
+.green-btn ,.purple-btn{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: medium none;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #FFF;
+    
+}
+
+.about_company{
+
+}
+.edit-name {
+    height: 50px;
+    line-height: 50px;
+    width: 75px;
+    padding-right: 20px;
+    font-size: 16px;
+}
+.company_mark{
+	height: 20px;
+    line-height: 10px;
+    font-size: 16px;
+    padding: 20px 0px 40px 0px;
+    border-bottom: 1px solid #ECEDF0;
+}
+.with-edit {
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    padding: 30px 0px 30px 0px;
+    border-bottom: 1px solid #ECEDF0;
+}
+
+li {
+	display: inline;margin-right: 30px;
+}
+.about_company ul {
+	padding: 10px;
+}
