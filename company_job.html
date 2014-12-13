@@ -1,0 +1,119 @@
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+	<title>TaoLou</title>
+	<meta charset="utf-8">
+    
+	<link href="css/layout.css" rel="stylesheet">
+    
+	<script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+	<div class='showUs'>
+		<div class='showImage'></div>
+	</div>
+	<div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+		<div class='menuBar'>
+			<ul class='menu'>
+				<li ng-repeat='list in lists'>
+					<a href="{{list.url}}">{{list.name}}</a>
+				</li>
+			</ul>
+			
+			<div class='search'>
+				<form>
+					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+					<button class='goSearch searchPos button'>搜尋</button>
+				</form>
+			</div>
+		</div>
+    </div>
+
+    <link href="css/index.css" rel="stylesheet">
+
+    <div class='body'>
+    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+            <h3>
+                <span class='icon title-chart title-box'></span>
+                <span>A company</span>
+            </h3>
+    		<div class='selector'>
+    			<ul class='hotJob'>
+    				<li class='tagName'>C++ engineer</li>
+                    <li class='attribute'>200-2000$  </li>
+                    <li class='attribute'>Taipei  </li>
+                    <li class='attribute'>full time</li>
+    			</ul>
+    		</div>
+    	</section>
+
+        <div class='showJobs'>
+            <h3>
+                <span>about job</span>
+            </h3>
+            <p class="job-describe">
+                C++开发工程师
+                <br></br>
+                工作职责：
+                <br></br>
+                1、负责公司Exchange产品后端的设计、开发及优化；开发实时竞价广告交易系统；
+                <br></br>
+                2、处理海量广告投放请求和海量广告监测日志数据、开发基于Hadoop的大数据处理平台；
+                <br></br>
+                3、善于发现系统的性能瓶颈、设计缺陷，提出改进方案并进行实施；
+                <br></br>
+                4、与产品经理、架构师一起确定开发计划，按时完成开发任务。
+                <br></br>
+                岗位要求：
+                <br></br>
+                1、计算机相关专业，本科及以上学历，热爱技术、喜欢钻研；
+                <br></br>
+                2、思路敏捷清晰，良好的表达和理解能力，良好的学习能力，强烈的创新意识；
+                <br></br>
+                3、精通算法设计/数据结构，精通JAVA或C/C++语言编程，熟悉网络编程、多线程编程技术；
+                <br></br>
+                4、熟悉Linux/Unix平台上的开发环境；
+                <br></br>
+                5、强烈责任心，良好的沟通和学习能力，有良好的团队合作意识。
+                <br></br>
+                <br></br>
+                不太需要有客户端开发经验的
+                <br></br>
+                <br></br>
+                需要有linux下面C/C++开发经验，服务端开发，有大规模数据处理经验，在相关互联网公司任职过的。
+                <br></br>
+                <br></br>
+                关键词 socket,epoll,storm,python,redis,mongodb,golang
+                <br></br>
+                <br></br>
+                工作经验至少1年以上，最好两年起。
+                <br></br>
+                <br></br>
+                <br></br>
+            </p>
+
+        </div>
+
+        <div class='dividePage'>
+            <div class='pageBar'>
+                <a class='home pageTag' href="">首頁</a>
+                <a class='pre pageTag' href="">上一頁</a>
+                <a class='page pageTag' href="" ng-repeat='i in [3,4,5,6,7]'>{{i}}</a>
+                <a class='next pageTag' href="">下一頁</a>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class='footer'>
+    	<div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div>
+</body>
+</html>
