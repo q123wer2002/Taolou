@@ -39,3 +39,15 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
     margin: 0px auto 30px;
     padding-top: 30px;
 }
+
+.attribute{
+	margin-right: 10px;padding: 3px;
+}
+
+.skill{
+margin: 10px 10px 0px 0px;
+padding: 0px 10px;
+height: 30px;
+background: none repeat scroll 0% 0% #ECEEF1;
+border-radius: 4px;
+}
