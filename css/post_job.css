@@ -1,0 +1,51 @@
+.container{
+	width: 50%;
+	margin-top: 20px;
+	margin-left:25%;
+	margin-bottom:20px;
+	padding: 20px;
+	background: white;
+}
+
+
+button {
+    position: relative;
+    line-height: 40px;
+    height: 40px;
+    padding: 0px;
+    width: 100px;
+    margin: -10px 0px 0px;
+    font-size: 14px;
+}
+.green-btn {
+    background-color: #17B385;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: medium none;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #FFF;
+    
+}
+.part{
+    border-top: 1px solid #ECEDF0;
+    padding: 10px;
+}
+
+input{
+    font-size: 16px;
+    height: 16px;
+    line-height: 16px;
+    padding: 18px 15px 16px;
+    width: 200px;
+    border: medium none;
+    border-radius: 3px;
+    background-color: #ECEDF0;
+}
+select, textarea{
+    border: medium none;
+    border-radius: 5px;
+    background-color: #ECEDF0;
+}

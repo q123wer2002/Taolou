@@ -1,0 +1,132 @@
+<!DOCTYPE>
+<html ng-app='TaoLou'>
+<header>
+	<title>TaoLou</title>
+	<meta charset="utf-8">
+    
+	<link href="css/layout.css" rel="stylesheet">
+    
+	<script src='js/angular.js'></script>
+    <script src="js/ANcontrol.js"></script>
+    <script type="text/javascript" src='js/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src='js/layout.js'></script>
+</header>
+<body>
+	<div class='showUs'>
+		<div class='showImage'></div>
+	</div>
+	<div class='taoloumenu' ng-controller='TaoLouMenu'>
+        <div class='logo'></div>
+		<div class='menuBar'>
+			<ul class='menu'>
+				<li ng-repeat='list in company_lists'>
+					<a href="{{list.url}}">{{list.name}}</a>
+				</li>
+			</ul>
+			
+			<div class='search'>
+				<form>
+					<input class='searchBar searchPos input' type='text' placeholder='搜尋公司、職位、地區'>
+					<button class='goSearch searchPos button'>搜尋</button>
+				</form>
+			</div>
+		</div>
+    </div>
+
+    <link href="css/post_job.css" rel="stylesheet">
+
+    <div>
+    	<section class='container' ng-controller='TaoLoujob-index'>
+            <h2 class="with-edit">
+                <span>Post job</span>
+            </h2>
+    		<div class='about_company'>
+                <div class="part">
+                    <span class="name">
+                        job name
+                    </span>
+                    <input></input>
+                </div>
+                <div class="part">
+                    <span>
+                        job type
+                    </span>
+                    <select>
+                        <option value="volvo">A</option>
+                        <option value="saab">B</option>
+                        <option value="opel">C</option>
+                        <option value="audi">D</option>
+                    </select> 
+                </div>
+                <div class="part">
+                    <span>
+                        location
+                    </span>
+                    <select>
+                        <option value="volvo">A</option>
+                        <option value="saab">B</option>
+                        <option value="opel">C</option>
+                        <option value="audi">D</option>
+                    </select> 
+                </div>
+                <div class="part">
+                    <span class="edit-name">
+                        work type
+                    </span>
+                    <div class="edit-body">
+                        <div class="three-columns">
+                            <div class="input-wrapper">
+                                <input id="work-type-fu" type="radio" value="2" name="type"></input>
+                                <label class="first" for="work-type-fu">
+                                    <span class="icon"></span>
+                                    全职
+                                </label>
+                            </div>
+                            <div class="input-wrapper">
+                                <input id="work-type-pa" type="radio" value="1" name="type"></input>
+                                <label class="" for="work-type-pa">
+                                    <span class="icon"></span>
+                                    兼职
+                                </label>
+                            </div>
+                            <div class="input-wrapper">
+                                <input id="work-type-ex" type="radio" value="0" name="type"></input>
+                                <label class="last" for="work-type-ex">
+                                    <span class="icon"></span>
+                                    实习
+                                </label>
+                            </div>
+                        </div>
+                        <span class="edit-hint"></span>
+                    </div>
+                </div>
+                <div class="part">
+                    <span>
+                        salary
+                    </span>
+                    <input></input>
+                </div>
+                <div class="part">
+                    <span>
+                        job description
+                    </span>
+                    <textarea name="Content"></textarea>
+                </div>
+                <div class="part">
+                    <br>
+                    <button class="green-btn">post</button>
+                </div>
+    		</div>
+    	</section>
+
+    </div>
+
+    <div class='footer'>
+    	<div class='ourInfo'>
+            <p>© 2014 頭路網・TaoLou</p>
+            <a href="">關於我們</a>
+        </div>
+    </div>
+</body>
+</html>
+
