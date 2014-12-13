@@ -1,13 +1,5 @@
 .container{
-	width: 80%;
-	margin-top: 20px;
-	margin-left:10%;
-	margin-bottom:20px;
-	padding: 20px;
-	background: white;
 }
-
-
 button {
     position: relative;
     float: right;
@@ -24,21 +16,14 @@ button {
 .purple-btn {
     background-color: #707B91;
 }
-
 .green-btn ,.purple-btn{
-    display: inline-block;
     height: 40px;
     line-height: 40px;
-    text-align: center;
-    border: medium none;
     border-radius: 3px;
     font-size: 16px;
     color: #FFF;
-    
-}
-
-.about_company{
-
+    text-decoration: none;
+    padding: 10px 5px;
 }
 .edit-name {
     height: 50px;
@@ -48,23 +33,25 @@ button {
     font-size: 16px;
 }
 .company_mark{
-	height: 20px;
+    width: 650px;
+	height: auto;
     line-height: 10px;
-    font-size: 16px;
-    padding: 20px 0px 40px 0px;
     border-bottom: 1px solid #ECEDF0;
+    padding:30px;
 }
 .with-edit {
-    height: 20px;
+    width: 670px;
+    height: auto;
     line-height: 20px;
     font-size: 16px;
-    padding: 30px 0px 30px 0px;
+    padding: 30px 20px 30px 30px;
     border-bottom: 1px solid #ECEDF0;
 }
+.about_company ul {}
+.about_company ul li{list-style: none;margin: 5px;padding: 14px 12px;background: #ecedf0;width: 270px;border-radius: 5px;}
+.about_company ul li input{border: none;background: #ecedf0;line-height: 16px;width: 270px;height: 16px;font-size:16px;}
+.about_company ul li textarea{width: 270px;height: 100px;border: none;background: #ecedf0;}
 
-li {
-	display: inline;margin-right: 30px;
-}
-.about_company ul {
-	padding: 10px;
-}
+.postInfoDiv{margin: auto;width: 720px;background: #ffffff;position: relative;}
+    .showComPhoto{border: 1px solid #000000;width: 150px;height: 150px;}
+    .about_company{width: 660px;padding: 30px;}

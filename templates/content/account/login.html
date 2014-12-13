@@ -1,41 +1,47 @@
 
 <style type="text/css">
-	.error{color: red;font-weight: 400;font-size: 12px;}
-	.right {position: relative;height: auto;padding: 30px;width: 40%;border-left: 1px solid #ECEEF1;text-align: center;}
-	.blue-btn, .gray-btn, .green-btn, .purple-btn, .red-btn, .yellow-btn {height: 50px;line-height: 50px;text-align: center;border: medium none;border-radius: 3px;font-size: 16px;color: #FFF;}
-	.blue-btn {padding: 10px;background-color: #36A9E5;}
-	.red-btn {padding: 10px;background-color: #EB6A64;}
-	.green-btn {padding: 10px;background-color: #17B385;}
-	a {color: #36A9E5;cursor: pointer;text-decoration: none;transition: opacity 0.2s ease 0s, color 0.2s ease 0s, #F2F1F0 0.2s ease 0s, box-shadow 0.2s ease 0s;}
+	.signupDiv{background: #ffffff;width: 100%;height: auto;position: relative;padding: 50px;}
+    .form{position: relative;text-align: center;width: 50%;display: inline-block;}
+    
+    .error{color: red;font-weight: 400;font-size: 12px;}
+    .right {position: relative;height: auto;width: 40%;border-left: 1px solid #ECEEF1;text-align: center;display: inline-block;}
+    .blue-btn, .gray-btn, .green-btn, .purple-btn, .red-btn, .yellow-btn {height: 50px;line-height: 50px;text-align: center;border: medium none;border-radius: 3px;font-size: 16px;color: #FFF;}
+    .blue-btn {padding: 10px;background-color: #36A9E5;}
+    .red-btn {padding: 10px;background-color: #EB6A64;}
+    .green-btn {padding: 10px;background-color: #17B385;}
+    a {color: #36A9E5;cursor: pointer;text-decoration: none;transition: opacity 0.2s ease 0s, color 0.2s ease 0s, #F2F1F0 0.2s ease 0s, box-shadow 0.2s ease 0s;}
 </style>
 
 
 <div class='signupDiv' ng-controller='TaolouAccount'>
-	<form ng-submit='account()'>
+    <h3>登入「Taolou」帳號</h3>
+    <hr>
+	<div class='form'>
 		<input type='hidden' ng-init="myType.values = 'x'" ng-model='myType'>
-		<p>信箱：<input type='email' ng-model='email' value=''></p><br>
-		<p>密碼：<input type='password' ng-model='password' value=''></p><br>
-		<p><input type='submit' value='登入'></p>
-		<p class='error'>{{errorMessage}}</p>
-	</form>
+		<p>信箱：<input class='input' type='email' ng-model='email' value=''></p><br>
+		<p>密碼：<input class='input' type='password' ng-model='password' value=''></p><br>
+        <p class='error'>{{errorMessage}}</p>
+		<p><a href="javascript:;" ng-click="account()" class='blue-btn'>登入</a></p>
+		
+	</div>
 
 	<aside class="right">
         <h3>
-            have account yet?
+            還沒有有帳號了嗎？
         </h3>
-        <a class="blue-btn" href="/login">
-            sign up
+        <a class="green-btn" href="account.php?action=signup">
+            註冊
         </a>
         <span class="split">
-            or
+            或<br>用其他方式登入
         </span>
         <br></br>
         <a class="red-btn weibo" href="/oauth/sina">
-            log in with facebook
+            用Google登入
         </a>
         <br></br>
         <a class="blue-btn mingdao" href="/oauth/mingdao">
-            log in with google
+            用Facebook登入
         </a>
     </aside>
 </div>

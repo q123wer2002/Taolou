@@ -1,0 +1,42 @@
+<link href="css/index.css" rel="stylesheet">
+<style type="text/css">
+    .selectCompany{left: 0;margin: auto;}
+        .jobitem{height: auto;}
+        .jobInfo{height: auto;width: 686px;padding: 20px;}
+        .jobInfo:hover{background: none;}
+            .topicPhoto img{width: 240px;height: 160px;display: inline-block;}
+            .topicDetail{display: inline-block;width: 436px;padding: 0px 0px 0px 5px;top: 0;}
+            .title{display: inline-block;top: 0px;}
+            .title a{font-size: 20px;font-weight: 700;text-decoration: none;color: #586276;}
+            .title a:hover{color: #36a9e5;}
+</style>
+    <div>
+        <section class='selectCompany'>
+            <h3>
+                <span class='icon title-chart title-icon'></span>
+                <span>主題列表</span>
+            </h3>
+        </section>
+
+        <div class='selectCompany'>
+            <div class='jobitem' ng-repeat='i in [0,1,2,3]'>
+                <div class='jobInfo'>
+                    <a href="xxxx" class='topicPhoto'>
+                        <img src="http://nsb-static.b0.upaiyun.com/production/desktop/topics/alibaba-in-the-feture.jpg" class='topicPhotoImg'>
+                    </a>
+                    <div class='topicDetail'>
+                        <div class='title'>
+                            <a target="_new" href="xxxx">
+                                第二屆程序大會：一切只為了改變
+                            </a>
+                        </div>
+                        <div class='submeta'>
+                            <span class="intro">
+                                哪上班联合微软创投加速器，为您带来第5期初创团队！这些团队过关斩将，打败了近 700 家竞争团队，最终获得了仅有的 19 个微软创投加速器席位。他们的创业方向涵盖了加速应用开发的一站式云服务、专注母婴健康的智能数据医疗服务、汽车远程诊断及数据分析服务、柔性可穿戴产品的研发与设计服务等多个领域。
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

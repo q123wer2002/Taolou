@@ -5,7 +5,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
  *:focus { outline: none; }
 
 
-.input{height: 40px;width:200px;border:1px solid #46A3FF;font-size: 18px;font-weight: 500;background: rgba(242, 242, 242, 1);}
+.input{width:200px;border:none;font-size: 15px;font-weight: 500;background: #ecedf0;padding: 10px 0px;}
 .button{border: none;width: 70px;height: 40px;background: #46A3FF;font-weight: 500;color: white;font-size: 17px;font-family: '微軟正黑體';}
 .icon{background-image: url(../images/layout/sprite.png);background-repeat: no-repeat;display: inline-block;vertical-align: 0;margin-bottom: -1px;zoom:1;}
 .title-chart{width: 13px;height: 13px;}

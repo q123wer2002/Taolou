@@ -5,13 +5,14 @@ TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$htt
 	$scope.lists=[
 		{'name':'首頁','url':'index.php'},
 		{'name':'主題公司','url':'topicCompany.php'},
-		{'name':'註冊','url':'account.php?action=signup'},
-		{'name':'登入','url':'account.php?action=login'}
+		{'name':'職位','url':'jobs.php'},
+		{'name':'註冊/登入','url':'account.php?action=login'}
 	];
 
 	$scope.memberLists=[
 		{'name':'首頁','url':'index.php'},
 		{'name':'主題公司','url':'topicCompany.php'},
+		{'name':'職位','url':'jobs.php'},
 		{'name':'簡歷','url':'userResume.php'},
 		{'name':'求職管理','url':'jobManage.php'}
 	];
@@ -53,7 +54,6 @@ TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 		{'name':'後端工程師','hotTag':'4'},
 		{'name':'iOS工程師','hotTag':'5'},
 		{'name':'Android工程師','hotTag':'6'},
-		{'name':'設計師','hotTag':'7'},
 	];
 
 	$scope.positions=[
@@ -70,6 +70,12 @@ TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 		{'name':'正職','typeTag':'2'},
 		{'name':'兼職','typeTag':'3'},
 		{'name':'實習','typeTag':'4'}
+	];
+
+	$scope.ranks=[
+		{'name':'綜合排名'},
+		{'name':'人氣'},
+		{'name':'最新'}
 	];
 
 }]);

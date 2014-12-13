@@ -14,13 +14,14 @@ $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //decode company id
-if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='showTopicCom';}
+if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='jobList';}
 if(@$_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
-else {@$action='showTopicCom';}
+else {@$action='jobList';}
 //==================
 
 
 switch($action){
+	
 	default:
 
 	//職位列表
@@ -66,7 +67,7 @@ switch($action){
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/jobs.html';
+    $obj_tmp1->content_html='content/jobList.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";

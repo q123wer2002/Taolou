@@ -10,18 +10,18 @@ $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //確認使用者是誰
-if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='showTopicCom';}
+if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='showTopicComList';}
 if(@$_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
-else {@$action='showTopicCom';}
+else {@$action='showTopicComList';}
 //===================
 
 
 switch(@$action){
-	case "showTopicCom":
+	case "showTopicComList":
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/topicCompany.html';
+    $obj_tmp1->content_html='content/topicCompanyList.html';
     //$obj_tmp1->subMenu='content/user/MenuuserSetting.html';
 
     //設定版面

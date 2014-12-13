@@ -1,39 +1,42 @@
 <link href="css/index.css" rel="stylesheet">
+<style type="text/css">
+    .joblist{background-position: -120px -59px;width: 17px;height: 17px;}
+    .selectCompany, .showJobs, .dividePage{left: 0;margin: auto;}
+    .selector{border: 1px solid #eceef1;width: 680px;margin: auto;margin-top: 10px;margin-bottom: 10px;}
+    .moneyIcon{background-position: -156px -111px;width: 16px;height: 16px;}
+    .input{width: 100px;}
+</style>
 
-
-<div>
+<div ng-controller="TaoLoujob-index">
 	<section class='selectCompany'>
         <h3>
-            <span>job list</span>
+            <span class='icon joblist'></span>
+            職位列表
         </h3>
 		<div class='selector'>
 			<ul class='city'>
-				<li class='tagName'>city</li>
-                <li class='tag' ng-repeat='city in cities'>{{city.name}}</li>
+				<li class='tagName'>城市</li>
+                <li class='tag' ng-repeat='pos in positions'>{{pos.name}}</li>
 			</ul>
 			<ul class='jobtype'>
 				<li class='tagName'>類型</li>
                 <li class='tag' ng-repeat='type in jobTypes'>{{type.name}}</li>
 			</ul>
             <ul class='salary'>
-                <li class='tagName'>salary</li>
-                <input type="text" name="lower_bound">-<input type="text" name="upper_bound">
+                <li class='tagName'>薪水</li>
+                <span class='icon moneyIcon'></span><input type="text" class='input' name="lower_bound"> ~ <span class='icon moneyIcon'></span><input class='input' type="text" name="upper_bound">
             </ul>
 		</div>
-	</section>
-
-
-    <section class='selectCompany'>
         <div class='selector'>
             <ul class='rank'>
-                <li class='tagName'>rank</li>
-                <li class='tag' ng-repeat='rank in rank'>{{rank.name}}</li>
+                <li class='tagName'>排序</li>
+                <li class='tag' ng-repeat='rank in ranks'>{{rank.name}}</li>
             </ul>
         </div>
-    </section>
+	</section>
 
     <div class='showJobs'>
-        <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3,4,5]'>
+        <a class='jobitem' href="http://tw.yahoo.com" ng-repeat='i in [1,2,3,4,5,6,7,8,9,10,11]'>
             <div class='jobInfo'>
                 <figure>
                     <img src="images/taolou_logo.jpg">

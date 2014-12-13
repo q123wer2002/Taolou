@@ -16,7 +16,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	.selector ul{list-style: none;padding: 10px;margin-left: 30px;}
 		.tagName{font-weight: 700;font-size: 15px;margin-left: -15px;padding-right: 15px;}
 	.selector ul li{display: inline;}
-		.tag{margin-right: 15px;padding: 3px;}
+		.tag{margin-right: 15px;padding: 5px;}
 		.tag:hover{cursor: pointer;background:#707b91;color: #ffffff;border-radius: 2px;}
 
 .showJobs{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;}
@@ -37,7 +37,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 		.page{background:#6b7485;color: white;}
 		.page:hover{background:#6b7485;};
 
-.showTopics{position: relative;width: 720px;height: auto;left:150px;top:0px;background: white;}
+.showTopics{position: relative;width: 720px;height: auto;top:0px;background: white;border-bottom: 1px solid #eceef1;}
 .introduciton{padding: 20px;}
 .smart_apply{text-decoration: none; color:red;}
 .status{position:absolute; top: 18px;right: 34px;}

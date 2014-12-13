@@ -1,47 +1,45 @@
 <link href="css/post_job.css" rel="stylesheet">
 
-    <div>
-    	<section class='container' ng-controller='TaoLoujob-index'>
+    <div class='postInfoDiv'>
+
+    	<div class='container'>
             <h2 class="with-edit">
-                <span>Edit company</span>
-                <button class="green-btn reg_btn">
-                    save
-                </button>
+                <span>編輯公司訊息</span>
+                <a href="javascript:;" class="green-btn">保存並更</a>
             </h2>
 
             <div class="company_mark">
-                <span class="edit-name">
-                    company mark
-                </span>
-                <button class="file-input-trigger purple-btn">
-                    upload
-                </button>
+                <span class="edit-name">公司圖像</span>
+                <div class='showComPhoto'></div>
+                <a href="javascript:;" class="purple-btn">上傳</a>
             </div>
 
+        </div>
 
-    		<div class='about_company'>
-                <ul>
-                    <li class='tagName'>about company</li>
-                    <ul><input type='text' placeholder='name'></ul>
-                    <ul><input type='text' placeholder='website'></ul>
-                    <ul><input type='text' placeholder='facebook'></ul>
-                    <ul><input type='text' placeholder='location'></ul>
-                    <ul><input type='text' placeholder='founded time'></ul>
-                    <ul><input type='text' placeholder='scale'></ul>
-                </ul>
-                <ul>
-                    <li class='tagName'>skill</li>
-                    <ul><input type='text' placeholder='special skill'></ul>
-                </ul>
-                <ul>
-                    <li class='tagName'>introduction</li>
-                    <ul><textarea name="Content" placeholder='the shortest, the best'></textarea></ul>
-                </ul>
-                <ul>
-                    <li class='tagName'>leader</li>
-                    <ul><input type='text' placeholder='name'></ul>
-                </ul>
-    		</div>
-    	</section>
+
+		<div class='about_company'>
+            <h4 class='tagName'>公司基本訊息</h4>
+            <ul>
+                <li><input type='text' placeholder='name'></li>
+                <li><input type='text' placeholder='website'></li>
+                <li><input type='text' placeholder='facebook'></li>
+                <li><input type='text' placeholder='location'></li>
+                <li><input type='text' placeholder='founded time'></li>
+                <li><input type='text' placeholder='scale'></li>
+            </ul>
+            <h4 class='公司技能'>公司技能</h4>
+            <ul>
+                <li><input type='text' placeholder='special skill'></li>
+            </ul>
+            <h4 class='tagName'>公司介紹</h4>
+            <ul>
+                <li><textarea name="Content" placeholder='the shortest, the best'></textarea></li>
+            </ul>
+            <h4 class='tagName'>公司領導人</h4>
+            <ul>
+                <li><input type='text' placeholder='name'></li>
+            </ul>
+		</div>
+    	
 
     </div>
