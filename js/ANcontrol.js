@@ -20,6 +20,8 @@ TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$htt
 	$scope.companyLists=[
 		{'name':'首頁','url':'index.php'},
 		{'name':'主題公司','url':'topicCompany.php'},
+		{'name':'我的公司','url':'company.php'},
+		{'name':'職位管理','url':'companyPost.php'},
 	];
 
 
