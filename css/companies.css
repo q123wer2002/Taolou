@@ -1,0 +1,57 @@
+.comapniesInfoDiv{}
+	.companyDiv{background: #ffffff;width: 650px;}
+		.company_head{width: 610px;height: auto;padding: 20px;background: #ffffff;position: relative;}
+			.editCompany{color: #ffffff;background: #eb6a64;padding: 8px 5px;border-radius: 3px;position: absolute;right: 50px;top:20px;font-size: 14px;}
+			.img-wrapper{width: 100px;height: 100px;box-shadow: inset 0 0 1px #d0d2da;border: 1px solid #eceef1;float: left;margin-right: 30px;}
+			.img-wrapper img{width: 100%;}
+			h2{font-size: 22px;padding: 0;line-height: 40px;height: 40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+			.fullname{color: #a2a8b3;font-size: 16px;margin-left: 10px;}
+			.head-meta{line-height: 26px;height: 26px;padding: 2px 0;color: #9097a4;}
+			.meta-item{display: inline-block;padding: 0 10px 0 0;width: 120px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+				.website{width: 200px;}
+				.website a{color: #36a9e5;text-decoration: none;font-size: 14px;}
+			.specialties {padding: 20px 0 0;line-height: 30px;}
+			.label {float: left;width: 100px;margin: 0;padding: 0;color: #a2a8b3;text-align: right;overflow: hidden;}
+			.specialties ul {float: left;width: 490px;margin-left: 20px;margin-top: -10px;}
+			.specialties li {float: left;margin: 10px 10px 0 0;padding: 0 10px;height: 30px;background: #eceef1;border-radius: 4px;cursor: default;-webkit-user-select: none;}
+			.intro article {margin-left: 120px;display: block;}
+
+		.company-nav {line-height: 30px;height: 30px;margin: 20px 0 0;padding: 0 30px;border-bottom: 1px solid #eceef1;}
+		.comp-nav-item.active {border-bottom: 1px solid #fff;background-color: #fff;}
+		.company-nav .comp-nav-item {display: block;float: left;margin: -1px 10px 0 0;padding: 0 15px;color: #6b7485;background-color: #eceef1;border-radius: 2px 2px 0 0;border: 1px solid #ecedf0;}
+
+		.joblistDiv{width: 650px;height: auto;}
+			.job-list-item{width: 610px;position: relative;padding: 15px 20px;line-height: 25px;border-bottom: 1px solid #ecedf0;}
+				.job-author-avatar {float: left;height: 50px;width: 50px;margin-right: 10px;}
+				.job-author-avatar img {height: 50px;width: 50px;border-radius: 2px;}
+				.main {color: #a2a8b3;padding-right: 70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+					.job-author-name {color: #6b7485;}
+				.main a {color: #6b7485;font-weight: 700;}
+				.sub a {color: #a2a8b3;}
+				.sub a:hover{text-decoration: underline;}
+				.sub span{font-size: 16px;}
+					.jobmargin{margin-left: 15px;}
+
+		.dividePage{width: 600px;height: auto;padding: 25px;margin: 0;}
+			.pageBar{width: 600px;}
+
+	.companyRight{width: 280px;margin-left: -280px;position: absolute;top: 0px;right: 50px;}
+	.nsb-block {float: left;margin-bottom: 30px;width: 100%;}
+	.company-aside{width: 280px;background: #ffffff;}
+	.company-aside h3 {margin: 15px 0;padding: 0 20px;font-weight: 700;}
+		.team-member {margin: 0 0 20px;height: 50px;line-height: 25px;padding: 0 20px;color: #a2a8b3;}
+			.avatar {float: left;width: 50px;height: 50px;margin-right: 10px;}
+			.avatar img {width: 50px;height: 50px;border-radius: 2px;}
+		.name {color: #6b7485;}
+		.title {display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+	.company-aside .company-block+.company-block {border-top: 1px solid #ecedf0;}
+	.company-aside h3 {margin: 15px 0;padding: 0 20px;font-weight: 700;}
+		.financing-body ul{list-style: none;}
+		.financing-body li {list-style: circle;margin: 0 0 20px 40px;padding: 0 20px 0 0;line-height: 24px;}
+		.financing-body .time {float: right;}
+
+	.shareButton{width: 280px;background: #ffffff;}
+	.nsb-block h2 {position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;border-bottom: 1px solid #ecedf0;}
+		.shareType{width: 240px;padding: 20px;}
+		.shareType a{font-size: 12px;}
+

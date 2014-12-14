@@ -14,37 +14,23 @@ if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);
 if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='none';}
 if(@$_SESSION['user']['userType'] != "" && @$getAction==""){
     if(@$_SESSION['user']['userType'] == '1'){$action='none';}
-    else if(@$_SESSION['user']['userType'] == '2'){$action='ManageJob';}
+    else if(@$_SESSION['user']['userType'] == '2'){$action='edit';}
     else{$action='none';}
 }else{$action=laout_check($_GET['action']);}
 //===================
 
 
 switch(@$action){
-	case "postJob":
+	case "edit":
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/company/postJob.html';
+    $obj_tmp1->content_html='content/company/companyEdit.html';
     //$obj_tmp1->subMenu='content/user/MenuuserSetting.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
 	$obj_tmp1->showad_html='showad.html';
-    $obj_tmp1->footer_html="footer.html";
-    $obj_tmp1->laout('templates.html');
-//=======================================
-
-    case "ManageJob":
-
-
-    $obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/company/jobManage.html';
-    $obj_tmp1->subMenu='content/company/MenujobManage.html';
-
-    //設定版面
-    $obj_tmp1->top_html="top.html";
-    $obj_tmp1->showad_html='showad.html';
     $obj_tmp1->footer_html="footer.html";
     $obj_tmp1->laout('templates.html');
 //=======================================

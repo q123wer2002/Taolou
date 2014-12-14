@@ -5,10 +5,6 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	.partnerList a:hover{background: #eceef1;}
 	.partnerList img{width: 25px;height: 25px;margin-top: 5px;}
 	.title-icon{background-position: -190px -113px;}
-.locationicon{background-position: -68px -147px;width: 16px;height: 16px;}
-.jobtypeicon{background-position: -120px -59px;width: 16px;height: 17px;}
-.salaryicon{background-position: -156px -111px;width: 16px;height: 16px;}
-.stockicon{background-position: -153px -147px;width: 16px;height: 16px;}
 
 .selectCompany{position: relative;width: 720px;height: auto;left:270px;top:0px;background: white;border-bottom: 1px solid #eceef1;}
 	.title-box{background-position: -190px 0px;}

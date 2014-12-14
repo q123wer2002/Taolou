@@ -8,12 +8,16 @@ $obj_tmp1->financetable='taolou_finance';
 $obj_tmp1->companySkill='taolou_skill';
 $obj_tmp1->hrtable='taolou_member';
 $obj_tmp1->tmp_where="";
-@$obj_tmp1->tmp_comanyId = $obj_tmp1->decode(laout_check($_REQUEST["company"]));;
+@$obj_tmp1->tmp_comanyId = $obj_tmp1->decode(laout_check($_REQUEST["company"]));
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //decode company id
-
+if($_SESSION['user']['id']!=""){
+	if(@$_REQUEST["company"]==""){@$obj_tmp1->tmp_comanyId=$_SESSION['user']['company'];}
+	else{$obj_tmp1->tmp_comanyId = $obj_tmp1->decode(laout_check($_REQUEST["company"]));}
+	$userId=$_SESSION['user']['id'];
+}
 //==================
 
 
@@ -25,6 +29,8 @@ switch($action){
 				  WHERE ".$obj_tmp1->companyTable.".id='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['company']=array();
 	$obj_tmp1->basic_select('laout_arr','company',$sql_company);
+		//$sql_company
+		//print_r($obj_tmp1->laout_arr['company']);
 	//===========================
 
 	//公司技能標籤
@@ -34,6 +40,8 @@ switch($action){
 				   WHERE ".$obj_tmp1->companySkill.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['comskill']=array();
 	$obj_tmp1->basic_select('laout_arr','comskill',$sql_comSkill);
+		//$sql_comSkill
+		//print_r($obj_tmp1->laout_arr['comskill']);
 	//===========================
 
 	//公司融資階段
@@ -43,6 +51,8 @@ switch($action){
 				     WHERE ".$obj_tmp1->financetable.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['comFinance']=array();
 	$obj_tmp1->basic_select('laout_arr','comFinance',$sql_comFinance);
+		//$sql_comFinance
+		//print_r($obj_tmp1->laout_arr['comFinance']);
 	//===========================
 
 	//公司人資帳號
@@ -53,6 +63,8 @@ switch($action){
 				AND ".$obj_tmp1->hrtable.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['comHr']=array();
 	$obj_tmp1->basic_select('laout_arr','comHr',$sql_comHr);
+		//$sql_comHr
+		//print_r($obj_tmp1->laout_arr['comHr']);
 	//===========================
 
 	//職位列表
@@ -62,6 +74,8 @@ switch($action){
 			  WHERE ".$obj_tmp1->jobtable.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['job']=array();
 	$obj_tmp1->basic_select('laout_arr','job',$sql_job);
+		//$sql_job
+		//print_r($obj_tmp1->laout_arr['job']);
 	//===========================
 
 

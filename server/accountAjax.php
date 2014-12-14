@@ -43,7 +43,7 @@ if(@$_POST['method']=='login')
 			$_SESSION['user']=array();
 			$_SESSION['user']['id']=$userId;
 			$_SESSION['user']['userPicture']=$obj_tmp1->laout_arr['loadUser'][0]['photo'];
-			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){$_SESSION['user']['userType']="2";}
+			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){$_SESSION['user']['userType']="2";$_SESSION['user']['company']=$obj_tmp1->laout_arr['loadUser'][0]['companyId'];}
 			else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){$_SESSION['user']['userType']="1";}
 			
 			$message=array('first'=>"success",'url'=>"index.php","actions"=>'login');
