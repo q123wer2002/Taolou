@@ -2,8 +2,10 @@
 include_once 'share.php';
 
 //page default
+$obj_tmp1->sysJobType="taolou_system_jobtype";
 
 $obj_tmp1->member='taolou_member_detail';
+$obj_tmp1->job="taolou_job";
 
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
@@ -14,7 +16,10 @@ if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);
 if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='none';}
 if(@$_SESSION['user']['userType'] != "" && @$getAction==""){
     if(@$_SESSION['user']['userType'] == '1'){$action='none';}
-    else if(@$_SESSION['user']['userType'] == '2'){$action='ManageJob';}
+    else if(@$_SESSION['user']['userType'] == '2'){
+        $action='ManageJob';
+        if(@$_SESSION['user']['company']!=""){@$companyId=$_SESSION['user']['company'];}
+    }
     else{$action='none';}
 }else{$action=laout_check($_GET['action']);}
 //===================
@@ -23,6 +28,18 @@ if(@$_SESSION['user']['userType'] != "" && @$getAction==""){
 switch(@$action){
 	case "postJob":
 
+    //抓取所有工作類別
+    $sql_systemJobTypes="SELECT ".$obj_tmp1->sysJobType.".*
+                         FROM ".$obj_tmp1->sysJobType."
+                         WHERE ".$obj_tmp1->sysJobType.".status='y'";
+    $obj_tmp1->laout_arr['sysJT']=array();
+    $obj_tmp1->basic_select('laout_arr','sysJT',$sql_systemJobTypes);
+        //echo $sql_systemJobTypes;
+        //print_r($obj_tmp1->laout_arr['sysJT']);
+    //===========================
+
+    //抓取所有地區
+    //===========================
 
 	$obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/company/postJob.html';
@@ -37,6 +54,16 @@ switch(@$action){
 
     case "ManageJob":
 
+    //catch all jobs from this company
+    $sql_showJob="SELECT ".$obj_tmp1->job.".*
+                  FROM ".$obj_tmp1->job."
+                  WHERE ".$obj_tmp1->job.".companyId='".$companyId."'
+                  AND ".$obj_tmp1->job.".status='y'";
+    $obj_tmp1->laout_arr['showJob']=array();
+    $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
+        //echo $sql_showJob;
+        //print_r($obj_tmp1->laout_arr['showJob']);
+    //===========================
 
     $obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/company/jobManage.html';

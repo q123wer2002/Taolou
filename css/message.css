@@ -23,7 +23,8 @@
   background: white;
   height: 500px;
   text-align: center;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x:hidden;
 }
 
 /* line 19, ../sass/message.sass */

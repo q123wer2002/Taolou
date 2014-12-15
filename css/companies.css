@@ -6,15 +6,15 @@
 			.img-wrapper img{width: 100%;}
 			h2{font-size: 22px;padding: 0;line-height: 40px;height: 40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 			.fullname{color: #a2a8b3;font-size: 16px;margin-left: 10px;}
-			.head-meta{line-height: 26px;height: 26px;padding: 2px 0;color: #9097a4;}
+			.head-meta{line-height: 26px;height: 26px;padding: 2px 0;color: #9097a4;font-size: 14px;}
 			.meta-item{display: inline-block;padding: 0 10px 0 0;width: 120px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 				.website{width: 200px;}
 				.website a{color: #36a9e5;text-decoration: none;font-size: 14px;}
 			.specialties {padding: 20px 0 0;line-height: 30px;}
-			.label {float: left;width: 100px;margin: 0;padding: 0;color: #a2a8b3;text-align: right;overflow: hidden;}
+			.label {float: left;width: 100px;margin: 0;padding: 0;color: #a2a8b3;text-align: right;overflow: hidden;font-size: 14px;}
 			.specialties ul {float: left;width: 490px;margin-left: 20px;margin-top: -10px;}
-			.specialties li {float: left;margin: 10px 10px 0 0;padding: 0 10px;height: 30px;background: #eceef1;border-radius: 4px;cursor: default;-webkit-user-select: none;}
-			.intro article {margin-left: 120px;display: block;}
+			.specialties li {float: left;margin: 10px 10px 0 0;padding: 0 10px;height: 30px;background: #eceef1;border-radius: 4px;cursor: default;-webkit-user-select: none;font-size: 14px;}
+			.intro article {margin-left: 120px;display: block;font-size: 14px;}
 
 		.company-nav {line-height: 30px;height: 30px;margin: 20px 0 0;padding: 0 30px;border-bottom: 1px solid #eceef1;}
 		.comp-nav-item.active {border-bottom: 1px solid #fff;background-color: #fff;}
@@ -27,6 +27,7 @@
 				.main {color: #a2a8b3;padding-right: 70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 					.job-author-name {color: #6b7485;}
 				.main a {color: #6b7485;font-weight: 700;}
+				.sub{font-size: 14px;}
 				.sub a {color: #a2a8b3;}
 				.sub a:hover{text-decoration: underline;}
 				.sub span{font-size: 16px;}
@@ -42,12 +43,13 @@
 		.team-member {margin: 0 0 20px;height: 50px;line-height: 25px;padding: 0 20px;color: #a2a8b3;}
 			.avatar {float: left;width: 50px;height: 50px;margin-right: 10px;}
 			.avatar img {width: 50px;height: 50px;border-radius: 2px;}
+		.memver-content{font-size: 14px;}
 		.name {color: #6b7485;}
 		.title {display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 	.company-aside .company-block+.company-block {border-top: 1px solid #ecedf0;}
-	.company-aside h3 {margin: 15px 0;padding: 0 20px;font-weight: 700;}
+	.company-aside h3 {margin: 15px 0;padding: 0 20px;font-weight: 700;font-size: 18px;}
 		.financing-body ul{list-style: none;}
-		.financing-body li {list-style: circle;margin: 0 0 20px 40px;padding: 0 20px 0 0;line-height: 24px;}
+		.financing-body li {list-style: circle;margin: 0 0 20px 40px;padding: 0 20px 0 0;line-height: 24px;font-size: 14px;}
 		.financing-body .time {float: right;}
 
 	.shareButton{width: 280px;background: #ffffff;}

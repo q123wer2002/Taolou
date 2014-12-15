@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2014 at 03:20 PM
+-- Generation Time: Dec 15, 2014 at 06:48 PM
 -- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -115,10 +115,12 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
   `jobName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `location` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `jobType` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `jobNature` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `salary` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `stock_option` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
@@ -127,9 +129,9 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 -- Dumping data for table `taolou_job`
 --
 
-INSERT INTO `taolou_job` (`id`, `title`, `companyId`, `jobName`, `location`, `jobType`, `salary`, `stock_option`, `detail`, `status`, `createDate`) VALUES
-(1, 'show something title', 1, 'IOS工程師', 'taiwan', 'software', '50000', 'y', '', 'y', '2014-12-12 06:04:05'),
-(2, 'show something title', 1, 'Android工程師', 'taiwan', 'software', '50000', '', '', 'y', '2014-12-12 06:04:09');
+INSERT INTO `taolou_job` (`id`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `updateDate`, `createDate`) VALUES
+(1, 'show something title', 1, 'IOS工程師', 'taiwan', 'software', '全職', '50000', 'y', '', 'y', '2014-12-15 16:45:38', '2014-12-15 17:44:33'),
+(2, 'show something title', 1, 'Android工程師', 'taiwan', 'software', '兼職', '50000', '', '', 'y', '2014-12-15 16:45:38', '2014-12-15 17:44:37');
 
 -- --------------------------------------------------------
 
@@ -392,7 +394,19 @@ CREATE TABLE IF NOT EXISTS `taolou_system_jobtype` (
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `taolou_system_jobtype`
+--
+
+INSERT INTO `taolou_system_jobtype` (`id`, `typeName`, `status`, `createDate`) VALUES
+(1, '技術相關', 'y', '2014-12-15 15:31:06'),
+(2, '產品相關', 'y', '2014-12-15 15:31:06'),
+(3, '營運相關', 'y', '2014-12-15 15:31:22'),
+(4, '設計相關', 'y', '2014-12-15 15:31:22'),
+(5, '市場/銷售相關', 'y', '2014-12-15 15:31:58'),
+(6, '職能相關', 'y', '2014-12-15 15:31:58');
 
 -- --------------------------------------------------------
 

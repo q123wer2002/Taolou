@@ -8,6 +8,13 @@
 	</h2>
 	<div class="nsb-block-content">
 		<div class="edit-unit">
+			<span class="edit-name">發佈標題</span>
+			<div class="edit-body">
+				<input type="text" placeholder="請輸入標題" class="required" ng-model='jobTitle'>
+				<span class="edit-hint">請輸入正確的標題</span>
+			</div>
+		</div>
+		<div class="edit-unit">
 			<span class="edit-name">職位名稱</span>
 			<div class="edit-body">
 				<input type="text" placeholder="請輸入職位名稱" class="required" ng-model='jobName'>
@@ -15,11 +22,17 @@
 			</div>
 		</div>
 		<div class="edit-unit">
+		<!-- 初始化工作類別 -->
+		<?php if(!empty($this->laout_arr['sysJT'])){
+				foreach($this->laout_arr['sysJT'] as $JTKey => $JTValue) { ?>
+			<input type='hidden' ng-init="JOBTYPE_NAME='<?php echo $JTValue['typeName']; ?>'">
+			<input type='hidden' ng-init="JOBTYPEINIT()">
+		<?php }} ?>
 			<span class="edit-name">職位類別</span>
 			<div class="edit-body">
 				<a href="javascript:;" ng-click='typeStatusFun()'><input type="text" placeholder="請選擇職位類別" class="required" ng-model='jobType' ng-click='typeStatusFun()' disabled><span class='icon dropList'></span></a>
 				<ul class='editDivSelectUl' ng-show='jobTypeStauts'>
-					<a href="javascript:;" ng-repeat='jobType in jobTypes'><li>{{jobType.name}}</li></a>
+					<a href="javascript:;" ng-repeat='jobType in jobTypes'><li ng-click='selectJobType(jobType)'>{{jobType.name}}</li></a>
 				</ul>
 				<!-- NEED -->
 				<span class="edit-hint">請準確的選擇職位類別</span>
@@ -41,7 +54,7 @@
 			<div class="edit-body">
 				<a href="javascript:;" ng-click='natureStatusFun()'><input type="text" placeholder="請選擇工作性質"  class="required" ng-model='jobNature' disabled><span class='icon dropList'></span></a>
 				<ul class='editDivSelectUl' ng-show='jobNatureStatus'>
-					<a href="javascript:;" ng-repeat='jobNature in jobNatures'><li>{{jobNature.name}}</li></a>
+					<a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
 				</ul>
 				<!-- NEED -->
 				<span class="edit-hint"></span>
@@ -51,7 +64,7 @@
 		<div class="edit-unit">
 			<span class="edit-name">起始月薪</span>
 			<div class="edit-body">
-				<input type="text" placeholder="請輸入純數字"  class="required" ng-model='jobSalary'>
+				<input type="text" placeholder="請輸入純數字"  onkeyup="value=this.value.replace(/\D+/g,'')" class="required" ng-model='jobSalary'>
 				<span class="edit-hint">請輸入起始月薪，<br>格式為數字，單位為「台幣」</span>
 			</div>
 		</div>
@@ -70,9 +83,10 @@
 				<textarea style="height:220px;width:500px;" placeholder="請輸入職位描述，愈詳細愈好"  class="required" ng-model='jobDetail'></textarea>
 			</div>
 		</div>
+		{{jobError}}
 		<div class="edit-unit">
-			<a href="javascript:;" class="postJobBut">發佈職位</a>
-			<a href="javascript:;" class="postJobBut" style='background:#eb6a64;'>取消</a>
+			<a href="javascript:;" class="postJobBut" ng-click='saveJob()'>發佈職位</a>
+			<a href="companyPost.php" class="postJobBut" style='background:#eb6a64;'>取消</a>
 		</div>
 	</div>
 </div>
