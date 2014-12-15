@@ -1,13 +1,22 @@
 .nsb-block {background-color: #fff;border-radius: 2px;}
-.section{display: block;}
+.edit{display: block;width: 800px;margin: auto;}
 .nsb-block h2 {position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;}
 	.nsb-block-content {border-top: 1px solid #eceef1;overflow: hidden;}
-		.edit-unit {position: relative;padding: 30px;border-bottom: 1px solid #eceef1;height: auto;}
+		.edit-unit {position: relative;padding: 30px;border-bottom: 1px solid #eceef1;height: auto;float: left;width: 964px;}
 			.edit-name {display: block;float: left;height: 50px;line-height: 50px;width: 75px;padding-right: 20px;text-align: right;font-size: 16px;}
-			.edit-body {position: relative;float: left;width: 560px;font-size: 0;}
-			input[type=text] {font-size: 16px;height: 16px;line-height: 16px;padding: 18px 15px 16px;width: 270px;border: none;border-radius: 3px;background-color: #ecedf0;-webkit-transition: background-color .2s linear,-webkit-box-shadow .2s linear;transition: background-color .2s linear,box-shadow .2s linear;}
-			input, textarea {font: 400 14px/1 "Helvetica Neue",Helvetica,"Hiragino Sans GB",STHeiti,"WenQuanYi Micro Hei","Microsoft Yahei",sans-serif;color: #6b7485;}
-			.edit-hint {display: block;float: right;width: 230px;line-height: 25px;font-size: 13px;color: #a2a8b3;}
+			.edit-body {position: relative;float: left;width: 600px;font-size: 0;}
+			.edit-hint {display: block;float: right;line-height: 25px;font-size: 13px;color: #a2a8b3;}
 			.select-wrapper {float: left;margin: 0;width: 300px;height: 50px;}
+				.required{border:none;background: #eceef1;width: 300px;height: 50px;border-radius: 3px;padding: 10px 5px;font-size: 16px;line-height: 16px;color: #6b7485;margin-left: 30px;font-family: '微軟正黑體';}
+			.checkbox{font-size: 16px;height: 20px;width: 200px;vertical-align: middle;line-height: 16px;z-index: 6;}
+			.checkbox:hover{cursor: pointer;}
 
+			.editDivSelectUl{position: absolute;text-align: center;z-index: 6;overflow: auto;width: 300px;height: 200px;left: 30px;}
+			.editDivSelectUl a{text-decoration: none;color: #ffffff;}
+			.editDivSelectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 16px;color: #ffffff;height: 39px;line-height: 39px;}
+			.editDivSelectUl li:hover{background-color: #d94600;}
+			.dropList{background-position: -136px -135px;width: 16px;height: 12px;position: absolute;top: 20px;left: 300px;}
+
+
+		.postJobBut{color: #ffffff;background: #36a9e5;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}
 
