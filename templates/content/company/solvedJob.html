@@ -4,16 +4,14 @@
 
 <section class='selectCompany'>
     <h3>
-        <span><span class='icon folder'></span>有效職位</span>
+        <span><span class='icon folder'></span>已解決職位</span>
         <a class='backMessTitle' href="companyPost.php?action=postJob"><span class='icon addicon'></span>發佈職位</a>
     </h3>
 </section>
 
 <div class='rule'>
 	<?php if(empty($this->laout_arr['showJob'])){ ?>
-    了解「人才加速招聘」计划，<br>
-    联系我们：Email: help@nashangban.com <br>
-    QQ: 2519595611
+    <p><span class='icon newspaper'></span>目前沒有解決職位喔</p>
     <?php }else{ ?>
     <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue){ ?>
     <div class='showJobDiv'>
@@ -34,7 +32,6 @@
 			</p>
 
 			<a href="companyPost.php?action=postJob&jobId=" class='editJob' style='background:#eb6a64'>刪除職位</a>
-			<a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob'>編輯職位</a>
     	</div>
     </div>
     <?php }} ?>

@@ -7,6 +7,26 @@
 		<span>發佈職位</span>
 	</h2>
 	<div class="nsb-block-content">
+		<?php if(!empty($this->laout_arr['showJob'])){
+				foreach($this->laout_arr['showJob'] as $jobKey => $jobValue){ ?>
+		<input type='hidden' ng-init="jobTitle='<?php echo $jobValue['title']; ?>'">
+		<input type='hidden' ng-init="jobName='<?php echo $jobValue['jobName']; ?>'">
+		<input type='hidden' ng-init="jobType='<?php echo $jobValue['jobType']; ?>'">
+		<input type='hidden' ng-init="jobLocation='<?php echo $jobValue['location']; ?>'">
+		<input type='hidden' ng-init="jobNature='<?php echo $jobValue['jobNature']; ?>'">
+		<input type='hidden' ng-init="jobSalary='<?php echo $jobValue['salary']; ?>'">
+		<input type='hidden' ng-init="jobStockOption='<?php echo $jobValue['stock_option']; ?>'">
+		<input type='hidden' ng-init="jobDetail='<?php echo $jobValue['detail']; ?>'">
+		<?php }} ?>
+		<div class="edit-unit">
+			<span class="edit-name">職位狀態</span>
+			<div class="edit-body">
+				<select>
+				</select>
+				<input type="text" placeholder="請輸入標題" class="required">
+				<span class="edit-hint">請選擇職位狀態</span>
+			</div>
+		</div>
 		<div class="edit-unit">
 			<span class="edit-name">發佈標題</span>
 			<div class="edit-body">

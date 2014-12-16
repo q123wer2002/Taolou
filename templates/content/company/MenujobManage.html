@@ -2,21 +2,37 @@
 <style type="text/css">
     .subMenu{text-align: center;padding: 30px;}
     .rule{text-align: center;}
-    .postJobBut{color: #ffffff;background: #36a9e5;padding: 8px 5px;border-radius: 3px;font-size: 14px;height: 14px;}
+    .postJobBut{color: #ffffff;background: #36a9e5;padding: 8px 5px;border-radius: 3px;font-size: 16px;height: 14px;margin-left: 60px;}
+    .postJobBut:hover{cursor: pointer;}
     .joblist{border-bottom: 1px solid #eceef1;width: 680px;padding: 20px;text-align: left;}
     .joblist h2{font-size: 22px;}
     .jobName{font-size: 18px;}
     .meta-item{display: inline-block;padding: 0;width: 80px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 16px;}
     .found-time,.stockOption{width: 120px;}
     .editJob{color: #ffffff;background:#17b385;font-size: 15px;border-radius: 3px;padding: 7px 5px;float: right;margin-right: 10px;margin-top: -30px;}
+    .itemMenu{display: block;}
 </style>
 
 <nav class='partner'>
 	<h3 class='h3titile'>
         <span>職位管理</span>
     </h3>
-	<div class='subMenu'>
+	<div class='partnerList'>
+        <?php if(empty($this->laout_arr['allShowJob'])){ ?>
         <p>您還沒有任何職位</p><br><br>
-        <a href="companyPost.php?action=postJob" class='postJobBut'>發佈職位</a>
+        <span class='postJobBut'>發佈職位</span>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('.postJobBut').click(function(){window.open('companyPost.php?action=postJob','_self');})
+        });
+        </script>
+        <?php }else{ ?>
+        <a href="companyPost.php?action=ManageJob" class='itemMenu'>
+            <span class='job_management'>有效職位</span>
+        </a>
+        <a href="companyPost.php?action=finded" class='itemMenu'>
+            <span class='job_management'>已解決職位</span>
+        </a>
+        <?php } ?>
 	</div>
 </nav>
