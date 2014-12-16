@@ -22,4 +22,11 @@ if(@$_POST['method']=="saveJob"){
 	echo json_encode($message);
 	exit;
 }
+else if(@$_POST['method']=="updateJob"){
+	$sql_updateJob="UPDATE ".$obj_tmp1->job." SET title='".$_POST['title']."',jobName='".$_POST['jobName']."',location='".$_POST['location']."',jobType='".$_POST['jobType']."',jobNature='".$_POST['jobNature']."',salary='".$_POST['salary']."',stock_option='".$_POST['stock_option']."',detail='".$_POST['detail']."',status='".$_POST['status']."',updateDate=CURRENT_TIMESTAMP WHERE id='".$_POST['ID']."'";
+	//mysql_query($sql_updateJob);
 
+	$message=array("first"=>"ok");
+	echo json_encode($message);
+	exit;
+}

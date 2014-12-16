@@ -1,19 +1,27 @@
 TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$http){
 
 	//init
+	$scope.jobID='';
+
 	$scope.jobTitle='';
 	$scope.jobName='';
 	$scope.jobType='';
-	$scope.jobLocation='';
+	$scope.jobLocation='台北';
 	$scope.jobNature='';
 	$scope.jobSalary='';
 	$scope.jobStockOption='';
 	$scope.jobDetail='';
 
+	$scope.jobSatus='';
+
 	$scope.jobStockOption=false;
 	$scope.jobTypeStauts=false;
 	$scope.jobLocationStatus=false;
 	$scope.jobNatureStatus=false;
+
+	$scope.jobshowStatus=false;
+
+
 
 
 	$scope.postJob=[
@@ -38,6 +46,10 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 		if($scope.jobNatureStatus){$scope.jobNatureStatus=false;}
 		else{$scope.jobNatureStatus=true;}
 	}
+	$scope.showStatusFun=function(){
+		if($scope.jobshowStatus){$scope.jobshowStatus=false;}
+		else{$scope.jobshowStatus=true;}
+	}
 
 	//select into input (function)
 	$scope.selectJobType=function(item){
@@ -48,6 +60,10 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 	$scope.selectJobNature=function(item){
 		$scope.jobNature=item.name;
 		$scope.jobNatureStatus=false;
+	}
+	$scope.slectjobStatus=function(item){
+		$scope.jobSatus=item.name;
+		$scope.jobshowStatus=false;
 	}
 
 
@@ -72,6 +88,12 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 		{'name':'實習','tag':'1'},
 	];
 
+	$scope.jobStatus=[
+		{'name':'有效職位'},
+		{'name':'已解決'},
+		{'name':'無效職位'}
+	];
+
 	//save job into server
 	$scope.saveJob=function(){
 		if($scope.jobTitle==""){$scope.jobError="請輸入'標題'";}
@@ -83,8 +105,12 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 		else if($scope.jobDetail==""){$scope.jobError="請輸入職位'描述'";}
 		else{
 			$scope.jobError="";
-			var jobObject={"method":"saveJob","title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail};
-
+			//if($scope.jobID==""){
+				var jobObject={"method":"saveJob","title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail};
+			
+			//}else{
+				//var jobObject={"method":"updateJob","ID":$scope.jobID,"title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail,"status":$scope.jobStatus};
+			//}
 			$http({
 				method:'POST',
 				url:'server/postJobAjax.php',
@@ -97,7 +123,7 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 			}).
 			error(function(json){
 				console.warn(json);
-				$scope.eduErrorMes='發生不可預測的錯誤';
+				$scope.jobError='發生不可預測的錯誤';
 			});
 		}
 	}

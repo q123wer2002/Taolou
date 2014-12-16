@@ -33,7 +33,7 @@ switch(@$action){
         //catch job from this company
         $sql_showJob="SELECT ".$obj_tmp1->job.".*
                       FROM ".$obj_tmp1->job."
-                      WHE`RE ".$obj_tmp1->job.".id='".$jobId."'
+                      WHERE ".$obj_tmp1->job.".id='".$jobId."'
                       AND ".$obj_tmp1->job.".status='y'";
         $obj_tmp1->laout_arr['showJob']=array();
         $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
@@ -56,7 +56,7 @@ switch(@$action){
     //===========================
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/company/postJob.html';
+    $obj_tmp1->content_html='content/company/Jobpost.html';
     //$obj_tmp1->subMenu='content/user/MenuuserSetting.html';
 
     //設定版面
@@ -92,7 +92,7 @@ switch(@$action){
 
 
     $obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/company/jobManage.html';
+    $obj_tmp1->content_html='content/company/Jobmanage.html';
     $obj_tmp1->subMenu='content/company/MenujobManage.html';
 
     //設定版面
@@ -130,7 +130,45 @@ switch(@$action){
 
 
     $obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/company/solvedJob.html';
+    $obj_tmp1->content_html='content/company/Jobsolved.html';
+    $obj_tmp1->subMenu='content/company/MenujobManage.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+    $obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+//=======================================
+
+    break;
+
+    case "invalid":
+
+    //catch "all" jobs from this company
+    $sql_allShowJob="SELECT ".$obj_tmp1->job.".*
+                  FROM ".$obj_tmp1->job."
+                  WHERE ".$obj_tmp1->job.".companyId='".$companyId."'";
+    $obj_tmp1->laout_arr['allShowJob']=array();
+    $obj_tmp1->basic_select('laout_arr','allShowJob',$sql_allShowJob);
+        //echo $sql_allShowJob;
+        //print_r($obj_tmp1->laout_arr['allShowJob']);
+    //===========================
+
+    //catch all solved jobs from this company
+    $sql_showJob="SELECT ".$obj_tmp1->job.".*
+                  FROM ".$obj_tmp1->job."
+                  WHERE ".$obj_tmp1->job.".companyId='".$companyId."'
+                  AND ".$obj_tmp1->job.".status='n'";
+    $obj_tmp1->laout_arr['showJob']=array();
+    $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
+        //echo $sql_showJob;
+        //print_r($obj_tmp1->laout_arr['showJob']);
+    //===========================
+
+
+
+    $obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/company/Jobinvalid.html';
     $obj_tmp1->subMenu='content/company/MenujobManage.html';
 
     //設定版面

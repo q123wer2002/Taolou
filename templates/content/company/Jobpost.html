@@ -9,6 +9,7 @@
 	<div class="nsb-block-content">
 		<?php if(!empty($this->laout_arr['showJob'])){
 				foreach($this->laout_arr['showJob'] as $jobKey => $jobValue){ ?>
+		<input type='hidden' ng-init="jobID='<?php echo $jobValue['id']; ?>'">
 		<input type='hidden' ng-init="jobTitle='<?php echo $jobValue['title']; ?>'">
 		<input type='hidden' ng-init="jobName='<?php echo $jobValue['jobName']; ?>'">
 		<input type='hidden' ng-init="jobType='<?php echo $jobValue['jobType']; ?>'">
@@ -17,16 +18,18 @@
 		<input type='hidden' ng-init="jobSalary='<?php echo $jobValue['salary']; ?>'">
 		<input type='hidden' ng-init="jobStockOption='<?php echo $jobValue['stock_option']; ?>'">
 		<input type='hidden' ng-init="jobDetail='<?php echo $jobValue['detail']; ?>'">
-		<?php }} ?>
+		<input type='hidden' ng-init="jobSatus='<?php if($jobValue['status']=='y'){echo "有效職位";}else if($jobValue['status']=='F'){echo "已解決";}else if($jobValue['status']=='n'){echo "無效職位";} ?>'">
 		<div class="edit-unit">
 			<span class="edit-name">職位狀態</span>
 			<div class="edit-body">
-				<select>
-				</select>
-				<input type="text" placeholder="請輸入標題" class="required">
+				<a href="javascript:;" ng-click='showStatusFun()'><input type="text" placeholder="請選擇職位狀態" class="required" ng-model='jobSatus' disabled><span class='icon dropList'></span></a>
+				<ul class='editDivSelectUl' ng-show='jobshowStatus'>
+					<a href="javascript:;" ng-repeat='jobstauts in jobStatus'><li ng-click='slectjobStatus(jobstauts)'>{{jobstauts.name}}</li></a>
+				</ul>
 				<span class="edit-hint">請選擇職位狀態</span>
 			</div>
 		</div>
+		<?php }} ?>
 		<div class="edit-unit">
 			<span class="edit-name">發佈標題</span>
 			<div class="edit-body">
@@ -50,7 +53,7 @@
 		<?php }} ?>
 			<span class="edit-name">職位類別</span>
 			<div class="edit-body">
-				<a href="javascript:;" ng-click='typeStatusFun()'><input type="text" placeholder="請選擇職位類別" class="required" ng-model='jobType' ng-click='typeStatusFun()' disabled><span class='icon dropList'></span></a>
+				<a href="javascript:;" ng-click='typeStatusFun()'><input type="text" placeholder="請選擇職位類別" class="required" ng-model='jobType' disabled><span class='icon dropList'></span></a>
 				<ul class='editDivSelectUl' ng-show='jobTypeStauts'>
 					<a href="javascript:;" ng-repeat='jobType in jobTypes'><li ng-click='selectJobType(jobType)'>{{jobType.name}}</li></a>
 				</ul>
@@ -61,7 +64,7 @@
 		<div class="edit-unit">
 			<span class="edit-name">工作地點</span>
 			<div class="edit-body">
-				<a href="javascript:;" ng-click='locationStatusFun()'><input type="text" placeholder="請選擇辦公地點"  class="required" ng-model='jobLocation' ng-click='locationStatusFun()' disabled><span class='icon dropList'></span></a>
+				<a href="javascript:;" ng-click='locationStatusFun()'><input type="text" placeholder="請選擇辦公地點"  class="required" ng-model='jobLocation' disabled><span class='icon dropList'></span></a>
 				<ul class='editDivSelectUl' ng-show='jobLocationStatus'>
 					<a href="javascript:;" ng-repeat='jobLocation in jobLocations'><li>{{jobLocation.name}}</li></a>
 				</ul>
@@ -105,7 +108,7 @@
 		</div>
 		{{jobError}}
 		<div class="edit-unit">
-			<a href="javascript:;" class="postJobBut" ng-click='saveJob()'>發佈職位</a>
+			<a href="javascript:;" class="postJobBut" ng-click='saveJob()' style='background:#17b385;'>保存</a>
 			<a href="companyPost.php" class="postJobBut" style='background:#eb6a64;'>取消</a>
 		</div>
 	</div>
