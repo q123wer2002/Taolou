@@ -3,21 +3,23 @@
 <div class='comapniesInfoDiv'>
 	<div class='companyDiv'>
 		<div class='company_head'>
+		<?php if(!empty($this->laout_arr['company'])){
+				foreach($this->laout_arr['company'] as $ComKey => $ComValue){ ?>
 			<div class="img-wrapper">
-				<img src="http://nsb-cdn.b0.upaiyun.com/avatars/6db1/38e3/6db138e3a5301013_large.png" alt="厚学网的公司图标">
+				<img src="<?php echo $ComValue['logo']; ?>">
 			</div>
 			<h2>
-				厚学网
-				<span class="fullname">南京首屏信息技术有限公司</span>
+				<?php echo $ComValue['productName']; ?>
+				<span class="fullname"><?php echo $ComValue['companyName']; ?></span>
 			</h2>
 			<a href="companyEdit.php" class='editCompany'>編輯公司訊息</a>
 			<p class="head-meta">
-				<span class="meta-item size"><span class="icon people"></span>50-200 人</span>
-				<span class="meta-item location"><span class="icon locationicon"></span>南京</span>
-				<span class="meta-item found-time"><span class="icon clock"></span>2010 年 7 月</span>
+				<span class="meta-item size"><span class="icon people"></span><?php echo $ComValue['memberSize']; ?> 人</span>
+				<span class="meta-item location"><span class="icon locationicon"></span><?php echo $ComValue['location']; ?></span>
+				<span class="meta-item found-time"><span class="icon clock"></span><?php echo $ComValue['createDate']; ?></span>
 			</p>
 			<p class="head-meta">
-				<span class="meta-item website"><span class="icon global"></span><a target="_blank" href="http://www.houxue.com">www.houxue.com</a></span>
+				<span class="meta-item website"><span class="icon global"></span><a target="_blank" href="http://www.houxue.com"><?php echo $ComValue['website']; ?></a></span>
 			</p>
 			<div class="specialties clearfix">
 				<span class="label">专长领域</span>
@@ -29,30 +31,36 @@
 			</div>
 			<div class="intro">
 				<span class="label">公司介绍</span>
-				<article>厚学网(www.houxue.com)是一家专注于教育培训行业,为用户提供培训课程指南及报名服务的平台网站。</article>
+				<article><?php echo $ComValue['detail']; ?></article>
 			</div>
 		</div>
 
 		<div class="company-nav">
 			<span class="comp-nav-item jobs active">职位</span>
 		</div>
-
+		<?php if(!empty($this->laout_arr['job'])){
+				foreach($this->laout_arr['job'] as $jobKey => $jobValue) { ?>
 		<div class='joblistDiv'>
-			<div class="job-list-item" ng-repeat='i in [0,1,2,3,4,5]'>
+			<div class="job-list-item">
 				<a href="javascript:;" class="job-author-avatar"><img src="http://tp4.sinaimg.cn/1335661931/180/5627718740/0" alt="周女士的头像"></a>
 				<div class="main">
 					<span class="job-author-name">周女士</span>
 					<span>發佈職位</span>
-					<a href="/jobs/6hJWx9">客服</a>
+					<a href="/jobs/6hJWx9"><?php echo $jobValue['jobName']; ?> </a>
 				</div>
 				<div class="sub">
 					<a href="/companies/NFxLOM" class="job-company"><span class="icon newspaper"></span>厚学网</a>
-					<span class="job-loc jobmargin"><span class="icon locationicon"></span>南京</span>
-					<span class="job-type jobmargin"><span class="icon jobtypeicon"></span>全职</span>
-					<span class="job-salary jobmargin"><span class="icon salaryicon"></span>2500</span>
+					<span class="job-loc jobmargin"><span class="icon locationicon"></span><?php echo $jobValue['location']; ?></span>
+					<span class="job-type jobmargin"><span class="icon jobtypeicon"></span><?php echo $jobValue['jobNature']; ?></span>
+					<span class="job-salary jobmargin"><span class="icon salaryicon"></span><?php echo $jobValue['salary']; ?></span>
+
+					<?php if($jobValue['stock_option']=='y'){ ?>
+					<span class="job-type jobmargin"><span class="icon stockicon"></span>提供股票期權</span>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
+		<?php }} ?>
 
 		<div class='dividePage'>
 	        <div class='pageBar'>
@@ -69,7 +77,7 @@
 						<img src="http://nsb-cdn.b0.upaiyun.com/avatars/11f6/a5f9/11f6a5f909a6f529_medium.png" alt="">
 					</div>
 					<div class="memver-content">
-						<span class="name">施宜平</span>
+						<span class="name"><?php echo $ComValue['CEO']; ?></span>
 						<span class="title">CEO</span>
 					</div>
 				</div>
@@ -82,7 +90,7 @@
 				</ul>
 			</div>
 		</section>
-
+		<?php }} ?>
 		<section class="nsb-block shareButton">
 			<h2>分享</h2>
 			<div class='shareType'>

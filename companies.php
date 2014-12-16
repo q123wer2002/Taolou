@@ -36,7 +36,7 @@ switch($action){
 	//公司技能標籤
 	$sql_comSkill="SELECT ".$obj_tmp1->companySkill.".*
 				   FROM ".$obj_tmp1->companySkill."
-				   LEFT JOIN ".$obj_tmp1->companytable." ON ".$obj_tmp1->companySkill.".companyId=".$obj_tmp1->companytable.".id
+				   LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companySkill.".companyId=".$obj_tmp1->companyTable.".id
 				   WHERE ".$obj_tmp1->companySkill.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['comskill']=array();
 	$obj_tmp1->basic_select('laout_arr','comskill',$sql_comSkill);
@@ -47,7 +47,7 @@ switch($action){
 	//公司融資階段
 	$sql_comFinance="SELECT ".$obj_tmp1->financetable.".*
 				     FROM ".$obj_tmp1->financetable."
-				     LEFT JOIN ".$obj_tmp1->companytable." ON ".$obj_tmp1->financetable.".companyId=".$obj_tmp1->companytable.".id
+				     LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->financetable.".companyId=".$obj_tmp1->companyTable.".id
 				     WHERE ".$obj_tmp1->financetable.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['comFinance']=array();
 	$obj_tmp1->basic_select('laout_arr','comFinance',$sql_comFinance);
@@ -58,7 +58,7 @@ switch($action){
 	//公司人資帳號
 	$sql_comHr="SELECT ".$obj_tmp1->hrtable.".*
 				FROM ".$obj_tmp1->hrtable."
-				LEFT JOIN ".$obj_tmp1->companytable." ON ".$obj_tmp1->hrtable.".companyId=".$obj_tmp1->companytable.".id
+				LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->hrtable.".companyId=".$obj_tmp1->companyTable.".id
 				WHERE ".$obj_tmp1->hrtable.".companyHr='y'
 				AND ".$obj_tmp1->hrtable.".companyId='".$obj_tmp1->tmp_comanyId."'";
 	$obj_tmp1->laout_arr['comHr']=array();
@@ -70,11 +70,12 @@ switch($action){
 	//職位列表
 	$sql_job="SELECT ".$obj_tmp1->jobtable.".*
 			  FROM ".$obj_tmp1->jobtable."
-			  LEFT JOIN ".$obj_tmp1->companytable." ON ".$obj_tmp1->jobtable.".companyId=".$obj_tmp1->companytable.".id
-			  WHERE ".$obj_tmp1->jobtable.".companyId='".$obj_tmp1->tmp_comanyId."'";
+			  LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->jobtable.".companyId=".$obj_tmp1->companyTable.".id
+			  WHERE ".$obj_tmp1->jobtable.".companyId='".$obj_tmp1->tmp_comanyId."'
+			  AND ".$obj_tmp1->jobtable.".status='y'";
 	$obj_tmp1->laout_arr['job']=array();
 	$obj_tmp1->basic_select('laout_arr','job',$sql_job);
-		//$sql_job
+		//echo $sql_job;
 		//print_r($obj_tmp1->laout_arr['job']);
 	//===========================
 

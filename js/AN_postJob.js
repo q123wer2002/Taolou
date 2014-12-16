@@ -6,7 +6,7 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 	$scope.jobTitle='';
 	$scope.jobName='';
 	$scope.jobType='';
-	$scope.jobLocation='台北';
+	$scope.jobLocation='';
 	$scope.jobNature='';
 	$scope.jobSalary='';
 	$scope.jobStockOption='';
@@ -105,12 +105,12 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 		else if($scope.jobDetail==""){$scope.jobError="請輸入職位'描述'";}
 		else{
 			$scope.jobError="";
-			//if($scope.jobID==""){
+			if($scope.jobID==""){
 				var jobObject={"method":"saveJob","title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail};
 			
-			//}else{
-				//var jobObject={"method":"updateJob","ID":$scope.jobID,"title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail,"status":$scope.jobStatus};
-			//}
+			}else{
+				var jobObject={"method":"updateJob","ID":$scope.jobID,"title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail,"status":$scope.jobStatus};
+			}
 			$http({
 				method:'POST',
 				url:'server/postJobAjax.php',

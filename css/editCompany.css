@@ -1,57 +1,25 @@
-.container{
-}
-button {
-    position: relative;
-    float: right;
-    line-height: 40px;
-    height: 40px;
-    padding: 0px;
-    width: 100px;
-    margin: -10px 0px 0px;
-    font-size: 14px;
-}
-.green-btn {
-    background-color: #17B385;
-}
-.purple-btn {
-    background-color: #707B91;
-}
-.green-btn ,.purple-btn{
-    height: 40px;
-    line-height: 40px;
-    border-radius: 3px;
-    font-size: 16px;
-    color: #FFF;
-    text-decoration: none;
-    padding: 10px 5px;
-}
-.edit-name {
-    height: 50px;
-    line-height: 50px;
-    width: 75px;
-    padding-right: 20px;
-    font-size: 16px;
-}
-.company_mark{
-    width: 650px;
-	height: auto;
-    line-height: 10px;
-    border-bottom: 1px solid #ECEDF0;
-    padding:30px;
-}
-.with-edit {
-    width: 670px;
-    height: auto;
-    line-height: 20px;
-    font-size: 16px;
-    padding: 30px 20px 30px 30px;
-    border-bottom: 1px solid #ECEDF0;
-}
-.about_company ul {}
-.about_company ul li{list-style: none;margin: 15px;padding: 14px 12px;background: #ecedf0;width: 270px;border-radius: 5px;}
-.about_company ul li input{border: none;background: #ecedf0;line-height: 14px;width: 270px;height: 18px;font-size:14px;}
-.about_company ul li textarea{width: 270px;height: 100px;border: none;background: #ecedf0;}
+.green-btn {background-color: #17B385;color: #ffffff;padding: 8px 5px;border-radius: 3px;font-size: 16px;}
+.purple-btn {background-color: #707B91;}
+.nsb-block {background-color: #fff;border-radius: 2px;}
+.edit{display: block;width: 800px;margin: auto;}
+.nsb-block h2 {position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;}
+    .nsb-block-content {border-top: 1px solid #eceef1;overflow: hidden;}
+        .tagName{font-weight: 700;text-decoration: underline;}
+        .edit-unit {position: relative;padding: 30px;border-bottom: 1px solid #eceef1;height: auto;float: left;width: 734px;}
+            .edit-name {display: block;float: left;height: 50px;line-height: 50px;width: 120px;padding-right: 20px;text-align: right;font-size: 16px;}
+            .edit-body {position: relative;float: left;width: 500px;font-size: 0;}
+            .edit-hint {display: block;float: right;line-height: 25px;font-size: 13px;color: #a2a8b3;}
+            .select-wrapper {float: left;margin: 0;width: 300px;height: 50px;}
+                .required{border:none;background: #eceef1;width: 300px;height: 50px;border-radius: 3px;padding: 10px 5px;font-size: 16px;line-height: 16px;color: #6b7485;margin-left: 30px;font-family: '微軟正黑體';}
+            .checkbox{font-size: 16px;height: 20px;width: 200px;vertical-align: middle;line-height: 16px;z-index: 6;}
+            .checkbox:hover{cursor: pointer;}
 
-.postInfoDiv{margin: auto;width: 720px;background: #ffffff;position: relative;}
-    .showComPhoto{border: 1px solid #000000;width: 150px;height: 150px;}
-    .about_company{width: 660px;padding: 30px;border-bottom: 1px solid #ECEDF0;}
+            .editDivSelectUl{position: absolute;text-align: center;z-index: 6;overflow: auto;width: 300px;height: 200px;left: 30px;}
+            .editDivSelectUl a{text-decoration: none;color: #ffffff;}
+            .editDivSelectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 16px;color: #ffffff;height: 39px;line-height: 39px;}
+            .editDivSelectUl li:hover{background-color: #d94600;}
+            .dropList{background-position: -136px -135px;width: 16px;height: 12px;position: absolute;top: 50px;left: 450px;}
+
+
+        .postJobBut{color: #ffffff;background: #36a9e5;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}
+

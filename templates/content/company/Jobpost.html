@@ -108,7 +108,11 @@
 		</div>
 		{{jobError}}
 		<div class="edit-unit">
+			<?php if(!empty($this->laout_arr['showJob'])){ ?>
 			<a href="javascript:;" class="postJobBut" ng-click='saveJob()' style='background:#17b385;'>保存</a>
+			<?php }else{ ?>
+			<a href="javascript:;" class="postJobBut" ng-click='saveJob()'>發佈職位</a>
+			<?php } ?>
 			<a href="companyPost.php" class="postJobBut" style='background:#eb6a64;'>取消</a>
 		</div>
 	</div>

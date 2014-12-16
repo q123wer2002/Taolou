@@ -40,7 +40,7 @@ switch(@$action){
             //echo $sql_showJob;
             //print_r($obj_tmp1->laout_arr['showJob']);
         //===========================
-    }
+    }else{$obj_tmp1->laout_arr['showJob']=array();}
 
     //抓取所有工作類別
     $sql_systemJobTypes="SELECT ".$obj_tmp1->sysJobType.".*

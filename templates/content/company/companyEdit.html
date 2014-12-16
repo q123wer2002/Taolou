@@ -1,59 +1,104 @@
 <link href="css/editCompany.css" rel="stylesheet">
+<script type="text/javascript" src='js/AN_companyEdit.js'></script>
 
-    <div class='postInfoDiv'>
-
-    	<div class='container'>
-            <h2 class="with-edit">
-                <span>編輯公司訊息</span>
-                <a href="javascript:;" class="green-btn">保存變更</a>
-            </h2>
-
-            <div class="company_mark">
-                <span class="edit-name">公司圖像</span>
-                <div class='showComPhoto'></div>
-                <a href="javascript:;" class="purple-btn">上傳</a>
-            </div>
-
+<div class="nsb-block edit" ng-controller='Taolou_postJob'>
+    <h4>
+        <span class="icon pencialicon"></span>
+        <span>編輯公司訊息</span>
+    </h4>
+	<div class="nsb-block-content">
+        <div class="edit-unit">
+            <span class="edit-name">公司圖像</span>
+            <span class="edit-hint">請輸入正確的標題</span>
         </div>
-
-
-		<div class='about_company'>
-            <h4 class='tagName'>公司基本訊息</h4>
-            <ul>
-                <li><input type='text' placeholder='公司簡稱'></li>
-                <li><input type='text' placeholder='公司全稱'></li>
-                <li><input type='text' placeholder='網站'></li>
-                <li><input type='text' placeholder='Facebook'></li>
-                <li><input type='text' placeholder='所在城市'></li>
-                <li><input type='text' placeholder='公司成立年份'></li>
-                <li><input type='text' placeholder='公司規模'></li>
-            </ul>
-            <hr>
-            <h4 class='公司技能'>公司專長領域</h4>
-            <ul>
-                <li><input type='text' placeholder='special skill'></li>
-            </ul>
-            <hr>
-            <h4 class='tagName'>公司簡介</h4>
-            <ul>
-                <li><textarea name="Content" placeholder='請簡單的介紹公司，勿長篇大論'></textarea></li>
-            </ul>
-            <hr>
-            <h4 class='tagName'>管理團隊</h4>
-            <ul>
-                <li><input type='text' placeholder='公司CEO姓名'></li>
-                <li>圖像<div class='showComPhoto'></div></li>
-                <a href="javascript:;" class="purple-btn">上傳圖片</a>
-            </ul>
-            <hr>
-            <h4 class='tagName'>管理團隊</h4>
-            <ul>
-                <li><input type='text' placeholder='融資階段'></li>
-                <li><input type='text' placeholder='融資年份月'></li>
-            </ul>
-            <hr>
-            <a href="javascript:;" class="green-btn">保存</a>
-		</div>
-    	
-
     </div>
+
+	<div class="nsb-block-content">
+        <h5 class='tagName'>公司基本訊息</h5>
+        <div class="edit-unit">
+            <span class="edit-name">公司簡稱</span>
+            <input type="text" placeholder="請輸入公司簡稱" class="required">
+            <span class="edit-hint">請輸入正確的簡稱</span>
+        </div>
+        <div class="edit-unit">
+            <span class="edit-name">公司全稱</span>
+            <input type="text" placeholder="請輸入公司全稱" class="required">
+            <span class="edit-hint">請輸入正確的名稱</span>
+        </div>
+        <div class="edit-unit">
+            <span class="edit-name">公司網站</span>
+            <input type="text" placeholder="請輸入公司網站" class="required">
+            <span class="edit-hint">請輸入正確的網址</span>
+        </div>
+        <div class="edit-unit">
+            <span class="edit-name">公司Facebook</span>
+            <input type="text" placeholder="請輸入公司Facebook" class="required">
+            <span class="edit-hint">請輸入公司facebook粉絲團</span>
+        </div>
+        <div class="edit-unit">
+            <span class="edit-name">所在城市</span>
+            <a href="javascript:;"><input type="text" placeholder="請選擇公司位置"  class="required" disabled><span class='icon dropList'></span></a>
+                <!-- NEED -->
+                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
+                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
+                </ul>
+            <span class="edit-hint">請輸入正確的城市</span>
+        </div>
+        <div class="edit-unit">
+            <span class="edit-name">公司成立年份</span>
+            <a href="javascript:;"><input type="text" placeholder="請選擇公司成立年月"  class="required" disabled><span class='icon dropList'></span></a>
+                <!-- NEED -->
+                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
+                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
+                </ul>
+            <span class="edit-hint">請選擇正確的年月</span>
+        </div>
+        <div class="edit-unit">
+            <span class="edit-name">公司規模</span>
+            <a href="javascript:;"><input type="text" placeholder="請選擇公司規模"  class="required" disabled><span class='icon dropList'></span></a>
+                <!-- NEED -->
+                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
+                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
+                </ul>
+            <span class="edit-hint">請選擇正確的規模</span>
+        </div>
+        <div class="edit-unit high">
+            <span class="edit-name">公司簡介</span>
+            <div class="edit-body">
+                <textarea style="height:220px;width:500px;" placeholder="請輸入公司描述，勿長篇大論"  class="required"></textarea>
+            </div>
+        </div>
+        <h5 class='tagName'>公司專長領域</h5>
+        <div class="edit-unit">
+            <span class="edit-name">公司技能</span>
+            <input type="text" placeholder="請輸入公司技能" class="required">
+            <span class="edit-hint">請輸入正確的技能標籤</span>
+        </div>
+        <h5 class='tagName'>管理團隊</h5>
+        <div class="edit-unit high">
+            <span class="edit-name">職位</span>
+            <input type="text" placeholder="請輸入CEO姓名" class="required">
+            <span class="edit-hint">請輸入CEO的名稱</span>
+        </div>
+        <h5 class='tagName'>融資部分</h5>
+        <div class="edit-unit high">
+            <span class="edit-name">融資階段</span>
+            <a href="javascript:;"><input type="text" placeholder="請選擇融資階段"  class="required" disabled><span class='icon dropList'></span></a>
+                <!-- NEED -->
+                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
+                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
+                </ul>
+            <span class="edit-name">融資年分</span>
+            <a href="javascript:;"><input type="text" placeholder="請選擇融資年月"  class="required" disabled><span class='icon dropList'></span></a>
+                <!-- NEED -->
+                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
+                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
+                </ul>
+            <span class="edit-hint">請選擇正確的融資與日期</span>
+        </div>
+        <div class="edit-unit">
+            <a href="javascript:;" class="green-btn">保存</a>
+        </div>
+	</div>
+    	
+</div>
