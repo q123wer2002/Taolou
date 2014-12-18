@@ -2,26 +2,100 @@
 include_once 'share.php';
 
 //page default
-
+$obj_tmp1->companyTable="taolou_company";
+$obj_tmp1->companySkill="taolou_company_skill";
 $obj_tmp1->member='taolou_member_detail';
+
+$obj_tmp1->sysComSkill="taolou_system_companyskill";
 
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 //確認使用者是誰
-if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);}else{$getAction="";}
+if(@laout_check($_GET['action']) != ""){$companyID=$obj_tmp1->decode(laout_check($_GET['action']));}else{$companyID="";}
 if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='none';}
 if(@$_SESSION['user']['userType'] != "" && @$getAction==""){
     if(@$_SESSION['user']['userType'] == '1'){$action='none';}
-    else if(@$_SESSION['user']['userType'] == '2'){$action='edit';}
+    else if(@$_SESSION['user']['userType'] == '2' && $companyID != ""){$action='edit';}
     else{$action='none';}
-}else{$action=laout_check($_GET['action']);}
+}else{$action="none";}
 //===================
 
 
 switch(@$action){
 	case "edit":
+
+    //抓取公司資訊
+    $sql_getCompanyInfo="SELECT ".$obj_tmp1->companyTable.".*
+                         FROM ".$obj_tmp1->companyTable."
+                         WHERE ".$obj_tmp1->companyTable.".id='".$companyID."'";
+    $obj_tmp1->laout_arr['company']=array();
+    $obj_tmp1->basic_select('laout_arr','company',$sql_getCompanyInfo);
+        //echo $sql_getCompanyInfo;
+        //print_r($obj_tmp1->laout_arr['company']);
+
+        //分析公司地址
+        if(!empty($obj_tmp1->laout_arr['company'][0]['location'])){
+            $obj_tmp1->location=array();
+            $obj_tmp1->location=split('[/]',$obj_tmp1->laout_arr['company'][0]['location']);
+            //print_r($obj_tmp1->location);
+        }
+    //==========================
+
+
+    //抓取公司技能
+    $sql_companySkill="SELECT ".$obj_tmp1->companySkill.".*
+                       FROM ".$obj_tmp1->companySkill."
+                       WHERE ".$obj_tmp1->companySkill.".companyId = '".$companyID."'";
+    $obj_tmp1->laout_arr['companySkill']=array();
+    $obj_tmp1->basic_select('laout_arr','companySkill',$sql_companySkill);
+        //echo $sql_companySkill;
+        //print_r($obj_tmp1->laout_arr['companySkill']);
+
+        //顯示公司的技能
+            if(!empty($obj_tmp1->laout_arr['companySkill'][0]['skillList'])){
+                $skillLists=array();
+                $skillLists=split('[|]',$obj_tmp1->laout_arr['companySkill'][0]['skillList']);
+                    //echo $obj_tmp1->laout_arr['companySkill'][0]['skillList'];
+                    //print_r($skillLists);
+                $obj_tmp1->mySkillLists="";
+                foreach($skillLists as $skListKey => $skListValue){
+                    //echo $skListValue;
+                    $sql_SL="SELECT ".$obj_tmp1->sysComSkill.".*
+                             FROM ".$obj_tmp1->sysComSkill."
+                             WHERE ".$obj_tmp1->sysComSkill.".id='".$skListValue."'";
+                    $obj_tmp1->laout_arr['SL']=array();
+                    $obj_tmp1->basic_select('laout_arr','SL',$sql_SL);
+                        //echo $sql_SL;
+                        //print_r($obj_tmp1->laout_arr['SL']);
+                    $obj_tmp1->mySkillLists=$obj_tmp1->mySkillLists.$obj_tmp1->laout_arr['SL'][0]['skillName']."|";
+                        //echo $obj_tmp1->laout_arr['SL'][0]['skill'];
+                }
+                $obj_tmp1->mySkillLists=substr($obj_tmp1->mySkillLists,0,-1);
+                //print_r($obj_tmp1->mySkillLists);
+            }
+    //==========================
+
+    //抓取系統公司技能
+    $sql_sysComSkill="SELECT ".$obj_tmp1->sysComSkill.".*
+                      FROM ".$obj_tmp1->sysComSkill."
+                      WHERE ".$obj_tmp1->sysComSkill.".status='y'";
+    $obj_tmp1->laout_arr['sysComSkill']=array();
+    $obj_tmp1->basic_select('laout_arr','sysComSkill',$sql_sysComSkill);
+        //echo $sql_sysComSkill;
+        //print_r($obj_tmp1->laout_arr['sysComSkill']);
+    
+    $obj_tmp1->allComSkill="";
+
+    foreach($obj_tmp1->laout_arr['sysComSkill'] as $allSkillKey => $allSkillValue){
+        $obj_tmp1->allComSkill=$obj_tmp1->allComSkill.$allSkillValue['skillName']."|";
+    }
+    $obj_tmp1->allComSkill=substr($obj_tmp1->allComSkill,0,-1);
+        //print_r($obj_tmp1->allComSkill);
+
+    //==========================
+
 
 
 	$obj_tmp1->showad=false;

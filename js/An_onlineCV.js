@@ -513,7 +513,7 @@ function connect_db_save(userName,userBorn,userEducation,userWorkyear,userJobsta
 		data: $.param(userProfileObject),
 		headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		async: true,
-		error: function (xhr,error){console.warn(json);},
+		error: function (xhr,error){console.warn(xhr);},
 		success: function (json) {console.log(json);location.reload();}
 	});
 }

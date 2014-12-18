@@ -1,25 +1,66 @@
 .green-btn {background-color: #17B385;color: #ffffff;padding: 8px 5px;border-radius: 3px;font-size: 16px;}
 .purple-btn {background-color: #707B91;}
-.nsb-block {background-color: #fff;border-radius: 2px;}
-.edit{display: block;width: 800px;margin: auto;}
+.nsb-block {background-color: #fff;border-radius: 2px;overflow: auto;}
+.edit{display: block;width: 800px;margin: auto;overflow: auto;}
 .nsb-block h2 {position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;}
     .nsb-block-content {border-top: 1px solid #eceef1;overflow: hidden;}
         .tagName{font-weight: 700;text-decoration: underline;}
         .edit-unit {position: relative;padding: 30px;border-bottom: 1px solid #eceef1;height: auto;float: left;width: 734px;}
+        .edit-unit a{position: relative;}
             .edit-name {display: block;float: left;height: 50px;line-height: 50px;width: 120px;padding-right: 20px;text-align: right;font-size: 16px;}
             .edit-body {position: relative;float: left;width: 500px;font-size: 0;}
             .edit-hint {display: block;float: right;line-height: 25px;font-size: 13px;color: #a2a8b3;}
+            .Photo{width: 150px;height: 150px;border: 1px solid black;background-color: #eceef1;}
+            #companyPhoto{margin-left: 80px;}
+            #updaetBut{background: #000000;margin-left: 400px;}
+            #ceoPhoto{margin-left: 80px;}
+            #ceoupdaetBut{background: #000000;margin-left: 400px;}
             .select-wrapper {float: left;margin: 0;width: 300px;height: 50px;}
                 .required{border:none;background: #eceef1;width: 300px;height: 50px;border-radius: 3px;padding: 10px 5px;font-size: 16px;line-height: 16px;color: #6b7485;margin-left: 30px;font-family: '微軟正黑體';}
             .checkbox{font-size: 16px;height: 20px;width: 200px;vertical-align: middle;line-height: 16px;z-index: 6;}
             .checkbox:hover{cursor: pointer;}
+            .finallyDiv{height: 120px;}
 
-            .editDivSelectUl{position: absolute;text-align: center;z-index: 6;overflow: auto;width: 300px;height: 200px;left: 30px;}
+            .selectList{width: 120px;}
+
+            .editDivSelectUl{position: absolute;text-align: center;z-index: 6;overflow: auto;width: 300px;height: 200px;left: 200px;}
             .editDivSelectUl a{text-decoration: none;color: #ffffff;}
             .editDivSelectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 16px;color: #ffffff;height: 39px;line-height: 39px;}
             .editDivSelectUl li:hover{background-color: #d94600;}
-            .dropList{background-position: -136px -135px;width: 16px;height: 12px;position: absolute;top: 50px;left: 450px;}
+            
+            .Date{width: 120px;}
+            #year{left: 200px;}
+            #month{left: 354px;}
+
+        .special_skill{padding: 30px 30px 20px 30px;background: #ffffff;height: auto;width: 660px;border-top:1px solid #eceef1;background: #ffffff;font-size: 14px;position: relative;}
+            .showskills{height: 60px;}
+            .skillList{list-style: none;width: 100%;position: relative;margin-left:90px;margin-top: 10px;height: auto;}
+            .myskillListShow{width: 75%;}
+            .skill{display: inline-block;padding: 10px 10px 10px 10px;background: #ecedf0;border-radius: 5px;margin: 0px 5px 10px 5px;}
+            .addskills{width: 525px;height: auto;margin-left: 90px;padding: 15px 15px 5px 15px;background: #ecedf0;position: relative;margin-top: 30px;}
+            #addskill{margin-left: 0px;margin-top: 20px;}
+            .addskillLi{display: inline-block;padding: 10px 10px 10px 10px;background: #f8f9fa;border-radius: 5px;margin: 0px 5px 10px 5px;position: relative;}
+            .addskillLi:hover{cursor: pointer;}
+                .hidden{width: 100%;height: 100%;opacity: 0;position: absolute;}
+            #skillError{position: absolute;bottom: 70px;left: 200px;}
+            .delete{background-position: -190px -138px;width: 10px;height: 10px;margin-left: 5px;opacity: 0.8;}
+            .delete:hover{opacity: 1;}
+            .b_jobwish{width: 120px;height: 40px;position: relative;border-radius: 5px;font-size: 14px;margin: 50px 0px 10px 70px;}
+            .b_jobwish:hover{cursor: pointer;}
+            .deny{background: #a2a8b3;}
+            .in_cv{width: 226px;height: 30px;padding: 12px 15px 12px 15px;background:#f8f9fa ;border:none;font-size: 16px;border-radius: 5px;}
+
+            .dropList{background-position: -136px -135px;width: 16px;height: 12px;position: absolute;top: 10px;right: 10px;}
 
 
-        .postJobBut{color: #ffffff;background: #36a9e5;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}
+
+    .zipcode, .county, .district{border:none;background: #eceef1;width: 120px;height: 50px;border-radius: 3px;padding: 10px 5px;font-size: 16px;line-height: 16px;color: #6b7485;margin-left: 30px;font-family: '微軟正黑體';}
+    .zipcode {display: none;}
+    .county:hover{cursor: pointer;}
+    .county option{text-align: center;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
+    .district:hover{cursor: pointer;}
+    .district option{text-align: center;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
+        
+
+        .postJobBut{color: #ffffff;background: #17B385;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}
 

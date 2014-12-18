@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2014 at 06:48 PM
+-- Generation Time: Dec 18, 2014 at 04:32 PM
 -- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -55,15 +55,18 @@ INSERT INTO `taolou_account` (`id`, `memberId`, `email`, `password`, `createDate
 CREATE TABLE IF NOT EXISTS `taolou_company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `recommendation` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
-  `productName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `companyShortName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `companyName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `CEO` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `logo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ceoPhoto` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `logo` longtext COLLATE utf8_unicode_ci NOT NULL,
   `location` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `memberSize` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `website` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `companyFB` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `createDate` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
@@ -71,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
 -- Dumping data for table `taolou_company`
 --
 
-INSERT INTO `taolou_company` (`id`, `recommendation`, `productName`, `companyName`, `CEO`, `logo`, `location`, `memberSize`, `website`, `createDate`, `detail`) VALUES
-(1, 'y', 'test', 'taoloutest', 'yenchen', 'taolou_logo.jpg', 'taiwan', '50-100', 'http://taolou.com', '0000-00-00 00:00:00', '456'),
-(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', 'ASDFAS', 'QWW', '10', '4040', '2014-12-12 11:18:38', '');
+INSERT INTO `taolou_company` (`id`, `recommendation`, `companyShortName`, `companyName`, `CEO`, `ceoPhoto`, `logo`, `location`, `memberSize`, `website`, `companyFB`, `createDate`, `detail`, `updateDate`) VALUES
+(1, 'y', 'test', 'taoloutest', 'yenchen', 'userObject/companyObject/1/ceoPhoto.png', 'userObject/companyObject/1/CompanyPhoto.jpeg', '台北市/松山區/105', '50-100', 'http://taolou.com', 'www.facebook.com', '2014年 08月', '456', '2014-12-18 11:57:28'),
+(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', '', 'ASDFAS', 'QWW', '10', '4040', '', '2014年 12月', '', '2014-12-18 11:57:28');
 
 -- --------------------------------------------------------
 
@@ -98,9 +101,19 @@ CREATE TABLE IF NOT EXISTS `taolou_company_finance` (
 CREATE TABLE IF NOT EXISTS `taolou_company_skill` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `companyId` int(11) NOT NULL,
-  `skillName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `skillList` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `taolou_company_skill`
+--
+
+INSERT INTO `taolou_company_skill` (`id`, `companyId`, `skillList`, `updateDate`, `createDate`) VALUES
+(1, 1, '1|2', '2014-12-18 12:15:41', '2014-12-18 12:15:41'),
+(2, 2, '2|3', '2014-12-18 12:15:41', '2014-12-18 12:15:41');
 
 -- --------------------------------------------------------
 
@@ -334,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_specialskill` (
 
 INSERT INTO `taolou_member_specialskill` (`id`, `memberId`, `skillList`, `updateDate`, `createDate`) VALUES
 (1, 1, '', '2014-11-30 13:51:13', '2014-11-30 13:51:13'),
-(2, 2, '1|2|3|4', '2014-12-13 16:50:11', '2014-11-30 13:51:13'),
+(2, 2, '1|3|4|2', '2014-12-18 12:25:59', '2014-11-30 13:51:13'),
 (3, 3, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20'),
 (4, 4, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20');
 
@@ -381,6 +394,34 @@ CREATE TABLE IF NOT EXISTS `taolou_system_class_speaicalskill` (
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taolou_system_companyskill`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_system_companyskill` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `skillName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `taolou_system_companyskill`
+--
+
+INSERT INTO `taolou_system_companyskill` (`id`, `skillName`, `status`, `createDate`) VALUES
+(1, '搜尋', 'y', '2014-12-18 12:03:36'),
+(2, '社交網路', 'y', '2014-12-18 12:03:36'),
+(3, '移動互聯網', 'y', '2014-12-18 12:03:57'),
+(4, '電子商務', 'y', '2014-12-18 12:03:57'),
+(5, '遊戲', 'y', '2014-12-18 12:04:09'),
+(6, '醫療健康', 'y', '2014-12-18 12:04:09'),
+(7, '招聘', 'y', '2014-12-18 12:04:29'),
+(8, '教育', 'y', '2014-12-18 12:04:29');
 
 -- --------------------------------------------------------
 
@@ -448,7 +489,7 @@ CREATE TABLE IF NOT EXISTS `taolou_system_specialskill` (
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `taolou_system_specialskill`
@@ -458,7 +499,7 @@ INSERT INTO `taolou_system_specialskill` (`id`, `classId`, `skill`, `status`, `c
 (1, 0, 'PHP', 'y', '2014-12-05 07:06:43'),
 (2, 0, 'MySQL', 'y', '2014-12-05 07:06:48'),
 (3, 0, 'AngularJS', 'y', '2014-12-05 07:06:55'),
-(4, 0, 'AVALON', 'n', '2014-12-13 16:50:10');
+(4, 0, 'AVALON', 'y', '2014-12-13 16:50:10');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

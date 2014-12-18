@@ -1,103 +1,171 @@
 <link href="css/editCompany.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src='js/AN_companyEdit.js'></script>
+<script type="text/javascript" src='js/jquery.twzipcode.min.js'></script>
 
-<div class="nsb-block edit" ng-controller='Taolou_postJob'>
-    <h4>
+
+
+<div class="nsb-block edit" ng-controller='Taolou_companyEdit'>
+    <?php if(!empty($this->laout_arr['company'])) { 
+            foreach($this->laout_arr['company'] as $ComKey => $ComValue) { ?>
+    <input type='hidden' ng-init="companyShortName = '<?php echo $ComValue['companyShortName']; ?>'">
+    <input type='hidden' ng-init="companyName = '<?php echo $ComValue['companyName']; ?>'">
+    <input type='hidden' ng-init="companyWebsite = '<?php echo $ComValue['website']; ?>'">
+    <input type='hidden' ng-init="companyFB = '<?php echo $ComValue['companyFB']; ?>'">
+    <input type='hidden' ng-init="companySize = '<?php echo $ComValue['memberSize']; ?>'">
+    <input type='hidden' ng-init="companyDetail = '<?php echo $ComValue['detail']; ?>'">
+    <input type='hidden' ng-init="companyCEO = '<?php echo $ComValue['CEO']; ?>'">
+
+    <input type='hidden' ng-init="companyPhoto = '<?php echo $ComValue['logo']; ?>'">
+    <input type='hidden' ng-init="ceoPhoto = '<?php echo $ComValue['ceoPhoto']; ?>'">
+    <?php }} ?>
+
+    <h2>
         <span class="icon pencialicon"></span>
         <span>編輯公司訊息</span>
-    </h4>
+    </h2>
 	<div class="nsb-block-content">
         <div class="edit-unit">
             <span class="edit-name">公司圖像</span>
-            <span class="edit-hint">請輸入正確的標題</span>
+            <span class="edit-hint">請上傳公司圖像，最佳解析度 150*150</span>
+            <img class='Photo' id='companyPhoto' src="{{companyPhoto}}">
+            <input type='file' id='companyPhotoFile' style='display:none;' accept='image/*' onchange="handleFilesCom(this.files)">
+            <a href="javascript:;" class='postJobBut' id='updaetBut'>上傳檔案</a>
         </div>
     </div>
 
 	<div class="nsb-block-content">
-        <h5 class='tagName'>公司基本訊息</h5>
+        <h4 class='tagName'>公司基本訊息</h4>
         <div class="edit-unit">
             <span class="edit-name">公司簡稱</span>
-            <input type="text" placeholder="請輸入公司簡稱" class="required">
+            <input type="text" placeholder="請輸入公司簡稱" class="required" ng-model='companyShortName'>
             <span class="edit-hint">請輸入正確的簡稱</span>
         </div>
         <div class="edit-unit">
             <span class="edit-name">公司全稱</span>
-            <input type="text" placeholder="請輸入公司全稱" class="required">
+            <input type="text" placeholder="請輸入公司全稱" class="required" ng-model='companyName'>
             <span class="edit-hint">請輸入正確的名稱</span>
         </div>
         <div class="edit-unit">
             <span class="edit-name">公司網站</span>
-            <input type="text" placeholder="請輸入公司網站" class="required">
+            <input type="text" placeholder="請輸入公司網站" class="required" ng-model='companyWebsite'>
             <span class="edit-hint">請輸入正確的網址</span>
         </div>
         <div class="edit-unit">
             <span class="edit-name">公司Facebook</span>
-            <input type="text" placeholder="請輸入公司Facebook" class="required">
+            <input type="text" placeholder="請輸入公司Facebook" class="required" ng-model='companyFB'>
             <span class="edit-hint">請輸入公司facebook粉絲團</span>
         </div>
         <div class="edit-unit">
             <span class="edit-name">所在城市</span>
-            <a href="javascript:;"><input type="text" placeholder="請選擇公司位置"  class="required" disabled><span class='icon dropList'></span></a>
-                <!-- NEED -->
-                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
-                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
-                </ul>
-            <span class="edit-hint">請輸入正確的城市</span>
+            <?php if(!empty($this->location)){ ?>
+            <input type='hidden' id='LOCATION_countySel' value='<?php echo $this->location[0]; ?>'>
+            <input type='hidden' id='LOCATION_districtSel' value='<?php echo $this->location[1]; ?>'>
+            <?php } ?>
+                    <!-- HTML -->
+            <div id="twzipcode"></div>
+            <span class="edit-hint" id='showADD'>請輸入正確的城市</span>
         </div>
         <div class="edit-unit">
             <span class="edit-name">公司成立年份</span>
-            <a href="javascript:;"><input type="text" placeholder="請選擇公司成立年月"  class="required" disabled><span class='icon dropList'></span></a>
-                <!-- NEED -->
-                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
-                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
-                </ul>
-            <span class="edit-hint">請選擇正確的年月</span>
+            <a href="javascript:;" ng-click="showCreateYearFun()"><input type="text" class="required selectList" placeholder="年份" ng-model='companyCreateYear' disabled><span class='icon dropList'></span></a>
+            <a href="javascript:;" ng-click='showCreateMonthFun()'><input type="text" class="required selectList" placeholder="月份" ng-model='companyCreateMonth' disabled><span class='icon dropList'></span></a>
+            <!-- NEED -->
+            <ul class='editDivSelectUl Date' id='year' ng-show='CreateYearStatus'>
+                <a href="javascript:;" ng-repeat="y in [] | range:30"><li ng-click='saveCreateYearFun(y)'>{{y}}年</li></a>
+            </ul>
+            <ul class='editDivSelectUl Date' id='month' ng-show='CreateMonthStatus'>
+                <a href="javascript:;" ng-repeat="m in [1,2,3,4,5,6,7,8,9,10,11,12]"><li ng-click='saveCreateMonthFun(m)'>{{m}}月</li></a>
+            </ul>
+            <span class="edit-hint">請選擇正確的年,月</span>
         </div>
         <div class="edit-unit">
             <span class="edit-name">公司規模</span>
-            <a href="javascript:;"><input type="text" placeholder="請選擇公司規模"  class="required" disabled><span class='icon dropList'></span></a>
-                <!-- NEED -->
-                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
-                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
-                </ul>
+            <a href="javascript:;" ng-click='showcompanySizeFun()'><input type="text" placeholder="請選擇公司規模"  class="required" ng-model='companySize' disabled><span class='icon dropList'></span></a>
+            <!-- NEED -->
+            <ul class='editDivSelectUl' ng-show='companySizeStatus'>
+                <a href="javascript:;" ng-repeat='companySize in companySizes'><li ng-click='savecompanySizeFun(companySize)'>{{companySize.name}}</li></a>
+            </ul>
             <span class="edit-hint">請選擇正確的規模</span>
         </div>
         <div class="edit-unit high">
             <span class="edit-name">公司簡介</span>
             <div class="edit-body">
-                <textarea style="height:220px;width:500px;" placeholder="請輸入公司描述，勿長篇大論"  class="required"></textarea>
+                <textarea style="height:220px;width:500px;" placeholder="請輸入公司描述，勿長篇大論"  class="required" ng-model='companyDetail'></textarea>
             </div>
         </div>
-        <h5 class='tagName'>公司專長領域</h5>
+        <h4 class='tagName'>公司專長領域</h4>
+        
         <div class="edit-unit">
-            <span class="edit-name">公司技能</span>
-            <input type="text" placeholder="請輸入公司技能" class="required">
-            <span class="edit-hint">請輸入正確的技能標籤</span>
+                 <!-- 開始設定特殊技能 -->
+            <?php if(!empty($this->mySkillLists)){ ?>
+                <!-- 設定我自己的技能 -->
+            <input type="hidden" ng-init="myallSkillList = '<?php echo $this->mySkillLists; ?>'">
+                <!-- 設定技能總攬 -->
+            <input type="hidden" ng-init="allComSkill = '<?php echo $this->allComSkill; ?>'">
+            <input type='hidden' ng-init="skillListInit()">
+            <?php } ?>
+
+            <!-- 顯示技能 -->                
+            <div class='clearfix'>
+                <ul class='skillList myskillListShow'>
+                    <li class='skill' ng-repeat='skill in myskills'>{{skill}}<a href='javascript:;' class='icon delete' ng-click='deleteskill(skill)'></a></li>
+                </ul>
+
+                <div class='addskills'>
+                    <!-- 輸入本來沒有的技能清單 -->
+                    <form ng-submit='newaddskill()' >
+                        <input type='text' class='in_cv' placeholder='請輸入技能標籤' ng-model='newskill' ng-init="newskill=''">
+                        <input class='in_submit' type='submit' value='新增'>
+                    </form>
+                    <!-- 點選增加技能 -->
+                    <ul class='skillList' id='addskill'>
+                        <li class='addskillLi' ng-repeat='Askill in allskills' ng-click="addskill(Askill)">{{Askill}}</li>
+                    </ul>
+                    <p class='ErrorMessageInUserMe' id='skillError'>{{skillErrorMess}}</p>
+                    <button class='button b_jobwish' ng-click="saveSkill()">保存</button>
+                    <button class='button b_jobwish' ng-click="reload()">取消</button>
+                </div>
+            </div>
         </div>
-        <h5 class='tagName'>管理團隊</h5>
+        <h4 class='tagName'>管理團隊</h4>
         <div class="edit-unit high">
-            <span class="edit-name">職位</span>
-            <input type="text" placeholder="請輸入CEO姓名" class="required">
+            <span class="edit-name">姓名</span>
+            <input type="text" placeholder="請輸入CEO姓名" class="required" ng-model='companyCEO'>
             <span class="edit-hint">請輸入CEO的名稱</span>
         </div>
-        <h5 class='tagName'>融資部分</h5>
+        <div class="edit-unit high">
+            <span class="edit-name">管理者圖像</span>
+            <span class="edit-hint">請上傳CEO圖像，最佳解析度 150*150</span>
+            <img class='Photo' id='ceoPhoto' src="{{ceoPhoto}}">
+            <input type='file' id='ceoPhotoFile' style='display:none;' accept='image/*' onchange="handleFilesCEO(this.files)">
+            <a href="javascript:;" class='postJobBut' id='ceoupdaetBut'>上傳檔案</a>
+        </div>
+        <h4 class='tagName'>融資部分</h4>
         <div class="edit-unit high">
             <span class="edit-name">融資階段</span>
-            <a href="javascript:;"><input type="text" placeholder="請選擇融資階段"  class="required" disabled><span class='icon dropList'></span></a>
-                <!-- NEED -->
-                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
-                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
-                </ul>
-            <span class="edit-name">融資年分</span>
-            <a href="javascript:;"><input type="text" placeholder="請選擇融資年月"  class="required" disabled><span class='icon dropList'></span></a>
-                <!-- NEED -->
-                <ul class='editDivSelectUl' ng-show='jobNatureStatus'>
-                    <a href="javascript:;" ng-repeat='jobNature in jobNatures'><li ng-click='selectJobNature(jobNature)'>{{jobNature.name}}</li></a>
-                </ul>
-            <span class="edit-hint">請選擇正確的融資與日期</span>
+            <a href="javascript:;" ng-click='showcompanyFinStageFun()'><input type="text" class="required" placeholder="目前融資階段" ng-model='companyFinStage' disabled><span class='icon dropList'></span></a>
+            <!-- NEED -->
+            <ul class='editDivSelectUl' ng-show='companyFinStageStatus'>
+                <a href="javascript:;" ng-repeat='companyFin in companyFins'><li ng-click='savecompanyFinStageFun(companyFin)'>{{companyFin.name}}</li></a>
+            </ul>
+            <span class="edit-hint">目前融資階段,上市階段</span>
         </div>
-        <div class="edit-unit">
-            <a href="javascript:;" class="green-btn">保存</a>
+        <div class="edit-unit high">
+            <span class="edit-name">融資年分</span>
+            <a href="javascript:;" ng-click='showcompanyFinYearFun()'><input type="text" class="required selectList" placeholder='年份' ng-model='companyFinYear' disabled><span class='icon dropList'></span></a>
+            <a href="javascript:;" ng-click='showcompanyFinMonthFun()'><input type="text" class="required selectList" placeholder='月份' ng-model='companyFinMonth' disabled><span class='icon dropList'></span></a>
+            <!-- NEED -->
+            <ul class='editDivSelectUl Date' id='year' ng-show='companyFinYearStatus'>
+                <a href="javascript:;" ng-repeat="y in [] | range:30"><li ng-click='savecompanyFinYearFun(y)'>{{y}}年</li></a>
+            </ul>
+            <ul class='editDivSelectUl Date' id='month' ng-show='companyFinMonthStatus'>
+                <a href="javascript:;" ng-repeat="m in [1,2,3,4,5,6,7,8,9,10,11,12]"><li ng-click='saveompanyFinMonthFun(m)'>{{m}}月</li></a>
+            </ul>
+            <span class="edit-hint">最新融資,上市日期</span>
+        </div>
+        <div class="edit-unit finallyDiv">
+            <a href="javascript:;" class="postJobBut">保存</a>
         </div>
 	</div>
     	

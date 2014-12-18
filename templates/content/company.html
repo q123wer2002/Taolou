@@ -12,7 +12,7 @@
 				<?php echo $ComValue['productName']; ?>
 				<span class="fullname"><?php echo $ComValue['companyName']; ?></span>
 			</h2>
-			<a href="companyEdit.php" class='editCompany'>編輯公司訊息</a>
+			<a href="companyEdit.php?action=<?php echo $this->encode($ComValue['id']); ?>" class='editCompany'>編輯公司訊息</a>
 			<p class="head-meta">
 				<span class="meta-item size"><span class="icon people"></span><?php echo $ComValue['memberSize']; ?> 人</span>
 				<span class="meta-item location"><span class="icon locationicon"></span><?php echo $ComValue['location']; ?></span>
@@ -74,7 +74,7 @@
 				<h3>管理团队</h3>
 				<div class="team-member">
 					<div class="img-wrapper avatar">
-						<img src="http://nsb-cdn.b0.upaiyun.com/avatars/11f6/a5f9/11f6a5f909a6f529_medium.png" alt="">
+						<img src="<?php echo $ComValue['ceoPhoto']; ?>" alt="">
 					</div>
 					<div class="memver-content">
 						<span class="name"><?php echo $ComValue['CEO']; ?></span>
