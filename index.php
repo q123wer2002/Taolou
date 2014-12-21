@@ -50,6 +50,15 @@ switch($action){
     	//echo $sql_showJob;
 		//print_r($obj_tmp1->laout_arr['showJob']);
 
+    	//職位地點設定
+    	if(!empty($obj_tmp1->laout_arr['showJob'])){
+	    	foreach($obj_tmp1->laout_arr['showJob'] as $key => $value){
+	    		$obj_tmp1->jobLoca=split("/",$value['location']);
+	    		//print_r($jobLoca);
+	    	}
+	    }
+    	//=========================
+    	
     	//公司技能標籤
     /*$sql_comSkill="SELECT ".$obj_tmp1->companySkill.".*
 				   FROM ".$obj_tmp1->companySkill."

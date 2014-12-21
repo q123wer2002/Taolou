@@ -44,7 +44,7 @@ switch(@$action){
 
 
 	$obj_tmp1->showad=false;
-    $obj_tmp1->content_html='content/userHr.html';
+    $obj_tmp1->content_html='content/company/userHr.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";

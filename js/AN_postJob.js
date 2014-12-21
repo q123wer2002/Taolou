@@ -76,11 +76,6 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 		$scope.jobTypes.push({'name':$scope.JOBTYPE_NAME});
 	}
 		//===============init over=================
-	
-
-	$scope.jobLocations=[
-		{'name':'台北','tag':'1'},
-	];
 
 	$scope.jobNatures=[
 		{'name':'全職','tag':'1'},
@@ -94,22 +89,39 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 		{'name':'無效職位'}
 	];
 
+
 	//save job into server
 	$scope.saveJob=function(){
 		if($scope.jobTitle==""){$scope.jobError="請輸入'標題'";}
 		else if($scope.jobName==""){$scope.jobError="請輸入職位'名稱'";}
 		else if($scope.jobType==""){$scope.jobError="請選擇職位'類別'";}
-		else if($scope.jobLocation==""){$scope.jobError="請選擇職位'地點'";}
 		else if($scope.jobNature==""){$scope.jobError="請選擇職位'性質'";}
 		else if($scope.jobSalary==""){$scope.jobError="請輸入'薪水'";}
 		else if($scope.jobDetail==""){$scope.jobError="請輸入職位'描述'";}
+		else if($scope.jobLocation==""){
+			//讀取資料
+			$scope.subJobLocation=jQuery('#twzipcode').twzipcode('serialize');
+			//分析資料
+			$scope.Loca=$scope.subJobLocation.split("&");
+			$scope.county=$scope.Loca[0].split("=");
+			$scope.district=$scope.Loca[1].split("=");
+			$scope.zipcode=$scope.Loca[2].split("=");
+			//辨別資料
+			$scope.jobLocation=$scope.county[1]+$scope.district[1]+$scope.zipcode[1];
+			if($scope.jobLocation==""){//no location
+				$scope.jobError="請選擇職位'地點'";
+			}
+			else{//location
+				$scope.jobLocation=$scope.county[1]+"/"+$scope.district[1]+"/"+$scope.zipcode[1];
+			}
+		}
 		else{
 			$scope.jobError="";
 			if($scope.jobID==""){
 				var jobObject={"method":"saveJob","title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail};
 			
 			}else{
-				var jobObject={"method":"updateJob","ID":$scope.jobID,"title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail,"status":$scope.jobStatus};
+				var jobObject={"method":"updateJob","ID":$scope.jobID,"title":$scope.jobTitle,"jobName":$scope.jobName,"location":$scope.jobLocation,"jobType":$scope.jobType,"jobNature":$scope.jobNature,"salary":$scope.jobSalary,"stock_option":$scope.jobStockOption,"detail":$scope.jobDetail,"status":$scope.jobSatus};
 			}
 			$http({
 				method:'POST',
@@ -119,6 +131,7 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 			}).
 			success(function(json){
 				console.log(json);
+				location.href="companyPost.php";
 				//$scope.eduexps.push({'id':json.Eduid,'education':'','start_edu':'','end_edu':'','school':'','major':'','status':true,'eduSelector':false,'startSelector':false,'endSelector':false});
 			}).
 			error(function(json){
@@ -127,4 +140,24 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 			});
 		}
 	}
+
 }]);
+
+
+
+$(document).ready(function(){
+	//地址顯示
+	var countySel = $('#LOCATION_countySel').val();
+	var districtSel = $('#LOCATION_districtSel').val();
+	var css = [
+            'county form-control',
+            'district form-control',
+            'zipcode form-control'
+        ];
+
+	$('#twzipcode').twzipcode({
+		'countySel': countySel,
+		'districtSel': districtSel,
+		'css': css
+	});
+});

@@ -33,12 +33,19 @@ switch(@$action){
         //catch job from this company
         $sql_showJob="SELECT ".$obj_tmp1->job.".*
                       FROM ".$obj_tmp1->job."
-                      WHERE ".$obj_tmp1->job.".id='".$jobId."'
-                      AND ".$obj_tmp1->job.".status='y'";
+                      WHERE ".$obj_tmp1->job.".id='".$jobId."'";
         $obj_tmp1->laout_arr['showJob']=array();
         $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
             //echo $sql_showJob;
             //print_r($obj_tmp1->laout_arr['showJob']);
+
+            //設定工作地點
+            if(!empty($obj_tmp1->laout_arr['showJob'])){
+                foreach($obj_tmp1->laout_arr['showJob'] as $key => $value){
+                    $obj_tmp1->jobLoca=split("/",$value['location']);
+                    //print_r($jobLoca);
+                }
+            }
         //===========================
     }else{$obj_tmp1->laout_arr['showJob']=array();}
 
@@ -82,7 +89,8 @@ switch(@$action){
     $sql_showJob="SELECT ".$obj_tmp1->job.".*
                   FROM ".$obj_tmp1->job."
                   WHERE ".$obj_tmp1->job.".companyId='".$companyId."'
-                  AND ".$obj_tmp1->job.".status='y'";
+                  AND ".$obj_tmp1->job.".status='y'
+                  ORDER BY ".$obj_tmp1->job.".createDate DESC";
     $obj_tmp1->laout_arr['showJob']=array();
     $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
         //echo $sql_showJob;
@@ -120,7 +128,8 @@ switch(@$action){
     $sql_showJob="SELECT ".$obj_tmp1->job.".*
                   FROM ".$obj_tmp1->job."
                   WHERE ".$obj_tmp1->job.".companyId='".$companyId."'
-                  AND ".$obj_tmp1->job.".status='F'";
+                  AND ".$obj_tmp1->job.".status='F'
+                  ORDER BY ".$obj_tmp1->job.".createDate DESC";
     $obj_tmp1->laout_arr['showJob']=array();
     $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
         //echo $sql_showJob;
@@ -158,7 +167,8 @@ switch(@$action){
     $sql_showJob="SELECT ".$obj_tmp1->job.".*
                   FROM ".$obj_tmp1->job."
                   WHERE ".$obj_tmp1->job.".companyId='".$companyId."'
-                  AND ".$obj_tmp1->job.".status='n'";
+                  AND ".$obj_tmp1->job.".status='n'
+                  ORDER BY ".$obj_tmp1->job.".createDate DESC";
     $obj_tmp1->laout_arr['showJob']=array();
     $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
         //echo $sql_showJob;

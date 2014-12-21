@@ -11,16 +11,17 @@
 
 <div class='rule'>
 	<?php if(empty($this->laout_arr['showJob'])){ ?>
-    了解「人才加速招聘」计划，<br>
-    联系我们：Email: help@nashangban.com <br>
-    QQ: 2519595611
+    了解「人才加速招聘」計畫，<br>
+    聯絡我们：<br>
+    Email: <a href="mailto:q123wer2002@gmail.com"><span class='icon newspaper'></span>email to us</a><br>
+    FB：<a href="https://www.facebook.com/profile.php?id=100000152855452" target="_new">facebook</a>
     <?php }else{ ?>
     <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue){ ?>
     <div class='showJobDiv'>
     	<div class='joblist'>
     		<h2>
     			<?php echo $jobValue['title']; ?> , 
-    			<span class='jobName'><?php echo $jobValue['jobName']; ?></span>
+    			<b><span class='jobName'><?php echo $jobValue['jobName']; ?></span></b>
     		</h2>
 
     		<p class="head-meta">

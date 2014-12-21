@@ -1,4 +1,4 @@
-.nsb-block {background-color: #fff;border-radius: 2px;}
+.nsb-block {background-color: #fff;border-radius: 2px;width: 800px;margin: auto;}
 .edit{display: block;width: 800px;margin: auto;}
 .nsb-block h2 {position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;}
 	.nsb-block-content {border-top: 1px solid #eceef1;overflow: hidden;}
@@ -17,6 +17,14 @@
 			.editDivSelectUl li:hover{background-color: #d94600;}
 			.dropList{background-position: -136px -135px;width: 16px;height: 12px;position: absolute;top: 20px;left: 300px;}
 
+
+
+	.zipcode, .county, .district{border:none;background: #eceef1;width: 120px;height: 50px;border-radius: 3px;padding: 10px 5px;font-size: 16px;line-height: 16px;color: #6b7485;margin-left: 30px;font-family: '微軟正黑體';}
+    .zipcode {display: none;}
+    .county:hover{cursor: pointer;}
+    .county option{text-align: center;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
+    .district:hover{cursor: pointer;}
+    .district option{text-align: center;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
 
 		.postJobBut{color: #ffffff;background: #36a9e5;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}
 

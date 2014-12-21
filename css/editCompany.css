@@ -9,7 +9,7 @@
         .edit-unit a{position: relative;}
             .edit-name {display: block;float: left;height: 50px;line-height: 50px;width: 120px;padding-right: 20px;text-align: right;font-size: 16px;}
             .edit-body {position: relative;float: left;width: 500px;font-size: 0;}
-            .edit-hint {display: block;float: right;line-height: 25px;font-size: 13px;color: #a2a8b3;}
+            .edit-hint {display: block;float: right;line-height: 20px;font-size: 10px;color: #a2a8b3;}
             .Photo{width: 150px;height: 150px;border: 1px solid black;background-color: #eceef1;}
             #companyPhoto{margin-left: 80px;}
             #updaetBut{background: #000000;margin-left: 400px;}
@@ -64,4 +64,5 @@
     .district option{text-align: center;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
         
         .changeOK{position: fixed;text-align: center;width: 1024px;height: auto;color: white;font-weight: 700;font-size: 20px;background-color: #eb6a64;z-index: 10;padding: 50px 0px;top: -200px;}
+        .loading{position: fixed;text-align: center;width: 1024px;height: 10px;color: white;font-weight: 700;font-size: 20px;z-index: 10;padding: 50px 0px;top: -200px;background-image: url(../images/layout/loading.gif);background-position: 250px -100px;background-repeat: no-repeat;background-color: #000000;}
         .postJobBut{color: #ffffff;background: #17B385;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}

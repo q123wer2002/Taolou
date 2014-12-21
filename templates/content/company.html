@@ -9,7 +9,7 @@
 				<img src="<?php echo $ComValue['logo']; ?>" width="100%" height='100%'>
 			</div>
 			<h2>
-				<?php echo $ComValue['productName']; ?>
+				<?php echo $ComValue['companyShortName']; ?>
 				<span class="fullname"><?php echo $ComValue['companyName']; ?></span>
 			</h2>
 			<?php if($this->ourCompany){ ?>
@@ -17,14 +17,14 @@
 			<?php } ?>
 			<p class="head-meta">
 				<span class="meta-item size"><span class="icon people"></span><?php echo $ComValue['memberSize']; ?> </span>
-				<span class="meta-item location"><span class="icon locationicon"></span><?php echo $ComValue['location']; ?></span>
+				<span class="meta-item location"><span class="icon locationicon"></span><?php echo $this->comLoca[0]; ?></span>
 				<span class="meta-item found-time"><span class="icon clock"></span><?php echo $ComValue['createDate']; ?></span>
 			</p>
 			<p class="head-meta">
-				<span class="meta-item website"><span class="icon global"></span><a target="_blank" href="http://<?php echo $ComValue['website']; ?>"><?php echo $ComValue['website']; ?></a></span>
+				<span class="meta-item website"><span class="icon global"></span><a target="_blank" href="<?php echo $ComValue['website']; ?>"><?php echo $this->comWeb[1]; ?></a></span>
 			</p>
 			<div class="specialties clearfix">
-				<span class="label">专长领域</span>
+				<span class="label">專長領域</span>
 				<ul class="clearfix">
 					<?php if(!empty($this->mySkillLists)){
 							foreach($this->myskill as $key => $value) { ?>
@@ -34,12 +34,12 @@
 			</div>
 			<div class="intro">
 				<span class="label">公司介绍</span>
-				<article><?php echo $ComValue['detail']; ?></article>
+				<article><?php echo $ComValue['detail']; ?>　</article>
 			</div>
 		</div>
 
 		<div class="company-nav">
-			<span class="comp-nav-item jobs active">职位</span>
+			<span class="comp-nav-item jobs active">職位</span>
 		</div>
 		<?php if(!empty($this->laout_arr['job'])){
 				foreach($this->laout_arr['job'] as $jobKey => $jobValue) { ?>
@@ -63,7 +63,13 @@
 				</div>
 			</div>
 		</div>
-		<?php }} ?>
+		<?php }}else{ ?>
+		<div class='joblistDiv'>
+			<div class="job-list-item" style="text-align:center;">
+				<span>目前還沒有職位喔</span>
+			</div>
+		</div>
+		<?php } ?>
 
 		<div class='dividePage'>
 	        <div class='pageBar'>

@@ -23,6 +23,7 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 			.author{position:absolute;width: 610px;height: 28px;top: 18px;left: 94px;}
 			.author b{margin-right: 10px;}
 			.job-meta{position:absolute;width: 610px;height: 24px;bottom: 18px;left: 94px;}
+				.meta-item{text-overflow: ellipsis;width: 10px;}
 			.job-meta b{margin-right: 20px;}
 	.Nojobitem{width: 720px;height: 14px;padding: 50px 0px;border-bottom: 1px solid #eceef1;text-align: center;}
 

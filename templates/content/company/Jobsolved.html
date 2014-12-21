@@ -18,7 +18,7 @@
     	<div class='joblist'>
     		<h2>
     			<?php echo $jobValue['title']; ?> , 
-    			<span class='jobName'><?php echo $jobValue['jobName']; ?></span>
+    			<b><span class='jobName'><?php echo $jobValue['jobName']; ?></span></b>
     		</h2>
 
     		<p class="head-meta">
@@ -32,6 +32,7 @@
 			</p>
 
 			<a href="companyPost.php?action=postJob&jobId=" class='editJob' style='background:#eb6a64'>刪除職位</a>
+            <a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob'>編輯職位</a>
     	</div>
     </div>
     <?php }} ?>

@@ -180,7 +180,7 @@ TaoLou.controller('Taolou_companyEdit',['$scope','$http',function companyEdit($s
 			}).
 			success(function(json){
 				console.log(json);
-				jQuery(".changeOK").animate({'top':'0px'},500).delay(1500).animate({'top':'-200px'},500);
+				location.href="companies.php";
 			}).
 			error(function(json){
 				console.warn(json);
@@ -223,7 +223,10 @@ function handleFilesCom(files) {
 			console.log(json);
 			var reader = new FileReader();
 			reader.readAsDataURL(file);
-			reader.onload = function(e){$('#companyPhoto').attr('src', e.target.result);}
+			reader.onload = function(e){
+				$('#companyPhoto').attr('src', e.target.result);
+				$(".changeOK").animate({'top':'0px'},500).delay(1500).animate({'top':'-200px'},500);
+			}
 		}
 	});	
   }
@@ -235,6 +238,7 @@ function handleFilesCEO(files) {
   else {
   	var file = files[0];
     //document.forms["userPhotoForm"].submit();
+    //console.log(file.size);
 	var form_data = new FormData();
 	form_data.append("file", file);
 	form_data.append("method", "updateCEOPhoto");
@@ -245,12 +249,21 @@ function handleFilesCEO(files) {
 		data: form_data,
 		processData: false,
         contentType: false,
+        /*beforeSend:function(){
+        	$(".loading").animate({'top':'0px'},500);
+        },
+        complete:function(){
+        	$(".loading").animate({'top':'-200px'},500);
+        },*/
 		error: function (json){console.warn(json);},
 		success: function (json) {
 			console.log(json);
 			var reader = new FileReader();
 			reader.readAsDataURL(file);
-			reader.onload = function(e){$('#ceoPhoto').attr('src', e.target.result);}
+			reader.onload = function(e){
+				$('#ceoPhoto').attr('src', e.target.result);
+				$(".changeOK").animate({'top':'0px'},500).delay(1500).animate({'top':'-200px'},500);
+			}
 		}
 	});
 

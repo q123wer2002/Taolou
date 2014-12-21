@@ -1,5 +1,7 @@
 <link href="css/postJob.css" rel="stylesheet">
 <script type="text/javascript" src='js/AN_postJob.js'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src='js/jquery.twzipcode.min.js'></script>
 
 <div class="nsb-block edit" ng-controller='Taolou_postJob'>
 	<h2>
@@ -13,11 +15,15 @@
 		<input type='hidden' ng-init="jobTitle='<?php echo $jobValue['title']; ?>'">
 		<input type='hidden' ng-init="jobName='<?php echo $jobValue['jobName']; ?>'">
 		<input type='hidden' ng-init="jobType='<?php echo $jobValue['jobType']; ?>'">
-		<input type='hidden' ng-init="jobLocation='<?php echo $jobValue['location']; ?>'">
 		<input type='hidden' ng-init="jobNature='<?php echo $jobValue['jobNature']; ?>'">
 		<input type='hidden' ng-init="jobSalary='<?php echo $jobValue['salary']; ?>'">
-		<input type='hidden' ng-init="jobStockOption='<?php echo $jobValue['stock_option']; ?>'">
+		<input type='hidden' ng-init="jobStockOption='<?php if($jobValue['stock_option']=='y'){echo "true";}else{echo "false";} ?>'">
 		<input type='hidden' ng-init="jobDetail='<?php echo $jobValue['detail']; ?>'">
+		<!-- 設定地點 -->
+		<input type='hidden' ng-init="jobLocation='<?php echo $jobValue['location']; ?>'">
+		<input type='hidden' id='LOCATION_countySel' value="<?php echo $this->jobLoca[0]; ?>">
+		<input type='hidden' id='LOCATION_districtSel' value="<?php echo $this->jobLoca[1]; ?>">
+
 		<input type='hidden' ng-init="jobSatus='<?php if($jobValue['status']=='y'){echo "有效職位";}else if($jobValue['status']=='F'){echo "已解決";}else if($jobValue['status']=='n'){echo "無效職位";} ?>'">
 		<div class="edit-unit">
 			<span class="edit-name">職位狀態</span>
@@ -64,10 +70,7 @@
 		<div class="edit-unit">
 			<span class="edit-name">工作地點</span>
 			<div class="edit-body">
-				<a href="javascript:;" ng-click='locationStatusFun()'><input type="text" placeholder="請選擇辦公地點"  class="required" ng-model='jobLocation' disabled><span class='icon dropList'></span></a>
-				<ul class='editDivSelectUl' ng-show='jobLocationStatus'>
-					<a href="javascript:;" ng-repeat='jobLocation in jobLocations'><li>{{jobLocation.name}}</li></a>
-				</ul>
+				<div id="twzipcode"></div>
 				<!-- NEED -->
 				<span class="edit-hint">請準確的選擇辦公地點</span>
 			</div>

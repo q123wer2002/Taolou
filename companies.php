@@ -65,6 +65,19 @@ switch($action){
 	$obj_tmp1->basic_select('laout_arr','company',$sql_company);
 		//$sql_company
 		//print_r($obj_tmp1->laout_arr['company']);
+
+		
+    	if(!empty($obj_tmp1->laout_arr['company'])){
+	    	foreach($obj_tmp1->laout_arr['company'] as $key => $value){
+	    		//職位地點設定
+	    		$obj_tmp1->comLoca=split("/",$value['location']);
+	    		//print_r($jobLoca);
+
+	    		//官網設定
+	    		$obj_tmp1->comWeb=split("//",$value['website']);
+
+	    	}
+	    }
 	//===========================
 
 	//抓取公司技能

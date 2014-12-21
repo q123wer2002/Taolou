@@ -8,7 +8,7 @@
     		<div class='partnerList'>
                 <?php foreach($this->laout_arr['partner'] as $partnerkey => $partnervalue) { ?>
     			<a href="companies.php?company=<?php echo $this->encode($partnervalue['id']); ?>">
-    				<img src="images/<?php echo $partnervalue['logo']; ?>">
+    				<img src="<?php echo $partnervalue['logo']; ?>">
     				<span><?php echo $partnervalue['companyName']; ?></span>
     			</a>
                 <?php } ?>
@@ -41,7 +41,7 @@
             <a class='jobitem' href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>">
                 <div class='jobInfo'>
                     <figure>
-                        <img src="images/<?php echo $jobValue['logo'] ?>">
+                        <img src="<?php echo $jobValue['logo'] ?>">
                     </figure>
                     <div class='author'>
                         <b class="name"><?php echo $jobValue['companyName'] ?></b>
@@ -50,11 +50,11 @@
                         发布了 <b class="job-title"><?php echo $jobValue['jobName'] ?></b>
                     </div>
                     <div class='job-meta'>
-                        <span class="location"><span class='icon locationicon'></span><b><?php echo $jobValue['location'] ?></b></span>
-                        <span class="type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType'] ?></b></span>
-                        <span class="salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary'] ?></b></span>
+                        <span class="meta-item location"><span class='icon locationicon'></span><b><?php echo $this->jobLoca[0]; ?></b></span>
+                        <span class="meta-item type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType'] ?></b></span>
+                        <span class="meta-item salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary'] ?></b></span>
                         <?php if($jobValue['stock_option']=='y'){ ?>
-                        <span class="stock-share"><span class='icon stockicon'></span>提供股票或期权<b></b></span>
+                        <span class="meta-item stock-share"><span class='icon stockicon'></span>提供股票或期权<b></b></span>
                         <?php } ?>
                     </div>
                 </div>
