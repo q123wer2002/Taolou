@@ -4,6 +4,9 @@
 <script type="text/javascript" src='js/jquery.twzipcode.min.js'></script>
 
 
+<div class='changeOK'>
+    保存成功！
+</div>
 
 <div class="nsb-block edit" ng-controller='Taolou_companyEdit'>
     <?php if(!empty($this->laout_arr['company'])) { 
@@ -19,6 +22,22 @@
     <input type='hidden' ng-init="companyPhoto = '<?php echo $ComValue['logo']; ?>'">
     <input type='hidden' ng-init="ceoPhoto = '<?php echo $ComValue['ceoPhoto']; ?>'">
     <?php }} ?>
+    <!-- 城市初始化 -->
+    <?php if(!empty($this->location)){ ?>
+    <input type='hidden' id='LOCATION_countySel' value='<?php echo $this->location[0]; ?>'>
+    <input type='hidden' id='LOCATION_districtSel' value='<?php echo $this->location[1]; ?>'>
+    <?php } ?>
+    <!-- 創始年月初始化 -->
+    <?php if(!empty($this->createDate)){ ?>
+    <input type='hidden' ng-init="companyCreateYear = '<?php echo $this->createDate[0]; ?>'">
+    <input type='hidden' ng-init="companyCreateMonth = '<?php echo $this->createDate[1]; ?>'">
+    <?php } ?>
+    <!-- 融資部分初始化 -->
+    <?php if(!empty($this->laout_arr['finInfo'])){ ?>
+    <input type='hidden' ng-init="companyFinStage = '<?php echo $this->laout_arr['finInfo'][0]['stage']; ?>'">
+    <input type='hidden' ng-init="companyFinYear = '<?php echo $this->financeDate[0]; ?>'">
+    <input type='hidden' ng-init="companyFinMonth = '<?php echo $this->financeDate[1]; ?>'">
+    <?php } ?>
 
     <h2>
         <span class="icon pencialicon"></span>
@@ -49,7 +68,7 @@
         <div class="edit-unit">
             <span class="edit-name">公司網站</span>
             <input type="text" placeholder="請輸入公司網站" class="required" ng-model='companyWebsite'>
-            <span class="edit-hint">請輸入正確的網址</span>
+            <span class="edit-hint">請輸入正確的網址，若無，可以填寫粉絲團網址</span>
         </div>
         <div class="edit-unit">
             <span class="edit-name">公司Facebook</span>
@@ -58,10 +77,6 @@
         </div>
         <div class="edit-unit">
             <span class="edit-name">所在城市</span>
-            <?php if(!empty($this->location)){ ?>
-            <input type='hidden' id='LOCATION_countySel' value='<?php echo $this->location[0]; ?>'>
-            <input type='hidden' id='LOCATION_districtSel' value='<?php echo $this->location[1]; ?>'>
-            <?php } ?>
                     <!-- HTML -->
             <div id="twzipcode"></div>
             <span class="edit-hint" id='showADD'>請輸入正確的城市</span>
@@ -113,6 +128,7 @@
                 </ul>
 
                 <div class='addskills'>
+                    <h3>建議清單：</h3><br>
                     <!-- 輸入本來沒有的技能清單 -->
                     <form ng-submit='newaddskill()' >
                         <input type='text' class='in_cv' placeholder='請輸入技能標籤' ng-model='newskill' ng-init="newskill=''">
@@ -122,9 +138,7 @@
                     <ul class='skillList' id='addskill'>
                         <li class='addskillLi' ng-repeat='Askill in allskills' ng-click="addskill(Askill)">{{Askill}}</li>
                     </ul>
-                    <p class='ErrorMessageInUserMe' id='skillError'>{{skillErrorMess}}</p>
-                    <button class='button b_jobwish' ng-click="saveSkill()">保存</button>
-                    <button class='button b_jobwish' ng-click="reload()">取消</button>
+                    <span class='ErrorMessageInUserMe' id='skillError'>{{skillErrorMess}}</span>
                 </div>
             </div>
         </div>
@@ -165,7 +179,8 @@
             <span class="edit-hint">最新融資,上市日期</span>
         </div>
         <div class="edit-unit finallyDiv">
-            <a href="javascript:;" class="postJobBut">保存</a>
+            <p>{{companyEditError}}</p>
+            <a href="javascript:;" class="postJobBut" id='saveEditCompany' ng-click='saveEditCompany()'>保存</a>
         </div>
 	</div>
     	

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2014 at 04:32 PM
+-- Generation Time: Dec 21, 2014 at 09:09 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -75,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
 --
 
 INSERT INTO `taolou_company` (`id`, `recommendation`, `companyShortName`, `companyName`, `CEO`, `ceoPhoto`, `logo`, `location`, `memberSize`, `website`, `companyFB`, `createDate`, `detail`, `updateDate`) VALUES
-(1, 'y', 'test', 'taoloutest', 'yenchen', 'userObject/companyObject/1/ceoPhoto.png', 'userObject/companyObject/1/CompanyPhoto.jpeg', '台北市/松山區/105', '50-100', 'http://taolou.com', 'www.facebook.com', '2014年 08月', '456', '2014-12-18 11:57:28'),
-(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', '', 'ASDFAS', 'QWW', '10', '4040', '', '2014年 12月', '', '2014-12-18 11:57:28');
+(1, 'y', 'test', 'taoloutest', 'yenchen', 'userObject/companyObject/1/ceoPhoto.png', 'userObject/companyObject/1/CompanyPhoto.jpeg', '宜蘭縣/員山鄉/264', '200~2000人', 'taolou.com', 'www.facebook.com', '2014年-08月', '456', '2014-12-20 09:29:47'),
+(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', '', 'ASDFAS', 'QWW', '10', '4040', '', '2014年-12月', '', '2014-12-18 11:57:28');
 
 -- --------------------------------------------------------
 
@@ -89,8 +89,20 @@ CREATE TABLE IF NOT EXISTS `taolou_company_finance` (
   `companyId` int(11) NOT NULL,
   `stage` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `date` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `taolou_company_finance`
+--
+
+INSERT INTO `taolou_company_finance` (`id`, `companyId`, `stage`, `date`, `createDate`) VALUES
+(3, 1, 'A輪', '2013年-2月', '2014-12-20 09:11:41'),
+(4, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:12'),
+(5, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:21'),
+(6, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:37'),
+(7, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:47');
 
 -- --------------------------------------------------------
 
@@ -112,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company_skill` (
 --
 
 INSERT INTO `taolou_company_skill` (`id`, `companyId`, `skillList`, `updateDate`, `createDate`) VALUES
-(1, 1, '1|2', '2014-12-18 12:15:41', '2014-12-18 12:15:41'),
+(1, 1, '1|2|9|8', '2014-12-20 09:29:47', '2014-12-18 12:15:41'),
 (2, 2, '2|3', '2014-12-18 12:15:41', '2014-12-18 12:15:41');
 
 -- --------------------------------------------------------
@@ -407,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `taolou_system_companyskill` (
   `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `taolou_system_companyskill`
@@ -421,7 +433,8 @@ INSERT INTO `taolou_system_companyskill` (`id`, `skillName`, `status`, `createDa
 (5, '遊戲', 'y', '2014-12-18 12:04:09'),
 (6, '醫療健康', 'y', '2014-12-18 12:04:09'),
 (7, '招聘', 'y', '2014-12-18 12:04:29'),
-(8, '教育', 'y', '2014-12-18 12:04:29');
+(8, '教育', 'y', '2014-12-18 12:04:29'),
+(9, '智慧型手機', 'y', '2014-12-20 08:23:35');
 
 -- --------------------------------------------------------
 

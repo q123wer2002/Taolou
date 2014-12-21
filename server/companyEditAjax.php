@@ -3,6 +3,11 @@ include_once '../share.php';
 
 //page default
 $obj_tmp1->companyTable="taolou_company";
+$obj_tmp1->companySkill="taolou_company_skill";
+$obj_tmp1->member='taolou_member_detail';
+$obj_tmp1->companyFin="taolou_company_finance";
+
+$obj_tmp1->sysComSkill="taolou_system_companyskill";
 
 
 
@@ -95,6 +100,64 @@ else if(@$_POST['method']=="updateLocation"){
 
 	$message=array('first'=>"success");
 	echo json_encode($message);	
+}
+else if(@$_POST['method']=="newSkill"){
+	$sql_check_newSkill="SELECT ".$obj_tmp1->sysComSkill.".*
+						FROM ".$obj_tmp1->sysComSkill."
+						WHERE ".$obj_tmp1->sysComSkill.".skillName='".$_POST['skill']."'";
+	$obj_tmp1->laout_arr['check_skill']=array();
+	$obj_tmp1->basic_select('laout_arr','check_skill',$sql_check_newSkill);
+
+	if($obj_tmp1->laout_arr['check_skill'][0]['id'] != ""){$message=array("message"=>"aleady done");}
+	else{
+		//儲存新的技能
+		$sql_addnewSkill="INSERT INTO ".$obj_tmp1->sysComSkill." VALUES (NULL,'".$_POST['skill']."','n',CURRENT_TIMESTAMP)";
+		mysql_query($sql_addnewSkill);
+		$message=["message"=>"ok"];
+	}
+	echo json_encode($message);
+	exit;
+}
+else if(@$_POST['method']=="saveEditCom"){
+
+	/*foreach($_POST as $Key => $Value){
+
+	}
+	$_POST=laout_check($_POST);
+	print_r($_POST);*/
+	//公司基本資料
+	$sql_company="UPDATE ".$obj_tmp1->companyTable." SET companyShortName='".$_POST['companyShortName']."', companyName='".$_POST['companyName']."', website='".$_POST['website']."', companyFB='".$_POST['companyFB']."', memberSize='".$_POST['memberSize']."', detail='".$_POST['detail']."', CEO='".$_POST['CEO']."', createDate='".$_POST['companyCreateYear']."-".$_POST['companyCreateMonth']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->companyTable.".id='".$companyID."'";
+	mysql_query($sql_company);
+	//=======================
+
+	//公司技能
+		//先確定技能代號
+	$mySkillId="";
+	foreach($_POST['companySkill'] as $SkillKey => $SkillValue){
+		$sql_checkSkill="SELECT ".$obj_tmp1->sysComSkill.".*
+						FROM ".$obj_tmp1->sysComSkill."
+						WHERE ".$obj_tmp1->sysComSkill.".skillName='".$SkillValue."'";
+		$obj_tmp1->laout_arr['checkSkill']=array();
+		$obj_tmp1->basic_select('laout_arr','checkSkill',$sql_checkSkill);
+		$mySkillId=$mySkillId.$obj_tmp1->laout_arr['checkSkill'][0]['id']."|";
+	}
+	$mySkillId=substr($mySkillId,0,-1);
+	//print_r($mySkillId);
+
+		//開始存入資料庫
+	$sql_myskill="UPDATE ".$obj_tmp1->companySkill."
+				  SET skillList='".$mySkillId."', updateDate=CURRENT_TIMESTAMP
+				  WHERE ".$obj_tmp1->companySkill.".companyId='".$companyID."'";
+	mysql_query($sql_myskill);
+	//=======================
+
+	//公司融資
+	$sql_companyFin="INSERT INTO ".$obj_tmp1->companyFin." VALUES(NULL,'".$companyID."','".$_POST['stage']."','".$_POST['companyFinYear']."-".$_POST['companyFinMonth']."',CURRENT_TIMESTAMP)";
+	mysql_query($sql_companyFin);
+	//=======================
+
+	$message=array('first'=>"success");
+	echo json_encode($message);
 }
 
 ?>

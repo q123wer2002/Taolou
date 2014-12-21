@@ -5,6 +5,7 @@ include_once 'share.php';
 $obj_tmp1->companyTable="taolou_company";
 $obj_tmp1->companySkill="taolou_company_skill";
 $obj_tmp1->member='taolou_member_detail';
+$obj_tmp1->companyFin="taolou_company_finance";
 
 $obj_tmp1->sysComSkill="taolou_system_companyskill";
 
@@ -40,6 +41,13 @@ switch(@$action){
             $obj_tmp1->location=array();
             $obj_tmp1->location=split('[/]',$obj_tmp1->laout_arr['company'][0]['location']);
             //print_r($obj_tmp1->location);
+        }
+
+        //分析公司成立年月
+        if(!empty($obj_tmp1->laout_arr['company'][0]['createDate'])){
+            $obj_tmp1->createDate=array();
+            $obj_tmp1->createDate=split('[-]',$obj_tmp1->laout_arr['company'][0]['createDate']);
+            //print_r($obj_tmp1->createDate);
         }
     //==========================
 
@@ -77,7 +85,26 @@ switch(@$action){
             }
     //==========================
 
-    //抓取系統公司技能
+    //抓取公司融資
+    $sql_financeInfo="SELECT ".$obj_tmp1->companyFin.".*
+                      FROM ".$obj_tmp1->companyFin."
+                      WHERE ".$obj_tmp1->companyFin.".companyId='".$companyID."'
+                      ORDER BY ".$obj_tmp1->companyFin.".createDate DESC
+                      LIMIT 0,1";
+    $obj_tmp1->laout_arr['finInfo']=array();
+    $obj_tmp1->basic_select('laout_arr','finInfo',$sql_financeInfo);
+        //echo $sql_financeInfo;
+        //print_r($obj_tmp1->laout_arr['finInfo']);
+
+        //分析公司融資成立年月
+        if(!empty($obj_tmp1->laout_arr['finInfo'][0]['date'])){
+            $obj_tmp1->financeDate=array();
+            $obj_tmp1->financeDate=split('[-]',$obj_tmp1->laout_arr['finInfo'][0]['date']);
+            //print_r($obj_tmp1->financeDate);
+        }
+    //==========================
+
+    //抓取系統技能
     $sql_sysComSkill="SELECT ".$obj_tmp1->sysComSkill.".*
                       FROM ".$obj_tmp1->sysComSkill."
                       WHERE ".$obj_tmp1->sysComSkill.".status='y'";
@@ -95,6 +122,7 @@ switch(@$action){
         //print_r($obj_tmp1->allComSkill);
 
     //==========================
+
 
 
 

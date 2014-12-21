@@ -111,7 +111,7 @@ TaoLou.controller('Taolou_companyEdit',['$scope','$http',function companyEdit($s
 				var newSkillObject={"method":"newSkill","skill":$scope.newskill};
 				$http({
 					method:'POST',
-					url:'server/onlineCVAjax.php',
+					url:'server/companyEditAjax.php',
 					data: $.param(newSkillObject),
 					headers: {'Content-type': 'application/x-www-form-urlencoded'},
 				}).
@@ -127,27 +127,6 @@ TaoLou.controller('Taolou_companyEdit',['$scope','$http',function companyEdit($s
 				});
 			}else{$scope.skillErrorMess='已經有此技能';}
 		}else{$scope.skillErrorMess='未填入技能';}
-	}
-	$scope.saveSkill=function(){
-		if($scope.myskills == ""){$scope.skillErrorMess="尚未填入你的技能";}
-		else{
-			$scope.skillErrorMess="";
-			var mySkillObject={"method":"mySkill","skillList":$scope.myskills};
-			$http({
-				method:'POST',
-				url:'server/onlineCVAjax.php',
-				data: $.param(mySkillObject),
-				headers: {'Content-type': 'application/x-www-form-urlencoded'},
-			}).
-			success(function(json){
-				console.log(json);
-				$scope.showSpecialFun();
-			}).
-			error(function(json){
-				console.warn(json);
-				$scope.skillErrorMess='發生不可預測的錯誤';
-			});
-		}
 	}
 
 
@@ -175,6 +154,40 @@ TaoLou.controller('Taolou_companyEdit',['$scope','$http',function companyEdit($s
 		{'name':"F輪以後"},
 		{'name':"其他"},
 	];
+
+	//save all data into company detail
+	$scope.saveEditCompany=function(){
+		if($scope.companyShortName==""){$scope.companyEditError="公司簡稱未填寫";}
+		else if($scope.companyName==""){$scope.companyEditError="公司名稱未填寫";}
+		else if($scope.companyWebsite==""){$scope.companyEditError="公司網址未填寫";}
+		else if($scope.companyFB==""){$scope.companyEditError="公司FB未填寫";}
+		else if($scope.companySize==""){$scope.companyEditError="公司規模未選擇";}
+		else if($scope.companyDetail==""){$scope.companyEditError="公司描述未填寫";}
+		else if($scope.myskills==""){$scope.companyEditError="公司專長未選填";}
+		else if($scope.companyCEO==""){$scope.companyEditError="公司CEO姓名未填寫";}
+		else if($scope.companyCreateYear==""){$scope.companyEditError="公司創立年未選擇";}
+		else if($scope.companyCreateMonth==""){$scope.companyEditError="公司創立月未選擇";}
+		else if($scope.companyFinStage==""){$scope.companyEditError="公司融資階段未選擇";}
+		else if($scope.companyFinYear==""){$scope.companyEditError="公司融資年份未選擇";}
+		else if($scope.companyFinMonth==""){$scope.companyEditError="公司融資月未選擇";}
+		else{
+			var saveEditComObject={"method":"saveEditCom","companyShortName":$scope.companyShortName,"companyName":$scope.companyName,"website":$scope.companyWebsite,"companyFB":$scope.companyFB,"memberSize":$scope.companySize,"detail":$scope.companyDetail,"companySkill":$scope.myskills,"CEO":$scope.companyCEO,"companyCreateYear":$scope.companyCreateYear,"companyCreateMonth":$scope.companyCreateMonth,"stage":$scope.companyFinStage,"companyFinYear":$scope.companyFinYear,"companyFinMonth":$scope.companyFinMonth};
+			$http({
+				method:'POST',
+				url:'server/companyEditAjax.php',
+				data: $.param(saveEditComObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+				jQuery(".changeOK").animate({'top':'0px'},500).delay(1500).animate({'top':'-200px'},500);
+			}).
+			error(function(json){
+				console.warn(json);
+				$scope.skillErrorMess='發生不可預測的錯誤';
+			});
+		}
+	}
 
 }]);
 

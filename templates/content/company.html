@@ -6,27 +6,30 @@
 		<?php if(!empty($this->laout_arr['company'])){
 				foreach($this->laout_arr['company'] as $ComKey => $ComValue){ ?>
 			<div class="img-wrapper">
-				<img src="<?php echo $ComValue['logo']; ?>">
+				<img src="<?php echo $ComValue['logo']; ?>" width="100%" height='100%'>
 			</div>
 			<h2>
 				<?php echo $ComValue['productName']; ?>
 				<span class="fullname"><?php echo $ComValue['companyName']; ?></span>
 			</h2>
+			<?php if($this->ourCompany){ ?>
 			<a href="companyEdit.php?action=<?php echo $this->encode($ComValue['id']); ?>" class='editCompany'>編輯公司訊息</a>
+			<?php } ?>
 			<p class="head-meta">
-				<span class="meta-item size"><span class="icon people"></span><?php echo $ComValue['memberSize']; ?> 人</span>
+				<span class="meta-item size"><span class="icon people"></span><?php echo $ComValue['memberSize']; ?> </span>
 				<span class="meta-item location"><span class="icon locationicon"></span><?php echo $ComValue['location']; ?></span>
 				<span class="meta-item found-time"><span class="icon clock"></span><?php echo $ComValue['createDate']; ?></span>
 			</p>
 			<p class="head-meta">
-				<span class="meta-item website"><span class="icon global"></span><a target="_blank" href="http://www.houxue.com"><?php echo $ComValue['website']; ?></a></span>
+				<span class="meta-item website"><span class="icon global"></span><a target="_blank" href="http://<?php echo $ComValue['website']; ?>"><?php echo $ComValue['website']; ?></a></span>
 			</p>
 			<div class="specialties clearfix">
 				<span class="label">专长领域</span>
 				<ul class="clearfix">
-					<li>移动互联网</li>
-					<li>电子商务</li>
-					<li>教育</li>
+					<?php if(!empty($this->mySkillLists)){
+							foreach($this->myskill as $key => $value) { ?>
+					<li><?php echo $value; ?></li>
+					<?php }} ?>
 				</ul>
 			</div>
 			<div class="intro">
@@ -42,7 +45,7 @@
 				foreach($this->laout_arr['job'] as $jobKey => $jobValue) { ?>
 		<div class='joblistDiv'>
 			<div class="job-list-item">
-				<a href="javascript:;" class="job-author-avatar"><img src="http://tp4.sinaimg.cn/1335661931/180/5627718740/0" alt="周女士的头像"></a>
+				<a href="javascript:;" class="job-author-avatar"><img src="<?php echo $ComValue['logo']; ?>"></a>
 				<div class="main">
 					<span class="job-author-name">周女士</span>
 					<span>發佈職位</span>
@@ -84,9 +87,12 @@
 			</div>
 
 			<div class="company-block finance">
-				<h3>当前融资或者上市情况</h3>
+				<h3>當前融資或上市狀況</h3>
 				<ul class="financing-body">
-					<li>A 轮<span class="time">2012.08</span></li>
+					<?php if(!empty($this->laout_arr['finInfo'])){ 
+							foreach($this->laout_arr['finInfo'] as $key => $value){?>
+					<li><?php echo $value['stage']; ?><span class="time"><?php echo $value['date']; ?></span></li>
+					<?php }} ?>
 				</ul>
 			</div>
 		</section>
