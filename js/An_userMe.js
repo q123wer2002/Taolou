@@ -11,7 +11,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		var userProfileObject={"method":"savePhone","phone":$scope.phone[0].phone};
 		$http({
 			method:'POST',
-			url:'server/onlineCVAjax.php',
+			url:'server/userMeAjax.php',
 			data: $.param(userProfileObject),
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
@@ -49,7 +49,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 			var newLocaObject={"method":"newLoca","location":$scope.newLoca};
 			$http({
 				method:'POST',
-				url:'server/onlineCVAjax.php',
+				url:'server/userMeAjax.php',
 				data: $.param(newLocaObject),
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
@@ -79,7 +79,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 			var jobWishObject={"method":"jobwish","name":$scope.jobwish_name,"jobType":$scope.JobTypes,"leastSalary":$scope.jobwish_min_salary,"stock_option":$scope.jobwish_stock_option,"location":$scope.locations,"telework":$scope.jobwish_telework};
 			$http({
 				method:'POST',
-				url:'server/onlineCVAjax.php',
+				url:'server/userMeAjax.php',
 				data: $.param(jobWishObject),
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
@@ -121,7 +121,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 				var newSkillObject={"method":"newSkill","skill":$scope.newskill};
 				$http({
 					method:'POST',
-					url:'server/onlineCVAjax.php',
+					url:'server/userMeAjax.php',
 					data: $.param(newSkillObject),
 					headers: {'Content-type': 'application/x-www-form-urlencoded'},
 				}).
@@ -145,7 +145,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 			var mySkillObject={"method":"mySkill","skillList":$scope.myskills};
 			$http({
 				method:'POST',
-				url:'server/onlineCVAjax.php',
+				url:'server/userMeAjax.php',
 				data: $.param(mySkillObject),
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
@@ -203,7 +203,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		var EducaObject={"method":"myAddEducation"};
 		$http({
 			method:'POST',
-			url:'server/onlineCVAjax.php',
+			url:'server/userMeAjax.php',
 			data: $.param(EducaObject),
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
@@ -230,7 +230,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 
 			$http({
 				method:'POST',
-				url:'server/onlineCVAjax.php',
+				url:'server/userMeAjax.php',
 				data: $.param(EducaObject),
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
@@ -249,7 +249,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		var EducaObject={"method":"mydeleteEducation", "id":item.id};
 		$http({
 			method:'POST',
-			url:'server/onlineCVAjax.php',
+			url:'server/userMeAjax.php',
 			data: $.param(EducaObject),
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
@@ -298,7 +298,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		var ExperienceObject={"method":"myAddExperience"};
 		$http({
 			method:'POST',
-			url:'server/onlineCVAjax.php',
+			url:'server/userMeAjax.php',
 			data: $.param(ExperienceObject),
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
@@ -325,7 +325,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 
 			$http({
 				method:'POST',
-				url:'server/onlineCVAjax.php',
+				url:'server/userMeAjax.php',
 				data: $.param(ExperienceObject),
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
@@ -344,7 +344,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		var ExperienceObject={"method":"mydeleteExperience", "id":item.id};
 		$http({
 			method:'POST',
-			url:'server/onlineCVAjax.php',
+			url:'server/userMeAjax.php',
 			data: $.param(ExperienceObject),
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
@@ -372,7 +372,7 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 
 			$http({
 				method:'POST',
-				url:'server/onlineCVAjax.php',
+				url:'server/userMeAjax.php',
 				data: $.param(AddselfObject),
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
@@ -509,7 +509,7 @@ function connect_db_save(userName,userBorn,userEducation,userWorkyear,userJobsta
 	var userProfileObject={"method":"saveUserProfile","userName":userName,"userBorn":userBorn,"userEducation":userEducation,"userWorkyear":userWorkyear,"userJobstatus":userJobstatus};
 	$.ajax({
 		type: "POST",
-		url: "server/onlineCVAjax.php",
+		url: "server/userMeAjax.php",
 		data: $.param(userProfileObject),
 		headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		async: true,

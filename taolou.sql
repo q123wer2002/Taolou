@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2014 at 09:09 AM
+-- Generation Time: Dec 22, 2014 at 05:41 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
   `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `taolou_company`
@@ -76,7 +76,8 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
 
 INSERT INTO `taolou_company` (`id`, `recommendation`, `companyShortName`, `companyName`, `CEO`, `ceoPhoto`, `logo`, `location`, `memberSize`, `website`, `companyFB`, `createDate`, `detail`, `updateDate`) VALUES
 (1, 'y', 'test', 'taoloutest', 'yenchen', 'userObject/companyObject/1/ceoPhoto.png', 'userObject/companyObject/1/CompanyPhoto.jpeg', '宜蘭縣/員山鄉/264', '200~2000人', 'taolou.com', 'www.facebook.com', '2014年-08月', '456', '2014-12-20 09:29:47'),
-(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', '', 'ASDFAS', 'QWW', '10', '4040', '', '2014年-12月', '', '2014-12-18 11:57:28');
+(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', 'userObject/companyObject/2/ceoPhoto.jpeg', 'userObject/companyObject/2/CompanyPhoto.png', '宜蘭縣/員山鄉/264', '10', '4040', '', '2014年-12月', '', '2014-12-18 11:57:28'),
+(3, 'n', '', 'NewCompanyTest', '', '', '', '', '', '', '', '', '', '2014-12-22 14:54:07');
 
 -- --------------------------------------------------------
 
@@ -155,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 --
 
 INSERT INTO `taolou_job` (`id`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `updateDate`, `createDate`) VALUES
-(1, 'show something title', 1, 'IOS工程師', 'taiwan', 'software', '全職', '50000', 'y', '', 'y', '2014-12-15 16:45:38', '2014-12-15 17:44:33'),
-(2, 'show something title', 1, 'Android工程師', 'taiwan', 'software', '兼職', '50000', '', '', 'y', '2014-12-15 16:45:38', '2014-12-15 17:44:37');
+(1, 'show something title', 1, 'IOS工程師', '宜蘭縣/員山鄉/264', 'software', '全職', '50000', 'y', 'wcqwc', 'y', '2014-12-22 06:15:42', '2014-12-22 16:35:59'),
+(2, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '2014-12-22 06:15:32', '2014-12-22 16:36:01');
 
 -- --------------------------------------------------------
 
@@ -187,11 +188,12 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `companyHr` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
   `companyId` int(11) NOT NULL,
+  `companyValid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `facebook` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `google+` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `google` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `photo` longtext COLLATE utf8_unicode_ci NOT NULL,
   `born` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `lastEducation` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -209,12 +211,12 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
 -- Dumping data for table `taolou_member_detail`
 --
 
-INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `name`, `email`, `phone`, `facebook`, `google+`, `photo`, `born`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
-(1, 'n', 0, '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:01', '2014-11-23 17:22:10'),
-(2, 'n', 0, 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2014-12-14 09:39:19', '2014-11-23 17:25:35'),
-(3, 'y', 1, 'yoyoMan', 'q123wer2002@gmail', '', '', '', '', '', '', '', '', '', 'y', 'n', '2014-12-15 14:20:31', '2014-11-24 12:38:25'),
-(4, 'y', 2, 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', '', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-12 14:36:05', '2014-11-27 10:01:07'),
-(5, 'n', 0, '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23');
+INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyValid`, `name`, `email`, `phone`, `facebook`, `google`, `photo`, `born`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
+(1, 'n', 0, '', '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:01', '2014-11-23 17:22:10'),
+(2, 'n', 0, '', 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2014-12-14 09:39:19', '2014-11-23 17:25:35'),
+(3, 'y', 3, 'Host', 'yoyoMan', 'q123wer2002@gmail', '', '', '', 'userObject/q123wer2002@gmail/profilePhoto/userPhoto.png', '', '', '', '', '', 'y', 'n', '2014-12-22 16:05:45', '2014-11-24 12:38:25'),
+(4, 'y', 2, 'n', 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', 'userObject/q123wer2002@gg.com/profilePhoto/userPhoto.png', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-22 16:38:22', '2014-11-27 10:01:07'),
+(5, 'n', 0, '', '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23');
 
 -- --------------------------------------------------------
 

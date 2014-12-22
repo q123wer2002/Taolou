@@ -22,11 +22,12 @@ $action="";
 //decode company id
 if($_SESSION['user']['id'] != ""){
 	if(@$_REQUEST["company"] == ""){
-		if(@$_SESSION['user']['company'] != ""){
-			@$obj_tmp1->tmp_comanyId=$_SESSION['user']['company'];
-			$obj_tmp1->ourCompany=true;
-		}
-		else{$action="none";}
+		if(@$_SESSION['user']['userType']=='2'){
+			if(@$_SESSION['user']['company'] != "" && @$_SESSION['user']['company'] != "0"){
+				@$obj_tmp1->tmp_comanyId=$_SESSION['user']['company'];
+				$obj_tmp1->ourCompany=true;
+			}else{$action="no_company";}
+		}else{$action="none";}
 	}
 	else{
 		$obj_tmp1->tmp_comanyId = $obj_tmp1->decode(laout_check($_REQUEST["company"]));
@@ -40,12 +41,25 @@ else{
 }
 //==================
 
-
 switch($action){
 	case "none":
 	
 	$obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/404.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+	$obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+//=======================================
+
+	break;
+
+	case "no_company":
+	
+	$obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/company/no_company.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";

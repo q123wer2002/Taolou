@@ -14,17 +14,35 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 //確認使用者是誰
 if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);}else{$getAction="";}
 if(@laout_check($_GET['jobId']) != ""){@$jobId=$obj_tmp1->decode(laout_check($_GET['jobId']));}else{@$jobId="";}
-if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='none';}
-if(@$_SESSION['user']['company']!=""){@$companyId=$_SESSION['user']['company'];}
-if(@$_SESSION['user']['userType'] != "" && @$getAction==""){
-    if(@$_SESSION['user']['userType'] == '1'){$action='none';}
-    else if(@$_SESSION['user']['userType'] == '2'){$action='ManageJob';}
-    else{$action='none';}
-}else{$action=laout_check($_GET['action']);}
+
+if($_SESSION['user']['id'] != ""){
+    if(@$_SESSION['user']['userType']=='2'){
+        if(@$_SESSION['user']['company'] != "" && @$_SESSION['user']['company'] != "0"){
+            @$companyId=$_SESSION['user']['company'];
+            if($getAction==""){
+                $action="ManageJob";
+            }else{$action=$getAction;}
+        }else{$action="no_company";}
+    }else{$action="none";}
+}else{$action='none';}
 //===================
 
 
 switch(@$action){
+
+    case "no_company":
+    
+    $obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/company/no_company.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+    $obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+//=======================================
+
+    break;
 
 	case "postJob":
 

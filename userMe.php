@@ -40,6 +40,35 @@ switch(@$action){
 	$obj_tmp1->basic_select('laout_arr','member',$sql_member);
 		//echo $sql_member;
 		//print_r($obj_tmp1->laout_arr['member']);
+		if(!empty($obj_tmp1->laout_arr['member'][0]['companyId'])){
+			$sql_checkCom="SELECT ".$obj_tmp1->companyTable.".*
+						   FROM ".$obj_tmp1->companyTable."
+						   WHERE ".$obj_tmp1->companyTable.".id='".$obj_tmp1->laout_arr['member'][0]['companyId']."'";
+			$obj_tmp1->laout_arr['checkCom']=array();
+			$obj_tmp1->basic_select('laout_arr','checkCom',$sql_checkCom);
+				//echo $sql_checkCom;
+				//print_r($obj_tmp1->laout_arr['checkCom']);
+			$obj_tmp1->companyName=$obj_tmp1->laout_arr['checkCom'][0]['companyName'];
+
+			if($obj_tmp1->laout_arr['member'][0]['companyValid']=="Host"){
+				$sql_allComUser="SELECT ".$obj_tmp1->member.".*
+								 FROM ".$obj_tmp1->member."
+								 WHERE ".$obj_tmp1->member.".companyId='".$obj_tmp1->laout_arr['member'][0]['companyId']."'";
+				$obj_tmp1->laout_arr['allComUser']=array();
+				$obj_tmp1->basic_select('laout_arr','allComUser',$sql_allComUser);
+				//echo $sql_allComUser;
+				//print_r($obj_tmp1->laout_arr['allComUser']);
+			}
+		}
+	//==========================
+
+	//顯示所有公司
+	$sql_company="SELECT ".$obj_tmp1->companyTable.".*
+				  FROM ".$obj_tmp1->companyTable;
+	$obj_tmp1->laout_arr['company']=array();
+	$obj_tmp1->basic_select('laout_arr','company',$sql_company);
+		//echo $sql_company;
+		//print_r($obj_tmp1->laout_arr['company']);
 	//==========================
 
 
@@ -203,7 +232,6 @@ switch(@$action){
 
 
 	$obj_tmp1->showad=false;
-	$obj_tmp1->javaData='js/AN_onlineCV.js';
     $obj_tmp1->content_html='content/user/userMe.html';
 
     //設定版面
