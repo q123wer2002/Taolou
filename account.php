@@ -13,7 +13,7 @@ if(@$_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
 else {@$action='login';}
 //====================
 
-
+ 
 switch($action){
 	case 'signup':
 
