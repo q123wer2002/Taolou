@@ -8,21 +8,63 @@ $obj_tmp1->financetable='taolou_finance';
 $obj_tmp1->companySkill='taolou_skill';
 $obj_tmp1->hrtable='taolou_member';
 $obj_tmp1->tmp_where="";
-@$obj_tmp1->tmp_jobsId = $obj_tmp1->decode(laout_check($_REQUEST["jobsid"]));;
+
+@$obj_tmp1->tmp_jobsId="";
 @$obj_tmp1->tmp_comanyId="";
+
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
+//讀取職缺的資訊
+if(@$_REQUEST["jobsid"] != ""){
+	@$obj_tmp1->tmp_jobsId = $obj_tmp1->decode(laout_check($_REQUEST["jobsid"]));
+}
 //decode company id
 if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='jobList';}
-if(@$_REQUEST['action']!=""){@$action=laout_check($_REQUEST['action']);}
-else {@$action='jobList';}
+
+if(@$obj_tmp1->tmp_jobsId != ""){@$action="showJob";}
+else{@$action='jobList';}
 //==================
 
 
 switch($action){
+
+	case"showJob":
+
+	$sql_showJob="SELECT ".$obj_tmp1->jobtable.".*
+				  FROM ".$obj_tmp1->jobtable."
+				  WHERE ".$obj_tmp1->jobtable.".id='".$obj_tmp1->tmp_jobsId."'";
+	$obj_tmp1->laout_arr['showJob']=array();
+	$obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
+		//echo $sql_showJob;
+		//print_r($obj_tmp1->laout_arr['showJob']);
+	//===========================
+
+	if(!empty($obj_tmp1->laout_arr['showJob'])){
+		//顯示公司
+		$sql_company="SELECT ".$obj_tmp1->companyTable.".*
+					  FROM ".$obj_tmp1->companyTable."
+					  WHERE ".$obj_tmp1->companyTable.".id='".$obj_tmp1->laout_arr['showJob'][0]['companyId']."'";
+		$obj_tmp1->laout_arr['company']=array();
+		$obj_tmp1->basic_select('laout_arr','company',$sql_company);
+		//echo $sql_company;
+		//print_r($obj_tmp1->laout_arr['company']);
+	//===========================
+	}
+
+	$obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/showJob.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+	$obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+//=======================================
+
+	break;
 	
-	default:
+	case"jobList":
 
 	//職位列表
 	$sql_job="SELECT ".$obj_tmp1->jobtable.".*
@@ -68,6 +110,20 @@ switch($action){
 
 	$obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/jobList.html';
+
+    //設定版面
+    $obj_tmp1->top_html="top.html";
+	$obj_tmp1->showad_html='showad.html';
+    $obj_tmp1->footer_html="footer.html";
+    $obj_tmp1->laout('templates.html');
+//=======================================
+
+	break;
+
+	default:
+
+	$obj_tmp1->showad=false;
+    $obj_tmp1->content_html='content/404.html';
 
     //設定版面
     $obj_tmp1->top_html="top.html";
