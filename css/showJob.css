@@ -1,8 +1,9 @@
 .nsb-block{background-color: #ffffff;width: 650px;position: relative;}
 .nsb-block h2{width: 610px;position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;font-size: 16px;}
 .nsb-block .nsb-block-content {border-top: 1px solid #eceef1;overflow: hidden;}
+	.nsb-block-content h3{font-weight: 700;}
 	.position-wrapper {display: block;padding: 20px;line-height: 24px;color: #9097a4;-webkit-transition: background-color .4s ease-out;transition: background-color .4s ease-out;}
-		.job-info {padding-left: 70px;width: 540px;}
+		.job-info {padding-left: 50px;width: 540px;}
 		.avatar img {height: 50px;width: 50px;border-radius: 2px;}
 		.author b {margin-right: 5px;font-size: 16px;}
 		.author .company-domain {margin-right: 3px;}
@@ -10,10 +11,21 @@
 	.job-meta>span {margin-right: 20px;font-size: 14px;}
 	.job-describe {margin-top: 20px;color: #6b7485;font-size: 14px;}
 	.nsb-block-ctrl {text-align: left;height: 50px;border-top: 1px solid #eceef1;padding: 20px 0px 20px 90px;}
-	.nsb-block-ctrl .btn {width: 118px;float: left;font-size: 16px;display: inline-block;height: 50px;line-height: 50px;text-align: center;border: none;border-radius: 3px;}
+	.nsb-block-ctrl .btn {width: 118px;float: left;font-size: 16px;display: inline-block;height: 50px;line-height: 50px;text-align: center;border: none;border-radius: 3px;color: #ffffff;margin-right: 15px;font-weight: 500;}
 
-.nsb-aside{position: absolute;right: 60px;width: 280px;top: 0px;background-color: #ffffff;}
-	.job-publisher h2{position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;font-size: 16px;}
-		.nsb-block-content{border-top: 1px solid #eceef1;padding: 20px;}
-			.img-wrapper:before {content: "";position: absolute;top: 0;bottom: 0;left: 0;right: 0;-webkit-box-shadow: inset 0 0 1px #d0d2da;box-shadow: inset 0 0 1px #d0d2da;border-radius: 2px;}
-			.job-publisher img {width: 60px;height: 60px;border-radius: 2px;}
+	.red-btn{background-color: #EB6A64;}
+	.green-btn{background-color: #73AE1F;}
+	.blue-btn{background-color: #36A9E5;}
+
+.nsb-aside{position: absolute;right: 50px;width: 280px;top: 0px;}
+	.job-publisher{background-color: #ffffff;}
+	.job-publisher h2, .widget-company-card h2{position: inherit;height: 24px;line-height: 24px;padding: 11px 20px 7px;font-size: 16px;}
+		.nsb-block-content{border-top: 1px solid #eceef1;}
+		.nsb-block-content{padding: 20px;}
+			.cmpy-card-logo img, .job-publisher img {width: 60px;height: 60px;border-radius: 2px;}
+			.job-publisher-name{position: absolute;right: 100px;top: 70px;}
+			.contact-btn{position: absolute;top: 100px;right: 100px;}
+			.contact-btn:hover{text-decoration: underline;}
+
+	.widget-company-card{margin-top: 30px;background-color: #ffffff;}
+		.cmpy-card-loc,.label{font-weight: 700;margin-top: 5px;}

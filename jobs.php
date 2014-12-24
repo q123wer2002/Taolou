@@ -4,13 +4,16 @@ include_once 'share.php';
 //page default
 $obj_tmp1->jobtable="taolou_job";
 $obj_tmp1->companyTable="taolou_company";
-$obj_tmp1->financetable='taolou_finance';
-$obj_tmp1->companySkill='taolou_skill';
-$obj_tmp1->hrtable='taolou_member';
+$obj_tmp1->companyFin="taolou_company_finance";
+
+$obj_tmp1->member='taolou_member_detail';
+
 $obj_tmp1->tmp_where="";
 
 @$obj_tmp1->tmp_jobsId="";
 @$obj_tmp1->tmp_comanyId="";
+
+$obj_tmp1->applyJob=false;
 
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
@@ -20,7 +23,14 @@ if(@$_REQUEST["jobsid"] != ""){
 	@$obj_tmp1->tmp_jobsId = $obj_tmp1->decode(laout_check($_REQUEST["jobsid"]));
 }
 //decode company id
-if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='jobList';}
+if(@$_SESSION['user']['id']!= ""){
+	if(@$_SESSION['user']['userType']=='1'){
+
+	}else if(@$_SESSION['user']['userType']=='2'){
+
+	}
+	$userId=$_SESSION['user']['id'];
+}else{@$action='jobList';}
 
 if(@$obj_tmp1->tmp_jobsId != ""){@$action="showJob";}
 else{@$action='jobList';}
@@ -49,7 +59,35 @@ switch($action){
 		$obj_tmp1->basic_select('laout_arr','company',$sql_company);
 		//echo $sql_company;
 		//print_r($obj_tmp1->laout_arr['company']);
+
+			//顯示公司地址
+		$obj_tmp1->ComLoca=split("/",$obj_tmp1->laout_arr['company'][0]['location']);
+			//顯示融資狀況
+		$sql_financeInfo="SELECT ".$obj_tmp1->companyFin.".*
+	                      FROM ".$obj_tmp1->companyFin."
+	                      WHERE ".$obj_tmp1->companyFin.".companyId='".$obj_tmp1->laout_arr['showJob'][0]['companyId']."'
+	                      ORDER BY ".$obj_tmp1->companyFin.".createDate DESC
+	                      LIMIT 0,1";
+	    $obj_tmp1->laout_arr['finInfo']=array();
+	    $obj_tmp1->basic_select('laout_arr','finInfo',$sql_financeInfo);
+	        //echo $sql_financeInfo;
+	        //print_r($obj_tmp1->laout_arr['finInfo']);
+
 	//===========================
+
+		//顯示職缺地址
+		$obj_tmp1->JobLoca=split("/",$obj_tmp1->laout_arr['showJob'][0]['location']);
+		
+		//顯示刊登職位人
+		$sql_postMan="SELECT ".$obj_tmp1->member.".*
+					  FROM ".$obj_tmp1->member."
+					  WHERE ".$obj_tmp1->member.".id='".$obj_tmp1->laout_arr['showJob'][0]['postMemberId']."'";
+		$obj_tmp1->laout_arr['postMan']=array();
+		$obj_tmp1->basic_select('laout_arr','postMan',$sql_postMan);
+		//echo $sql_postMan;
+		//print_r($obj_tmp1->laout_arr['postMan']);
+	//===========================
+	
 	}
 
 	$obj_tmp1->showad=false;

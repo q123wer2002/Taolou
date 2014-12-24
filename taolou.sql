@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2014 at 05:41 PM
+-- Generation Time: Dec 24, 2014 at 07:23 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `taolou_account` (
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `taolou_account`
@@ -44,7 +44,8 @@ INSERT INTO `taolou_account` (`id`, `memberId`, `email`, `password`, `createDate
 (2, 2, 'q123wer2002@livemail.tw', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-11-23 17:25:35'),
 (3, 3, 'q123wer2002@gmail', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-11-24 12:38:25'),
 (4, 4, 'q123wer2002@gg.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-11-27 10:01:07'),
-(6, 5, 'test@test.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-12-02 13:39:23');
+(6, 5, 'test@test.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-12-02 13:39:23'),
+(7, 6, 'tony507yu@gmail.com', 'a141c47927929bc2d1fb6d336a256df4', '2014-12-24 04:43:20');
 
 -- --------------------------------------------------------
 
@@ -136,6 +137,7 @@ INSERT INTO `taolou_company_skill` (`id`, `companyId`, `skillList`, `updateDate`
 
 CREATE TABLE IF NOT EXISTS `taolou_job` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `postMemberId` int(11) NOT NULL,
   `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `companyId` int(11) NOT NULL,
   `jobName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -155,9 +157,9 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 -- Dumping data for table `taolou_job`
 --
 
-INSERT INTO `taolou_job` (`id`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `updateDate`, `createDate`) VALUES
-(1, 'show something title', 1, 'IOS工程師', '宜蘭縣/員山鄉/264', 'software', '全職', '50000', 'y', 'wcqwc', 'y', '2014-12-22 06:15:42', '2014-12-22 16:35:59'),
-(2, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '2014-12-22 06:15:32', '2014-12-22 16:36:01');
+INSERT INTO `taolou_job` (`id`, `postMemberId`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `updateDate`, `createDate`) VALUES
+(1, 3, 'show something title', 1, 'IOS工程師', '宜蘭縣/員山鄉/264', 'software', '全職', '50000', 'y', 'wcqwc', 'y', '2014-12-22 06:15:42', '2014-12-24 04:23:48'),
+(2, 4, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '2014-12-22 06:15:32', '2014-12-24 04:23:50');
 
 -- --------------------------------------------------------
 
@@ -214,8 +216,8 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
 INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyValid`, `name`, `email`, `phone`, `facebook`, `google`, `photo`, `born`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
 (1, 'n', 0, '', '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:01', '2014-11-23 17:22:10'),
 (2, 'n', 0, '', 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2014-12-14 09:39:19', '2014-11-23 17:25:35'),
-(3, 'y', 3, 'Host', 'yoyoMan', 'q123wer2002@gmail', '', '', '', 'userObject/q123wer2002@gmail/profilePhoto/userPhoto.png', '', '', '', '', '', 'y', 'n', '2014-12-22 16:05:45', '2014-11-24 12:38:25'),
-(4, 'y', 2, 'n', 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', 'userObject/q123wer2002@gg.com/profilePhoto/userPhoto.png', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-22 16:38:22', '2014-11-27 10:01:07'),
+(3, 'y', 1, 'Host', 'yoyoMan', 'q123wer2002@gmail', '', '', '', 'userObject/q123wer2002@gmail/profilePhoto/userPhoto.png', '', '', '', '', '', 'y', 'n', '2014-12-24 04:23:30', '2014-11-24 12:38:25'),
+(4, 'y', 2, 'y', 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', 'userObject/q123wer2002@gg.com/profilePhoto/userPhoto.png', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-24 04:23:42', '2014-11-27 10:01:07'),
 (5, 'n', 0, '', '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23');
 
 -- --------------------------------------------------------

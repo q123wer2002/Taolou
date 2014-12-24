@@ -1,41 +1,44 @@
 <link rel="stylesheet" type="text/css" href="css/showJob.css">
 
+<?php if(!empty($this->laout_arr['showJob'])){
+		foreach($this->laout_arr['showJob'] as $SKey => $SValue){ ?>
 <div class='jobInfo'>
 	<section class="nsb-block">
 		<h2>
 			<span class="icon view"></span>
-			<span>职位详情</span>
+			<span>職位詳情</span>
 		</h2>
 		<div class="nsb-block-content">
+			<h3><?php echo $SValue['title']; ?></h3>
 			<div class="position-wrapper">
 				<div class="job-info" data-id="ytaVfT">
 					<div class="author">
 						<figure class="avatar">
 							<a href="/companies/eGhlNM">
-								<img src="http://tp1.sinaimg.cn/1684131320/180/22841696507/1">
+								<img src="<?php echo $this->laout_arr['company'][0]['logo']; ?>">
 							</a>
 						</figure>
 						<b class="name">
-							<a href="/companies/eGhlNM">同花顺</a>
+							<a href="/companies/eGhlNM"><?php echo $this->laout_arr['company'][0]['companyName']; ?></a>
 						</b>
 						内推人
 						<span class="company-domain">*@myhexin.com </span>
-						发布了
+						發佈了
 					</div>
-					<h3>JAVA项目开发主管</h3>
+					<h3><?php echo $SValue['jobName']; ?></h3>
 					<div class="job-meta">
-						<span class="location">地点<b>杭州</b></span>
-						<span class="type">工作性质<b>全职</b></span>
-						<span class="salary-start">起薪<b>10000</b></span>
+						<span class="location"><span class='icon locationicon'></span>地點<b><?php echo $this->JobLoca[0]; ?></b></span>
+						<span class="type"><span class='icon jobtypeicon'></span>工作性質<b><?php echo $SValue['jobNature']; ?></b></span>
+						<span class="salary-start"><span class='icon salaryicon'></span>起薪<b><?php echo $SValue['salary']; ?></b></span>
 					</div>
-					<p class="job-describe">岗位描述：<br>方向一：产品服务端开发<br>方向二：负责iFind部门外接项目开发管理<br>工作要求：<br>1、本科及以上学历，计算机相关专业毕业 ；<br>2、3年以上java开发经验，2年以上团队管理经验；<br>3、精通J2EE企业级应用系统各种技术架构，有开发大型应用系统的经验优先；<br>4、熟悉网络、多线程、数据库、IO、内存管理等方面编程；<br>5、具备较强的沟通能力和学习能力，有高度责任心和执行力，抗压能力强；<br>6、能独立承担系统功能模块的需求分析、代码开发和故障处理</p>
+					<p class="job-describe">工作描述：<?php echo $SValue['detail']; ?></p>
 				</div>
 			</div>
 		</div>
-		<div class="nsb-block-ctrl submit">
-			<a href="javascript:void((function(s,d,e,r,l,p,t,z,c) {var%20f='http://v.t.sina.com.cn/share/share.php?appkey=3326893742',u=z||d.location,p=['&url=',e(u),'& title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'& content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a() {if(!window.open([f,p].join(''),'mb', ['toolbar=0,status=0,resizable=1,width=600,height=500,left=',(s.width- 600)/2,',top=',(s.height-600)/2].join('')))u.href=[f,p].join('');}; if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}) (screen,document,encodeURIComponent,'','','http://www.nashangban.com/jobs/ytaVfT/preview','「同花顺」正在招聘「JAVA项目开发主管」。现在就去看看吧。@哪上班','http://www.nashangban.com/jobs/ytaVfT?utm_source=po-page','utf-8'));" alt="分享 新浪微博" title="分享到新浪微博" class="btn red-btn">分享到微博</a>
-			<a style="background-color:#73ae1f;" class="share-via-wechat btn red-btn" href="javascript:;" data="ytaVfT">分享到微信</a>
-				<a href="javascript:;" class="btn green-btn apply_btn">申请此工作</a>
+		<div class="nsb-block-ctrl">
+			<a href="javascript:;" class="btn red-btn">分享到FB</a>
+			<a class="btn red-btn" href="javascript:;">分享到Google</a>
+				<a href="javascript:;" class="btn green-btn apply_btn">申請此工作</a>
 
 			<a class="btn collect-btn blue-btn" href="javascript:;">收藏</a>
 		</div>
@@ -44,38 +47,40 @@
 	<div class="nsb-aside">
 		<nav class="job-publisher">
 			<h2>
-				<span>职位发布者</span>
+				<span>職位發佈者</span>
 			</h2>
 			<div class="nsb-block-content">
 				<div class="img-wrapper">
-					<img src="http://tp1.sinaimg.cn/1618356784/180/5684165075/1">
+					<img src="<?php echo $this->laout_arr['postMan'][0]['photo']; ?>">
 				</div>
-				<p class="job-publisher-name">杜梦杰</p>
+				<p class="job-publisher-name"><?php echo $this->laout_arr['postMan'][0]['name']; ?></p>
 
-				<a href="javascript:;" data-userid="4NaWo2" data-currusertype="0" target="_blank" class="contact-btn nsb_create_conversation">发私信</a>
+				<a href="javascript:;" class="contact-btn">發私信</a>
 			</div>
 		</nav>
 
 		<div class="widget-company-card">
 			<h2>
-				<span>公司信息</span>
+				<span>公司訊息</span>
 			</h2>
 			<div class="nsb-block-content">
 				<div>
-					<a class="cmpy-card-logo img-wrapper" href="/companies/5Gs3In" alt="追梦网的公司主页"><img src="http://nsb-cdn.b0.upaiyun.com/avatars/e6/e1/e6e1baf14c_medium.jpg"></a>
-					<a class="cmpy-card-name" href="/companies/5Gs3In" alt="追梦网的公司主页">追梦网</a>
-					<div class="cmpy-card-loc">上海</div>
+					<a class="cmpy-card-logo img-wrapper">
+						<img src="<?php echo $this->laout_arr['company'][0]['logo']; ?>">
+					</a>
+					<a class="cmpy-card-name"><?php echo $this->laout_arr['company'][0]['companyName']; ?></a>
+					<div class="cmpy-card-loc"><span class='icon locationicon'></span><?php echo $this->ComLoca[0]; ?></div>
 					<div class="cmpy-card-line">
-						<span class="label">成立时间</span>
-						<span class="body">2012 年 7 月</span>
+						<span class="label"><span class='icon clock'></span>成立時間</span>
+						<span class="body"><?php echo $this->laout_arr['company'][0]['createDate']; ?></span>
 					</div>
 					<div class="cmpy-card-line">
-						<span class="label">融资阶段</span>
-						<span class="body">A 轮</span>
+						<span class="label"><span class='icon stockicon'></span>融資階段</span>
+						<span class="body"><?php echo $this->laout_arr['finInfo'][0]['stage']; ?></span>
 					</div>
 					<div class="cmpy-card-line">
-						<span class="label">规模</span>
-						<span class="body">10-50 人</span>
+						<span class="label"><span class='icon people'></span>規模</span>
+						<span class="body"><?php echo $this->laout_arr['company'][0]['memberSize']; ?></span>
 					</div>
 				</div>
 			</div>
@@ -84,3 +89,4 @@
 	</div>
 
 </div>
+<?php }} ?>

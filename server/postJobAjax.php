@@ -22,7 +22,7 @@ if(@$_POST['method']=="saveJob"){
 	if($_POST['stock_option']){$stock="y";}
 	else{$stock="n";}
 
-	$sql_postJob="INSERT INTO ".$obj_tmp1->job." VALUES(NULL,'".$_POST['title']."','".$companyId."','".$_POST['jobName']."','".$_POST['location']."','".$_POST['jobType']."','".$_POST['jobNature']."','".$_POST['salary']."','".$stock."','".$_POST['detail']."','y',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);";
+	$sql_postJob="INSERT INTO ".$obj_tmp1->job." VALUES(NULL,'".$userId."','".$_POST['title']."','".$companyId."','".$_POST['jobName']."','".$_POST['location']."','".$_POST['jobType']."','".$_POST['jobNature']."','".$_POST['salary']."','".$stock."','".$_POST['detail']."','y',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);";
 	mysql_query($sql_postJob);
 
 	$message=array("first"=>"ok");
