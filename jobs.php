@@ -7,6 +7,7 @@ $obj_tmp1->companyTable="taolou_company";
 $obj_tmp1->companyFin="taolou_company_finance";
 
 $obj_tmp1->member='taolou_member_detail';
+$obj_tmp1->memberCV='taolou_member_cv';
 
 $obj_tmp1->tmp_where="";
 
@@ -25,12 +26,10 @@ if(@$_REQUEST["jobsid"] != ""){
 //decode company id
 if(@$_SESSION['user']['id']!= ""){
 	if(@$_SESSION['user']['userType']=='1'){
-
-	}else if(@$_SESSION['user']['userType']=='2'){
-
-	}
+		$obj_tmp1->applyJob=true;
+	}else if(@$_SESSION['user']['userType']=='2'){}
 	$userId=$_SESSION['user']['id'];
-}else{@$action='jobList';}
+}else{}
 
 if(@$obj_tmp1->tmp_jobsId != ""){@$action="showJob";}
 else{@$action='jobList';}
@@ -88,6 +87,17 @@ switch($action){
 		//print_r($obj_tmp1->laout_arr['postMan']);
 	//===========================
 	
+	}
+
+	//讀取使用者的履歷
+	if($userId != "" && $obj_tmp1->applyJob==true){
+		$sql_CV="SELECT ".$obj_tmp1->memberCV.".*
+				 FROM ".$obj_tmp1->memberCV."
+				 WHERE ".$obj_tmp1->memberCV.".memberId='".$userId."'";
+		$obj_tmp1->laout_arr['CV']=array();
+		$obj_tmp1->basic_select('laout_arr','CV',$sql_CV);
+		//echo $sql_CV;
+		//print_r($obj_tmp1->laout_arr['CV']);
 	}
 
 	$obj_tmp1->showad=false;

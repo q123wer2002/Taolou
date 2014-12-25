@@ -1,13 +1,35 @@
 <link rel="stylesheet" type="text/css" href="css/showJob.css">
+<script type="text/javascript" src="js/AN_applyJob.js"></script>
 
-<?php if(!empty($this->laout_arr['showJob'])){
-		foreach($this->laout_arr['showJob'] as $SKey => $SValue){ ?>
-<div class='jobInfo'>
+<div class='changeOK'>
+    {{showMessage}}
+</div>
+
+<div class='jobInfo' ng-controller="Taolou_applyJob">
+	<?php if(!empty($this->laout_arr['CV'])) {
+			foreach($this->laout_arr['CV'] as $CVKey => $CVValue){ ?>
+	<input type="hidden" ng-init="CV_NAME='<?php echo $CVValue['name']; ?>'">
+	<input type="hidden" ng-init="CV_ID='<?php echo $CVValue['id']; ?>'">
+	<input type="hidden" ng-init="CVINIT()">
+	<?php }} ?>
+	<!-- 顯示履歷列表 -->
+	<div class="bg" ng-click="hideCVDiv()"></div>
+	<div class='CVDiv'>
+		選擇您要投遞的履歷
+		<select ng-model="myCV" ng-options="CV.name for CV in CVs">
+      		<option value="">請選擇履歷</option>
+    	</select>
+		<a href="javascript:;" class='applyBtn' ng-click="apply()">投遞履歷</a>
+	</div>
+	<!-- 開始 -->
 	<section class="nsb-block">
 		<h2>
 			<span class="icon view"></span>
 			<span>職位詳情</span>
 		</h2>
+		<?php if(!empty($this->laout_arr['showJob'])){
+		foreach($this->laout_arr['showJob'] as $SKey => $SValue){ ?>
+		<input type="hidden" ng-init="jobID = '<?php echo $SValue['id']; ?>'">
 		<div class="nsb-block-content">
 			<h3><?php echo $SValue['title']; ?></h3>
 			<div class="position-wrapper">
@@ -38,9 +60,10 @@
 		<div class="nsb-block-ctrl">
 			<a href="javascript:;" class="btn red-btn">分享到FB</a>
 			<a class="btn red-btn" href="javascript:;">分享到Google</a>
-				<a href="javascript:;" class="btn green-btn apply_btn">申請此工作</a>
-
-			<a class="btn collect-btn blue-btn" href="javascript:;">收藏</a>
+			<?php if($this->applyJob) { ?>
+			<a href="javascript:;" class="btn green-btn apply_btn" ng-click="showCVDiv()">申請此工作</a>
+			<a class="btn collect-btn blue-btn" href="javascript:;" ng-click="collect()">收藏</a>
+			<?php } ?>
 		</div>
 	</section>
 
@@ -87,6 +110,9 @@
 		</div>
 
 	</div>
-
+	<?php }}else{ ?>
+	<div>
+		<p>無此職位</p>
+	</div>
+	<?php } ?>
 </div>
-<?php }} ?>
