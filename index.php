@@ -51,11 +51,12 @@ switch($action){
 		//print_r($obj_tmp1->laout_arr['showJob']);
 
     	//職位地點設定
+    	$obj_tmp1->jobLoca=array();
     	if(!empty($obj_tmp1->laout_arr['showJob'])){
 	    	foreach($obj_tmp1->laout_arr['showJob'] as $key => $value){
-	    		$obj_tmp1->jobLoca=split("/",$value['location']);
-	    		//print_r($jobLoca);
+	    		$obj_tmp1->jobLoca[$value['id']]=split("/",$value['location']);
 	    	}
+	    	//print_r($obj_tmp1->jobLoca);
 	    }
     	//=========================
     	

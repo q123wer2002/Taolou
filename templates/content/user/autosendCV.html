@@ -19,7 +19,7 @@
         <a class='jobitem'>
             <div class='jobInfo'>
                 <figure>
-                    <img src="images/<?php echo $jobValue['logo'] ?>">
+                    <img src="<?php echo $jobValue['logo'] ?>">
                 </figure>
                 <div class='author'>
                     <a href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>"><b class="job-title"><?php echo $jobValue['jobName'] ?></b></a>-
@@ -39,6 +39,7 @@
                         if($jobValue['jobstatus'] == 'download'){echo "履歷已被下載";}
                         else if($jobValue['jobstatus'] == 'wait'){echo "已面試";}
                         else if($jobValue['jobstatus'] == 'reject'){echo "系統拒絕";}
+                        else{echo "已申請";}
                         ?>
                     </span>
                     <br>

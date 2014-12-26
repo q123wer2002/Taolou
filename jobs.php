@@ -8,6 +8,7 @@ $obj_tmp1->companyFin="taolou_company_finance";
 
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->memberCV='taolou_member_cv';
+$obj_tmp1->memberJM="taolou_member_jobmanage";
 
 $obj_tmp1->tmp_where="";
 
@@ -15,6 +16,8 @@ $obj_tmp1->tmp_where="";
 @$obj_tmp1->tmp_comanyId="";
 
 $obj_tmp1->applyJob=false;
+$obj_tmp1->applyJobYet=false;
+$obj_tmp1->collectYet=false;
 
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
@@ -89,15 +92,33 @@ switch($action){
 	
 	}
 
-	//讀取使用者的履歷
+	
 	if($userId != "" && $obj_tmp1->applyJob==true){
+		//讀取使用者的履歷
 		$sql_CV="SELECT ".$obj_tmp1->memberCV.".*
 				 FROM ".$obj_tmp1->memberCV."
 				 WHERE ".$obj_tmp1->memberCV.".memberId='".$userId."'";
 		$obj_tmp1->laout_arr['CV']=array();
 		$obj_tmp1->basic_select('laout_arr','CV',$sql_CV);
-		//echo $sql_CV;
-		//print_r($obj_tmp1->laout_arr['CV']);
+			//echo $sql_CV;
+			//print_r($obj_tmp1->laout_arr['CV']);
+		//=========================
+
+		//確認使用者投過獲收藏的履歷
+		$sql_checkApply="SELECT ".$obj_tmp1->memberJM.".*
+						 FROM ".$obj_tmp1->memberJM."
+						 WHERE ".$obj_tmp1->memberJM.".memberid='".$userId."'
+						 AND ".$obj_tmp1->memberJM.".jobId='".$obj_tmp1->tmp_jobsId."'";
+		$obj_tmp1->laout_arr['checkApply']=array();
+		$obj_tmp1->basic_select('laout_arr','checkApply',$sql_checkApply);
+			//echo $sql_checkApply;
+			//print_r($obj_tmp1->laout_arr['checkApply']);
+		//=========================
+		if(!empty($obj_tmp1->laout_arr['checkApply'])){
+			//被拒絕也不給下一次應徵的機會
+			if($obj_tmp1->laout_arr['checkApply'][0]['status'] != "collect"){$obj_tmp1->applyJobYet=true;}
+			else{$obj_tmp1->collectYet=true;}
+		}
 	}
 
 	$obj_tmp1->showad=false;

@@ -12,7 +12,7 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 	//show and hide function
 	$scope.showCVDiv=function(){
 		jQuery('.bg').css({'display':'block'});
-		jQuery(".CVDiv").animate({'bottom':'200px'},500);
+		jQuery(".CVDiv").animate({'bottom':'40%'},500);
 	}
 	$scope.hideCVDiv=function(){
 		jQuery('.bg').css({'display':'none'});
@@ -21,7 +21,7 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 
 	//apply and collect function
 	$scope.apply=function(){
-		var applyObject={"method":"applyJob","jobID":$scope.jobID,"CV":$sceop.myCV};
+		var applyObject={"method":"applyJob","jobID":$scope.jobID,"CV":$scope.myCV};
 		
 		$http({
 			method:'POST',
@@ -35,7 +35,7 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 				$scope.showMessage="投遞成功，等待公司回覆";
 				jQuery(".changeOK").animate({'top':'-100px'},1000).delay(2000).animate({'top':'-300px'},1000);
 			}else if(json.first=="NotMember"){
-				$scope.showMessage="投遞成功，等待公司回覆";
+				$scope.showMessage="您還沒有註冊會員，<a href='account.php'>馬上註冊</a>";
 				jQuery(".changeOK").animate({'top':'-100px'},1000);
 			}
 		}).

@@ -19,7 +19,8 @@
 		<select ng-model="myCV" ng-options="CV.name for CV in CVs">
       		<option value="">請選擇履歷</option>
     	</select>
-		<a href="javascript:;" class='applyBtn' ng-click="apply()">投遞履歷</a>
+		<a href="javascript:;" class='applyBtn' ng-click="apply()" ng-if="myCV != '' ">投遞履歷</a>
+		<a href="javascript:;" ng-click="apply()" ng-if="myCV == '' ">投遞</a>
 	</div>
 	<!-- 開始 -->
 	<section class="nsb-block">
@@ -60,10 +61,16 @@
 		<div class="nsb-block-ctrl">
 			<a href="javascript:;" class="btn red-btn">分享到FB</a>
 			<a class="btn red-btn" href="javascript:;">分享到Google</a>
-			<?php if($this->applyJob) { ?>
-			<a href="javascript:;" class="btn green-btn apply_btn" ng-click="showCVDiv()">申請此工作</a>
-			<a class="btn collect-btn blue-btn" href="javascript:;" ng-click="collect()">收藏</a>
-			<?php } ?>
+			<?php if($this->applyJob) {
+				if($this->applyJobYet){ ?>
+				<a href="javascript:;" class="btn green-btn apply_btn">已申請此工作</a>
+			<?php }else if($this->collectYet){ ?>
+				<a href="javascript:;" class="btn green-btn apply_btn" ng-click="showCVDiv()">申請此工作</a>
+				<a class="btn collect-btn blue-btn" href="javascript:;">已收藏</a>
+			<?php }else{ ?>
+				<a href="javascript:;" class="btn green-btn apply_btn" ng-click="showCVDiv()">申請此工作</a>
+				<a class="btn collect-btn blue-btn" href="javascript:;" ng-click="collect()">收藏</a>
+			<?php }} ?>
 		</div>
 	</section>
 
