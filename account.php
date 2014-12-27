@@ -1,5 +1,5 @@
 <?php
-include_once 'share.php';
+include_once 'share.php'; 
 
 //page default
 $obj_tmp1->member='taolou_member_detail';
