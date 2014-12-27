@@ -11,11 +11,16 @@ $obj_tmp1->memberCV='taolou_member_cv';
 $obj_tmp1->memberJM="taolou_member_jobmanage";
 
 $obj_tmp1->tmp_where="";
+$obj_tmp1->page="0";
+$obj_tmp1->max_page="0";
+if(@laout_check($_REQUEST['page'])==''){@$obj_tmp1->page='1';}
+else {$obj_tmp1->page=laout_check($_REQUEST['page']);}
+$jobshow_start=($obj_tmp1->page-1)*20;
 
 @$obj_tmp1->tmp_jobsId="";
 @$obj_tmp1->tmp_comanyId="";
 
-$obj_tmp1->applyJob=false;
+$obj_tmp1->applyJob=true;
 $obj_tmp1->applyJobYet=false;
 $obj_tmp1->collectYet=false;
 
@@ -30,7 +35,7 @@ if(@$_REQUEST["jobsid"] != ""){
 if(@$_SESSION['user']['id']!= ""){
 	if(@$_SESSION['user']['userType']=='1'){
 		$obj_tmp1->applyJob=true;
-	}else if(@$_SESSION['user']['userType']=='2'){}
+	}else if(@$_SESSION['user']['userType']=='2'){$obj_tmp1->applyJob=false;}
 	$userId=$_SESSION['user']['id'];
 }else{}
 
@@ -136,41 +141,56 @@ switch($action){
 	case"jobList":
 
 	//職位列表
-	$sql_job="SELECT ".$obj_tmp1->jobtable.".*
-			  FROM ".$obj_tmp1->jobtable."
-			  LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->jobtable.".companyId=".$obj_tmp1->companyTable.".id
-			  WHERE ".$obj_tmp1->jobtable.".id='".$obj_tmp1->tmp_jobsId."'";
-	$obj_tmp1->laout_arr['job']=array();
-	$obj_tmp1->basic_select('laout_arr','job',$sql_job);
-		//echo $sql_job;
-		//print_r($obj_tmp1->laout_arr['job']);
-	//===========================
+		//==篩選器
+	$obj_tmp1->tmp_where=" WHERE ".$obj_tmp1->jobtable.".status='y'";
 
-	@$obj_tmp1->tmp_comanyId=$obj_tmp1->laout_arr['job'][0]['companyId'];
-	//echo $obj_tmp1->tmp_jobsId;
-	//echo $obj_tmp1->tmp_comanyId;
+		//==========================
 
-	//公司基本資料
-	$sql_company="SELECT ".$obj_tmp1->companyTable.".* 
-				  FROM ".$obj_tmp1->companyTable."
-				  WHERE ".$obj_tmp1->companyTable.".id='".$obj_tmp1->tmp_comanyId."'";
-	$obj_tmp1->laout_arr['company']=array();
-	$obj_tmp1->basic_select('laout_arr','company',$sql_company);
-		//echo $sql_company;
-		//print_r($obj_tmp1->laout_arr['company']);
-	//===========================
+		//職位顯示
+	$sql_showJob="SELECT distinct ".$obj_tmp1->jobtable.".*,
+				  ".$obj_tmp1->companyTable.".companyName,".$obj_tmp1->companyTable.".logo,".$obj_tmp1->companyTable.".memberSize
+				  FROM ".$obj_tmp1->jobtable."
+				  LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companyTable.".id=".$obj_tmp1->jobtable.".companyId 
+				  ".$obj_tmp1->tmp_where."
+				  ORDER BY ".$obj_tmp1->jobtable.".createDate
+				  LIMIT ".$jobshow_start.",20";
+    $obj_tmp1->laout_arr['showJob']=array();
+    $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
+    	//echo $sql_showJob;
+		//print_r($obj_tmp1->laout_arr['showJob']);
 
-	//公司人資帳號
-	$sql_comHr="SELECT ".$obj_tmp1->hrtable.".*
-				FROM ".$obj_tmp1->hrtable."
-				LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->hrtable.".companyId=".$obj_tmp1->companyTable.".id
-				WHERE ".$obj_tmp1->hrtable.".companyHr='y'
-				AND ".$obj_tmp1->hrtable.".companyId='".$obj_tmp1->tmp_comanyId."'";
-	$obj_tmp1->laout_arr['comHr']=array();
-	$obj_tmp1->basic_select('laout_arr','comHr',$sql_comHr);
-		//echo $sql_comHr;
-		//print_r($obj_tmp1->laout_arr['comHr']);
-	//===========================
+    	//職位地點設定
+    	$obj_tmp1->jobLoca=array();
+    	if(!empty($obj_tmp1->laout_arr['showJob'])){
+	    	foreach($obj_tmp1->laout_arr['showJob'] as $key => $value){
+	    		$obj_tmp1->jobLoca[$value['id']]=split("/",$value['location']);
+	    	}
+	    	//print_r($obj_tmp1->jobLoca);
+	    }
+    	//=========================
+    	
+    	//公司技能標籤
+    /*$sql_comSkill="SELECT ".$obj_tmp1->companySkill.".*
+				   FROM ".$obj_tmp1->companySkill."
+				   LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companySkill.".companyId=".$obj_tmp1->companyTable.".id
+				   WHERE ".$obj_tmp1->companySkill.".companyId=".$obj_tmp1->jobtable.".companyId";
+	$obj_tmp1->laout_arr['comskill']=array();
+	$obj_tmp1->basic_select('laout_arr','comskill',$sql_comSkill);*/
+		//echo $sql_comSkill;
+		//print_r($obj_tmp1->laout_arr['showJob']);
+	   //===========================
+
+		//分頁設定
+	$sql_count="SELECT COUNT(".$obj_tmp1->jobtable.".id) as COUNT
+				FROM ".$obj_tmp1->jobtable."
+				LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companyTable.".id=".$obj_tmp1->jobtable.".companyId 
+				".$obj_tmp1->tmp_where."";
+	$obj_tmp1->laout_arr['jobcount']=array();
+    $obj_tmp1->basic_select('laout_arr','jobcount',$sql_count);
+    	
+    @$obj_tmp1->max_page=ceil($obj_tmp1->laout_arr['jobcount'][0]['COUNT']/20);
+    	//echo $obj_tmp1->max_page;
+		//==========================
 
 
     //echo $obj_tmp1->encode("1"),"<BR>";

@@ -1,86 +1,34 @@
-<link href="css/index.css" rel="stylesheet">
+<style type="text/css">
+    .bg{position:fixed;width:100%;height:100%;background:#000;z-index:-2;top:0;left:0;opacity:0.3;}
+    .partner{}
+    .partner h3{color: #000000;}
+    .partnerList{position: relative;width:750px;margin: auto;text-align: left;margin-bottom: 150px;}
+        .companyDiv{position: relative;display: inline-block;margin-top: 50px;}
+    .partnerList img{width: 100px; height: 100px;}
+        .companyName{color: #ffffff;font-size: 13px;padding: 8px 5px;background: #6D7686;border-radius: 3px;position: absolute;top: -50px;left:0px;display: none;}
+    .partnerList .companyA:hover .companyName{display: inline-block;}
+    .partnerList .companyA{margin-right: 50px;}
+        .quickApplyJob{display: block;margin-top: 150px;color: #ffffff;
+background: #1958A6; /* Old browsers */
+font-size: 17px;padding: 20px 0px;border-radius: 5px;width: 150px;margin-left:auto;text-align: center;}
+.quickApplyJob:hover{box-shadow: 0px 0px 5px 0px #000000;}
+</style>
 
-    	<nav class='partner'>
-    		<h3>
-                <span class='icon title-chart title-icon'></span>
-                <span>推薦公司</span>
-            </h3>
-    		<div class='partnerList'>
-                <?php foreach($this->laout_arr['partner'] as $partnerkey => $partnervalue) { ?>
-    			<a href="companies.php?company=<?php echo $this->encode($partnervalue['id']); ?>">
-    				<img src="<?php echo $partnervalue['logo']; ?>">
-    				<span><?php echo $partnervalue['companyName']; ?></span>
-    			</a>
-                <?php } ?>
-    		</div>
-    	</nav>
 
-    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
-            <h3>
-                <span class='icon title-chart title-box'></span>
-                <span>瀏覽公司</span>
-            </h3>
-    		<div class='selector'>
-    			<ul class='hotJob'>
-    				<li class='tagName'>熱門</li>
-                    <li class='tag' ng-repeat='hotJob in hotJobs'>{{hotJob.name}}</li>
-    			</ul>
-    			<ul class='location'>
-    				<li class='tagName'>地區</li>
-                    <li class='tag' ng-repeat='pos in positions'>{{pos.name}}</li>
-    			</ul>
-    			<ul class='jobtype'>
-    				<li class='tagName'>類型</li>
-                    <li class='tag' ng-repeat='type in jobTypes'>{{type.name}}</li>
-    			</ul>
-    		</div>
-    	</section>
-
-        <div class='showJobs'>
-            <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue) { ?>
-            <a class='jobitem' href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>">
-                <div class='jobInfo'>
-                    <figure>
-                        <img src="<?php echo $jobValue['logo'] ?>">
-                    </figure>
-                    <div class='author'>
-                        <b class="name"><?php echo $jobValue['companyName'] ?></b>
-                        <b class="job-creator-type">HR</b>
-                        <span class="company-domain">*@meidebi.com </span>
-                        发布了 <b class="job-title"><?php echo $jobValue['jobName'] ?></b>
-                    </div>
-                    <div class='job-meta'>
-                        <span class="meta-item location"><span class='icon locationicon'></span><b><?php echo $this->jobLoca[$jobValue['id']][0]; ?></b></span>
-                        <span class="meta-item type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType'] ?></b></span>
-                        <span class="meta-item salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary'] ?></b></span>
-                        <?php if($jobValue['stock_option']=='y'){ ?>
-                        <span class="meta-item stock-share"><span class='icon stockicon'></span>提供股票或期权<b></b></span>
-                        <?php } ?>
-                    </div>
-                </div>
-            </a>
-            <?php } ?>
-        </div>
-
-        <div class='dividePage'>
-            <div class='pageBar'>
-                <?php if($this->page > 2) {?>
-                    <a class='home pageTag' href="index.php">首頁</a>
-                <?php } ?>
-
-                <?php if($this->page > 1) {?>
-                    <a class='pre pageTag' href="index.php?page=<?php echo ($this->page-1); ?>">上一頁</a>
-                    <?php for($i=1;$i<$this->page;$i++) { ?>
-                    <a class='pageTag' href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                <?php } ?><?php } ?>
-
-                <a class='page pageTag'><?php echo $this->page; ?></a>
-
-                <?php if($this->page!=$this->max_page && $this->page<$this->max_page) {?>
-                    <?php for($i=$this->page+1;$i<=$this->max_page;$i++) {?>
-                    <a class='pageTag' href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                    <?php } ?>
-                    <a class='next pageTag' href="index.php?page=<?php echo ($this->page+1); ?>">下一頁</a>
-                <?php } ?>
+<nav class='partner'>
+	<h3>
+        <span class='icon title-chart title-icon'></span>
+        <span>推薦公司</span>
+    </h3>
+	<div class='partnerList'>
+        <?php foreach($this->laout_arr['partner'] as $partnerkey => $partnervalue) { ?>
+		<a href="companies.php?company=<?php echo $this->encode($partnervalue['id']); ?>" class='companyA'>
+			<div class='companyDiv'>
+                <img src="<?php echo $partnervalue['logo']; ?>">
+    			<span class='companyName'><?php echo $partnervalue['companyName']; ?></span>
             </div>
-        </div>
+		</a>
+        <?php } ?>
+        <a href="jobs.php" class='quickApplyJob'>馬上看職缺</a>
+	</div>
+</nav>

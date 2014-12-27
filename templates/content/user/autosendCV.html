@@ -26,7 +26,7 @@
                     <a href="companies.php?company=<?php echo $this->encode($jobValue['companyId']); ?>"><b class="name"><?php echo $jobValue['companyName'] ?></b></a>
                 </div>
                 <div class='job-meta'>
-                    <span class="location"><span class='icon locationicon'></span><b><?php echo $jobValue['location'] ?></b></span>
+                    <span class="location"><span class='icon locationicon'></span><b><?php echo $jobValue['location'][0]; ?></b></span>
                     <span class="type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType'] ?></b></span>
                     <span class="salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary'] ?></b></span>
                     <?php if($jobValue['stock_option']=='y'){ ?>
@@ -43,17 +43,19 @@
                         ?>
                     </span>
                     <br>
-                    <span>於
+                    <span class='dividtime'>於
                         <?php 
                         $datatime=date("Y-m-d H:i:s");
                         $times=strtotime($datatime)-strtotime($jobValue['jobDate']);    //计算出两个时间差，得到相差的秒数
                         $timei=round($times/(60*60*24));    //可以得出相差的分钟数，round()是四舍五入
-                        $timey=round($timei/(30*12));
-                        if($times < 86400){echo ($times/3600)."個小時";}
-                        else if($timei < 30){echo ($timei)."天";}
-                        else if($timei > 30){echo ($timei/30)."個月";}
-                        else if($timei > 360){echo "約".($timey)."年";}
-                        ?>前
+                        //计算出两个时间差，得到相差的秒数
+                        if($times < 60){$divTime="剛剛";}
+                        else if($times < 3600){$divTime=round($times/(60))."分鐘前";}
+                        else if($times < 86400){$divTime=round($times/(3600))."個小時前";}
+                        else if($times < 259200){$divTime=round($times/(86400))."天前";}
+                        else{$divTime=round($times/(259200))."個月前";}
+                        echo $divTime;
+                        ?>
                     </span>
                 </div>
             </div>

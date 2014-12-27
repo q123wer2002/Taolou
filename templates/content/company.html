@@ -45,15 +45,15 @@
 				foreach($this->laout_arr['job'] as $jobKey => $jobValue) { ?>
 		<div class='joblistDiv'>
 			<div class="job-list-item">
-				<a href="javascript:;" class="job-author-avatar"><img src="<?php echo $ComValue['logo']; ?>"></a>
+				<a href="javascript:;" class="job-author-avatar"><img src="<?php echo $this->postMan[$jobValue['id']]['photo']; ?>"></a>
 				<div class="main">
-					<span class="job-author-name">周女士</span>
+					<span class="job-author-name"><?php echo $this->postMan[$jobValue['id']]['name']; ?></span>
 					<span>發佈職位</span>
-					<a href="/jobs/6hJWx9"><?php echo $jobValue['jobName']; ?> </a>
+					<a href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>"><?php echo $jobValue['jobName']; ?> </a>
 				</div>
 				<div class="sub">
-					<a href="/companies/NFxLOM" class="job-company"><span class="icon newspaper"></span>厚学网</a>
-					<span class="job-loc jobmargin"><span class="icon locationicon"></span><?php echo $jobValue['location']; ?></span>
+					<a href="companies.php?company=<?php echo $this->encode($ComValue['id']); ?>" class="job-company"><span class="icon newspaper"></span><?php echo $ComValue['companyName']; ?></a>
+					<span class="job-loc jobmargin"><span class="icon locationicon"></span><?php echo $this->jobLocation[$jobValue['id']][0]; ?></span>
 					<span class="job-type jobmargin"><span class="icon jobtypeicon"></span><?php echo $jobValue['jobNature']; ?></span>
 					<span class="job-salary jobmargin"><span class="icon salaryicon"></span><?php echo $jobValue['salary']; ?></span>
 

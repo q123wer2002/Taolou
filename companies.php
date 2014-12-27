@@ -162,6 +162,29 @@ switch($action){
 	$obj_tmp1->basic_select('laout_arr','job',$sql_job);
 		//echo $sql_job;
 		//print_r($obj_tmp1->laout_arr['job']);
+
+		$obj_tmp1->postMan=array();
+		$obj_tmp1->jobLocation=array();
+
+		if(!empty($obj_tmp1->laout_arr['job'])){
+			foreach ($obj_tmp1->laout_arr['job'] as $key => $value) {
+				//職位刊登者
+				$sql_postMan="SELECT ".$obj_tmp1->member.".*
+							  FROM ".$obj_tmp1->member."
+							  WHERE ".$obj_tmp1->member.".id='".$value['postMemberId']."'";
+				$obj_tmp1->laout_arr['postMan']=array();
+				$obj_tmp1->basic_select('laout_arr','postMan',$sql_postMan);
+					//echo $sql_postMan;
+					//print_r($obj_tmp1->laout_arr['postMan']);
+				$obj_tmp1->postMan[$value['id']]['name']=$obj_tmp1->laout_arr['postMan'][0]['name'];
+				$obj_tmp1->postMan[$value['id']]['photo']=$obj_tmp1->laout_arr['postMan'][0]['photo'];
+			
+				//地址
+				$obj_tmp1->jobLocation[$value['id']]=split("/",$value['location']);
+			}
+			//print_r($obj_tmp1->postMan);
+			//print_r($obj_tmp1->jobLocation);
+		}
 	//===========================
 
 

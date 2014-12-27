@@ -2,7 +2,7 @@
 <script type="text/javascript" src="js/AN_applyJob.js"></script>
 
 <div class='changeOK'>
-    {{showMessage}}
+    馬上<a href="account.php?action=signup">註冊會員</a>，應徵工作
 </div>
 
 <div class='jobInfo' ng-controller="Taolou_applyJob">
@@ -62,7 +62,11 @@
 			<a href="javascript:;" class="btn red-btn">分享到FB</a>
 			<a class="btn red-btn" href="javascript:;">分享到Google</a>
 			<?php if($this->applyJob) {
-				if($this->applyJobYet){ ?>
+				if(@$_SESSION['user']['id']==""){ ?>
+			<a href="javascript:;" class="btn green-btn apply_btn" ng-click="notMember()">申請此工作</a>
+				<a class="btn collect-btn blue-btn" href="javascript:;" ng-click="notMember()">收藏</a>
+			<?php }else{ ?>
+			<?php if($this->applyJobYet){ ?>
 				<a href="javascript:;" class="btn green-btn apply_btn">已申請此工作</a>
 			<?php }else if($this->collectYet){ ?>
 				<a href="javascript:;" class="btn green-btn apply_btn" ng-click="showCVDiv()">申請此工作</a>
@@ -70,7 +74,7 @@
 			<?php }else{ ?>
 				<a href="javascript:;" class="btn green-btn apply_btn" ng-click="showCVDiv()">申請此工作</a>
 				<a class="btn collect-btn blue-btn" href="javascript:;" ng-click="collect()">收藏</a>
-			<?php }} ?>
+			<?php }}} ?>
 		</div>
 	</section>
 
@@ -95,10 +99,10 @@
 			</h2>
 			<div class="nsb-block-content">
 				<div>
-					<a class="cmpy-card-logo img-wrapper">
+					<a class="cmpy-card-logo img-wrapper" href="companies.php?company=<?php echo $this->encode($this->laout_arr['company'][0]['id']); ?>">
 						<img src="<?php echo $this->laout_arr['company'][0]['logo']; ?>">
 					</a>
-					<a class="cmpy-card-name"><?php echo $this->laout_arr['company'][0]['companyName']; ?></a>
+					<a class="cmpy-card-name" href="companies.php?company=<?php echo $this->encode($this->laout_arr['company'][0]['id']); ?>"><?php echo $this->laout_arr['company'][0]['companyName']; ?></a>
 					<div class="cmpy-card-loc"><span class='icon locationicon'></span><?php echo $this->ComLoca[0]; ?></div>
 					<div class="cmpy-card-line">
 						<span class="label"><span class='icon clock'></span>成立時間</span>

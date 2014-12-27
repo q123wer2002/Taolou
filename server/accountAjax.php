@@ -4,6 +4,8 @@ include_once '../share.php';
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->account='taolou_account';
 $obj_tmp1->wantjob='taolou_member_wantjob';
+$obj_tmp1->specialSkill="taolou_member_specialskill";
+
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
@@ -74,14 +76,20 @@ else if(@$_POST['method']=='signup')
 
 	if($id != NULL){@$message=array('first'=>"此帳號已經註冊過",'url'=>"X","actions"=>'signup');}
 	else{
-		//看目前有多少
-		$sql_countMember="SELECT COUNT(".$obj_tmp1->member.".id) as COUNT
-						  FROM ".$obj_tmp1->member;
-		$obj_tmp1->laout_arr['countMember']=array();
-		$obj_tmp1->basic_select('laout_arr','countMember',$sql_countMember);
+		//存入member內
+		$sql_member="INSERT INTO ".$obj_tmp1->member."
+					 VALUES (NULL,'".$_POST['memberType']."','0','','','".$account."','','','','','','','','','','y','y',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+		mysql_query($sql_member);
 		//========================
-		
-		$memberID=$obj_tmp1->laout_arr['countMember'][0]['COUNT']+1;
+
+		//確認此使用者
+		$sql_checkUser="SELECT ".$obj_tmp1->member.".*
+						FROM ".$obj_tmp1->member."
+						WHERE ".$obj_tmp1->member.".email='".$account."'";
+		$obj_tmp1->laout_arr['checkUser']=array();
+		$obj_tmp1->basic_select('laout_arr','checkUser',$sql_checkUser);
+		$memberID=$obj_tmp1->laout_arr['checkUser'][0]['id'];
+		//======================
 		
 		//存入account內
 		$sql_account="INSERT INTO ".$obj_tmp1->account."
@@ -89,17 +97,49 @@ else if(@$_POST['method']=='signup')
 		mysql_query($sql_account);
 		//========================
 
-		//存入member內
-		$sql_member="INSERT INTO ".$obj_tmp1->member."
-					 VALUES (NULL,'".$_POST['memberType']."','','','".$account."','','','','','','','','','','','y','y',CURRENT_TIMESTAMP)";
-		mysql_query($sql_member);
-		//========================
+		if($_POST['memberType'] == 'n'){
+			//存入job_wish內
+			$sql_wantjob="INSERT INTO ".$obj_tmp1->wantjob."
+						  VALUES (NULL,'".$memberID."','','','','','','',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+			mysql_query($sql_wantjob);
+			//========================
 
-		//存入job_wish內
-		$sql_wantjob="INSERT INTO".$obj_tmp1->wantjob."
-					  VALUES (NULL,'".$memberID."','','','','','','','CURRENT_TIMESTAMP',CURRENT_TIMESTAMP)";
-		mysql_query($sql_wantjob);
-		//========================
+			//存入specialskill
+			$sql_specialSkill="INSERT INTO ".$obj_tmp1->specialSkill."
+						  VALUES (NULL,'".$memberID."','',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+			mysql_query($sql_specialSkill);
+			//========================
+
+			//創建資料夾
+			$userFolder="userObject/".$account."/";
+			if(!file_exists($userFolder))
+			{
+				//新增資料夾
+             	@mkdir($userFolder, 0700);
+             	//存圖片
+             	$userFolderPhoto=$userFolder."/profilePhoto/";
+             	@mkdir($userFolderPhoto, 0700);
+             	//存履歷
+             	$userFolderCV=$userFolder."/CV/";
+             	@mkdir($userFolderCV, 0700);
+              	//end  新增資料夾
+			}
+			//========================
+
+		}else if($_POST['memberType'] == 'y'){
+			//創建資料夾
+			$userFolder="userObject/".$account;
+			if(!file_exists($userFolder))
+			{
+				//新增資料夾
+             	@mkdir($userFolder, 0700);
+             	//存圖片
+             	$userFolderPhoto=$userFolder."/profilePhoto";
+             	@mkdir($userFolderPhoto, 0700);
+              	//end  新增資料夾
+			}
+			//========================
+		}
 
 		//跳回登入頁面
 		$message=array('first'=>"成功",'url'=>'account.php?action=login',"actions"=>'signup');
