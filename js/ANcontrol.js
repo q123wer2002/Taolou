@@ -3,22 +3,20 @@ var TaoLou = angular.module('TaoLou',[]);
 TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$http){
 
 	$scope.lists=[
-		{'name':'首頁','url':'index.php'},
 		{'name':'主題公司','url':'topicCompany.php'},
-		{'name':'職位','url':'jobs.php'},
+		{'name':'職缺','url':'jobs.php'},
 		{'name':'註冊/登入','url':'account.php?action=login'}
 	];
 
 	$scope.memberLists=[
-		{'name':'首頁','url':'index.php'},
 		{'name':'主題公司','url':'topicCompany.php'},
-		{'name':'職位','url':'jobs.php'},
+		{'name':'職缺','url':'jobs.php'},
 		{'name':'簡歷','url':'userResume.php'},
 		{'name':'求職管理','url':'jobManage.php'}
 	];
 
 	$scope.companyLists=[
-		{'name':'首頁','url':'index.php'},
+		{'name':'職缺','url':'jobs.php'},
 		{'name':'主題公司','url':'topicCompany.php'},
 		{'name':'我的公司','url':'companies.php'},
 		{'name':'職位管理','url':'companyPost.php'},
