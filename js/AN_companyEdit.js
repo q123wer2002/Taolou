@@ -84,6 +84,7 @@ TaoLou.controller('Taolou_companyEdit',['$scope','$http',function companyEdit($s
 
 
 	//特蘇技能 setting
+	$scope.myallSkillList="";
 	$scope.allskills=[];
 	$scope.myskills=[];
 	$scope.showSpecial=false;
@@ -92,8 +93,8 @@ TaoLou.controller('Taolou_companyEdit',['$scope','$http',function companyEdit($s
 		else{$scope.showSpecial=true;}
 	}
 	$scope.skillListInit=function(){
-		$scope.myskills=$scope.myallSkillList.split('|');
 		$scope.allskills=$scope.allComSkill.split('|');
+		$scope.myskills=$scope.myallSkillList.split('|');
 	}
 	$scope.addskill=function(skill){
 		var index = $scope.myskills.indexOf(skill);

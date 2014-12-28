@@ -15,7 +15,7 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);}else{$getAction="";}
 if(@laout_check($_GET['jobId']) != ""){@$jobId=$obj_tmp1->decode(laout_check($_GET['jobId']));}else{@$jobId="";}
 
-if($_SESSION['user']['id'] != ""){
+if(@$_SESSION['user']['id'] != ""){
     if(@$_SESSION['user']['userType']=='2'){
         if(@$_SESSION['user']['company'] != "" && @$_SESSION['user']['company'] != "0"){
             @$companyId=$_SESSION['user']['company'];

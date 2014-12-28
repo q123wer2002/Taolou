@@ -145,19 +145,27 @@ else if(@$_POST['method']=="saveEditCom"){
 	//print_r($mySkillId);
 
 		//開始存入資料庫
-	$sql_myskill="UPDATE ".$obj_tmp1->companySkill."
-				  SET skillList='".$mySkillId."', updateDate=CURRENT_TIMESTAMP
-				  WHERE ".$obj_tmp1->companySkill.".companyId='".$companyID."'";
+	$sql_myskill="UPDATE ".$obj_tmp1->companySkill." SET skillList='".$mySkillId."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->companySkill.".companyId='".$companyID."'";
 	mysql_query($sql_myskill);
 	//=======================
 
 	//公司融資
-	$sql_companyFin="INSERT INTO ".$obj_tmp1->companyFin." VALUES(NULL,'".$companyID."','".$_POST['stage']."','".$_POST['companyFinYear']."-".$_POST['companyFinMonth']."',CURRENT_TIMESTAMP)";
-	mysql_query($sql_companyFin);
-	//=======================
+	//確認是否要keyIn
+	$sql_checkFIN="SELECT ".$obj_tmp1->companyFin.".* FROM ".$obj_tmp1->companyFin." WHERE ".$obj_tmp1->companyFin.".stage='".$_POST['stage']."' AND date='".$_POST['companyFinYear']."-".$_POST['companyFinMonth']."' AND ".$obj_tmp1->companyFin.".companyId='".$companyID."'";
+	$obj_tmp1->laout_arr['checkFIN']=array();
+	$obj_tmp1->basic_select('laout_arr','checkFIN',$sql_checkFIN);
+		//echo $sql_checkFIN;
+		//print_r($obj_tmp1->laout_arr['checkFIN']);
+	//==========================
+	if(empty($obj_tmp1->laout_arr['checkFIN'][0]['id'])){
+		$sql_companyFin="INSERT INTO ".$obj_tmp1->companyFin." VALUES(NULL,'".$companyID."','".$_POST['stage']."','".$_POST['companyFinYear']."-".$_POST['companyFinMonth']."',CURRENT_TIMESTAMP)";
+		mysql_query($sql_companyFin);
+		//=======================
+	}
 
-	$message=array('first'=>"success");
+	$message=["message"=>"ok"];
 	echo json_encode($message);
+	exit;
 }
 
 ?>

@@ -107,6 +107,7 @@
   .saying{width: 350px;padding: 10px 7px;margin-top: 10px;position: relative;font-size: 15px;}
   .LeftSay{text-align: left;margin-left: 10px;float: left;}
   .RightSay{text-align: right;float: right;margin-right: 10px;}
+  .rightMes{text-align: left;}
   .whiteBG{width: 500px;height: 30px;position: relative;float: left;}
   .timestamp{font-size: 9px;color: black;}
 

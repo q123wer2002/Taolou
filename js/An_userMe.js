@@ -100,8 +100,8 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		else{$scope.showSpecial=true;}
 	}
 	$scope.skillListInit=function(){
-		$scope.myskills=$scope.myallSkillList.split('|');
 		$scope.allskills=$scope.allSkillList.split('|');
+		$scope.myskills=$scope.myallSkillList.split('|');
 	}
 	$scope.allskills=[];
 	$scope.myskills=[];

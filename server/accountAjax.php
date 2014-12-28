@@ -108,39 +108,38 @@ else if(@$_POST['method']=='signup')
 			$sql_specialSkill="INSERT INTO ".$obj_tmp1->specialSkill."
 						  VALUES (NULL,'".$memberID."','',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 			mysql_query($sql_specialSkill);
-			//========================
+			//========================*/
 
 			//創建資料夾
-			$userFolder="userObject/".$account."/";
+			$userFolder="../userObject/".$account;
 			if(!file_exists($userFolder))
 			{
 				//新增資料夾
-             	@mkdir($userFolder, 0700);
+             	@mkdir($userFolder);
              	//存圖片
-             	$userFolderPhoto=$userFolder."/profilePhoto/";
-             	@mkdir($userFolderPhoto, 0700);
+             	$userFolderPhoto=$userFolder."/profilePhoto";
+             	@mkdir($userFolderPhoto);
              	//存履歷
-             	$userFolderCV=$userFolder."/CV/";
-             	@mkdir($userFolderCV, 0700);
+             	$userFolderCV=$userFolder."/CV";
+             	@mkdir($userFolderCV);
               	//end  新增資料夾
 			}
 			//========================
-
 		}else if($_POST['memberType'] == 'y'){
 			//創建資料夾
-			$userFolder="userObject/".$account;
+			$userFolder="../userObject/".$account;
 			if(!file_exists($userFolder))
 			{
 				//新增資料夾
-             	@mkdir($userFolder, 0700);
+             	@mkdir($userFolder);
              	//存圖片
              	$userFolderPhoto=$userFolder."/profilePhoto";
-             	@mkdir($userFolderPhoto, 0700);
+             	@mkdir($userFolderPhoto);
               	//end  新增資料夾
 			}
 			//========================
 		}
-
+		
 		//跳回登入頁面
 		$message=array('first'=>"成功",'url'=>'account.php?action=login',"actions"=>'signup');
 	}

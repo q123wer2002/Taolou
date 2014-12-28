@@ -44,9 +44,7 @@
 						<b class="name">
 							<a href="/companies/eGhlNM"><?php echo $this->laout_arr['company'][0]['companyName']; ?></a>
 						</b>
-						内推人
-						<span class="company-domain">*@myhexin.com </span>
-						發佈了
+						内推人	發佈了
 					</div>
 					<h3><?php echo $SValue['jobName']; ?></h3>
 					<div class="job-meta">
@@ -88,8 +86,12 @@
 					<img src="<?php echo $this->laout_arr['postMan'][0]['photo']; ?>">
 				</div>
 				<p class="job-publisher-name"><?php echo $this->laout_arr['postMan'][0]['name']; ?></p>
-
-				<a href="javascript:;" class="contact-btn">發私信</a>
+				<?php if($this->applyJob){ 
+					if(@$_SESSION['user']['id']==""){?>
+					<a href="javascript:;" class="contact-btn" ng-click="notMember()">發私信</a>
+				<?php }else{ ?>
+					<a href="javascript:;" class="contact-btn" ng-click="messageTo('<?php echo $this->encode($this->laout_arr['postMan'][0]['id']); ?>')">發私信</a>
+				<?php }} ?>
 			</div>
 		</nav>
 

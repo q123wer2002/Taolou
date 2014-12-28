@@ -117,10 +117,10 @@
             <?php if(!empty($this->mySkillLists)){ ?>
                 <!-- 設定我自己的技能 -->
             <input type="hidden" ng-init="myallSkillList = '<?php echo $this->mySkillLists; ?>'">
+            <?php } ?>
                 <!-- 設定技能總攬 -->
             <input type="hidden" ng-init="allComSkill = '<?php echo $this->allComSkill; ?>'">
             <input type='hidden' ng-init="skillListInit()">
-            <?php } ?>
 
             <!-- 顯示技能 -->                
             <div class='clearfix'>

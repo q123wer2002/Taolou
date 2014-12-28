@@ -99,8 +99,8 @@ else{
 		//抓取所有對話內容
 		$sql_MessageCon="SELECT ".$obj_tmp1->message.".*
 						 FROM ".$obj_tmp1->message."
-						 WHERE (".$obj_tmp1->message.".receiveUserId='".$userId."' AND ".$obj_tmp1->message.".sendUserId ='".$action."')
-						 OR (".$obj_tmp1->message.".receiveUserId='".$action."' AND ".$obj_tmp1->message.".sendUserId ='".$userId."')
+						 WHERE (".$obj_tmp1->message.".receiveUserId='".$userId."' AND ".$obj_tmp1->message.".sendUserId ='".$action."' AND status='y')
+						 OR (".$obj_tmp1->message.".receiveUserId='".$action."' AND ".$obj_tmp1->message.".sendUserId ='".$userId."' AND status='y')
 						 ORDER BY ".$obj_tmp1->message.".createDate";
 		$obj_tmp1->laout_arr['MessageCont']=array();
 	    $obj_tmp1->basic_select('laout_arr','MessageCont',$sql_MessageCon);

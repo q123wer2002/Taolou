@@ -16,6 +16,10 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 $userId=$_SESSION['user']['id'];
 
 if(@$_POST['method'] == "message"){
+
+	$sql_deleteSys="DELETE FROM ".$obj_tmp1->message." WHERE ".$obj_tmp1->message.".sendUserId='".$userId."' AND ".$obj_tmp1->message.".receiveUserId='".$_POST['reveicer']."' AND status='n'";
+	mysql_query($sql_deleteSys);
+
 	$sql_insertMessage="INSERT INTO ".$obj_tmp1->message." VALUES (NULL,'".$userId."','".$_POST['reveicer']."','".$_POST['messagecontent']."','y',CURRENT_TIMESTAMP)";
 	mysql_query($sql_insertMessage);
 

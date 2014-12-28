@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2014 at 07:23 AM
+-- Generation Time: Dec 28, 2014 at 12:59 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `taolou_account` (
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `taolou_account`
@@ -45,7 +45,10 @@ INSERT INTO `taolou_account` (`id`, `memberId`, `email`, `password`, `createDate
 (3, 3, 'q123wer2002@gmail', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-11-24 12:38:25'),
 (4, 4, 'q123wer2002@gg.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-11-27 10:01:07'),
 (6, 5, 'test@test.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-12-02 13:39:23'),
-(7, 6, 'tony507yu@gmail.com', 'a141c47927929bc2d1fb6d336a256df4', '2014-12-24 04:43:20');
+(7, 6, 'tony507yu@gmail.com', 'a141c47927929bc2d1fb6d336a256df4', '2014-12-24 04:43:20'),
+(8, 6, 'q123wer2002@123.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-12-28 09:02:20'),
+(9, 7, 'q123wer2002@456.com', 'e10adc3949ba59abbe56e057f20f883e', '2014-12-28 09:12:40'),
+(10, 8, 'q123wer2002@789.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', '2014-12-28 09:31:01');
 
 -- --------------------------------------------------------
 
@@ -69,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
   `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `taolou_company`
@@ -77,8 +80,9 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
 
 INSERT INTO `taolou_company` (`id`, `recommendation`, `companyShortName`, `companyName`, `CEO`, `ceoPhoto`, `logo`, `location`, `memberSize`, `website`, `companyFB`, `createDate`, `detail`, `updateDate`) VALUES
 (1, 'y', 'test', 'taoloutest', 'yenchen', 'userObject/companyObject/1/ceoPhoto.png', 'userObject/companyObject/1/CompanyPhoto.jpeg', '宜蘭縣/員山鄉/264', '200~2000人', 'taolou.com', 'www.facebook.com', '2014年-08月', '456', '2014-12-20 09:29:47'),
-(2, 'n', 'nnnnnn', 'CarryBazi', 'YYYYY', 'userObject/companyObject/2/ceoPhoto.jpeg', 'userObject/companyObject/2/CompanyPhoto.png', '宜蘭縣/員山鄉/264', '10', '4040', '', '2014年-12月', '', '2014-12-18 11:57:28'),
-(3, 'n', '', 'NewCompanyTest', '', '', '', '', '', '', '', '', '', '2014-12-22 14:54:07');
+(2, 'y', 'nnnnnn', 'CarryBazi', 'YYYYY', 'userObject/companyObject/2/ceoPhoto.jpeg', 'userObject/companyObject/2/CompanyPhoto.png', '宜蘭縣/員山鄉/264', '10', '4040', '', '2014年-12月', '', '2014-12-18 11:57:28'),
+(3, 'y', 'sunflower', 'NewCompanyTest', 'SUN', 'userObject/companyObject/3/ceoPhoto.jpeg', 'userObject/companyObject/3/CompanyPhoto.jpeg', '桃園縣/觀音鄉/328', '50~200人', 'http://sunflower', 'http://www.facebook.com/sunflower', '2008年-2月', 'sunsun', '2014-12-28 10:22:04'),
+(4, 'y', 'A_NCTU', 'NCTU_IIM', 'Mander', 'userObject/companyObject/4/ceoPhoto.jpeg', 'userObject/companyObject/4/CompanyPhoto.jpeg', '新竹市/東區/300', '2000人以上', 'http://www.nctu.edu.tw', 'http://www.facebook.com/nctu', '1991年-4月', 'A school', '2014-12-28 10:18:09');
 
 -- --------------------------------------------------------
 
@@ -93,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company_finance` (
   `date` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `taolou_company_finance`
@@ -101,10 +105,8 @@ CREATE TABLE IF NOT EXISTS `taolou_company_finance` (
 
 INSERT INTO `taolou_company_finance` (`id`, `companyId`, `stage`, `date`, `createDate`) VALUES
 (3, 1, 'A輪', '2013年-2月', '2014-12-20 09:11:41'),
-(4, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:12'),
-(5, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:21'),
-(6, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:37'),
-(7, 1, 'A輪', '2013年-2月', '2014-12-20 09:29:47');
+(8, 4, '已被收購', '2013年-3月', '2014-12-28 09:34:50'),
+(17, 3, '尚未融資', '2014年-12月', '2014-12-28 10:22:04');
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company_skill` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `taolou_company_skill`
@@ -127,7 +129,9 @@ CREATE TABLE IF NOT EXISTS `taolou_company_skill` (
 
 INSERT INTO `taolou_company_skill` (`id`, `companyId`, `skillList`, `updateDate`, `createDate`) VALUES
 (1, 1, '1|2|9|8', '2014-12-20 09:29:47', '2014-12-18 12:15:41'),
-(2, 2, '2|3', '2014-12-18 12:15:41', '2014-12-18 12:15:41');
+(2, 2, '2|3', '2014-12-18 12:15:41', '2014-12-18 12:15:41'),
+(3, 3, '3|2', '2014-12-28 10:22:04', '2014-12-28 10:12:06'),
+(4, 4, '2|8', '2014-12-28 10:18:09', '2014-12-28 10:12:12');
 
 -- --------------------------------------------------------
 
@@ -151,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `taolou_job`
@@ -159,7 +163,11 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 
 INSERT INTO `taolou_job` (`id`, `postMemberId`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `updateDate`, `createDate`) VALUES
 (1, 3, 'show something title', 1, 'IOS工程師', '宜蘭縣/員山鄉/264', 'software', '全職', '50000', 'y', 'wcqwc', 'y', '2014-12-22 06:15:42', '2014-12-24 04:23:48'),
-(2, 4, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '2014-12-22 06:15:32', '2014-12-24 04:23:50');
+(2, 4, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '2014-12-22 06:15:32', '2014-12-24 04:23:50'),
+(3, 3, 'come on join us', 1, 'android', '新北市/深坑區/222', '技術相關', '全職', '50000', 'y', 'come on come on', 'y', '2014-12-26 06:28:54', '2014-12-26 06:28:54'),
+(4, 3, 'asdasqwf', 1, 'marketing', '南投縣/埔里鎮/545', '營運相關', '兼職', '60000', 'y', '21e12e12e', 'y', '2014-12-26 06:29:35', '2014-12-26 06:29:35'),
+(5, 8, 'Ido', 4, 'web develop', '新竹市/東區/300', '技術相關', '全職', '40000', 'y', 'come on', 'y', '2014-12-28 10:17:43', '2014-12-28 10:17:43'),
+(6, 6, 'ppopopop', 3, 'marketingMan', '嘉義市/西區/600', '營運相關', '兼職', '6000', 'y', 'join us\n\n\nqwdqwd', 'y', '2014-12-28 10:22:40', '2014-12-28 10:22:40');
 
 -- --------------------------------------------------------
 
@@ -207,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `taolou_member_detail`
@@ -218,7 +226,10 @@ INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyVali
 (2, 'n', 0, '', 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2014-12-14 09:39:19', '2014-11-23 17:25:35'),
 (3, 'y', 1, 'Host', 'yoyoMan', 'q123wer2002@gmail', '', '', '', 'userObject/q123wer2002@gmail/profilePhoto/userPhoto.png', '', '', '', '', '', 'y', 'n', '2014-12-24 04:23:30', '2014-11-24 12:38:25'),
 (4, 'y', 2, 'y', 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', 'userObject/q123wer2002@gg.com/profilePhoto/userPhoto.png', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-24 04:23:42', '2014-11-27 10:01:07'),
-(5, 'n', 0, '', '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23');
+(5, 'n', 0, '', '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23'),
+(6, 'y', 3, 'y', 'POLO', 'q123wer2002@123.com', '', '', '', 'userObject/q123wer2002@123.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2014-12-28 10:24:50', '2014-12-28 09:02:20'),
+(7, 'n', 0, '', '', 'q123wer2002@456.com', '+886911400733', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-28 09:14:02', '2014-12-28 09:12:40'),
+(8, 'y', 4, 'Host', 'DannyLin,Yo', 'q123wer2002@789.com', '', '', '', 'userObject/q123wer2002@789.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2014-12-28 09:32:26', '2014-12-28 09:31:01');
 
 -- --------------------------------------------------------
 
@@ -237,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_education` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `taolou_member_education`
@@ -265,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_experience` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `taolou_member_experience`
@@ -289,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
   `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `taolou_member_jobmanage`
@@ -297,7 +308,10 @@ CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
 
 INSERT INTO `taolou_member_jobmanage` (`id`, `memberId`, `jobId`, `cvId`, `intelligence`, `status`, `createDate`) VALUES
 (1, 2, 1, 0, 'y', 'wait', '2014-12-10 09:19:31'),
-(2, 2, 2, 0, 'y', 'collect', '2014-12-10 09:21:58');
+(2, 2, 2, 0, 'y', 'collect', '2014-12-10 09:21:58'),
+(4, 2, 3, 0, 'n', '', '2014-12-26 06:31:52'),
+(5, 2, 4, 0, 'n', 'wait', '2014-12-26 13:44:41'),
+(6, 7, 1, 0, 'n', '', '2014-12-28 09:29:24');
 
 -- --------------------------------------------------------
 
@@ -313,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_message` (
   `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `taolou_member_message`
@@ -340,7 +354,8 @@ INSERT INTO `taolou_member_message` (`id`, `sendUserId`, `receiveUserId`, `messa
 (18, 2, 4, '093250948*', 'y', '2014-12-13 16:55:53'),
 (19, 2, 4, '098850948*', 'y', '2014-12-13 16:56:10'),
 (20, 2, 4, '098836782*', 'y', '2014-12-13 16:57:51'),
-(21, 3, 2, 'hey', 'y', '2014-12-15 14:17:54');
+(21, 3, 2, 'hey', 'y', '2014-12-15 14:17:54'),
+(25, 2, 6, 'hi,你好，我想要多多了解一下您所刊登的職位。謝謝你', 'y', '2014-12-28 11:57:24');
 
 -- --------------------------------------------------------
 
@@ -355,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_specialskill` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `taolou_member_specialskill`
@@ -365,7 +380,9 @@ INSERT INTO `taolou_member_specialskill` (`id`, `memberId`, `skillList`, `update
 (1, 1, '', '2014-11-30 13:51:13', '2014-11-30 13:51:13'),
 (2, 2, '1|3|4|2', '2014-12-18 12:25:59', '2014-11-30 13:51:13'),
 (3, 3, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20'),
-(4, 4, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20');
+(4, 4, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20'),
+(5, 6, '', '2014-12-28 09:02:20', '2014-12-28 09:02:20'),
+(6, 7, '', '2014-12-28 09:12:40', '2014-12-28 09:12:40');
 
 -- --------------------------------------------------------
 
@@ -385,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_wantjob` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `taolou_member_wantjob`
@@ -395,7 +412,9 @@ INSERT INTO `taolou_member_wantjob` (`id`, `memberId`, `name`, `jobType`, `least
 (1, 4, 'iOS develop', 'true|true|true', '40000', 'true', '1', 'true', '2014-11-30 07:50:28', '2014-11-27 10:13:25'),
 (2, 1, '', '', '', 'true', '', 'true', '2014-11-27 10:13:41', '2014-11-27 10:13:41'),
 (3, 2, 'Android', 'true|false|false', '40000', 'true', '1|2|3|5', 'true', '2014-11-29 06:38:49', '2014-11-27 10:13:41'),
-(4, 3, '', '', '', 'true', '', 'true', '2014-11-27 10:13:46', '2014-11-27 10:13:46');
+(4, 3, '', '', '', 'true', '', 'true', '2014-11-27 10:13:46', '2014-11-27 10:13:46'),
+(5, 6, '', '', '', '', '', '', '2014-12-28 09:02:20', '2014-12-28 09:02:20'),
+(6, 7, '', '', '', '', '', '', '2014-12-28 09:12:40', '2014-12-28 09:12:40');
 
 -- --------------------------------------------------------
 

@@ -61,4 +61,24 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 			$scope.jobError='發生不可預測的錯誤';
 		});
 	}
+
+	//messageTo function
+	$scope.messageTo=function(item){
+		var messageObject={"method":"message","receiveID":item};
+		
+		$http({
+			method:'POST',
+			url:'server/applyJobAjax.php',
+			data: $.param(messageObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+			location.href="userMessage.php?action="+item;
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.jobError='發生不可預測的錯誤';
+		});
+	}
 }]);	

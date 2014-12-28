@@ -98,7 +98,7 @@ switch($action){
 	}
 
 	
-	if($userId != "" && $obj_tmp1->applyJob==true){
+	if(@$userId != "" && $obj_tmp1->applyJob==true){
 		//讀取使用者的履歷
 		$sql_CV="SELECT ".$obj_tmp1->memberCV.".*
 				 FROM ".$obj_tmp1->memberCV."

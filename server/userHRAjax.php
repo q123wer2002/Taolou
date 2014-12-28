@@ -4,6 +4,7 @@ include_once '../share.php';
 //page default
 
 $obj_tmp1->companyTable="taolou_company";
+$obj_tmp1->companySkill="taolou_company_skill";
 
 $obj_tmp1->member='taolou_member_detail';
 
@@ -85,8 +86,23 @@ else if(@$_POST['method'] == "saveUserHR"){
 			//print_r($obj_tmp1->laout_arr['checkCom']);
 		$_SESSION['user']['company']=$obj_tmp1->laout_arr['checkCom'][0]['id'];
 
+		//建立公司技能
+		$sql_companySkill="INSERT INTO ".$obj_tmp1->companySkill." VALUES(NULL,'".$obj_tmp1->laout_arr['checkCom'][0]['id']."','',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+		mysql_query($sql_companySkill);
+
+		//存入HR帳號
 		$sql_update="UPDATE ".$obj_tmp1->member." SET companyId='".$obj_tmp1->laout_arr['checkCom'][0]['id']."', companyValid='Host', facebook='".$_POST['facebook']."', google='".$_POST['google']."', name='".$_POST['userName']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->member.".id='".$userId."'";
 		mysql_query($sql_update);
+
+		//建立公司資料夾
+		$cmpFolder="../userObject/companyObject/".$obj_tmp1->laout_arr['checkCom'][0]['id'];
+		if(!file_exists($cmpFolder))
+		{
+			//新增資料夾
+         	@mkdir($cmpFolder);
+          	//end  新增資料夾
+		}
+		//========================
 
 		$message=array('first'=>"success");
 		echo json_encode($message);

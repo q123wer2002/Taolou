@@ -27,7 +27,7 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
 			success(function(json){
-				console.log(json.first);
+				console.log(json);
 				if(json.actions=="signup"){
 					if(json.url=='X'){$scope.errorMessage='*'+json.first;}
 					else{window.open(json.url,'_self');}
@@ -54,6 +54,7 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
+			console.log(json);
 			if(json.actions=="logout"){
 				if(json.url=='X'){$scope.errorMessage='*'+json.first;}
 				else{window.open(json.url,'_self');}

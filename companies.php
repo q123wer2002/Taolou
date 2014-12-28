@@ -20,7 +20,7 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 $action="";
 
 //decode company id
-if($_SESSION['user']['id'] != ""){
+if(@$_SESSION['user']['id'] != ""){
 	if(@$_REQUEST["company"] == ""){
 		if(@$_SESSION['user']['userType']=='2'){
 			if(@$_SESSION['user']['company'] != "" && @$_SESSION['user']['company'] != "0"){
