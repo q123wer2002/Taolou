@@ -176,8 +176,8 @@ switch($action){
 				$obj_tmp1->basic_select('laout_arr','postMan',$sql_postMan);
 					//echo $sql_postMan;
 					//print_r($obj_tmp1->laout_arr['postMan']);
-				$obj_tmp1->postMan[$value['id']]['name']=$obj_tmp1->laout_arr['postMan'][0]['name'];
-				$obj_tmp1->postMan[$value['id']]['photo']=$obj_tmp1->laout_arr['postMan'][0]['photo'];
+				@$obj_tmp1->postMan[$value['id']]['name']=$obj_tmp1->laout_arr['postMan'][0]['name'];
+				@$obj_tmp1->postMan[$value['id']]['photo']=$obj_tmp1->laout_arr['postMan'][0]['photo'];
 			
 				//地址
 				$obj_tmp1->jobLocation[$value['id']]=split("/",$value['location']);

@@ -29,8 +29,12 @@ a{text-decoration: none;}
 .view{background-position: -190px -30px;width: 14px;height: 9px;}
 .recommend{background-position: -190px -113px;width: 14px;height: 14px;}
 
-.showUs{width: 100%;position:relative;height: 95%;}
-	.showImage{width: 100%;height: 100%;margin: auto;margin-bottom: 20px;background: white;}
+.showUs{width: 100%;position:relative;height: auto;}
+	.showImage{position:relative;width: 100%;height: 700px;margin: auto;background: url("../images/layout/banner.jpg") no-repeat;-webkit-filter: saturate(0.5) hue-rotate(10deg) brightness(0.7);background-size: cover;background-position: 0px -300px;}
+		.slogn{font-weight: 700;color: #ffffff;font-family: "proxima-nova";padding-top: 15%;font-size: 4.2em;position: absolute;top:0px;left: 300px;}
+		.slogn span{font-size: 30px;font-family: "proxima-nova";}
+		.slogn a{font-size: 30px;font-family: "proxima-nova";color: #ffffff;font-size: 20px;border-bottom:1px solid #c4c663;}
+		.slogn a:hover{color: #c4c663;}
 
 .taoloumenu{position:relative;width: 100%;height: 70px;background: white;z-index: 3;border-bottom: 2px solid #46A3FF;border-top: 2px solid #46A3FF;}
 	.logo{position:relative;background: url(../images/taolou_logo.jpg);width:265px;height: 70px;background-size: auto 100%;float: left;}

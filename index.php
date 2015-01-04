@@ -28,9 +28,6 @@ switch($action){
 		//print_r($obj_tmp1->laout_arr['partner']);
 	//==========================
 
-	
-
-
     //echo $obj_tmp1->encode("1"),"<BR>";
     //echo $obj_tmp1->decode($obj_tmp1->encode("1"));
 

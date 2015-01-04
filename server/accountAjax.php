@@ -1,5 +1,7 @@
 <?php
 include_once '../share.php';
+require('../include/sendMail.php');
+header("Content-Type:text/html; charset=utf-8");
 
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->account='taolou_account';
@@ -93,7 +95,7 @@ else if(@$_POST['method']=='signup')
 		
 		//存入account內
 		$sql_account="INSERT INTO ".$obj_tmp1->account."
-					  VALUES (NULL,'".$memberID."','".$account."','".$password."',CURRENT_TIMESTAMP)";
+					  VALUES (NULL,'".$memberID."','".$account."','".$password."','',CURRENT_TIMESTAMP)";
 		mysql_query($sql_account);
 		//========================
 
@@ -108,7 +110,7 @@ else if(@$_POST['method']=='signup')
 			$sql_specialSkill="INSERT INTO ".$obj_tmp1->specialSkill."
 						  VALUES (NULL,'".$memberID."','',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 			mysql_query($sql_specialSkill);
-			//========================*/
+			//========================
 
 			//創建資料夾
 			$userFolder="../userObject/".$account;
@@ -139,6 +141,34 @@ else if(@$_POST['method']=='signup')
 			}
 			//========================
 		}
+
+		//寄信等待認證
+			//認證密碼
+			$validCode=md5(uniqid(rand()));
+			$homeURL=WEB_PATH."index.php";
+			$validURL=WEB_PATH."mailValid.php?action=openAccount&code=".$validCode;
+		$email=$account;
+		// 收件者信箱
+		$name=$account;
+		// 收件者的名稱or暱稱
+		$mail->AddAddress($email,$name);
+		$mail->Subject = "=?UTF-8?B?".base64_encode("[頭路網 TaoLou]註冊信箱認證")."?=";//信件標題，解決亂碼問題
+		// 信件標題
+		$mail->Body = "Hi ".$account.",<br><br>
+		歡迎您使用<a href='".$homeURL."'>頭路網TaoLou</a>求職！<br><br>
+		請您點擊以下網址來驗證<a href='mailto:".$account."'>".$account."</a>信箱<br><br>
+		<a href='".$validURL."'>".$validURL."</a><br><br>
+		一但認證完信箱後，即可立即使用<a href='".$homeURL."'>頭路網 TaoLou</a>的豐富功能求職。<br><br><br>
+		-------<br>
+		如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。";
+
+		if(!$mail->Send()){echo "寄信發生錯誤：" . $mail->ErrorInfo;//如果有錯誤會印出原因
+		}else{
+			$sql_insertValid="UPDATE ".$obj_tmp1->account." SET mailValid='".$validCode."' WHERE ".$obj_tmp1->account.".memberId='".$memberID."'";
+			mysql_query($sql_insertValid);
+		}
+
+
 		
 		//跳回登入頁面
 		$message=array('first'=>"成功",'url'=>'account.php?action=login',"actions"=>'signup');
@@ -193,9 +223,9 @@ else if(@$_POST['method'] == "changeAlert"){
 }
 else{
 
-	$message=array('first'=>"404 Not found this page");
+	/*$message=array('first'=>"404 Not found this page");
 	echo json_encode($message);
-	exit;
+	exit;*/
 }
 
 ?>
