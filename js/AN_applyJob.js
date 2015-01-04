@@ -19,7 +19,7 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 		jQuery(".CVDiv").animate({'bottom':'-400px'},500);
 	}
 	$scope.notMember=function(){
-		jQuery(".changeOK").animate({'top':'-125px'});
+		jQuery(".changeOK").toggle('slow');
 	}
 
 	//apply and collect function

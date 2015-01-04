@@ -28,6 +28,7 @@ if(@$_POST['method']=='login')
 					LIMIT 0,1";
 	$obj_tmp1->laout_arr['checkUser']=array();
 	$obj_tmp1->basic_select('laout_arr','checkUser',$sql_checkUser);
+
 	//======================
 
 	@$id=$obj_tmp1->laout_arr['checkUser'][0]['id'];
@@ -45,11 +46,16 @@ if(@$_POST['method']=='login')
 			//將使用者資訊存入SESSION
 			$userId=$obj_tmp1->laout_arr['loadUser'][0]['id'];
 			$_SESSION['user']=array();
+				//ID
 			$_SESSION['user']['id']=$userId;
+				//PHOTO
 			$_SESSION['user']['userPicture']=$obj_tmp1->laout_arr['loadUser'][0]['photo'];
+				//USERTYPE
 			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){$_SESSION['user']['userType']="2";$_SESSION['user']['company']=$obj_tmp1->laout_arr['loadUser'][0]['companyId'];}
 			else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){$_SESSION['user']['userType']="1";}
-			
+				//mail valid
+			$_SESSION['user']['mailValid']=$obj_tmp1->laout_arr['checkUser']['mailValid'];
+
 			$message=array('first'=>"success",'url'=>"index.php","actions"=>'login');
 			//=======================
 		}else{$message=array('first'=>"帳號密碼不正確",'url'=>"X","actions"=>'login');}

@@ -23,6 +23,7 @@ $jobshow_start=($obj_tmp1->page-1)*20;
 $obj_tmp1->applyJob=true;
 $obj_tmp1->applyJobYet=false;
 $obj_tmp1->collectYet=false;
+$obj_tmp1->mailValid=false;
 
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
@@ -34,7 +35,11 @@ if(@$_REQUEST["jobsid"] != ""){
 //decode company id
 if(@$_SESSION['user']['id']!= ""){
 	if(@$_SESSION['user']['userType']=='1'){
-		$obj_tmp1->applyJob=true;
+		if(@$_SESSION['user']['mailValid']=='y'){
+			$obj_tmp1->applyJob=true;
+			$obj_tmp1->mailValid=true;
+		}
+		else{$obj_tmp1->applyJob=false;}
 	}else if(@$_SESSION['user']['userType']=='2'){$obj_tmp1->applyJob=false;}
 	$userId=$_SESSION['user']['id'];
 }else{}

@@ -1,11 +1,14 @@
 <link rel="stylesheet" type="text/css" href="css/showJob.css">
 <script type="text/javascript" src="js/AN_applyJob.js"></script>
 
-<div class='changeOK'>
-    馬上<a href="account.php?action=signup">註冊會員</a>，應徵工作
-</div>
 
 <div class='jobInfo' ng-controller="Taolou_applyJob">
+	<div class='changeOK'>
+	    馬上<a href="account.php?action=signup">註冊會員</a>，應徵工作
+
+	    <a href="javascript:;" class='closeCheck' ng-click='notMember()'><span class='icon blackCrossIcon'></span></a>
+	</div>
+
 	<?php if(!empty($this->laout_arr['CV'])) {
 			foreach($this->laout_arr['CV'] as $CVKey => $CVValue){ ?>
 	<input type="hidden" ng-init="CV_NAME='<?php echo $CVValue['name']; ?>'">
