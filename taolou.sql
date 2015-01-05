@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2015 at 04:29 PM
+-- Generation Time: Jan 05, 2015 at 04:37 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `taolou_account` (
   `mailValid` longtext COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `taolou_account`
@@ -48,7 +48,7 @@ INSERT INTO `taolou_account` (`id`, `memberId`, `email`, `password`, `mailValid`
 (8, 6, 'q123wer2002@123.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', 'y', '2014-12-28 09:02:20'),
 (9, 7, 'q123wer2002@456.com', 'e10adc3949ba59abbe56e057f20f883e', 'y', '2014-12-28 09:12:40'),
 (10, 8, 'q123wer2002@789.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', 'y', '2014-12-28 09:31:01'),
-(21, 19, 'q123wer2002@gmail.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', 'd12953bdd25e536f17e1f5bb34c14cb7', '2014-12-31 07:01:35');
+(22, 19, 'q123wer2002@gmail.com', 'b7d9e2e1fea3c1aa481c50a63dafde65', 'y', '2015-01-05 10:40:59');
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `taolou_member_detail`
@@ -228,7 +228,7 @@ INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyVali
 (6, 'y', 3, 'y', 'POLO', 'q123wer2002@123.com', '', '', '', 'userObject/q123wer2002@123.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2014-12-28 10:24:50', '2014-12-28 09:02:20'),
 (7, 'n', 0, '', '', 'q123wer2002@456.com', '+886911400733', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-28 09:14:02', '2014-12-28 09:12:40'),
 (8, 'y', 4, 'Host', 'DannyLin,Yo', 'q123wer2002@789.com', '', '', '', 'userObject/q123wer2002@789.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2014-12-28 09:32:26', '2014-12-28 09:31:01'),
-(19, 'n', 0, '', '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-31 07:01:35', '2014-12-31 07:01:35');
+(19, 'n', 0, '', '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2015-01-05 15:30:14', '2014-12-31 07:01:35');
 
 -- --------------------------------------------------------
 
@@ -299,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
   `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `taolou_member_jobmanage`
@@ -310,7 +310,10 @@ INSERT INTO `taolou_member_jobmanage` (`id`, `memberId`, `jobId`, `cvId`, `intel
 (2, 2, 2, 0, 'y', 'collect', '2014-12-10 09:21:58'),
 (4, 2, 3, 0, 'n', '', '2014-12-26 06:31:52'),
 (5, 2, 4, 0, 'n', 'wait', '2014-12-26 13:44:41'),
-(6, 7, 1, 0, 'n', '', '2014-12-28 09:29:24');
+(6, 7, 1, 0, 'n', '', '2014-12-28 09:29:24'),
+(7, 19, 2, 0, 'n', 'collect', '2015-01-05 10:48:59'),
+(8, 19, 1, 0, 'n', 'collect', '2015-01-05 10:49:08'),
+(12, 19, 6, 0, 'n', 'collect', '2015-01-05 11:07:46');
 
 -- --------------------------------------------------------
 
@@ -326,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_message` (
   `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `taolou_member_message`
@@ -349,7 +352,8 @@ INSERT INTO `taolou_member_message` (`id`, `sendUserId`, `receiveUserId`, `messa
 (19, 2, 4, '098850948*', 'y', '2014-12-13 16:56:10'),
 (20, 2, 4, '098836782*', 'y', '2014-12-13 16:57:51'),
 (21, 3, 2, 'hey', 'y', '2014-12-15 14:17:54'),
-(25, 2, 6, 'hi,你好，我想要多多了解一下您所刊登的職位。謝謝你', 'y', '2014-12-28 11:57:24');
+(25, 2, 6, 'hi,你好，我想要多多了解一下您所刊登的職位。謝謝你', 'y', '2014-12-28 11:57:24'),
+(26, 19, 6, '-----system setting-----', 'n', '2015-01-05 13:24:04');
 
 -- --------------------------------------------------------
 
@@ -364,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_specialskill` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `taolou_member_specialskill`
@@ -377,7 +381,7 @@ INSERT INTO `taolou_member_specialskill` (`id`, `memberId`, `skillList`, `update
 (4, 4, '', '2014-11-30 13:51:20', '2014-11-30 13:51:20'),
 (5, 6, '', '2014-12-28 09:02:20', '2014-12-28 09:02:20'),
 (6, 7, '', '2014-12-28 09:12:40', '2014-12-28 09:12:40'),
-(11, 19, '', '2014-12-31 07:01:35', '2014-12-31 07:01:35');
+(12, 19, '', '2015-01-05 10:40:59', '2015-01-05 10:40:59');
 
 -- --------------------------------------------------------
 
@@ -397,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_wantjob` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `taolou_member_wantjob`
@@ -410,7 +414,7 @@ INSERT INTO `taolou_member_wantjob` (`id`, `memberId`, `name`, `jobType`, `least
 (4, 3, '', '', '', 'true', '', 'true', '2014-11-27 10:13:46', '2014-11-27 10:13:46'),
 (5, 6, '', '', '', '', '', '', '2014-12-28 09:02:20', '2014-12-28 09:02:20'),
 (6, 7, '', '', '', '', '', '', '2014-12-28 09:12:40', '2014-12-28 09:12:40'),
-(11, 19, '', '', '', '', '', '', '2014-12-31 07:01:35', '2014-12-31 07:01:35');
+(12, 19, '', '', '', '', '', '', '2015-01-05 10:40:59', '2015-01-05 10:40:59');
 
 -- --------------------------------------------------------
 

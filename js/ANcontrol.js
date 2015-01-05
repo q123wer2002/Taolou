@@ -79,3 +79,59 @@ TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 	];
 
 }]);
+
+TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scope,$http){
+
+	$scope.mailVlid='再寄一次認證信';
+
+	//init
+	$scope.mail="";
+
+	$scope.mailStatus=false;
+
+	//function
+	$scope.checkEmail=function(){
+		if($scope.mailStatus){$scope.mailStatus=false;}
+		else{$scope.mailStatus=true;}
+	}
+
+	$scope.changeMail=function(){
+		if($scope.mail==""){$scope.error="error";}
+		else{
+			var mailObject={'method':'changeMail','email':$scope.mail};
+
+			$http({
+				method:'POST',
+				url:'server/ajax.php',
+				data: $.param(mailObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+				$scope.mailStatus=false;
+			}).
+			error(function(json){
+				console.warn(json);
+			});
+		}
+	}
+
+	$scope.reSendMail=function(){
+		var mailObject={'method':'reSendMail','email':$scope.mail};
+		$http({
+			method:'POST',
+			url:'server/ajax.php',
+			data: $.param(mailObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+			location.href='index.php';
+		}).
+		error(function(json){
+			console.warn(json);
+		});
+	}
+}]);
+
+

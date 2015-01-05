@@ -35,8 +35,13 @@
 			<?php if(@$_SESSION['user']['id']!="" && @$_SESSION['user']['userType']=='1') { ?>
 			<script type="text/javascript" src='js/AN_account.js'></script>
 			<div class='userProfile' ng-controller='TaolouAccount'>
+				<?php if(@$_SESSION['user']['mailValid']=='y'){ ?>
 				<a href="userMessage.php" class='icon title-chart userMessages'></a>
 				<span class='mailMessage'>私信</span>
+				<?php }else{ ?>
+				<a href="mailValid.php?action=reSendMail" id='alertMailValid' class='icon title-chart alertIcon'></a>
+				<span id='alertMailValidMes' class='mailMessage'>認證信箱</span>
+				<?php } ?>
 				<div class='userPicture' style="background-image: url(<?php if(!empty($_SESSION['user']['userPicture'])){echo $_SESSION['user']['userPicture'];}else{echo "images/userMe/user-default.jpg";} ?>);">
 					<ul class='userMenuListUl'>
 						<a href="userMe.php"><li>線上履歷</li></a>

@@ -1,0 +1,45 @@
+<style type="text/css">
+	.mailValid{border: 2px solid #51A6F9;text-align: center;width: 1024px;padding: 50px 0px;}
+</style>
+
+
+
+
+<div class='mailValid' ng-controller='TaoLou_mailValid'>
+<?php if($this->mailValid){ ?>
+	<h2>恭喜你，認證成功</h2><br>
+	<a href="jobs.php">馬上看職缺</a><br><br>
+	<span><span id='second'></span>秒將會自動後跳轉頁面...</span>
+	
+	<script type="text/javascript">
+	//設定倒數秒數
+	var t = 10;
+
+	//顯示倒數秒收
+	function showTime()
+	{
+	    t -= 1;
+	    document.getElementById('second').innerHTML= t;
+	    
+	    if(t==0)
+	    {
+	        location.href='index.php';
+	    }
+	    
+	    //每秒執行一次,showTime()
+	    setTimeout("showTime()",1000);
+	}
+
+	//執行showTime()
+	showTime();
+	</script>
+
+<?php }else{ ?>
+	<h1 style='text-decoration:underline;'>發生錯誤</h1><br>
+	<h2>
+		認證失敗，請確認您的驗證碼<br>
+		或<br>
+		<a href="account.php?action=login">登入後，重新寄驗證信</a>
+	<h2>
+<?php } ?>
+</div>

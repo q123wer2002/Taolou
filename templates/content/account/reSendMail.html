@@ -1,0 +1,34 @@
+<style type="text/css">
+	.mailValid{background-color: #ffffff;}
+	.alertDiv{width: 1000px;padding: 30px;}
+	.littleFont{font-size: 14px;}
+	a:hover{text-decoration:underline;}
+	.button:hover{cursor: pointer;}
+
+</style>
+<?php if(!empty($this->laout_arr['userInfo']) && $this->laout_arr['userInfo'][0]['mailValid']!='y'){ 
+		foreach($this->laout_arr['userInfo'] as $key => $value){?>
+<div class='mailValid' ng-controller='TaoLou_mailValid'>
+	<input type='hidden' ng-init="mail='<?php echo $value['email']; ?>'">
+	<div class='alertDiv'>
+		<h1 style='text-decoration:underline;'>尚未認證</h1><br>
+		
+		<h2>認證後的功能：</h2>
+		
+		<ul style='padding-left:50px;'>
+			<li>能在頭路網上投遞履歷</li>
+			<li>享受與公司私信的功能</li>
+		</ul><br>
+
+		<a href="javascript:;" class='href' ng-click='reSendMail()'><span class='icon global'></span>{{mailVlid}}</a>
+
+		<br>
+		<br>
+		<span class='littleFont' ng-hide='mailStatus'>{{mail}}</span>
+		<input type='text' class='input' ng-model='mail' ng-value='mail' ng-show='mailStatus'>
+		<a href="javascript:;" ng-show='mailStatus' ng-click='changeMail()'><button class='button'>保存</button></a>
+		<br>
+		<a href="javascript:;" ng-click='checkEmail()'><span class='littleFont'>這不是您的信箱嗎？</span></a>
+	</div>
+</div>
+<?php }} ?>

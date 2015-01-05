@@ -26,6 +26,8 @@
 			.job-publisher-name{position: absolute;right: 100px;top: 70px;}
 			.contact-btn{position: absolute;top: 100px;right: 100px;}
 			.contact-btn:hover{text-decoration: underline;}
+			.collected{background: #000000;}
+			.collected:hover{cursor:default;}
 
 	.widget-company-card{margin-top: 30px;background-color: #ffffff;}
 		.cmpy-card-loc,.label{font-weight: 700;margin-top: 5px;}

@@ -39,7 +39,6 @@ if(@$_SESSION['user']['id']!= ""){
 			$obj_tmp1->applyJob=true;
 			$obj_tmp1->mailValid=true;
 		}
-		else{$obj_tmp1->applyJob=false;}
 	}else if(@$_SESSION['user']['userType']=='2'){$obj_tmp1->applyJob=false;}
 	$userId=$_SESSION['user']['id'];
 }else{}

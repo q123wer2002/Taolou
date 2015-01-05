@@ -19,7 +19,10 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 		jQuery(".CVDiv").animate({'bottom':'-400px'},500);
 	}
 	$scope.notMember=function(){
-		jQuery(".changeOK").toggle('slow');
+		jQuery("#account").toggle('slow');
+	}
+	$scope.mailValid=function(){
+		jQuery("#mailValid").toggle('slow');
 	}
 
 	//apply and collect function
@@ -55,6 +58,7 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 		}).
 		success(function(json){
 			console.log(json);
+			location.reload();
 		}).
 		error(function(json){
 			console.warn(json);
