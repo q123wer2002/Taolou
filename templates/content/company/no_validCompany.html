@@ -1,0 +1,15 @@
+<style>
+	.showMes{width: 100%;height:500px;margin: auto;}
+	.showMes a{text-decoration: underline;color: red;padding: 0px 12px;}
+</style>
+
+
+
+<?php if(!empty($this->laout_arr['company'])){
+	foreach($this->laout_arr['company'] as $key => $value){ ?>
+<div class='showMes'>
+	<h1><?php echo $value['companyName']; ?> 公司尚未認證你
+	<br>可以到<a href="userMe.php">個人資料對公司重新寄發認證信</a></h1>
+	<br><h2 style='color:blue;'>若成功，請記得重新登入，方可作效</h2>
+</div>
+<?php }} ?>

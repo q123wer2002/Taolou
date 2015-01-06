@@ -132,6 +132,24 @@ TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scop
 			console.warn(json);
 		});
 	}
+
+	//company valid success
+	$scope.validSuccess=function(){
+		var successObject={'method':'validSuccess','name':$scope.name,'email':$scope.email,'companyName':$scope.companyName};
+		$http({
+			method:'POST',
+			url:'server/ajax.php',
+			data: $.param(successObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+			location.href='index.php';
+		}).
+		error(function(json){
+			console.warn(json);
+		});
+	}
 }]);
 
 

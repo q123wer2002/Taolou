@@ -32,6 +32,14 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		{'name':'兼職','status':''},
 		{'name':'實習','status':''},
 	];
+	$scope.changeMode=function(item){
+		if(item.status){item.status=false;}
+		else{item.status=true;}
+	}
+	$scope.changeModeLocation=function(){
+		if($scope.jobwish_telework){$scope.jobwish_telework=false;}
+		else{$scope.jobwish_telework=true;}
+	}
 	$scope.lcoationSplit=function(){
 		$scope.locations=$scope.jobwish_loc.split('|');
 	}

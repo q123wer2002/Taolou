@@ -1,0 +1,53 @@
+<style type="text/css">
+	.mailValid{border: 2px solid #51A6F9;text-align: center;width: 1024px;padding: 50px 0px;}
+</style>
+
+
+
+
+<div class='mailValid' ng-controller='TaoLou_mailValid'>
+<?php if($this->mailValid){ ?>
+	
+	<?php if(!empty($this->laout_arr['update'])){
+			foreach($this->laout_arr['update'] as $key => $value){ ?>
+	<input type='hidden' ng-init="name='<?php echo $value['name']; ?>'">
+	<input type='hidden' ng-init="email='<?php echo $value['email']; ?>'">
+	<input type='hidden' ng-init="companyName='<?php echo $this->laout_arr['company'][0]['companyName']; ?>'">
+	<?php }} ?>
+
+	<h2>恭喜，認證成功<br>將會寄信通知 <strong ng-init='validSuccess()'><?php echo $this->laout_arr['update'][0]['name'] ?></strong> 認證成功！</h2><br>
+	<br><br>
+	<span><span id='second'></span>秒將會自動後跳轉頁面...</span>
+	
+	<script type="text/javascript">
+	//設定倒數秒數
+	var t = 8;
+
+	//顯示倒數秒收
+	function showTime()
+	{
+	    t -= 1;
+	    document.getElementById('second').innerHTML= t;
+	    
+	    if(t==0)
+	    {
+	        location.href='index.php';
+	    }
+	    
+	    //每秒執行一次,showTime()
+	    setTimeout("showTime()",1000);
+	}
+
+	//執行showTime()
+	showTime();
+	</script>
+
+<?php }else{ ?>
+	<h1 style='text-decoration:underline;'>發生錯誤</h1><br>
+	<h2>
+		認證失敗，請確認您的驗證碼<br>
+		或<br>
+		<a href="account.php?action=login">登入後，重新寄驗證信</a>
+	<h2>
+<?php } ?>
+</div>

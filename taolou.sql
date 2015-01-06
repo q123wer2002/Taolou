@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2015 at 04:37 PM
+-- Generation Time: Jan 06, 2015 at 04:24 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `taolou_job`
@@ -163,11 +163,12 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 
 INSERT INTO `taolou_job` (`id`, `postMemberId`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `updateDate`, `createDate`) VALUES
 (1, 3, 'show something title', 1, 'IOS工程師', '宜蘭縣/員山鄉/264', 'software', '全職', '50000', 'y', 'wcqwc', 'y', '2014-12-22 06:15:42', '2014-12-24 04:23:48'),
-(2, 4, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '2014-12-22 06:15:32', '2014-12-24 04:23:50'),
+(2, 4, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '2015-01-06 13:12:51', '2015-01-06 13:12:51'),
 (3, 3, 'come on join us', 1, 'android', '新北市/深坑區/222', '技術相關', '全職', '50000', 'y', 'come on come on', 'y', '2014-12-26 06:28:54', '2014-12-26 06:28:54'),
 (4, 3, 'asdasqwf', 1, 'marketing', '南投縣/埔里鎮/545', '營運相關', '兼職', '60000', 'y', '21e12e12e', 'y', '2014-12-26 06:29:35', '2014-12-26 06:29:35'),
 (5, 8, 'Ido', 4, 'web develop', '新竹市/東區/300', '技術相關', '全職', '40000', 'y', 'come on', 'y', '2014-12-28 10:17:43', '2014-12-28 10:17:43'),
-(6, 6, 'ppopopop', 3, 'marketingMan', '嘉義市/西區/600', '營運相關', '兼職', '6000', 'y', 'join us\n\n\nqwdqwd', 'y', '2014-12-28 10:22:40', '2014-12-28 10:22:40');
+(6, 6, 'ppopopop', 3, 'marketingMan', '嘉義市/西區/600', '營運相關', '兼職', '6000', 'y', 'join us\n\n\nqwdqwd', 'y', '2014-12-28 10:22:40', '2014-12-28 10:22:40'),
+(7, 19, 'IIIIIII', 2, 'TESTNA', '新北市/石碇區/223', '產品相關', '兼職', '123456789', 'y', 'sadasd', 'y', '2015-01-06 13:13:19', '2015-01-06 13:13:19');
 
 -- --------------------------------------------------------
 
@@ -198,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `companyHr` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
   `companyId` int(11) NOT NULL,
-  `companyValid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `companyValid` longtext COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -215,20 +216,20 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `taolou_member_detail`
 --
 
 INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyValid`, `name`, `email`, `phone`, `facebook`, `google`, `photo`, `born`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
-(2, 'n', 0, '', 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2014-12-14 09:39:19', '2014-11-23 17:25:35'),
+(2, 'y', 2, 'Host', 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2015-01-06 14:43:06', '2014-11-23 17:25:35'),
 (4, 'y', 2, 'y', 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', 'userObject/q123wer2002@gg.com/profilePhoto/userPhoto.png', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-24 04:23:42', '2014-11-27 10:01:07'),
 (5, 'n', 0, '', '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23'),
 (6, 'y', 3, 'y', 'POLO', 'q123wer2002@123.com', '', '', '', 'userObject/q123wer2002@123.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2014-12-28 10:24:50', '2014-12-28 09:02:20'),
 (7, 'n', 0, '', '', 'q123wer2002@456.com', '+886911400733', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-28 09:14:02', '2014-12-28 09:12:40'),
 (8, 'y', 4, 'Host', 'DannyLin,Yo', 'q123wer2002@789.com', '', '', '', 'userObject/q123wer2002@789.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2014-12-28 09:32:26', '2014-12-28 09:31:01'),
-(19, 'n', 0, '', '', 'q123wer2002@gmail.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2015-01-05 15:30:14', '2014-12-31 07:01:35');
+(19, 'y', 2, 'y', 'Lin Danny', 'q123wer2002@gmail.com', '', '', '', 'userObject/q123wer2002@gmail.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2015-01-06 15:17:07', '2014-12-31 07:01:35');
 
 -- --------------------------------------------------------
 
@@ -329,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_message` (
   `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `taolou_member_message`
@@ -353,7 +354,13 @@ INSERT INTO `taolou_member_message` (`id`, `sendUserId`, `receiveUserId`, `messa
 (20, 2, 4, '098836782*', 'y', '2014-12-13 16:57:51'),
 (21, 3, 2, 'hey', 'y', '2014-12-15 14:17:54'),
 (25, 2, 6, 'hi,你好，我想要多多了解一下您所刊登的職位。謝謝你', 'y', '2014-12-28 11:57:24'),
-(26, 19, 6, '-----system setting-----', 'n', '2015-01-05 13:24:04');
+(26, 19, 6, '-----system setting-----', 'n', '2015-01-05 13:24:04'),
+(28, 2, 19, 'hey,您好', 'y', '2015-01-06 13:14:34'),
+(29, 2, 19, '你有收到我的信嗎', 'y', '2015-01-06 13:20:05'),
+(30, 2, 19, '123456', 'y', '2015-01-06 13:21:13'),
+(31, 2, 19, 'uouououo', 'y', '2015-01-06 13:22:13'),
+(32, 2, 19, 'yo,man', 'y', '2015-01-06 13:28:47'),
+(33, 19, 2, 'hi,你好，怎麼了', 'y', '2015-01-06 13:30:54');
 
 -- --------------------------------------------------------
 
@@ -414,7 +421,7 @@ INSERT INTO `taolou_member_wantjob` (`id`, `memberId`, `name`, `jobType`, `least
 (4, 3, '', '', '', 'true', '', 'true', '2014-11-27 10:13:46', '2014-11-27 10:13:46'),
 (5, 6, '', '', '', '', '', '', '2014-12-28 09:02:20', '2014-12-28 09:02:20'),
 (6, 7, '', '', '', '', '', '', '2014-12-28 09:12:40', '2014-12-28 09:12:40'),
-(12, 19, '', '', '', '', '', '', '2015-01-05 10:40:59', '2015-01-05 10:40:59');
+(12, 19, 'Android', 'true||', '20000', 'true', '2|4', 'true', '2015-01-06 10:24:06', '2015-01-05 10:40:59');
 
 -- --------------------------------------------------------
 

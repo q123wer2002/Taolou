@@ -13,11 +13,22 @@ $obj_tmp1->sysComSkill="taolou_system_companyskill";
 
 $obj_tmp1->tmp_where="";
 $obj_tmp1->tmp_comanyId = "";
+
 $obj_tmp1->ourCompany=false;
+$obj_tmp1->companyValid=false;
+
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
 $action="";
+
+//company valid check
+if(@$_SESSION['user']['userType']=='2'){
+	if(@$_SESSION['user']['companyValid']=='y' || @$_SESSION['user']['companyValid']=='Host'){
+		$obj_tmp1->companyValid=true;
+	}
+}
+//====
 
 //decode company id
 if(@$_SESSION['user']['id'] != ""){

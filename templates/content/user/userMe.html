@@ -158,8 +158,8 @@
 						<input type='hidden' ng-init="JobTypes[1].status = <?php echo $parttime; ?>">
 						<input type='hidden' ng-init="JobTypes[2].status = <?php echo $intern; ?>">
 						<!-- 設定checkbox -->
-						<div class='edittype' ng-repeat='jobtype in JobTypes'>
-						<input type='checkbox' class='checkbox' ng-model='jobtype.status' ng-checked="jobtype.status">
+						<div class='edittype' ng-repeat='jobtype in JobTypes' ng-click='changeMode(jobtype)'>
+						<input type='checkbox' class='checkbox' ng-model='jobtype.status'>
 						{{jobtype.name}}</div>
 					</div>
 				</div>
@@ -184,7 +184,7 @@
 				</div>
 				<!-- 設定遠程工作 -->
 				<div class='edit_div'>遠程工作
-					<div class='edittype one_check'>
+					<div class='edittype one_check' ng-click='changeModeLocation()'>
 					<input type='checkbox' class='checkbox' ng-model='jobwish_telework'>
 					接受遠程工作</div>
 				</div>

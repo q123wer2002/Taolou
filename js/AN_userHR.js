@@ -93,6 +93,25 @@ TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http
 			$scope.jobError='發生不可預測的錯誤';
 		});
 	}
+	//re send company valid email
+	$scope.reSendCompanyValid=function(){
+		var reCompanyValid={"method":"reCompanyValid","companyName":$scope.company};
+		
+		$http({
+			method:'POST',
+			url:'server/userHRAjax.php',
+			data: $.param(reCompanyValid),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			console.log(json);
+			$("#resend").animate({'top':'0px'},500).delay(1500).animate({'top':'-200px'},500);
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.jobError='發生不可預測的錯誤';
+		});
+	}
 
 	//save company user
 	$scope.CHANGEUSER=function(){

@@ -12,9 +12,12 @@
 				<?php echo $ComValue['companyShortName']; ?>
 				<span class="fullname"><?php echo $ComValue['companyName']; ?></span>
 			</h2>
-			<?php if($this->ourCompany){ ?>
+			<?php if($this->ourCompany){ 
+					if($this->companyValid){ ?>
 			<a href="companyEdit.php?action=<?php echo $this->encode($ComValue['id']); ?>" class='editCompany'>編輯公司訊息</a>
-			<?php } ?>
+			<?php }else{ ?>
+			<a href="javscript:;" class='editCompany'>公司尚未認證你是HR</a>
+			<?php }} ?>
 			<p class="head-meta">
 				<span class="meta-item size"><span class="icon people"></span><?php echo $ComValue['memberSize']; ?> </span>
 				<span class="meta-item location"><span class="icon locationicon"></span><?php echo $this->comLoca[0]; ?></span>

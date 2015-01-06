@@ -1,6 +1,6 @@
 <?php
 include_once '../share.php';
-
+require('../include/sendMail.php');
 //page default
 
 $obj_tmp1->companyTable="taolou_company";
@@ -64,10 +64,70 @@ else if(@$_POST['method'] == "saveUserHR"){
 	$obj_tmp1->basic_select('laout_arr','checkCom',$sql_checkCom);
 		//echo $sql_checkCom;
 		//print_r($obj_tmp1->laout_arr['checkCom']);
+
+	//確認使用者
+	$sql_user="SELECT ".$obj_tmp1->member.".*
+			   FROM ".$obj_tmp1->member."
+			   WHERE ".$obj_tmp1->member.".id='".$userId."'";
+	$obj_tmp1->laout_arr['user']=array();
+	$obj_tmp1->basic_select('laout_arr','user',$sql_user);
+		//echo $sql_user;
+		//print_r($obj_tmp1->laout_arr['user']);
+
 	if(!empty($obj_tmp1->laout_arr['checkCom'][0]['id'])){
+		//找到公司的聯絡人
+		$sql_ComContect="SELECT ".$obj_tmp1->member.".*
+				   FROM ".$obj_tmp1->member."
+				   WHERE ".$obj_tmp1->member.".companyId='".$obj_tmp1->laout_arr['checkCom'][0]['id']."'
+				   AND ".$obj_tmp1->member.".companyValid='Host'";
+		$obj_tmp1->laout_arr['ComContect']=array();
+		$obj_tmp1->basic_select('laout_arr','ComContect',$sql_ComContect);
+			//echo $sql_ComContect;
+			//print_r($obj_tmp1->laout_arr['ComContect']);
+
 		$_SESSION['user']['company']=$obj_tmp1->laout_arr['checkCom'][0]['id'];
+		
 		$sql_update="UPDATE ".$obj_tmp1->member." SET companyId='".$obj_tmp1->laout_arr['checkCom'][0]['id']."', companyValid='n', facebook='".$_POST['facebook']."', google='".$_POST['google']."', name='".$_POST['userName']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->member.".id='".$userId."'";
 		mysql_query($sql_update);
+
+		//send mail to check company host
+		//寄信等待認證
+			$homeURL=WEB_PATH."index.php";
+			$validCode=md5(uniqid(rand()));
+			$validURL=WEB_PATH."mailValid.php?action=chechHR&code=".$validCode;
+			// user photo
+			if($obj_tmp1->laout_arr['user'][0]['photo']!=''){
+				$userPhoto=WEB_PATH.$obj_tmp1->laout_arr['user'][0]['photo'];
+			}else{$userPhoto="";}
+
+		$email=$obj_tmp1->laout_arr['ComContect'][0]['email'];
+		// 收件者信箱
+		$name=$obj_tmp1->laout_arr['ComContect'][0]['name'];
+		// 收件者的名稱or暱稱
+		$mail->AddAddress($email,$name);
+		$mail->Subject = "=?UTF-8?B?".base64_encode("[頭路網 TaoLou]公司認證,".$obj_tmp1->laout_arr['user'][0]['name']."是貴公司的人資")."?=";//信件標題，解決亂碼問題
+		// 信件標題
+		$mail->Body = "Hi ".$name.",<br><br>
+		歡迎您使用<a href='".$homeURL."'>頭路網TaoLou</a>徵才！<br><br>
+		請確認".$obj_tmp1->laout_arr['user'][0]['name']."是否為你們的HR ?<br>
+		<table>
+			<tr>
+		    	<td><img src='".$userPhoto."' height='100px'></td>
+		    	<td>".$obj_tmp1->laout_arr['user'][0]['name']."</td>		
+		    	<td>".$obj_tmp1->laout_arr['user'][0]['email']."</td>
+		  	</tr>
+		</table><br><br>
+		如果他是您公司的HR，請您點擊以下網址來驗證<br>
+		<a href='".$validURL."'>".$validURL."</a><br><br>
+		一但認證完信箱後，".$obj_tmp1->laout_arr['user'][0]['name']."即可使用<a href='".$homeURL."'>頭路網 TaoLou</a>豐富求才功能。<br><br><br>
+		-----------<br>
+		<span style='font-size:9px;'>頭路網服務團隊發送，如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。</span>";
+
+		if(!$mail->Send()){echo "寄信發生錯誤：" . $mail->ErrorInfo;//如果有錯誤會印出原因
+		}else{
+			$sql_insertValid="UPDATE ".$obj_tmp1->member." SET companyValid='".$validCode."' WHERE ".$obj_tmp1->member.".id='".$userId."'";
+			mysql_query($sql_insertValid);
+		}
 
 		$message=array('first'=>"success");
 		echo json_encode($message);
@@ -104,6 +164,29 @@ else if(@$_POST['method'] == "saveUserHR"){
 		}
 		//========================
 
+		//send mail to check company host
+		//寄信等待認證
+			$homeURL=WEB_PATH."index.php";
+
+		$email=$obj_tmp1->laout_arr['user'][0]['email'];
+		// 收件者信箱
+		$name=$obj_tmp1->laout_arr['user'][0]['name'];
+		// 收件者的名稱or暱稱
+		$mail->AddAddress($email,$name);
+		$mail->Subject = "=?UTF-8?B?".base64_encode("[頭路網 TaoLou]恭喜您登入您的公司")."?=";//信件標題，解決亂碼問題
+		// 信件標題
+		$mail->Body = "Hi ".$name.",<br><br>
+		歡迎您使用<a href='".$homeURL."'>頭路網TaoLou</a>求才！<br><br>
+		立即使用<a href='".$homeURL."'>頭路網 TaoLou</a>豐富的求才功能吧！<br><br><br>
+		-------<br>
+		<span style='font-size:9px;'>頭路網服務團隊發送，如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。</span>";
+
+		if(!$mail->Send()){echo "寄信發生錯誤：" . $mail->ErrorInfo;//如果有錯誤會印出原因
+		}else{
+			$sql_insertValid="UPDATE ".$obj_tmp1->account." SET mailValid='".$validCode."' WHERE ".$obj_tmp1->account.".memberId='".$memberID."'";
+			mysql_query($sql_insertValid);
+		}
+
 		$message=array('first'=>"success");
 		echo json_encode($message);
 	}
@@ -128,6 +211,76 @@ else if(@$_POST['method'] == "changeUser"){
 
 	$message=array('first'=>"success");
 	echo json_encode($message);	
+}
+else if(@$_POST['method'] == "reCompanyValid"){
+
+	//先確認公司是否存在
+	$sql_checkCom="SELECT ".$obj_tmp1->companyTable.".*
+				   FROM ".$obj_tmp1->companyTable."
+				   WHERE ".$obj_tmp1->companyTable.".companyName='".$_POST['companyName']."'";
+	$obj_tmp1->laout_arr['checkCom']=array();
+	$obj_tmp1->basic_select('laout_arr','checkCom',$sql_checkCom);
+		//echo $sql_checkCom;
+		//print_r($obj_tmp1->laout_arr['checkCom']);
+	
+	//確認使用者
+	$sql_user="SELECT ".$obj_tmp1->member.".*
+			   FROM ".$obj_tmp1->member."
+			   WHERE ".$obj_tmp1->member.".id='".$userId."'";
+	$obj_tmp1->laout_arr['user']=array();
+	$obj_tmp1->basic_select('laout_arr','user',$sql_user);
+		//echo $sql_user;
+		//print_r($obj_tmp1->laout_arr['user']);
+
+	//找到公司的聯絡人
+	$sql_ComContect="SELECT ".$obj_tmp1->member.".*
+			   FROM ".$obj_tmp1->member."
+			   WHERE ".$obj_tmp1->member.".companyId='".$obj_tmp1->laout_arr['checkCom'][0]['id']."'
+			   AND ".$obj_tmp1->member.".companyValid='Host'";
+	$obj_tmp1->laout_arr['ComContect']=array();
+	$obj_tmp1->basic_select('laout_arr','ComContect',$sql_ComContect);
+		//echo $sql_ComContect;
+		//print_r($obj_tmp1->laout_arr['ComContect']);
+
+
+	//send mail to check company host
+	//寄信等待認證
+		$homeURL=WEB_PATH."index.php";
+		$validCode=md5(uniqid(rand()));
+		$validURL=WEB_PATH."mailValid.php?action=chechHR&code=".$validCode;
+		// user photo
+		if($obj_tmp1->laout_arr['user'][0]['photo']!=''){
+			$userPhoto=WEB_PATH.$obj_tmp1->laout_arr['user'][0]['photo'];
+		}else{$userPhoto="";}
+
+	$email=$obj_tmp1->laout_arr['ComContect'][0]['email'];
+	// 收件者信箱
+	$name=$obj_tmp1->laout_arr['ComContect'][0]['name'];
+	// 收件者的名稱or暱稱
+	$mail->AddAddress($email,$name);
+	$mail->Subject = "=?UTF-8?B?".base64_encode("[頭路網 TaoLou]公司認證,".$obj_tmp1->laout_arr['user'][0]['name']."是貴公司的人資")."?=";//信件標題，解決亂碼問題
+	// 信件標題
+	$mail->Body = "Hi ".$name.",<br><br>
+	歡迎您使用<a href='".$homeURL."'>頭路網TaoLou</a>徵才！<br><br>
+	請確認".$obj_tmp1->laout_arr['user'][0]['name']."是否為你們的HR ?<br>
+	<table>
+		<tr>
+	    	<td><img src='".$userPhoto."' height='100px'></td>
+	    	<td>".$obj_tmp1->laout_arr['user'][0]['name']."</td>		
+	    	<td>".$obj_tmp1->laout_arr['user'][0]['email']."</td>
+	  	</tr>
+	</table><br><br>
+	如果他是您公司的HR，請您點擊以下網址來驗證<br>
+	<a href='".$validURL."'>".$validURL."</a><br><br>
+	一但認證完信箱後，".$obj_tmp1->laout_arr['user'][0]['name']."即可使用<a href='".$homeURL."'>頭路網 TaoLou</a>豐富求才功能。<br><br><br>
+	-----------<br>
+	<span style='font-size:9px;'>頭路網服務團隊發送，如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。</span>";
+
+	if(!$mail->Send()){echo "寄信發生錯誤：" . $mail->ErrorInfo;//如果有錯誤會印出原因
+	}else{
+		$sql_insertValid="UPDATE ".$obj_tmp1->member." SET companyValid='".$validCode."' WHERE ".$obj_tmp1->member.".id='".$userId."'";
+		mysql_query($sql_insertValid);
+	}
 }
 else{echo "no Page";}
 ?>

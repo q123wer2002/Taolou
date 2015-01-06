@@ -26,6 +26,9 @@
     公司選定後，暫時不提供更換公司！<br>
     請再按「保存」
 </div>
+<div class='changeOK' id='resend'>
+    重新寄發成功！
+</div>
 
 <div class="nsb-block edit" ng-controller="Taolou_userHr">
 	<h2>
@@ -61,13 +64,14 @@
 				<a href="javascript:;" <?php if($this->companyName){echo "";}else{echo "ng-click='companyFun()'";} ?>><input class='required' placeholder="選擇您的公司" ng-model='company' disabled><span class='icon dropList'></span></a>
 
 				<span class="edit-hint">
-					<?php if($this->companyName && $this->laout_arr['member'][0]['companyValid']=='n'){ ?>
-					<span class='validOrNot'><span class='icon redCrossIcon'></span>尚未認證<br><a href="javascript:;">再寄確認信給公司聯絡人</a></span>
-					<?php }else if($this->companyName && $this->laout_arr['member'][0]['companyValid']=='y'){ ?>
+					<?php if($this->companyName){ ?>
+						<?php if($this->laout_arr['member'][0]['companyValid']=='y'){ ?>
 					<span class='validOrNot' style="color:#6B778D;"><span class='icon checkIcon'></span>已認證</span>
-					<?php }else if($this->companyName && $this->laout_arr['member'][0]['companyValid']=='Host'){ ?> 
+						<?php }else if($this->laout_arr['member'][0]['companyValid']=='Host'){ ?>
 					<span class='validOrNot' style="color:#6B778D;"><span class='icon checkIcon'></span>已認證<br>您是公司聯絡人<br><a href="javascript:;" ng-click='showchangeDivFun()'>變更公司聯絡人</a></span>
-					<?php }else{?>
+						<?php }else{?>
+					<span class='validOrNot'><span class='icon redCrossIcon'></span>尚未認證<br><a href="javascript:;" ng-click='reSendCompanyValid()'>再寄確認信給公司聯絡人</a></span>
+					<?php }}else{ ?>
 					绑定公司<br>會寄信件給公司聯絡人
 					<?php } ?>
 				</span>

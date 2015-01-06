@@ -76,5 +76,29 @@ else if(@$_POST['method']=='reSendMail'){
 		mysql_query($sql_insertValid);
 	}
 }
+else if(@$_POST['method']=='validSuccess'){
+
+	//寄信等待認證
+		//認證密碼
+		$homeURL=WEB_PATH."index.php";
+		$login=WEB_PATH."account.php?action=login";
+
+	$email=$_POST['email'];
+	// 收件者信箱
+	$name=$_POST['name'];
+	// 收件者的名稱or暱稱
+	$mail->AddAddress($email,$name);
+	$mail->Subject = "=?UTF-8?B?".base64_encode("[頭路網 TaoLou]公司登入成功")."?=";//信件標題，解決亂碼問題
+	// 信件標題
+	$mail->Body = "Hi ".$_POST['name'].",<br><br>
+	".$_POST['companyName']."已經將您登錄到他們的HR嚕！<br>
+	歡迎您使用<a href='".$homeURL."'>頭路網TaoLou</a>求才！<br><br>
+	趕緊<a href='".$login."'>登入頭路網</a>求才吧！<br><br><br>
+	-------<br>
+	<span style='font-size:9px;'>頭路網服務團隊發送，如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。</span>";
+
+	if(!$mail->Send()){echo "寄信發生錯誤：" . $mail->ErrorInfo;//如果有錯誤會印出原因
+	}else{}
+}
 
 ?>

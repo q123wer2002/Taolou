@@ -51,10 +51,15 @@ if(@$_POST['method']=='login')
 				//PHOTO
 			$_SESSION['user']['userPicture']=$obj_tmp1->laout_arr['loadUser'][0]['photo'];
 				//USERTYPE
-			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){$_SESSION['user']['userType']="2";$_SESSION['user']['company']=$obj_tmp1->laout_arr['loadUser'][0]['companyId'];}
-			else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){$_SESSION['user']['userType']="1";}
+			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){
+				$_SESSION['user']['userType']="2";
+				$_SESSION['user']['company']=$obj_tmp1->laout_arr['loadUser'][0]['companyId'];
+				$_SESSION['user']['companyValid']=$obj_tmp1->laout_arr['loadUser'][0]['companyValid'];
+			}else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){
+				$_SESSION['user']['userType']="1";
+			}
 				//mail valid
-			$_SESSION['user']['mailValid']=$obj_tmp1->laout_arr['checkUser']['mailValid'];
+			$_SESSION['user']['mailValid']=$obj_tmp1->laout_arr['checkUser'][0]['mailValid'];
 
 			$message=array('first'=>"success",'url'=>"index.php","actions"=>'login');
 			//=======================
@@ -166,7 +171,7 @@ else if(@$_POST['method']=='signup')
 		<a href='".$validURL."'>".$validURL."</a><br><br>
 		一但認證完信箱後，即可立即使用<a href='".$homeURL."'>頭路網 TaoLou</a>的豐富功能求職。<br><br><br>
 		-------<br>
-		如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。";
+		<span style='font-size:9px;'>頭路網服務團隊發送，如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。</span>";
 
 		if(!$mail->Send()){echo "寄信發生錯誤：" . $mail->ErrorInfo;//如果有錯誤會印出原因
 		}else{
