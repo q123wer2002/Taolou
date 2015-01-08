@@ -2,10 +2,10 @@
 -- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 08, 2015 at 11:27 AM
--- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- 主機: 127.0.0.1
+-- 產生時間： 2015 �?01 ??08 ??14:55
+-- 伺服器版本: 5.6.16
+-- PHP 版本： 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `taolou`
+-- 資料庫： `taolou`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_account`
+-- 資料表結構 `taolou_account`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_account` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `taolou_account` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
 
 --
--- Dumping data for table `taolou_account`
+-- 資料表的匯出資料 `taolou_account`
 --
 
 INSERT INTO `taolou_account` (`id`, `memberId`, `email`, `password`, `mailValid`, `createDate`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `taolou_account` (`id`, `memberId`, `email`, `password`, `mailValid`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_company`
+-- 資料表結構 `taolou_company`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_company` (
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `taolou_company`
+-- 資料表的匯出資料 `taolou_company`
 --
 
 INSERT INTO `taolou_company` (`id`, `recommendation`, `companyShortName`, `companyName`, `CEO`, `ceoPhoto`, `logo`, `location`, `memberSize`, `website`, `companyFB`, `createDate`, `detail`, `updateDate`) VALUES
@@ -87,7 +87,7 @@ INSERT INTO `taolou_company` (`id`, `recommendation`, `companyShortName`, `compa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_company_finance`
+-- 資料表結構 `taolou_company_finance`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_company_finance` (
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company_finance` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
--- Dumping data for table `taolou_company_finance`
+-- 資料表的匯出資料 `taolou_company_finance`
 --
 
 INSERT INTO `taolou_company_finance` (`id`, `companyId`, `stage`, `date`, `createDate`) VALUES
@@ -111,7 +111,7 @@ INSERT INTO `taolou_company_finance` (`id`, `companyId`, `stage`, `date`, `creat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_company_skill`
+-- 資料表結構 `taolou_company_skill`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_company_skill` (
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `taolou_company_skill` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `taolou_company_skill`
+-- 資料表的匯出資料 `taolou_company_skill`
 --
 
 INSERT INTO `taolou_company_skill` (`id`, `companyId`, `skillList`, `updateDate`, `createDate`) VALUES
@@ -136,7 +136,7 @@ INSERT INTO `taolou_company_skill` (`id`, `companyId`, `skillList`, `updateDate`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_job`
+-- 資料表結構 `taolou_job`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_job` (
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `taolou_job`
+-- 資料表的匯出資料 `taolou_job`
 --
 
 INSERT INTO `taolou_job` (`id`, `postMemberId`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `updateDate`, `createDate`) VALUES
@@ -173,7 +173,7 @@ INSERT INTO `taolou_job` (`id`, `postMemberId`, `title`, `companyId`, `jobName`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_cv`
+-- 資料表結構 `taolou_member_cv`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_cv` (
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_cv` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `taolou_member_cv`
+-- 資料表的匯出資料 `taolou_member_cv`
 --
 
 INSERT INTO `taolou_member_cv` (`id`, `memberId`, `name`, `type`, `skill`, `intelligence`, `size`, `src`, `status`, `createDate`) VALUES
@@ -201,7 +201,7 @@ INSERT INTO `taolou_member_cv` (`id`, `memberId`, `name`, `type`, `skill`, `inte
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_detail`
+-- 資料表結構 `taolou_member_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
@@ -228,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
--- Dumping data for table `taolou_member_detail`
+-- 資料表的匯出資料 `taolou_member_detail`
 --
 
 INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyValid`, `name`, `email`, `phone`, `facebook`, `google`, `photo`, `born`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
@@ -243,7 +243,7 @@ INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyVali
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_education`
+-- 資料表結構 `taolou_member_education`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_education` (
@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_education` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `taolou_member_education`
+-- 資料表的匯出資料 `taolou_member_education`
 --
 
 INSERT INTO `taolou_member_education` (`id`, `memberId`, `educationBG`, `startYear`, `endYear`, `school`, `major`, `updateDate`, `createDate`) VALUES
@@ -270,7 +270,7 @@ INSERT INTO `taolou_member_education` (`id`, `memberId`, `educationBG`, `startYe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_experience`
+-- 資料表結構 `taolou_member_experience`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_experience` (
@@ -288,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_experience` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `taolou_member_experience`
+-- 資料表的匯出資料 `taolou_member_experience`
 --
 
 INSERT INTO `taolou_member_experience` (`id`, `memberId`, `name`, `year`, `continueTime`, `company`, `role`, `detail`, `updateDate`, `createDate`) VALUES
@@ -297,7 +297,7 @@ INSERT INTO `taolou_member_experience` (`id`, `memberId`, `name`, `year`, `conti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_jobmanage`
+-- 資料表結構 `taolou_member_jobmanage`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
@@ -312,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `taolou_member_jobmanage`
+-- 資料表的匯出資料 `taolou_member_jobmanage`
 --
 
 INSERT INTO `taolou_member_jobmanage` (`id`, `memberId`, `jobId`, `cvId`, `intelligence`, `status`, `createDate`) VALUES
@@ -328,7 +328,7 @@ INSERT INTO `taolou_member_jobmanage` (`id`, `memberId`, `jobId`, `cvId`, `intel
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_message`
+-- 資料表結構 `taolou_member_message`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_message` (
@@ -342,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_message` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
 
 --
--- Dumping data for table `taolou_member_message`
+-- 資料表的匯出資料 `taolou_member_message`
 --
 
 INSERT INTO `taolou_member_message` (`id`, `sendUserId`, `receiveUserId`, `message`, `status`, `createDate`) VALUES
@@ -374,7 +374,7 @@ INSERT INTO `taolou_member_message` (`id`, `sendUserId`, `receiveUserId`, `messa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_specialskill`
+-- 資料表結構 `taolou_member_specialskill`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_specialskill` (
@@ -387,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_specialskill` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `taolou_member_specialskill`
+-- 資料表的匯出資料 `taolou_member_specialskill`
 --
 
 INSERT INTO `taolou_member_specialskill` (`id`, `memberId`, `skillList`, `updateDate`, `createDate`) VALUES
@@ -402,7 +402,7 @@ INSERT INTO `taolou_member_specialskill` (`id`, `memberId`, `skillList`, `update
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_member_wantjob`
+-- 資料表結構 `taolou_member_wantjob`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_member_wantjob` (
@@ -420,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_wantjob` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `taolou_member_wantjob`
+-- 資料表的匯出資料 `taolou_member_wantjob`
 --
 
 INSERT INTO `taolou_member_wantjob` (`id`, `memberId`, `name`, `jobType`, `leastSalary`, `stock_option`, `location`, `telework`, `updateDate`, `createDate`) VALUES
@@ -435,7 +435,7 @@ INSERT INTO `taolou_member_wantjob` (`id`, `memberId`, `name`, `jobType`, `least
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_system_class_speaicalskill`
+-- 資料表結構 `taolou_system_class_speaicalskill`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_system_class_speaicalskill` (
@@ -449,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `taolou_system_class_speaicalskill` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_system_companyskill`
+-- 資料表結構 `taolou_system_companyskill`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_system_companyskill` (
@@ -461,7 +461,7 @@ CREATE TABLE IF NOT EXISTS `taolou_system_companyskill` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `taolou_system_companyskill`
+-- 資料表的匯出資料 `taolou_system_companyskill`
 --
 
 INSERT INTO `taolou_system_companyskill` (`id`, `skillName`, `status`, `createDate`) VALUES
@@ -478,7 +478,7 @@ INSERT INTO `taolou_system_companyskill` (`id`, `skillName`, `status`, `createDa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_system_jobtype`
+-- 資料表結構 `taolou_system_jobtype`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_system_jobtype` (
@@ -490,7 +490,7 @@ CREATE TABLE IF NOT EXISTS `taolou_system_jobtype` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `taolou_system_jobtype`
+-- 資料表的匯出資料 `taolou_system_jobtype`
 --
 
 INSERT INTO `taolou_system_jobtype` (`id`, `typeName`, `status`, `createDate`) VALUES
@@ -504,7 +504,7 @@ INSERT INTO `taolou_system_jobtype` (`id`, `typeName`, `status`, `createDate`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_system_location`
+-- 資料表結構 `taolou_system_location`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_system_location` (
@@ -516,7 +516,7 @@ CREATE TABLE IF NOT EXISTS `taolou_system_location` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `taolou_system_location`
+-- 資料表的匯出資料 `taolou_system_location`
 --
 
 INSERT INTO `taolou_system_location` (`id`, `location`, `status`, `createDate`) VALUES
@@ -531,7 +531,7 @@ INSERT INTO `taolou_system_location` (`id`, `location`, `status`, `createDate`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taolou_system_specialskill`
+-- 資料表結構 `taolou_system_specialskill`
 --
 
 CREATE TABLE IF NOT EXISTS `taolou_system_specialskill` (
@@ -544,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `taolou_system_specialskill` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `taolou_system_specialskill`
+-- 資料表的匯出資料 `taolou_system_specialskill`
 --
 
 INSERT INTO `taolou_system_specialskill` (`id`, `classId`, `skill`, `status`, `createDate`) VALUES
@@ -552,6 +552,33 @@ INSERT INTO `taolou_system_specialskill` (`id`, `classId`, `skill`, `status`, `c
 (2, 0, 'MySQL', 'y', '2014-12-05 07:06:48'),
 (3, 0, 'AngularJS', 'y', '2014-12-05 07:06:55'),
 (4, 0, 'AVALON', 'y', '2014-12-13 16:50:10');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `taolou_system_topic_company`
+--
+
+CREATE TABLE IF NOT EXISTS `taolou_system_topic_company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `topicName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `topicDetail` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `topicPhoto` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `topicURL` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `topicStartTime` date NOT NULL,
+  `topicEndTime` date NOT NULL,
+  `topicStatus` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `topicCreatDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- 資料表的匯出資料 `taolou_system_topic_company`
+--
+
+INSERT INTO `taolou_system_topic_company` (`id`, `topicName`, `topicDetail`, `topicPhoto`, `topicURL`, `topicStartTime`, `topicEndTime`, `topicStatus`, `topicCreatDate`) VALUES
+(1, '第二屆程序大會：一切只為了改變', '哪上班联合微软创投加速器，为您带来第5期初创团队！这些团队过关斩将，打败了近 700 家竞争团队，最终获得了仅有的 19 个微软创投加速器席位。他们的创业方向涵盖了加速应用开发的一站式云服务、专注母婴健康的智能数据医疗服务、汽车远程诊断及数据分析服务、柔性可穿戴产品的研发与设计服务等多个领域。', 'images/topic/alibaba.jpg', '', '2015-01-01', '2015-01-10', 'y', '2015-01-08 10:44:35'),
+(2, '新加入公司', '公司新加入頭路網，趕緊來瞧瞧', 'images/topic/microsoft-ventures-v4.jpg', 'topicCompany.php?action=newCompanies', '2015-01-01', '2015-03-31', 'y', '2015-01-08 11:24:00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
