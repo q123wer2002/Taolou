@@ -5,11 +5,6 @@
 
 <div class='Resume' ng-controller="Taolou_userResume">
 
-    <div class="showsmart" ng-repeat='resume in userResumes'>
-        <div class="banner" id='open' ng-show='resume.intelligence'><p class='opentext'>履歷已<span class='keyword'>開啟</span>智能投遞</p></div>
-        <div class="banner" id='close' ng-hide='resume.intelligence'><p class='opentext'>履歷已<span class='keyword'>取消</span>智能投遞</p></div>
-    </div>
-
     <!-- 讀取資料庫 -->
     <?php if(!empty($this->laout_arr['CV'])){ foreach($this->laout_arr['CV'] as $CVKey => $CVValue){ ?>
         <input type="hidden" ng-init="RESUME_name='<?php echo $CVValue['name']; ?>'">
@@ -55,10 +50,15 @@
                         <span class="size"><b>{{resume.size}}</b>KB</span>
                     </div>
                     <div class="status">
-                        <a href="javascript:;" ng-click='checkboxModeFun(resume)'> <input type="checkbox" ng-model='resume.intelligence' ng-checked="resume.intelligence">智能投遞 </a>｜
+                        <a href="javascript:;" style='background:#F57778;color:#ffffff;border-radius:3px;padding:5px;' ng-click='checkboxModeFun(resume)'> <input type="checkbox" ng-model='resume.intelligence' ng-checked="resume.intelligence">智能投遞 </a>｜
                         <a href="{{resume.src}}"><span> <span class='icon Redownload'></span>下載 </span></a>｜
                         <a href="javascript:;" ng-click='selectSkillFun(resume)'><span> <span class='icon Reskill'></span>選擇簡歷技能 </span></a>｜
-                        <a href="javascript:;"><span> <span class='icon Redelete'></span>刪除 </span></a>
+                        <a href="javascript:;" ng-click='showDelete(resume)'><span> <span class='icon Redelete'></span>刪除 </span></a>
+                    </div>
+                    <div class='checkDelBG' ng-show='resume.checkBG' ng-click='closeBG(resume)'></div>
+                    <div class='checkDel' ng-show='resume.checkDiv'>
+                        你確定要刪除<span style='color:#F57778;'>"{{resume.name}}"</span>履歷？
+                        <a href='javascript:;' class='deleteResu' ng-click='delete(resume)'>刪除</a>
                     </div>
                 </div>
             </div>

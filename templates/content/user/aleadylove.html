@@ -38,7 +38,7 @@
                     <?php if($this->mailValid){ ?>
                     <a href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>"><span class='resume_status'>立刻申請</span></a>
                     <?php }else{ ?>
-                    <a href="javascript:;"><span class='resume_status' style="color:#EB6A64;">認證信箱後申請</span></a>
+                    <a href="mailValid.php"><span class='resume_status' style="color:#EB6A64;">認證信箱後申請</span></a>
                     <?php } ?>
                     <br>
                     <span class='dividtime'>於

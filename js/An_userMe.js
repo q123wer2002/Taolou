@@ -102,6 +102,8 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	}
 
 	//特蘇技能 setting
+	$scope.allskills=[];
+	$scope.myskills=[];
 	$scope.showSpecial=false;
 	$scope.showSpecialFun=function(){
 		if($scope.showSpecial){$scope.showSpecial=false;}
@@ -111,8 +113,6 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 		$scope.allskills=$scope.allSkillList.split('|');
 		$scope.myskills=$scope.myallSkillList.split('|');
 	}
-	$scope.allskills=[];
-	$scope.myskills=[];
 	$scope.addskill=function(skill){
 		var index = $scope.myskills.indexOf(skill);
 		if(index!='-1'){$scope.skillErrorMess='你已經有此技能';}

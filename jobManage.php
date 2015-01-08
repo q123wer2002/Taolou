@@ -20,14 +20,16 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 //確認使用者是誰
 if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);}else{$getAction="";}
 if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}else{@$action='none';}
-if(@$_SESSION['user']['userType'] != "" && @$getAction==""){
+if(@$_SESSION['user']['userType'] != ""){
     if(@$_SESSION['user']['userType'] == '1'){
-      $action='autosendCV';
       if(@$_SESSION['user']['mailValid']=='y'){$obj_tmp1->mailValid=true;}
     }
     else if(@$_SESSION['user']['userType'] == '2'){$action='none';}
     else{$action='none';}
-}else{$action=laout_check($_GET['action']);}
+}
+if(@$getAction!=""){
+  $action=laout_check($_GET['action']);
+}else{$action='autosendCV';}
 //===================
 
 

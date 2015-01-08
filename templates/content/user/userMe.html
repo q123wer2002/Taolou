@@ -209,7 +209,8 @@
 		<input type="hidden" ng-init="myallSkillList = '<?php echo $this->mySkillLists; ?>'">
 		<!-- 顯示技能 -->
 		<div  class="clearfix showskills"  
-		ng-hide='showSpecial'>
+		ng-hide='showSpecial'
+		ng-init="skillListInit()">
 			<a href="javascript:;" class='icon title-chart edit' ng-click='showSpecialFun()'></a>
 			<ul class='skillList'>
 				<li class='skill' ng-repeat='skill in myskills'>{{skill}}</li>

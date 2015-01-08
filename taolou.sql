@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2015 at 04:24 PM
+-- Generation Time: Jan 08, 2015 at 11:27 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -185,9 +185,18 @@ CREATE TABLE IF NOT EXISTS `taolou_member_cv` (
   `intelligence` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `size` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `src` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `taolou_member_cv`
+--
+
+INSERT INTO `taolou_member_cv` (`id`, `memberId`, `name`, `type`, `skill`, `intelligence`, `size`, `src`, `status`, `createDate`) VALUES
+(11, 2, 'myPaper', 'txt', '', 'n', '0.54', 'userObject/q123wer2002@livemail.tw/CV/f80582418148cdee4d76e07518a010c1.txt', 'y', '2015-01-08 09:05:47'),
+(12, 2, '提前考切結書', 'docx', '', 'y', '12.03', 'userObject/q123wer2002@livemail.tw/CV/07a8e93e4a2a398a895ad36c8fec379b.docx', 'y', '2015-01-08 10:02:17');
 
 -- --------------------------------------------------------
 
@@ -223,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_detail` (
 --
 
 INSERT INTO `taolou_member_detail` (`id`, `companyHr`, `companyId`, `companyValid`, `name`, `email`, `phone`, `facebook`, `google`, `photo`, `born`, `lastEducation`, `workYears`, `jobStatus`, `selfIntro`, `messageEmail`, `CVupdateEmail`, `updateDate`, `createDate`) VALUES
-(2, 'y', 2, 'Host', 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2015-01-06 14:43:06', '2014-11-23 17:25:35'),
+(2, 'n', 0, '', 'SuperSaiYeiNin', 'q123wer2002@livemail.tw', '0911400733', '', '', 'userObject/q123wer2002@livemail.tw/profilePhoto/userPhoto.jpeg', '1991', '碩士', '1', '正在找工作', '0231567', 'y', 'n', '2015-01-07 08:33:54', '2014-11-23 17:25:35'),
 (4, 'y', 2, 'y', 'GG人', 'q123wer2002@gg.com', '0911400733', '', '', 'userObject/q123wer2002@gg.com/profilePhoto/userPhoto.png', '1994', '博士', '3', '正在找工作', '', 'y', 'y', '2014-12-24 04:23:42', '2014-11-27 10:01:07'),
 (5, 'n', 0, '', '', 'test@test.com', '', '', '', '', '', '', '', '', '', 'y', 'y', '2014-12-12 14:36:07', '2014-12-02 13:39:23'),
 (6, 'y', 3, 'y', 'POLO', 'q123wer2002@123.com', '', '', '', 'userObject/q123wer2002@123.com/profilePhoto/userPhoto.jpeg', '', '', '', '', '', 'y', 'y', '2014-12-28 10:24:50', '2014-12-28 09:02:20'),

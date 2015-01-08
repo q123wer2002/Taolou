@@ -4,8 +4,9 @@
 <script type="text/javascript" src="js/AN_resume.js"></script>
 
 <div class='Resume' ng-controller="Taolou_userResume">
+    
     <div class="center">
-    	<section class='selectCompany' ng-controller='TaoLoujob-index'>
+    	<section class='selectCompany'>
             <h3>
                 <span class='Retitle'>簡歷管理</span>
                 <div class="clearfix"></div>
@@ -15,13 +16,17 @@
 
 
                  <div class="upload-space" id='file_dropupload'>
-                    <p>請拖曳你的簡歷到這裡<br>或</p>
-                    <a href="javascript:;" id='clickUpload'><span class='hand'>手動上傳</span></a>
-                    <input type='file' style="display:none" id="resumeUploadInput" >
+                    <div id='uploadContent'>
+                        <!-- <p>請拖曳你的簡歷到這裡<br>或</p> -->
+                        <a href="javascript:;" id='clickUpload'><span class='hand'>手動上傳</span></a>
+                        <br><span style='font-size:12px;color:red;'>僅接受txt,doc,docx,pdf檔案格式</span>
+                    </div>
+
+                    <input type='file' style="display:none" id="resumeUploadInput" onchange="angular.element(this).scope().handleFiles(this)">
                 </div>
     		</div>
             <div class="submit">
-                <a href="javascript:;" class='btn'>開始上傳</a>
+                <a href="javascript:;" class='btn' id='uploadBtn'>開始上傳</a>
             </div>
     	</section>
     </div>
