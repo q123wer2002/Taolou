@@ -6,7 +6,7 @@
 <body>
 
 	<?php if($this->showad){@include_once $this->showad_html;}  ?>
-	
+	<?php if(!isset($this->hideTitleBar)){ if(!$this->hideTitleBar){ ?>
 	<div class='taoloumenu' ng-controller='TaoLouMenu'>
 		<div class='menuBar'>
 			<a href="index.php"><div class='logo'></div></a>
@@ -71,6 +71,7 @@
 
 		</div>
     </div>
+    <?php }} ?>
 
     <div class='body'>
     	<?php @include_once $this->content_html; ?>
