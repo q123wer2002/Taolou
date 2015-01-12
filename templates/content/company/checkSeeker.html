@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="css/checkSeeker.css">
+<script type="text/javascript" src='js/AN_checkSeeker.js'></script>
+
+<div class='checkSeekerDiv'>
+	<div class='jobInfo'>
+		<div class='joblist'>
+    		<h2>
+    			<?php echo $jobValue['title']; ?> , 
+    			<b><span class='jobName'><?php echo $jobValue['jobName']; ?></span></b>
+    		</h2>
+
+    		<p class="head-meta">
+				<span class="meta-item"><span class="icon jobtypeicon"></span><?php echo $jobValue['jobNature']; ?></span>
+				<span class="meta-item"><span class="icon locationicon"></span><?php echo $jobValue['location']; ?></span>
+				<span class="meta-item"><span class="icon salaryicon"></span><?php echo $jobValue['salary']; ?></span>
+				<span class="meta-item found-time"><span class="icon clock"></span><?php echo $jobValue['updateDate']; ?></span>
+				<?php if($jobValue['stock_option']=='y'){?>
+				<span class="meta-item stockOption"><span class="icon stockicon"></span>提供股票期權</span>
+				<?php } ?>
+			</p>
+    	</div>
+	</div>
+
+	<div class='seekerInfo'>
+		<div class='selectSeeker'></div>
+		
+		<div class='seekerDetail'>
+		</div>
+	</div>
+</div>
