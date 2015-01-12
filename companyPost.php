@@ -7,6 +7,8 @@ $obj_tmp1->sysJobType="taolou_system_jobtype";
 $obj_tmp1->companyTable="taolou_company";
 
 $obj_tmp1->member='taolou_member_detail';
+$obj_tmp1->memberJob="taolou_member_jobmanage";
+
 $obj_tmp1->job="taolou_job";
 
 $obj_tmp1->tmp_where="";
@@ -140,7 +142,24 @@ switch(@$action){
     $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
         //echo $sql_showJob;
         //print_r($obj_tmp1->laout_arr['showJob']);
+
+    //how many seeker wanna this job
+    $obj_tmp1->seekers=array();
+    foreach ($obj_tmp1->laout_arr['showJob'] as $key => $value) {
+        $sql_seeker="SELECT COUNT(".$obj_tmp1->memberJob.".id) as COUNT_SEEKER 
+                     FROM ".$obj_tmp1->memberJob."
+                     LEFT JOIN ".$obj_tmp1->job." ON ".$obj_tmp1->job.".id=".$obj_tmp1->memberJob.".jobId
+                     WHERE ".$obj_tmp1->memberJob.".jobId='".$value['id']."'";
+        $obj_tmp1->laout_arr['seeker']=array();
+        $obj_tmp1->basic_select('laout_arr','seeker',$sql_seeker);
+            //echo $sql_seeker;
+            //print_r($obj_tmp1->laout_arr['seeker']);
+        $obj_tmp1->seekers[$value['id']]=$obj_tmp1->laout_arr['seeker'][0]['COUNT_SEEKER'];
+
+            //print_r($obj_tmp1->seekers);
+    }
     //===========================
+
 
 
 

@@ -1,3 +1,18 @@
-.newCompanyDiv{position: relative;margin-top: 650px;background: white;}
-	.banner{width: 100%;border: 1px solid black;height: 650px;position: fixed;left: 0;top: 0;}
+.footer{float: left;}
+
+.newCompanyDiv{position: relative;margin-top: 600px;background: white;float: left;}
+	.banner{width: 100%;border: 1px solid black;height: 650px;position: fixed;left: 0;top: 0;z-index: -1;}
 	.intro{padding: 50px;}
+
+	.companyList{float: left;}
+	.Left{float: left;}
+	.Right{float: right;}
+		.companyDiv{border-top: 1px solid #eceef1;padding: 50px 100px;width: 824px;}
+		.companyPhoto{width: 250px;height: 250px;}
+		.companyDetail{}
+			.companyName{}
+			.companyIntro{}
+			.companyLink{}
+
+
+	.white{height: 50px;width: 100%;float: left;border-top: 1px solid #eceef1;}
