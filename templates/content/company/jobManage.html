@@ -33,12 +33,18 @@
 				<span class="meta-item stockOption"><span class="icon stockicon"></span>提供股票期權</span>
 				<?php } ?>
 			</p>
+            <!-- 求職者 -->
             <?php if($this->seekers[$jobValue['id']]){ ?>
             <a href="checkSeeker.php?jobId=<?php echo $this->encode($jobValue['id']); ?>" class='checkSeeker'>查看求職者　<span class='number'><span class='icon people'></span><?php echo $this->seekers[$jobValue['id']]; ?></span> </a>
             <?php }else{ ?>
             <span class='checkSeeker' style='background:#B97A57;'>尚無求職者</span>
             <?php } ?>
-			<a href="companyPost.php?action=postJob&jobId=" class='editJob' style='background:#eb6a64'>刪除職位</a>
+            <!-- 收藏者 -->
+            <?php if($this->collectSeekers[$jobValue['id']]){ ?>
+            <span class='checkSeeker' style='margin-left:10px;'><span class='icon love'></span><?php echo $this->collectSeekers[$jobValue['id']]; ?>人收藏</span>
+            <?php } ?>
+			
+            <a href="companyPost.php?action=postJob&jobId=" class='editJob' style='background:#eb6a64'>刪除職位</a>
 			<a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob'>編輯職位</a>
     	</div>
     </div>

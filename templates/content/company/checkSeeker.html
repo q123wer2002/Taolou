@@ -1,9 +1,13 @@
 <link rel="stylesheet" type="text/css" href="css/checkSeeker.css">
 <script type="text/javascript" src='js/AN_checkSeeker.js'></script>
 
-<div class='checkSeekerDiv'>
+<div class='checkSeekerDiv' ng-controller='Taolou_jobSeeker'>
+	<h1>求職者資訊</h1>
 	<div class='jobInfo'>
+		<span class='tinytitle'>職缺資訊</span>
 		<div class='joblist'>
+			<?php if(!empty($this->laout_arr['jobInfo'])){
+					foreach ($this->laout_arr['jobInfo'] as $jobKey => $jobValue) {?>
     		<h2>
     			<?php echo $jobValue['title']; ?> , 
     			<b><span class='jobName'><?php echo $jobValue['jobName']; ?></span></b>
@@ -18,13 +22,60 @@
 				<span class="meta-item stockOption"><span class="icon stockicon"></span>提供股票期權</span>
 				<?php } ?>
 			</p>
+			<?php }} ?>
     	</div>
 	</div>
 
 	<div class='seekerInfo'>
-		<div class='selectSeeker'></div>
+		<div class='selectSeeker'>
+			<a href="javascript:;" ng-click='showStatus()'><input type='text' class='input' ng-model='selectSeeker' ng-value='selectSeeker' disabled></a>
+			<ul class='pop-selectUl' ng-show='selectSeekerStatus'>
+				<a href="javascript:;" ng-repeat='jobStatus in jobSeekerStatus'><li ng-click='changeJobMode(jobStatus)'>{{jobStatus.name}}</li></a>
+			</ul>
+		</div>
 		
 		<div class='seekerDetail'>
+			<?php if(!empty($this->laout_arr['seekers'])){
+					foreach($this->laout_arr['seekers'] as $key => $value){ ?>
+			<input type='hidden' ng-init="SEEKER_NAME='<?php echo $value['name']; ?>'">
+			<input type='hidden' ng-init="SEEKER_PHOTO='<?php echo $value['photo']; ?>'">
+				<?php if($value['cvId']!=0){ //cv?>
+			<input type='hidden' ng-init="SEEKER_RESUME_NAME='<?php echo $this->resume[$value['id']][0]['name']; ?>'">
+			<input type='hidden' ng-init="SEEKER_RESUME_SRC='<?php echo $this->resume[$value['id']][0]['src']; ?>'">
+				<?php }else{ //online cv?>
+			<input type='hidden' ng-init="SEEKER_RESUME_NAME='<?php echo "頭路網線上履歷"; ?>'">
+			<input type='hidden' ng-init="SEEKER_RESUME_SRC='<?php echo "XXX"; ?>'">
+				<?php } ?>
+
+			<input type='hidden' ng-init="SEEKER_STATUS='<?php echo $value['status']; ?>'">
+
+			<input type='hidden' ng-init="SEEKERINIT()">
+			<?php }} ?>
+			<div class='seekerDiv' ng-repeat='seeker in seekers'>
+				<div class='alertLight'></div>
+				<div class='seekerPhoto' style="background:url({{seeker.photo}});background-size:cover;"></div>
+				<div class='rightDiv'>
+					<p>姓名：{{seeker.name}}</p>
+					履歷：<a href="{{seeker.resume_src}}" class='resume' alt='下載履歷' target='_new'>{{seeker.resume_name}}</a>
+					{{SEEKER_STATUS}}
+					<div class='scollBar'>
+						<div class='scroll'></div>
+						<ul class='barUl'>
+							<a href="javascript:;"><li class='bar' id='deny'>不錄取</li></a>
+							<a href="javascript:;" ng-show='seekStatus == 1'><li class='bar' id='deny' style='background: #EB6A64'>不錄取</li></a>
+							<a href="javascript:;"><li class='bar' id='thinking'>考慮中</li></a>
+							<a href="javascript:;" ng-show='seekStatus == 2'><li class='bar' id='thinking' style='background: #FFBE0E'>考慮中</li></a>
+							<a href="javascript:;"><li class='bar' id='access'>錄取</li></a>
+							<a href="javascript:;" ng-show='seekStatus == 3'><li class='bar' id='access' style='background: #17B385'>錄取</li></a>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
+
+		<div class='saveDiv'>
+			<a href="javascript:;" style='background:#17B385;padding:15px;border-radius: 3px;color:#ffffff;margin-left:100px;'>保存</a>
+		</div>
+
 	</div>
 </div>

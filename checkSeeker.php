@@ -6,6 +6,7 @@ $obj_tmp1->sysJobType="taolou_system_jobtype";
 
 $obj_tmp1->companyTable="taolou_company";
 
+$obj_tmp1->memberCV="taolou_member_cv";
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->memberJob="taolou_member_jobmanage";
 
@@ -74,6 +75,49 @@ switch(@$action){
     break;
 
     case "checkSeeker":
+
+    // job information
+    $sql_jobInfo="SELECT ".$obj_tmp1->job.".*
+                  FROM ".$obj_tmp1->job."
+                  WHERE ".$obj_tmp1->job.".id='".$jobId."'";
+    $obj_tmp1->laout_arr['jobInfo']=array();
+    $obj_tmp1->basic_select('laout_arr','jobInfo',$sql_jobInfo);
+        //echo $sql_jobInfo;
+        //print_r($obj_tmp1->laout_arr['jobInfo']);
+    //===============================
+
+    //seekers information
+    $sql_seekers="SELECT ".$obj_tmp1->memberJob.".* ,".$obj_tmp1->member.".* 
+                  FROM ".$obj_tmp1->memberJob."
+                  LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->member.".id=".$obj_tmp1->memberJob.".memberId
+                  WHERE ".$obj_tmp1->memberJob.".jobId='".$jobId."'
+                  AND ".$obj_tmp1->memberJob.".status <> 'collect'";
+    $obj_tmp1->laout_arr['seekers']=array();
+    $obj_tmp1->basic_select('laout_arr','seekers',$sql_seekers);
+        //echo $sql_seekers;
+        //print_r($obj_tmp1->laout_arr['seekers']);
+
+        //check resume or not
+    $obj_tmp1->resume=array();
+    if(!empty($obj_tmp1->laout_arr['seekers'])){
+        foreach ($obj_tmp1->laout_arr['seekers'] as $key => $value) {
+            if($value['cvId']!=0){
+                //find resume
+                $sql_resume="SELECT ".$obj_tmp1->memberCV.".*
+                             FROM ".$obj_tmp1->memberCV."
+                             WHERE ".$obj_tmp1->memberCV.".id='".$value['cvId']."'";
+                $obj_tmp1->laout_arr['resume']=array();
+                $obj_tmp1->basic_select('laout_arr','resume',$sql_resume);
+                //echo $sql_resume;
+                //print_r($obj_tmp1->laout_arr['resume']);
+
+                $obj_tmp1->resume[$value['id']]=$obj_tmp1->laout_arr['resume'];
+            }
+        //print_r($obj_tmp1->resume);
+        }
+    }
+    //===============================
+
 
     $obj_tmp1->showad=false;
     $obj_tmp1->content_html='content/company/checkSeeker.html';

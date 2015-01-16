@@ -1,0 +1,25 @@
+.checkSeekerDiv{background:#ffffff;}
+	.jobInfo{border-bottom: 1px solid #eceef1;border-top: 1px solid #eceef1;padding:30px;}
+		.meta-item{margin-left: 15px;}
+	.seekerInfo{}
+		.selectSeeker{padding: 30px 0px;border-bottom: 1px solid #eceef1;text-align: center;}
+			.pop-selectUl{position: absolute;width: 200px;text-align: center;z-index: 6;height:300px;overflow: auto;left: 412px;}
+			.pop-selectUl a{text-decoration: none;}
+			.pop-selectUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
+			.pop-selectUl li:hover{background-color: #d94600;}
+
+		.seekerDiv{padding: 30px 70px;border-bottom: 1px solid #eceef1;margin-left: 100px;}
+			.alertLight{width: 15px;height: 15px;border-radius: 8px;border: 1px solid black;position: absolute;left: 35px;}
+			.seekerPhoto{width: 100px;height: 100px;display: inline-block;}
+			.rightDiv{display: inline-block;padding-left: 30px;}
+				.scollBar{margin-top: 50px;}
+					.barUl{list-style: none;}
+					.barUl a{color: black;}
+					.barUl li{display: inline;padding: 10px 5px;background: #ECEDF0;border-radius: 3px;}
+					.barUl li:hover{color: #ffffff;cursor: pointer;}
+						#deny:hover{background: #EB6A64;}
+						#thinking:hover{background: #FFBE0E;}
+						#access:hover{background: #17B385;}
+				.resume:hover{text-decoration: underline;}
+
+	.saveDiv{border-bottom: 1px solid #eceef1;padding: 30px;}

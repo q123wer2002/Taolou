@@ -145,18 +145,37 @@ switch(@$action){
 
     //how many seeker wanna this job
     $obj_tmp1->seekers=array();
+    $obj_tmp1->collectSeekers=array();
+
     foreach ($obj_tmp1->laout_arr['showJob'] as $key => $value) {
         $sql_seeker="SELECT COUNT(".$obj_tmp1->memberJob.".id) as COUNT_SEEKER 
                      FROM ".$obj_tmp1->memberJob."
                      LEFT JOIN ".$obj_tmp1->job." ON ".$obj_tmp1->job.".id=".$obj_tmp1->memberJob.".jobId
-                     WHERE ".$obj_tmp1->memberJob.".jobId='".$value['id']."'";
+                     WHERE ".$obj_tmp1->memberJob.".jobId='".$value['id']."'
+                     AND ".$obj_tmp1->memberJob.".status <> 'collect'";
         $obj_tmp1->laout_arr['seeker']=array();
         $obj_tmp1->basic_select('laout_arr','seeker',$sql_seeker);
             //echo $sql_seeker;
             //print_r($obj_tmp1->laout_arr['seeker']);
-        $obj_tmp1->seekers[$value['id']]=$obj_tmp1->laout_arr['seeker'][0]['COUNT_SEEKER'];
-
+        if(!empty($obj_tmp1->laout_arr['seeker'])){
+            $obj_tmp1->seekers[$value['id']]=$obj_tmp1->laout_arr['seeker'][0]['COUNT_SEEKER'];
             //print_r($obj_tmp1->seekers);
+        }
+
+        //collect
+        $sql_collectSeeker="SELECT COUNT(".$obj_tmp1->memberJob.".id) as COUNT_SEEKER 
+                     FROM ".$obj_tmp1->memberJob."
+                     LEFT JOIN ".$obj_tmp1->job." ON ".$obj_tmp1->job.".id=".$obj_tmp1->memberJob.".jobId
+                     WHERE ".$obj_tmp1->memberJob.".jobId='".$value['id']."'
+                     AND ".$obj_tmp1->memberJob.".status = 'collect'";
+        $obj_tmp1->laout_arr['collectSeeker']=array();
+        $obj_tmp1->basic_select('laout_arr','collectSeeker',$sql_collectSeeker);
+            //echo $sql_collectSeeker;
+            //print_r($obj_tmp1->laout_arr['collectSeeker']);
+        if(!empty($obj_tmp1->laout_arr['collectSeeker'])){
+            $obj_tmp1->collectSeekers[$value['id']]=$obj_tmp1->laout_arr['collectSeeker'][0]['COUNT_SEEKER'];
+            //print_r($obj_tmp1->collectSeekers);
+        }
     }
     //===========================
 
