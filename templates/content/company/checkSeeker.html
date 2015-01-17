@@ -37,6 +37,7 @@
 		<div class='seekerDetail'>
 			<?php if(!empty($this->laout_arr['seekers'])){
 					foreach($this->laout_arr['seekers'] as $key => $value){ ?>
+			<input type='hidden' ng-init="SEEKER_ID='<?php echo $value['memberId']; ?>'">
 			<input type='hidden' ng-init="SEEKER_NAME='<?php echo $value['name']; ?>'">
 			<input type='hidden' ng-init="SEEKER_PHOTO='<?php echo $value['photo']; ?>'">
 				<?php if($value['cvId']!=0){ //cv?>
@@ -48,34 +49,67 @@
 				<?php } ?>
 
 			<input type='hidden' ng-init="SEEKER_STATUS='<?php echo $value['status']; ?>'">
+			<input type='hidden' ng-init="SEEKER_COMMENT='<?php echo $value['comment']; ?>'">
 
 			<input type='hidden' ng-init="SEEKERINIT()">
+			<input type='hidden' ng-init="JOB_ID='<?php echo $value['jobId']; ?>'">
 			<?php }} ?>
-			<div class='seekerDiv' ng-repeat='seeker in seekers'>
-				<div class='alertLight'></div>
+
+			<div class='seekerDiv' ng-repeat='seeker in seekers | filter:{status:selectSeekerFilter}'>
+
 				<div class='seekerPhoto' style="background:url({{seeker.photo}});background-size:cover;"></div>
+
 				<div class='rightDiv'>
 					<p>姓名：{{seeker.name}}</p>
-					履歷：<a href="{{seeker.resume_src}}" class='resume' alt='下載履歷' target='_new'>{{seeker.resume_name}}</a>
-					{{SEEKER_STATUS}}
+					履歷：<a href="{{seeker.resume_src}}" class='resume' alt='下載履歷' target='_new' style='color:blue;' ng-click='changeStatusTo2(seeker)'>{{seeker.resume_name}}(下載)</a>
 					<div class='scollBar'>
 						<div class='scroll'></div>
 						<ul class='barUl'>
-							<a href="javascript:;"><li class='bar' id='deny'>不錄取</li></a>
-							<a href="javascript:;" ng-show='seekStatus == 1'><li class='bar' id='deny' style='background: #EB6A64'>不錄取</li></a>
-							<a href="javascript:;"><li class='bar' id='thinking'>考慮中</li></a>
-							<a href="javascript:;" ng-show='seekStatus == 2'><li class='bar' id='thinking' style='background: #FFBE0E'>考慮中</li></a>
-							<a href="javascript:;"><li class='bar' id='access'>錄取</li></a>
-							<a href="javascript:;" ng-show='seekStatus == 3'><li class='bar' id='access' style='background: #17B385'>錄取</li></a>
+							<a href="javascript:;" ng-click='changeStatusTo1(seeker)' ng-hide='seeker.status == 1'><li class='bar' id='deny'>不錄取</li></a>
+							<a href="javascript:;" ng-show='seeker.status == 1'><li class='bar' id='deny' style='color:#ffffff;background: #EB6A64'>不錄取</li></a>
+							<a href="javascript:;" ng-click='changeStatusTo2(seeker)' ng-hide='seeker.status == 2'><li class='bar' id='face'>履歷下載</li></a>
+							<a href="javascript:;" ng-show='seeker.status == 2'><li class='bar' id='face' style='color:#ffffff;background: #FF8227'>履歷下載</li></a>
+							<a href="javascript:;" ng-click='changeStatusTo3(seeker)' ng-hide='seeker.status == 3'><li class='bar' id='thinking'>已面試</li></a>
+							<a href="javascript:;" ng-show='seeker.status == 3'><li class='bar' id='thinking' style='color:#ffffff;background: #FFBE0E'>已面試</li></a>
+							<a href="javascript:;" ng-click='changeStatusTo4(seeker)' ng-hide='seeker.status == 4'><li class='bar' id='access'>錄取</li></a>
+							<a href="javascript:;" ng-show='seeker.status == 4'><li class='bar' id='access' style='color:#ffffff;background: #17B385'>錄取</li></a>
 						</ul>
 					</div>
 				</div>
+
+				<div class='alertLight' style='background:#EB6A64;' ng-show='seeker.status == 1'></div>
+				<div class='alertLight' style='background:#FF8227;' ng-show='seeker.status == 2'></div>
+				<div class='alertLight' style='background:#FFBE0E;' ng-show='seeker.status == 3'></div>
+				<div class='alertLight' style='background:#17B385;' ng-show='seeker.status == 4'></div>
+
+				<textarea class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment'></textarea>
+
 			</div>
 		</div>
 
 		<div class='saveDiv'>
-			<a href="javascript:;" style='background:#17B385;padding:15px;border-radius: 3px;color:#ffffff;margin-left:100px;'>保存</a>
+			<a href="companyPost.php" style='background:#36A9E5;padding:15px;border-radius: 3px;color:#ffffff;margin-right:50px;'>返回</a>
+			<a href="javascript:;" style='background:#17B385;padding:15px;border-radius: 3px;color:#ffffff;margin-left:50px;' ng-click='saveCheck()'>保存</a>
 		</div>
 
 	</div>
+
+	<!-- 率取最後確認 -->
+	<div class='bg' ng-show='bg' ng-click='closeBG()'></div>
+	<div class='check' ng-show='peopleCheck'>
+		目前<span style='color:red'>有{{countAccess}}人</span>被錄取<br>
+		<table style='padding:30px;'>
+			<tr ng-repeat='seeker in seekers | filter:{status:3}'>
+				<td><div class='seekerPhoto' style="background:url({{seeker.photo}});background-size:cover;width:50px;height:50px;"></div></td>
+				<td>{{seeker.name}}</td>
+			</tr>
+		</table>
+		<span style='font-size:12px;'>**系統將會寄發錄取信件給錄取者</span>
+		<a href="javascript:;" style='background:#17B385;padding:10px;border-radius: 3px;color:#ffffff;position:relative;margin-top:50px;margin-left:75px;float:left;' ng-click='save()'>確定保存</a>
+	</div>
+	<div class='check' ng-show='noOneCheck'>
+		目前<span style='color:red'>沒有求職者</span>被錄取<br>
+		<a href="javascript:;" style='background:#17B385;padding:10px;border-radius: 3px;color:#ffffff;position:relative;margin-top:50px;margin-left:75px;float:left;' ng-click='save()'>確定保存</a>
+	</div>
+
 </div>

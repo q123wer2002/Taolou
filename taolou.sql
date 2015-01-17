@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2015 at 10:17 AM
+-- Generation Time: Jan 17, 2015 at 06:57 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `taolou_job` (
 
 INSERT INTO `taolou_job` (`id`, `postMemberId`, `title`, `companyId`, `jobName`, `location`, `jobType`, `jobNature`, `salary`, `stock_option`, `detail`, `status`, `hirePeople`, `updateDate`, `createDate`) VALUES
 (1, 3, 'show something title', 1, 'IOS工程師', '宜蘭縣/員山鄉/264', 'software', '全職', '50000', 'y', 'wcqwc', 'y', '', '2014-12-22 06:15:42', '2014-12-24 04:23:48'),
-(2, 4, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '', '2015-01-06 13:12:51', '2015-01-06 13:12:51'),
+(2, 4, 'show something title', 2, 'Android工程師', '宜蘭縣/員山鄉/264', 'software', '兼職', '50000', 'y', 'dwqd', 'y', '', '2015-01-17 05:29:02', '2015-01-17 05:29:02'),
 (3, 3, 'come on join us', 1, 'android', '新北市/深坑區/222', '技術相關', '全職', '50000', 'y', 'come on come on', 'y', '', '2014-12-26 06:28:54', '2014-12-26 06:28:54'),
 (4, 3, 'asdasqwf', 1, 'marketing', '南投縣/埔里鎮/545', '營運相關', '兼職', '60000', 'y', '21e12e12e', 'y', '', '2014-12-26 06:29:35', '2014-12-26 06:29:35'),
 (5, 8, 'Ido', 4, 'web develop', '新竹市/東區/300', '技術相關', '全職', '40000', 'y', 'come on', 'y', '', '2014-12-28 10:17:43', '2014-12-28 10:17:43'),
@@ -308,6 +308,7 @@ CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
   `cvId` int(11) NOT NULL,
   `intelligence` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL,
   `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
@@ -316,15 +317,15 @@ CREATE TABLE IF NOT EXISTS `taolou_member_jobmanage` (
 -- Dumping data for table `taolou_member_jobmanage`
 --
 
-INSERT INTO `taolou_member_jobmanage` (`id`, `memberId`, `jobId`, `cvId`, `intelligence`, `status`, `createDate`) VALUES
-(1, 2, 1, 11, 'y', 'wait', '2014-12-10 09:19:31'),
-(2, 2, 2, 11, 'y', 'wait', '2014-12-10 09:21:58'),
-(4, 2, 3, 11, 'n', '', '2014-12-26 06:31:52'),
-(5, 2, 4, 11, 'n', 'wait', '2014-12-26 13:44:41'),
-(6, 7, 1, 0, 'n', '', '2014-12-28 09:29:24'),
-(7, 19, 2, 0, 'n', 'collect', '2015-01-05 10:48:59'),
-(8, 19, 1, 0, 'n', 'collect', '2015-01-05 10:49:08'),
-(12, 19, 6, 0, 'n', 'collect', '2015-01-05 11:07:46');
+INSERT INTO `taolou_member_jobmanage` (`id`, `memberId`, `jobId`, `cvId`, `intelligence`, `status`, `comment`, `createDate`) VALUES
+(1, 2, 1, 11, 'y', 'wait', '', '2014-12-10 09:19:31'),
+(2, 2, 2, 11, 'y', 'reject', '', '2014-12-10 09:21:58'),
+(4, 2, 3, 11, 'n', '', '', '2014-12-26 06:31:52'),
+(5, 2, 4, 11, 'n', 'wait', '', '2014-12-26 13:44:41'),
+(6, 7, 1, 0, 'n', '', '', '2014-12-28 09:29:24'),
+(7, 19, 2, 0, 'n', 'wait', '', '2015-01-05 10:48:59'),
+(8, 19, 1, 0, 'n', 'collect', '', '2015-01-05 10:49:08'),
+(12, 19, 6, 0, 'n', 'collect', '', '2015-01-05 11:07:46');
 
 -- --------------------------------------------------------
 
