@@ -56,6 +56,13 @@
 			<?php }} ?>
 
 			<div class='seekerDiv' ng-repeat='seeker in seekers | filter:{status:selectSeekerFilter}'>
+				<a href='javascript:;' ng-click='controlMessage(seeker)' style='z-index:2;position:absolute;left:-50px;top:40%;padding:15px;color:#ffffff;font-size:20px;font-weight:800;'>私信他</a>
+				<div class='bg' ng-show='seeker.openMessage' ng-click='controlMessage(seeker)'></div>
+				<div class='check' ng-show='seeker.openMessage'>
+					<span>To {{seeker.name}} :</span><br><br><br>
+					<textarea class='textarea' placeholder='這裡填寫私信內容' ng-model='seeker.message'></textarea>
+					<a href="javascript:;" style='background:#36A9E5;padding:5px;border-radius: 3px;color:#ffffff;margin-left:20px;' ng-click='messageToSeeker(seeker)'>寄私信</a>
+				</div>
 
 				<div class='seekerPhoto' style="background:url({{seeker.photo}});background-size:cover;"></div>
 
@@ -80,7 +87,7 @@
 				<div class='alertLight' style='background:#EB6A64;' ng-show='seeker.status == 1'></div>
 				<div class='alertLight' style='background:#FF8227;' ng-show='seeker.status == 2'></div>
 				<div class='alertLight' style='background:#FFBE0E;' ng-show='seeker.status == 3'></div>
-				<div class='alertLight' style='background:#17B385;' ng-show='seeker.status == 4'></div>
+				<div class='alertLight' style='background:#17B385;' ng-show='seeker.status == 4'></div>{{seeker.status}}
 
 				<textarea class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment'></textarea>
 
@@ -99,7 +106,7 @@
 	<div class='check' ng-show='peopleCheck'>
 		目前<span style='color:red'>有{{countAccess}}人</span>被錄取<br>
 		<table style='padding:30px;'>
-			<tr ng-repeat='seeker in seekers | filter:{status:3}'>
+			<tr ng-repeat='seeker in seekers | filter:{status:4}'>
 				<td><div class='seekerPhoto' style="background:url({{seeker.photo}});background-size:cover;width:50px;height:50px;"></div></td>
 				<td>{{seeker.name}}</td>
 			</tr>

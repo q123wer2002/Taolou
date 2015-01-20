@@ -10,8 +10,12 @@
     .meta-item{display: inline-block;padding: 0;width: 80px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 16px;}
     .found-time,.stockOption{width: 120px;}
     .editJob{color: #ffffff;background:#17b385;font-size: 15px;border-radius: 3px;padding: 7px 5px;float: right;margin-right: 10px;margin-top: -30px;}
+    .but{color: #ffffff;background:#17b385;font-size: 15px;border-radius: 3px;padding: 7px 5px;margin-left:30px;margin-top: 30px;float:left;}
     .itemMenu{display: block;}
     .checkSeeker{background: #FFBE0E;color: #ffffff;padding: 5px;border-radius: 3px;}
+    .bg{position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
+    .check{text-align:center;position: fixed;background:#ffffff;height:auto;box-shadow: 3px black;z-index: 10;box-shadow: 0px 5px 20px 5px #888888;left: 40%;border-radius: 5px;padding: 30px;top: 150px;padding-bottom: 80px;}
+    .textarea{background: #eceef1;width: 240px;height: 120px;padding: 10px;border: none;border-radius: 3px;font-size: 14px;position: relative;z-index: 2;margin-top: 20px;}
 </style>
 
 <nav class='partner'>
@@ -31,7 +35,7 @@
         <a href="companyPost.php?action=ManageJob" class='itemMenu'>
             <span class='job_management'>有效職位</span>
         </a>
-        <a href="companyPost.php?action=finded" class='itemMenu'>
+        <a href="companyPost.php?action=found" class='itemMenu'>
             <span class='job_management'>已解決職位</span>
         </a>
         <a href="companyPost.php?action=invalid" class='itemMenu'>

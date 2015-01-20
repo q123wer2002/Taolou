@@ -8,6 +8,7 @@ $obj_tmp1->companyTable="taolou_company";
 
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->memberJob="taolou_member_jobmanage";
+$obj_tmp1->memberCV="taolou_member_cv";
 
 $obj_tmp1->job="taolou_job";
 
@@ -195,7 +196,7 @@ switch(@$action){
 
 	break;
 
-    case "finded":
+    case "found":
 
     //catch "all" jobs from this company
     $sql_allShowJob="SELECT ".$obj_tmp1->job.".*
@@ -217,7 +218,28 @@ switch(@$action){
     $obj_tmp1->basic_select('laout_arr','showJob',$sql_showJob);
         //echo $sql_showJob;
         //print_r($obj_tmp1->laout_arr['showJob']);
+    
+    //catch all the access people
+    $obj_tmp1->accessMan=array();
+    if(!empty($obj_tmp1->laout_arr['showJob'])){
+        foreach($obj_tmp1->laout_arr['showJob'] as $key => $value){
+            $sql_findRightMan="SELECT ".$obj_tmp1->member.".*, ".$obj_tmp1->memberCV.".src as RESUME
+                               FROM ".$obj_tmp1->memberJob."
+                               LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->memberJob.".memberId=".$obj_tmp1->member.".id
+                               LEFT JOIN ".$obj_tmp1->memberCV." ON ".$obj_tmp1->memberJob.".cvId=".$obj_tmp1->memberCV.".id 
+                               WHERE ".$obj_tmp1->memberJob.".jobId='".$value['id']."'
+                               AND ".$obj_tmp1->memberJob.".status='access'";
+            $obj_tmp1->laout_arr['findRightMan']=array();
+            $obj_tmp1->basic_select('laout_arr','findRightMan',$sql_findRightMan);
+                //echo $sql_findRightMan;
+                //print_r($obj_tmp1->laout_arr['findRightMan']);
+
+            $obj_tmp1->accessMan[$value['id']]=$obj_tmp1->laout_arr['findRightMan'];
+        }
+        //print_r($obj_tmp1->accessMan);
+    }
     //===========================
+
 
 
 

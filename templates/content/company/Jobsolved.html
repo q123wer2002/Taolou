@@ -1,6 +1,10 @@
 <link href="css/index.css" rel="stylesheet">
 <link href="css/message.css" rel="stylesheet">
+<script type="text/javascript" src='js/AN_jobFound.js'></script>
 
+<style type="text/css">
+    .but{}
+</style>
 
 <section class='selectCompany'>
     <h3>
@@ -9,11 +13,38 @@
     </h3>
 </section>
 
-<div class='rule'>
+<div class='rule' ng-controller='Taolou_jobFound'>
 	<?php if(empty($this->laout_arr['showJob'])){ ?>
     <p><span class='icon newspaper'></span>目前沒有已解決職位喔</p>
     <?php }else{ ?>
     <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue){ ?>
+        <?php foreach($this->accessMan[$jobValue['id']] as $manKey => $manValue){ ?>
+    <div class='bg' ng-show='showBG' ng-click='showMan()'></div>
+    <div class='check' ng-show='showBG'>
+        <table>
+            <img src="<?php echo $manValue['photo']; ?>" width='150px' style='margin-bottom:15px;'>
+            <tr>
+                <td>姓名：</td>
+                <td><?php echo $manValue['name']; ?></td>
+            </tr>
+            <tr>
+                <td>Email：</td>
+                <td><?php echo $manValue['email']; ?></td>
+            </tr>
+            <tr>
+                <td>電話：</td>
+                <td><?php echo $manValue['phone']; ?></td>
+            </tr>
+        </table>
+        <a href="<?php echo $manValue['RESUME']; ?>" class='but' target='_new'>下載履歷</a>
+        <a href="javascript:;" class='but' ng-click='showMessage()' ng-hide='Message'>私信錄取者</a>
+
+        <textarea ng-show='Message' class='textarea' placeholder='私信內容' ng-model='messageContent'></textarea>
+        <a href="javascript:;" class='but' ng-show='Message' ng-if="messageContent == ''" style='background:none;color:#000000;position:absolute;bottom:20px;width:100px;right:50px;'>發送私信</a>
+        <a href="javascript:;" class='but' ng-show='Message' ng-if="messageContent != ''" style='background:#36A9E5;position:absolute;bottom:20px;width:100px;right:50px;' ng-click='messageToMan(<?php echo $manValue['id']; ?>)'>發送私信</a>
+    </div>
+    <?php } ?>
+    
     <div class='showJobDiv'>
     	<div class='joblist'>
     		<h2>
@@ -31,29 +62,10 @@
 				<?php } ?>
 			</p>
 
-			<a href="companyPost.php?action=postJob&jobId=" class='editJob' style='background:#eb6a64'>刪除職位</a>
-            <a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob'>編輯職位</a>
+            <a href="javascript:;" class='editJob' style='background:#36A9E5' ng-click='showMan()'>觀看錄取人資訊</a>
+
     	</div>
     </div>
     <?php }} ?>
-    <!-- <div class='showJobDiv'>
-    	<div class='joblist'>
-    		<h2>
-    			Title , 
-    			<span class='jobName'>Name</span>
-    		</h2>
-
-    		<p class="head-meta">
-				<span class="meta-item"><span class="icon jobtypeicon"></span>實習</span>
-				<span class="meta-item"><span class="icon locationicon"></span>南京</span>
-				<span class="meta-item"><span class="icon salaryicon"></span>50000</span>
-				<span class="meta-item found-time"><span class="icon clock"></span>2010 年 7 月</span>
-				<span class="meta-item stockOption"><span class="icon stockicon"></span>提供股票期權</span>
-			</p>
-
-			<a href="companyPost.php?action=postJob&jobId=" class='editJob' style='background:#eb6a64'>刪除職位</a>
-			<a href="companyPost.php?action=postJob&jobId=" class='editJob'>編輯職位</a>
-    	</div>
-    </div> -->
 
 </div>

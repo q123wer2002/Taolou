@@ -28,7 +28,7 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		else if($scope.SEEKER_STATUS=='wait'){$scope.seekStatus=3;}
 		else if($scope.SEEKER_STATUS=='access'){$scope.seekStatus=4;}
 
-		$scope.seekers.push({'id':$scope.SEEKER_ID,'name':$scope.SEEKER_NAME,'photo':$scope.SEEKER_PHOTO,'resume_name':$scope.SEEKER_RESUME_NAME,'resume_src':$scope.SEEKER_RESUME_SRC,'status':$scope.seekStatus,'comment':$scope.SEEKER_COMMENT});
+		$scope.seekers.push({'id':$scope.SEEKER_ID,'name':$scope.SEEKER_NAME,'photo':$scope.SEEKER_PHOTO,'resume_name':$scope.SEEKER_RESUME_NAME,'resume_src':$scope.SEEKER_RESUME_SRC,'status':$scope.seekStatus,'comment':$scope.SEEKER_COMMENT,'message':"",'openMessage':false,'change':false});
 	}
 
 	//change function
@@ -38,15 +38,19 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 	}
 	$scope.changeStatusTo1=function(item){
 		item.status=1;
+		item.change=true;
 	}
 	$scope.changeStatusTo2=function(item){
 		item.status=2;
+		item.change=true;
 	}
 	$scope.changeStatusTo3=function(item){
 		item.status=3;
+		item.change=true;
 	}
 	$scope.changeStatusTo4=function(item){
 		item.status=4;
+		item.change=true;
 	}
 
 	//click function
@@ -60,12 +64,36 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		$scope.peopleCheck=false;
 		$scope.noOneCheck=false;
 	}
+	$scope.controlMessage=function(item){
+		if(item.openMessage){item.openMessage=false;}
+		else{item.openMessage=true;}
+	}
+	$scope.messageToSeeker=function(item){
+		if(item.message==''){}
+		else{
+			var messageObject={"method":"messageToSeeker","receiveId":item.id,"message":item.message};
+			$http({
+				method:'POST',
+				url:'server/checkSeekerAjax.php',
+				data: $.param(messageObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				console.log(json);
+				item.openMessage=false;
+			}).
+			error(function(json){
+				console.warn(json);
+				$scope.skillErrorMess='發生不可預測的錯誤';
+			});
+		}
+	}
 
 	//save data
 	$scope.saveCheck=function(){
 		$scope.countAccess=0;
 		for(var i=0;i<$scope.seekers.length;i++){
-			if($scope.seekers[i].status==3){$scope.countAccess++;}
+			if($scope.seekers[i].status==4){$scope.countAccess++;}
 		}
 		if($scope.countAccess!=0){$scope.bg=true;$scope.peopleCheck=true;}
 		else{$scope.bg=true;$scope.noOneCheck=true;}
@@ -80,7 +108,7 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		}).
 		success(function(json){
 			console.log(json);
-			location.href='companyPost.php?action=finded';
+			location.href='companyPost.php?action=found';
 		}).
 		error(function(json){
 			console.warn(json);

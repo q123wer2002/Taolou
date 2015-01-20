@@ -18,7 +18,7 @@ a{text-decoration: none;}
 .stockicon{background-position: -153px -147px;width: 16px;height: 16px;}
 .people{background-position: -51px -147px;width: 17px;height: 17px;}
 .clock{background-position: -135px -76px;width: 16px;height: 16px;}
-.global{background-position: -136px -101px;width: 16px;height: 16px;}
+.global{background-position: -136px -101px;width: 16px;height: 17px;}
 .newspaper{background-position: 0 -147px;width: 16px;height: 16px;}
 .addicon{background-position: -190px -85px;width: 13px;height: 13px;}
 .folder{background-position: -43px -164px;width: 14px;height: 11px;}
@@ -31,8 +31,8 @@ a{text-decoration: none;}
 .recommend{background-position: -190px -113px;width: 14px;height: 14px;}
 .love{background-position: -136px -118px;width: 16px;height: 16px;}
 
-.showUs{width: 100%;position:relative;height: auto;}
-	.showImage{position:relative;width: 100%;height: 700px;margin: auto;background: url("../images/layout/banner.jpg") no-repeat;-webkit-filter: saturate(0.5) hue-rotate(10deg) brightness(0.7);background-size: cover;background-position: 0px -300px;}
+.showUs{width: 100%;position:relative;height: 700px;}
+	.showImage{position:relative;height:100%;margin: auto;background: url("../images/layout/banner.jpg") no-repeat;-webkit-filter: saturate(0.5) hue-rotate(10deg) brightness(0.7);background-size: cover;background-position: 0px -300px;}
 		.slogn{font-weight: 700;color: #ffffff;font-family: "proxima-nova";padding-top: 15%;font-size: 4.2em;position: absolute;top:0px;left: 300px;}
 		.slogn span{font-size: 30px;font-family: "proxima-nova";}
 		.slogn a{font-size: 30px;font-family: "proxima-nova";color: #ffffff;font-size: 20px;border-bottom:1px solid #c4c663;}
@@ -73,3 +73,4 @@ a{text-decoration: none;}
 
 .footer{width: 100%;height: auto;position: relative;background: #51A6F9;}
 	.ourInfo{width: 1024px;height: 100px;margin: auto;color: white;}
+	.fbLIKE{float: right;margin-top: 20px;}

@@ -7,7 +7,7 @@
 			h2{font-size: 22px;padding: 0;line-height: 40px;height: 40px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 			.fullname{color: #a2a8b3;font-size: 16px;margin-left: 10px;}
 			.head-meta{line-height: 26px;height: 26px;padding: 2px 0;color: #9097a4;font-size: 14px;}
-			.meta-item{display: inline-block;padding: 0 10px 0 0;width: 120px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+			.meta-item{display: inline-block;padding: 0 10px 0 0;width: 130px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 				.website{width: 200px;}
 				.website a{color: #36a9e5;text-decoration: none;font-size: 14px;}
 			.specialties {padding: 20px 0 0;line-height: 30px;}
