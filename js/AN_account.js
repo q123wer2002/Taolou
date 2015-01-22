@@ -128,3 +128,9 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 
 });
 //=========================
+
+
+
+$('#FacebookBtn').click(function(){
+	statusChangeCallback();
+});

@@ -11,6 +11,7 @@
 	.green-btn {padding: 10px;background-color: #17B385;}
 	a {color: #36A9E5;cursor: pointer;text-decoration: none;transition: opacity 0.2s ease 0s, color 0.2s ease 0s, #F2F1F0 0.2s ease 0s, box-shadow 0.2s ease 0s;}
 	#FBSIGNUP{position: relative;}
+	#fb_sigupBOT .fb_iframe_widget{width:200px;height: 200px;}
 </style>
 
 <div class='signupDiv' ng-controller='TaolouAccount'>
@@ -42,7 +43,8 @@
         </span>
         <br></br>
         <a  href="javascript:;" id='FBSIGNUP'>
-        	<div class="fb-login-button" data-max-rows="1" data-size="icon" data-show-faces="false" data-auto-logout-link="false"></div>
+			<div class="fb-login-button" data-max-rows="1" data-size="icon" data-show-faces="false" data-auto-logout-link="true"></div>
+        	<div id='status'></div>
         </a>
         <br></br>
         <a class="red-btn weibo" href="/oauth/sina">
