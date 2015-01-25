@@ -7,6 +7,7 @@ $obj_tmp1->companyTable="taolou_company";
 $obj_tmp1->companySkill="taolou_company_skill";
 
 $obj_tmp1->member='taolou_member_detail';
+$obj_tmp1->facebook="taolou_member_facebook";
 
 
 $obj_tmp1->tmp_where="";
@@ -281,6 +282,23 @@ else if(@$_POST['method'] == "reCompanyValid"){
 		$sql_insertValid="UPDATE ".$obj_tmp1->member." SET companyValid='".$validCode."' WHERE ".$obj_tmp1->member.".id='".$userId."'";
 		mysql_query($sql_insertValid);
 	}
+}
+else if(@$_POST['method'] == "linkFB"){
+	$sql_insertFB="INSERT INTO ".$obj_tmp1->facebook." VALUES(NULL,'".$_POST['FB_id']."','".$_POST['userName']."','".$_POST['email']."','".$_POST['photo']."',CURRENT_TIMESTAMP)";
+	mysql_query($sql_insertFB);
+
+	//facebook user
+	$sql_checkFB="SELECT ".$obj_tmp1->facebook.".*
+				  FROM ".$obj_tmp1->facebook."
+				  WHERE ".$obj_tmp1->facebook.".facebook_id='".$_POST['FB_id']."'";
+	$obj_tmp1->laout_arr['checkFB']=array();
+	$obj_tmp1->basic_select('laout_arr','checkFB',$sql_checkFB);
+
+	$sql_update="UPDATE ".$obj_tmp1->member." SET facebook='".$obj_tmp1->laout_arr['checkFB'][0]['id']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->member.".id='".$userId."'";
+	mysql_query($sql_update);
+
+	$message=array('first'=>"success");
+	echo json_encode($message);	
 }
 else{echo "no Page";}
 ?>

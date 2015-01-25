@@ -75,7 +75,7 @@ switch(@$action){
             //======================
 
             $obj_tmp1->saveJob[$IValue['id']]=$obj_tmp1->laout_arr['showJob'];
-            $obj_tmp1->saveJob[$IValue['id']][0]['location']=split("/", $obj_tmp1->laout_arr['showJob'][0]['location']);
+            @$obj_tmp1->saveJob[$IValue['id']][0]['location']=split("/", $obj_tmp1->laout_arr['showJob'][0]['location']);
             $obj_tmp1->saveJob[$IValue['id']][0]['jobstatus']=$IValue['status'];
             $obj_tmp1->saveJob[$IValue['id']][0]['jobDate']=$IValue['createDate'];
         }

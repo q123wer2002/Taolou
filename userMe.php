@@ -10,6 +10,7 @@ $obj_tmp1->memberExp='taolou_member_experience';
 $obj_tmp1->memberedu='taolou_member_education';
 $obj_tmp1->memberwanttjob='taolou_member_wantjob';
 $obj_tmp1->memberSkill="taolou_member_specialskill";
+$obj_tmp1->facebook="taolou_member_facebook";
 
 $obj_tmp1->workLoc="taolou_system_location";
 $obj_tmp1->skillList="taolou_system_specialskill";
@@ -59,6 +60,18 @@ switch(@$action){
 				//echo $sql_allComUser;
 				//print_r($obj_tmp1->laout_arr['allComUser']);
 			}
+		}
+
+		//facebook linking
+		if(!empty($obj_tmp1->laout_arr['member'][0]['facebook'])){
+			// load facebook
+			$sql_facebook="SELECT ".$obj_tmp1->facebook.".*
+						   FROM ".$obj_tmp1->facebook."
+						   WHERE ".$obj_tmp1->facebook.".id='".$obj_tmp1->laout_arr['member'][0]['facebook']."'";
+			$obj_tmp1->laout_arr['facebook']=array();
+			$obj_tmp1->basic_select('laout_arr','facebook',$sql_facebook);
+				//echo $sql_facebook;
+				//print_r($obj_tmp1->laout_arr['facebook']);
 		}
 	//==========================
 

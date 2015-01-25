@@ -123,10 +123,16 @@
 		<?php } ?>
 		<!-- FB -->
 		<div class="edit-unit">
-			<span class="edit-name">绑定FB</span>
+			<span class="edit-name">绑定FB<img src="https://www.facebook.com/images/fb_icon_325x325.png" width='40' style='float:left;'></span>
 			<div class="edit-body">
-				<a class="input-weibo-holder" href="javascript:;"><input class='required' placeholder="綁定facebook" ng-model='FB' disabled></a>
-				<span class="edit-hint" data-hint="绑定FaceBook可以開啟更多功能">绑定FaceBook<br>開啟更多功能</span>
+				<a class="input-weibo-holder" href="javascript:checkLoginState();" ng-show="FB == ''"><input class='required' placeholder="綁定facebook" ng-model='FB' disabled></a>
+
+				<span class="input-weibo-holder" ng-show="FB != ''"><input class='required' placeholder="綁定facebook" value="<?php echo $this->laout_arr['facebook'][0]['facebook_id']; ?>" disabled></span>
+				<img class='imgShow' id='Photo' src="<?php echo $this->laout_arr['facebook'][0]['facebook_photo']; ?>" ng-show="FB != ''">
+
+				<span class="edit-hint" data-hint="绑定FaceBook可以開啟更多功能" ng-show="FB == ''">绑定FaceBook<br><span style='color:red;'>綁定後能用Facebook登入</span></span>
+
+				<span class='validOrNot' style="color:#6B778D;float:right;margin-top:15px;" ng-show="FB != ''"><span class='icon checkIcon'></span>已綁定</span>
 			</div>
 		</div>
 		<!-- GOOGLE -->
@@ -134,7 +140,7 @@
 			<span class="edit-name">绑定Google</span>
 			<div class="edit-body">
 				<a class="input-weibo-holder" href="javascript:;"><input class='required' placeholder="綁定Google" ng-model='Google' disabled></a>
-				<span class="edit-hint" data-hint="绑定Google可以開啟更多功能">Google<br>開啟更多功能</span>
+				<span class="edit-hint" data-hint="绑定Google可以開啟更多功能">Google<br><span style='color:red;'>綁定後能用Google登入</span></span>
 			</div>
 		</div>
 		<!-- USER_PHOTO -->
