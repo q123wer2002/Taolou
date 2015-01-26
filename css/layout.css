@@ -32,7 +32,13 @@ a{text-decoration: none;}
 .love{background-position: -136px -118px;width: 16px;height: 16px;}
 
 .showUs{width: 100%;position:relative;height: 700px;}
-	.showImage{position:relative;height:100%;margin: auto;background: url("../images/layout/banner.jpg") no-repeat;-webkit-filter: saturate(0.5) hue-rotate(10deg) brightness(0.7);background-size: cover;background-position: 0px -300px;}
+	@media screen and (min-width: 1600px) {
+		.showImage{position:relative;height:100%;margin: auto;background: url("../images/layout/banner.jpg") no-repeat;-webkit-filter: saturate(0.5) hue-rotate(10deg) brightness(0.7);background-size: cover;background-position: 0px -300px;}
+	    // 如果使用者之視窗寬度 >= 1600px，將會再載入這裡的 CSS。
+	}
+	@media screen and (max-width: 1600px) {
+		.showImage{position:relative;height:100%;margin: auto;background: url("../images/layout/banner.jpg") no-repeat;-webkit-filter: saturate(0.5) hue-rotate(10deg) brightness(0.7);background-size: 100% auto;}
+	}
 		.slogn{font-weight: 700;color: #ffffff;font-family: "proxima-nova";padding-top: 15%;font-size: 4.2em;position: absolute;top:0px;left: 300px;}
 		.slogn span{font-size: 30px;font-family: "proxima-nova";}
 		.slogn a{font-size: 30px;font-family: "proxima-nova";color: #ffffff;font-size: 20px;border-bottom:1px solid #c4c663;}

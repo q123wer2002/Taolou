@@ -65,8 +65,8 @@
 			</div>
 		</div>
 		<div class="nsb-block-ctrl">
-			<a href="javascript:;" class="btn red-btn">分享到FB</a>
-			<a class="btn red-btn" href="javascript:;">分享到Google</a>
+			<a href="http://www.facebook.com/sharer.php?s=100&p[title]=Taolou頭路網，您最佳的求職網&p[url]=http://taoloutw.tk/jobs.php?jobsid=<?php echo $this->encode($SValue['id']); ?>&p[summary]=<?php echo $this->laout_arr['company'][0]['companyName']."尋找".$SValue['jobName'].",起薪高達:".$SValue['salary']; ?>&source=<?php echo $this->laout_arr['company'][0]['companyName']; ?>&p[images][0]=<?php echo $this->laout_arr['company'][0]['logo']; ?>" target='_new' class="btn red-btn" style='background:#3B5999;'>分享Facebook</a>
+			<a class="btn red-btn" href="https://www.linkedin.com/shareArticle?mini=true&url=http://taoloutw.tk/jobs.php?jobsid=<?php echo $this->encode($SValue['id']); ?>&title=Taolou頭路網，您最佳的求職網&summary=<?php echo $this->laout_arr['company'][0]['companyName']."公司正在尋找".$SValue['jobName']."人才 , 起薪高達:".$SValue['salary']; ?>&source=<?php echo $this->laout_arr['company'][0]['companyName']; ?>" target='_new' style='background:#0274B3;'>分享LinkedIn</a>
 			<?php if($this->applyJob) {
 				if(@$_SESSION['user']['id']==""){ ?>
 				<a href="javascript:;" class="btn green-btn apply_btn" ng-click="notMember()">申請此工作</a>

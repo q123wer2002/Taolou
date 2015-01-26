@@ -10,7 +10,7 @@
 	.position-wrapper h3 {font-size: 16px;margin: 5px 0;}
 	.job-meta>span {margin-right: 20px;font-size: 14px;}
 	.job-describe {margin-top: 20px;color: #6b7485;font-size: 14px;}
-	.nsb-block-ctrl {text-align: left;height: 50px;border-top: 1px solid #eceef1;padding: 20px 0px 20px 90px;}
+	.nsb-block-ctrl {text-align: left;height: 50px;border-top: 1px solid #eceef1;padding: 20px 0px 20px 90px;margin-left:-20px;}
 	.nsb-block-ctrl .btn {width: 118px;float: left;font-size: 16px;display: inline-block;height: 50px;line-height: 50px;text-align: center;border: none;border-radius: 3px;color: #ffffff;margin-right: 15px;font-weight: 500;}
 
 	.red-btn{background-color: #EB6A64;}
