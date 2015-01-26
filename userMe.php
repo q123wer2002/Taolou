@@ -10,7 +10,9 @@ $obj_tmp1->memberExp='taolou_member_experience';
 $obj_tmp1->memberedu='taolou_member_education';
 $obj_tmp1->memberwanttjob='taolou_member_wantjob';
 $obj_tmp1->memberSkill="taolou_member_specialskill";
+
 $obj_tmp1->facebook="taolou_member_facebook";
+$obj_tmp1->IN="taolou_member_linkedin";
 
 $obj_tmp1->workLoc="taolou_system_location";
 $obj_tmp1->skillList="taolou_system_specialskill";
@@ -73,6 +75,18 @@ switch(@$action){
 				//echo $sql_facebook;
 				//print_r($obj_tmp1->laout_arr['facebook']);
 		}
+
+		//LinkedIn linking
+		if(!empty($obj_tmp1->laout_arr['member'][0]['LinkedIn'])){
+			// load LinkedIn
+			$sql_IN="SELECT ".$obj_tmp1->IN.".*
+						   FROM ".$obj_tmp1->IN."
+						   WHERE ".$obj_tmp1->IN.".id='".$obj_tmp1->laout_arr['member'][0]['LinkedIn']."'";
+			$obj_tmp1->laout_arr['IN']=array();
+			$obj_tmp1->basic_select('laout_arr','IN',$sql_IN);
+				//echo $sql_IN;
+				//print_r($obj_tmp1->laout_arr['IN']);
+		}
 	//==========================
 
 	//顯示所有公司
@@ -91,7 +105,7 @@ switch(@$action){
     //設定版面
     $obj_tmp1->top_html="top.html";
 	$obj_tmp1->showad_html='showad.html';
-    $obj_tmp1->footer_html="footer.html";
+    //$obj_tmp1->footer_html="footer.html";
     $obj_tmp1->laout('templates.html');
 //=======================================
 
@@ -250,7 +264,7 @@ switch(@$action){
     //設定版面
     $obj_tmp1->top_html="top.html";
 	$obj_tmp1->showad_html='showad.html';
-    $obj_tmp1->footer_html="footer.html";
+    //$obj_tmp1->footer_html="footer.html";
     $obj_tmp1->laout('templates.html');
 //=======================================
 

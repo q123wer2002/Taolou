@@ -8,6 +8,7 @@ $obj_tmp1->companySkill="taolou_company_skill";
 
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->facebook="taolou_member_facebook";
+$obj_tmp1->IN="taolou_member_linkedin";
 
 
 $obj_tmp1->tmp_where="";
@@ -295,6 +296,23 @@ else if(@$_POST['method'] == "linkFB"){
 	$obj_tmp1->basic_select('laout_arr','checkFB',$sql_checkFB);
 
 	$sql_update="UPDATE ".$obj_tmp1->member." SET facebook='".$obj_tmp1->laout_arr['checkFB'][0]['id']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->member.".id='".$userId."'";
+	mysql_query($sql_update);
+
+	$message=array('first'=>"success");
+	echo json_encode($message);	
+}
+else if(@$_POST['method'] == "linkIN"){
+	$sql_insertIN="INSERT INTO ".$obj_tmp1->IN." VALUES(NULL,'".$_POST['IN_id']."','".$_POST['IN_headline']."','".$_POST['IN_name']."','".$_POST['IN_email']."','".$_POST['IN_photo']."',CURRENT_TIMESTAMP)";
+	mysql_query($sql_insertIN);
+
+	//IN's user
+	$sql_checkIN="SELECT ".$obj_tmp1->IN.".*
+				  FROM ".$obj_tmp1->IN."
+				  WHERE ".$obj_tmp1->IN.".LinkedIn_id='".$_POST['IN_id']."'";
+	$obj_tmp1->laout_arr['checkIN']=array();
+	$obj_tmp1->basic_select('laout_arr','checkIN',$sql_checkIN);
+
+	$sql_update="UPDATE ".$obj_tmp1->member." SET LinkedIn='".$obj_tmp1->laout_arr['checkIN'][0]['id']."', updateDate=CURRENT_TIMESTAMP WHERE ".$obj_tmp1->member.".id='".$userId."'";
 	mysql_query($sql_update);
 
 	$message=array('first'=>"success");

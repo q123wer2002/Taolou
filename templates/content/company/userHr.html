@@ -3,6 +3,7 @@
 
 <style type="text/css">
 	.edit{display: block;width: 800px;margin: auto;overflow: hidden;}
+		.edit-name{width: 150px;}
 		.dropList{top: -10px;}
 		.editDivSelectUl{top: 70px;}
 		.validOrNot{font-size: 13px;font-weight:700;color: #EB6A64;}
@@ -44,7 +45,7 @@
 	<input type='hidden' ng-init="photo='<?php echo $MValue['photo']; ?>'">
 	<input type='hidden' ng-init="email='<?php echo $MValue['email']; ?>'">
 	<input type='hidden' ng-init="FB='<?php echo $MValue['facebook']; ?>'">
-	<input type='hidden' ng-init="Google='<?php echo $MValue['google']; ?>'">
+	<input type='hidden' ng-init="IN='<?php echo $MValue['LinkedIn']; ?>'">
 	<input type='hidden' ng-init="photo='<?php echo $MValue['photo']; ?>'">
 	<?php }} ?>
 	<!-- 初始化公司列表 -->
@@ -123,24 +124,32 @@
 		<?php } ?>
 		<!-- FB -->
 		<div class="edit-unit">
-			<span class="edit-name">绑定FB<img src="https://www.facebook.com/images/fb_icon_325x325.png" width='40' style='float:left;'></span>
+			<span class="edit-name">绑定Facebook<img src="https://www.facebook.com/images/fb_icon_325x325.png" width='40' style='float:left;'></span>
 			<div class="edit-body">
 				<a class="input-weibo-holder" href="javascript:checkLoginState();" ng-show="FB == ''"><input class='required' placeholder="綁定facebook" ng-model='FB' disabled></a>
 
 				<span class="input-weibo-holder" ng-show="FB != ''"><input class='required' placeholder="綁定facebook" value="<?php echo $this->laout_arr['facebook'][0]['facebook_id']; ?>" disabled></span>
 				<img class='imgShow' id='Photo' src="<?php echo $this->laout_arr['facebook'][0]['facebook_photo']; ?>" ng-show="FB != ''">
-
-				<span class="edit-hint" data-hint="绑定FaceBook可以開啟更多功能" ng-show="FB == ''">绑定FaceBook<br><span style='color:red;'>綁定後能用Facebook登入</span></span>
+		<!--------------------------------------------------------------------------- -->
+				<span class="edit-hint" data-hint="绑定FaceBook可以開啟更多功能" ng-show="FB == ''">绑定FaceBook<br><span style='color:red;'>綁定後能用Facebook登入<br>開啟更多功能</span></span>
 
 				<span class='validOrNot' style="color:#6B778D;float:right;margin-top:15px;" ng-show="FB != ''"><span class='icon checkIcon'></span>已綁定</span>
 			</div>
 		</div>
-		<!-- GOOGLE -->
+		<!-- LINKEDIN -->
 		<div class="edit-unit">
-			<span class="edit-name">绑定Google</span>
+			<span class="edit-name">绑定LinkedIn<img src="https://pbs.twimg.com/profile_images/2945466711/12e018532d913494d841f79da5dd70bf_400x400.png" width='40' style='float:left;'></span>
 			<div class="edit-body">
-				<a class="input-weibo-holder" href="javascript:;"><input class='required' placeholder="綁定Google" ng-model='Google' disabled></a>
-				<span class="edit-hint" data-hint="绑定Google可以開啟更多功能">Google<br><span style='color:red;'>綁定後能用Google登入</span></span>
+				<div id='LinkedInLogin' style='display:none;' ng-show="IN == ''">
+	            	<script type="IN/Login" data-onAuth="onLinkedInAuth"></script>
+	       		</div>
+
+	       		<span class="input-weibo-holder" ng-show="IN != ''"><input class='required' placeholder="綁定LinkedIn" value="<?php echo $this->laout_arr['IN'][0]['LinkedIn_id']; ?>" disabled></span>
+				<img class='imgShow' id='Photo' src="<?php echo $this->laout_arr['IN'][0]['LinkedIn_photo']; ?>" ng-show="IN != ''">
+		<!--------------------------------------------------------------------------- -->
+				<span class="edit-hint" data-hint="绑定LinkedIn可以開啟更多功能" ng-show="IN == ''">绑定LinkedIn<br><span style='color:red;'>綁定後能用LinkedIn登入<br>開啟更多功能</span></span>
+
+				<span class='validOrNot' style="color:#6B778D;float:right;margin-top:15px;" ng-show="IN != ''"><span class='icon checkIcon'></span>已綁定</span>
 			</div>
 		</div>
 		<!-- USER_PHOTO -->
@@ -152,7 +161,7 @@
 				
 				<img class='imgShow' id='Photo' src="{{photo}}">
 				
-				<span class="edit-hint">上傳個人大頭像，<br>非公司Logo</span>
+				<span class="edit-hint">上傳<span style='color:red;'>個人大頭像</span>，<br>非公司Logo</span>
 			</div>
 		</div>
 		<!-- USER_NAME-->

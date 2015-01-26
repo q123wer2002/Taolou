@@ -244,3 +244,57 @@ function handleFiles(files) {
 
     });
   }
+
+//LINKEDIN  
+//LINKEDIN
+//LINKEDIN
+//LINKEDIN
+//LINKEDIN
+//LINKEDIN
+
+var openyet=false;
+// 2. Runs when the JavaScript framework is loaded
+function onLinkedInLoad() {
+  $('a[id*=li_ui_li_gen_]').html("<a class=\"input-weibo-holder\" href=\"javascript:;\"><input class='required' placeholder=\"綁定LinkedIn\" ng-model='IN' disabled></a>");
+  $('#LinkedInLogin').css({display:'inline-block'});
+  IN.Event.on(IN, "auth", onLinkedInAuth);
+}
+
+// 2. Runs when the viewer has authenticated
+function onLinkedInAuth() {
+//IN.API.Connections("me")
+//IN.API.Profile("me")
+    IN.API.Profile("me")
+      .fields("id","headline","firstName", "lastName",  "picture-url", "email-address")
+      .result(saveUserProfile)
+      .error(displayConnectionErrors);
+}
+
+// 2. Runs when the Profile() API call returns successfully
+function saveUserProfile(profiles) {
+  var member = profiles.values[0];
+  console.log(member);
+
+  if(!openyet){
+    openyet=true;
+    console.log(member);
+
+    var name=member['firstName']+" "+member['lastName'];
+    var userLinkedInObject={"method":"linkIN","IN_id":member['id'],"IN_headline":member['headline'],"IN_name":name,"IN_email":member['emailAddress'],"IN_photo":member['pictureUrl']};
+      $.ajax({
+        type: "POST",
+        url: "server/userHRAjax.php",
+        data: $.param(userLinkedInObject),
+        headers: {'Content-type': 'application/x-www-form-urlencoded'},
+        async: true,
+        error: function (xhr,error){console.warn(xhr);},
+        success: function (json) {
+          console.log(json);
+          location.reload();
+        }
+      });
+  }else{}
+
+
+}
+function displayConnectionErrors(){console.warn("error");}
