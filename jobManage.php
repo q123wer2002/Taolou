@@ -44,7 +44,8 @@ switch(@$action){
                   LEFT JOIN ".$obj_tmp1->memberCV." ON ".$obj_tmp1->memberCV.".id=".$obj_tmp1->memberJM.".CVId
                   WHERE ".$obj_tmp1->memberJM.".memberId='".$userId."' 
                   AND ".$obj_tmp1->memberJM.".intelligence='y' 
-                  AND ".$obj_tmp1->memberJM.".status <> 'collect'";
+                  AND ".$obj_tmp1->memberJM.".status <> 'collect'
+                  AND ".$obj_tmp1->memberJM.".status <> 'access'";
     $obj_tmp1->laout_arr['Imanage']=array();
     $obj_tmp1->basic_select('laout_arr','Imanage',$sql_Imanage);
         //echo $sql_Imanage;
@@ -108,7 +109,8 @@ switch(@$action){
                   LEFT JOIN ".$obj_tmp1->memberCV." ON ".$obj_tmp1->memberCV.".id=".$obj_tmp1->memberJM.".CVId
                   WHERE ".$obj_tmp1->memberJM.".memberId='".$userId."' 
                   AND ".$obj_tmp1->memberJM.".intelligence='n' 
-                  AND ".$obj_tmp1->memberJM.".status <> 'collect'";
+                  AND ".$obj_tmp1->memberJM.".status <> 'collect'
+                  AND ".$obj_tmp1->memberJM.".status <> 'access'";
     $obj_tmp1->laout_arr['Imanage']=array();
     $obj_tmp1->basic_select('laout_arr','Imanage',$sql_Imanage);
         //echo $sql_Imanage;
@@ -139,7 +141,7 @@ switch(@$action){
             //======================
 
             $obj_tmp1->saveJob[$IValue['id']]=$obj_tmp1->laout_arr['showJob'];
-            $obj_tmp1->saveJob[$IValue['id']][0]['location']=split("/", $obj_tmp1->laout_arr['showJob'][0]['location']);
+            @$obj_tmp1->saveJob[$IValue['id']][0]['location']=split("/", $obj_tmp1->laout_arr['showJob'][0]['location']);
             $obj_tmp1->saveJob[$IValue['id']][0]['jobstatus']=$IValue['status'];
             $obj_tmp1->saveJob[$IValue['id']][0]['jobDate']=$IValue['createDate'];
         }

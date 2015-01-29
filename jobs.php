@@ -106,7 +106,8 @@ switch($action){
 		//讀取使用者的履歷
 		$sql_CV="SELECT ".$obj_tmp1->memberCV.".*
 				 FROM ".$obj_tmp1->memberCV."
-				 WHERE ".$obj_tmp1->memberCV.".memberId='".$userId."'";
+				 WHERE ".$obj_tmp1->memberCV.".memberId='".$userId."'
+				 AND ".$obj_tmp1->memberCV.".status='y'";
 		$obj_tmp1->laout_arr['CV']=array();
 		$obj_tmp1->basic_select('laout_arr','CV',$sql_CV);
 			//echo $sql_CV;

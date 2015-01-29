@@ -45,7 +45,7 @@ if(@$_POST['method']=='saveSeeker'){
 				$status='access';
 				$detail="恭喜您！您錄取了";
 				//更改職缺狀態
-				$sql_updateJobStatus="UPDATE ".$obj_tmp1->job." SET status='F' WHERE ".$obj_tmp1->job.".id='".$_POST['JOB_ID']."'";
+				$sql_updateJobStatus="UPDATE ".$obj_tmp1->job." SET status='F', hirePeople='".$value['id']."' WHERE ".$obj_tmp1->job.".id='".$_POST['JOB_ID']."'";
 				mysql_query($sql_updateJobStatus);
 			}
 

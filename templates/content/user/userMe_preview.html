@@ -1,0 +1,173 @@
+<link rel="stylesheet" type="text/css" href="css/userMe_preview.css">
+<script type="text/javascript" src='js/AN_userMe.js'></script>
+
+<h1 style='margin-top:-50px;text-align:center;text-shadow:0 1px 1px rgba(0,0,0,.5);padding:20px 0px;'>TaoLou頭路網線上履歷</h1>
+<div class='onlineCV' ng-controller='Taolou_onlineCV'>
+	<?php if(!empty($this->laout_arr['member'])){
+			foreach($this->laout_arr['member'] as $memberKey => $memberValue) { ?>
+	<div class='profile'>
+
+		<div class='avatar clearfix'>
+			<span class='icon profileEdit'></span>
+			<div class='blackBG'></div>
+			<img src="<?php 
+			if($memberValue['photo']!=""){echo $memberValue['photo'];}
+			else echo "images/userMe/user-default.jpg"; ?>">
+		</div>
+		<div id='fileList'></div>		
+		<div class='main clearfix'>
+			<span class="name"><?php echo $memberValue['name']; ?></span>
+			<span class="status"><?php echo $memberValue['jobStatus']; ?></span>
+		</div>
+		<div class="experience">
+			<span class="birth"><b><?php echo $memberValue['born']; ?></b> 年出生・</span>
+			<span class="degree"><b><?php echo $memberValue['lastEducation']; ?></b>學歷・</span>
+			<span class="work-years"><b><?php echo $memberValue['workYears']; ?></b> 年工作經驗</span>
+		</div>
+	</div>
+
+	<div class='profile-seg'>
+		<span class="seg-title"><span class="icon title-chart locked"></span>聯絡方式</span>
+		<div class="seg-body">
+			<ul>
+				<li class="mail clearfix"> 
+					<span class="label">信箱</span>
+					<span class="value value-mail"><?php echo $memberValue['email']; ?></span>
+				</li>
+				<li class="phone edit-el clearfix" ng-repeat='p in phone'>
+					<span class="label">電話</span>
+					<span class="value value-phone">
+						<span ng-init="p.phone = '<?php echo $memberValue['phone']; ?>'">{{p.phone}}</span>
+					</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<?php }} ?>
+	
+	<div class="profile-seg profile-job-wish">
+		<span class="seg-title">求職願望</span>
+		<!-- <?php if(empty($this->laout_arr['wantjob'][0]['name'])){ ?>
+		<a href="javascript:;" class='add_ee' id='addwantjob' ng-click='addjobwish()' ng-hide='addjobwishB'>
+			<span class='icon title-chart add'></span>
+			新增求職願望
+		</a>
+		<?php } ?> --> 
+		<?php foreach($this->laout_arr['wantjob'] as $wantjobKey => $wantjobValue) { ?>
+		<div class="seg-body">
+			<div class="edit-el clearfix" ng-hide='addjobwishB'>
+
+				<span>尋找</span>
+				<?php list($full, $parttime, $intern) = split('[|]', $wantjobValue['jobType']); ?>
+					<em class="type"><?php 
+					if($full=='true'){echo"|全職";}
+					if($parttime=='true'){echo"|兼職";}
+					if($intern=='true'){echo"|實習";} ?></em>
+				<span>的</span>
+				<em class="title" ng-model='jobwish_name' ng-init="jobwish_name = '<?php echo $wantjobValue['name']; ?>'">{{jobwish_name}}</em>
+				<span>工作</span>
+				<br>
+
+				<span>工作地點位於</span>
+					<em class="loc" ng-model='jobwish_loc' ng-init="jobwish_loc = '<?php echo $this->wantLocation; ?>'">{{jobwish_loc}}</em>
+				<span ng-init="jobwish_telework=<?php echo $wantjobValue['telework']; ?>">，<?php if($wantjobValue['telework']=='true'){echo "接受";}else{echo "不接受";} ?></span>
+					<em class="farwork">遠程工作</em>
+				<br>
+
+				<span>月薪不低于</span>
+					<em class="salary-start" ng-model='jobwish_min_salary' ng-init="jobwish_min_salary = '<?php echo $wantjobValue['leastSalary']; ?>'">{{jobwish_min_salary}}</em>
+				<span ng-init="jobwish_stock_option=<?php echo $wantjobValue['stock_option']; ?>">，<?php if($wantjobValue['stock_option']=='true'){echo "需要提供";}else{echo "不一定需要";} ?></span>
+					<em class='stock'>股票選擇權</em>
+			</div>
+		</div>
+		<?php } ?>
+	</div>
+
+	<div class='special_skill'>
+		<span class="seg-title">特殊技能</span>
+		<!-- 開始設定特殊技能 -->
+		<!-- 設定技能總攬 -->
+		<input type="hidden" ng-init="allSkillList = '<?php echo $this->allSkillList; ?>'">
+		<?php if(!empty($this->mySkillLists)){?>
+			<!-- 設定我自己的技能 -->
+		<input type="hidden" ng-init="myallSkillList = '<?php echo $this->mySkillLists; ?>'">
+		<!-- 顯示技能 -->
+		<div  class="clearfix showskills"  
+		ng-hide='showSpecial'
+		ng-init="skillListInit()">
+			<ul class='skillList'>
+				<li class='skill' ng-repeat='skill in myskills'>{{skill}}</li>
+			</ul>
+		</div>
+		<?php } ?>
+	</div>
+
+	<div class="education_experience">
+		<span class="seg-title">教育經歷</span>
+		<?php if(!empty($this->laout_arr['education'])){ foreach($this->laout_arr['education'] as $EduKey => $EduValue){ ?>
+			<input type='hidden' ng-init="EDU_ID='<?php echo $EduValue['id']; ?>'">
+			<input type='hidden' ng-init="EDU_eduBG='<?php echo $EduValue['educationBG']; ?>'">
+			<input type='hidden' ng-init="EDU_startEdu='<?php echo $EduValue['startYear']; ?>'">
+			<input type='hidden' ng-init="EDU_endEdu='<?php echo $EduValue['endYear']; ?>'">
+			<input type='hidden' ng-init="EDU_school='<?php echo $EduValue['school']; ?>'">
+			<input type='hidden' ng-init="EDU_major='<?php echo $EduValue['major']; ?>'">
+			<input type='hidden' ng-init='initEducatinoFun()'>
+		<?php }} ?>
+		<div class='clearfix educationList'>
+		<!-- 初始化教育設定 -->
+			<!-- 顯示教育列表 -->
+			<ul class='educationListUl'>
+				<li ng-repeat='eduexp in eduexps' ng-hide="eduexp.status">
+					<p>{{eduexp.start_edu}}-{{eduexp.end_edu}} . {{eduexp.school}}</p>
+					<p class='sub'>{{eduexp.education}} . {{eduexp.major}}</p>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div class='experience2'>
+		<span class="seg-title">項目經歷</span>
+		<!-- 開始設定經歷 -->
+		<div class='clearfix experienceList'>
+			<!-- 初始化經驗列表 -->
+			<?php if(!empty($this->laout_arr['experience'])){ foreach($this->laout_arr['experience'] as $ExpKey => $ExpValue){ ?>
+			<input type='hidden' ng-init="EXP_ID = '<?php echo $ExpValue['id']; ?>'">
+			<input type='hidden' ng-init="EXP_NAME = '<?php echo $ExpValue['name']; ?>'">
+			<input type='hidden' ng-init="EXP_YEAR = '<?php echo $ExpValue['year']; ?>'">
+			<input type='hidden' ng-init="EXP_HOWLONG = '<?php echo $ExpValue['continueTime']; ?>'">
+			<input type='hidden' ng-init="EXP_COMPANY = '<?php echo $ExpValue['company']; ?>'">
+			<input type='hidden' ng-init="EXP_ROLE = '<?php echo $ExpValue['role']; ?>'">
+			<input type='hidden' ng-init="EXP_DETAIL = '<?php echo $ExpValue['detail']; ?>'">
+			<input type='hidden' ng-init="EXPINIT()">
+			<?php }} ?>
+			<!-- 編輯經驗項目 -->
+
+			<!-- 顯示經驗列表 -->
+			<ul class='educationListUl'>
+				<li ng-repeat='experience in experiences' ng-hide="experience.showEdit">
+
+					<p>{{experience.name}} . {{experience.company}}</p>
+					<p>{{experience.role}} . {{experience.year}},{{experience.howlong}}</p>
+					<p class='sub'>{{experience.detail}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class='selfDetail'>
+		<span class="seg-title">自我描述</span>
+
+		<div class='clearfix experienceList'>
+
+			<div class='addSelf' ng-hide='addSelfStatus'>
+				<input type='hidden' ng-init="Addself = '請添加自我描述'">
+				<?php if(!empty($this->laout_arr['member'][0]['selfIntro'])){ ?>
+				<input type='hidden' ng-init="Addself = '<?php echo $this->laout_arr['member'][0]['selfIntro']; ?>'">
+				<?php } ?>
+				<p>{{Addself}}</p>
+			</div>
+		</div>
+	</div>
+</div>

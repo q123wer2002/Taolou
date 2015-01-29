@@ -193,6 +193,13 @@ else if(@$_POST['method'] == "saveUserHR"){
 		echo json_encode($message);
 	}
 }
+else if(@$_POST['method'] == "saveName"){
+	$sql_updateUser="UPDATE ".$obj_tmp1->member." SET name='".$_POST['userName']."' WHERE ".$obj_tmp1->member.".id='".$userId."'";
+	mysql_query($sql_updateUser);
+
+	$message=array('first'=>"success");
+	echo json_encode($message);
+}
 else if(@$_POST['method'] == "changeUser"){
 
 	$sql_changeUser="SELECT ".$obj_tmp1->member.".*

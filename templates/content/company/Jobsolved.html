@@ -36,7 +36,11 @@
                 <td><?php echo $manValue['phone']; ?></td>
             </tr>
         </table>
-        <a href="<?php echo $manValue['RESUME']; ?>" class='but' target='_new'>下載履歷</a>
+        <?php if($manValue['RESUME_id'] != 0){//自己的履歷 ?>
+        <a href="<?php echo $manValue['RESUME_src']; ?>" class='but' target='_new'>下載履歷</a>
+        <?php }else{// taolou的履歷 ?>
+        <a href="<?php echo "userMe_preview.php?seekerID=".$this->encode($manValue['id']); ?>" class='but' target='_new'>TaoLou履歷</a>
+        <?php } ?>
         <a href="javascript:;" class='but' ng-click='showMessage()' ng-hide='Message'>私信錄取者</a>
 
         <textarea ng-show='Message' class='textarea' placeholder='私信內容' ng-model='messageContent'></textarea>

@@ -108,7 +108,7 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		}).
 		success(function(json){
 			console.log(json);
-			location.href='companyPost.php?action=found';
+			location.href='companyPost.php';
 		}).
 		error(function(json){
 			console.warn(json);

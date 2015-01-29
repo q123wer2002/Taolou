@@ -23,6 +23,7 @@ $userId=$_SESSION['user']['id'];
 
 if(@$_POST['method'] == 'saveUserProfile'){
 	//儲存基本資料
+	//print_r($_POST);
 	$sql_updateProfile="UPDATE ".$obj_tmp1->member."
 						SET name='".$_POST['userName']."', born='".$_POST['userBorn']."', lastEducation='".$_POST['userEducation']."', workYears='".$_POST['userWorkyear']."', jobStatus='".$_POST['userJobstatus']."' 
 						WHERE id='".$userId."'";

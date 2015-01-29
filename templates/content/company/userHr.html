@@ -41,6 +41,7 @@
 			foreach($this->laout_arr['member'] as $MKey => $MValue){ ?>
 	<input type='hidden' ng-init="Name='<?php echo $MValue['name']; ?>'">
 	<input type='hidden' ng-init="company='<?php echo $this->companyName; ?>'">
+	<input type='hidden' ng-init="saveStatus='<?php echo $this->companyName; ?>'">
 	<input type='hidden' ng-init="companyValid='<?php echo $MValue['companyValid']; ?>'">
 	<input type='hidden' ng-init="photo='<?php echo $MValue['photo']; ?>'">
 	<input type='hidden' ng-init="email='<?php echo $MValue['email']; ?>'">
@@ -182,12 +183,19 @@
 			</div>
 		</div>
 
-		<div class="edit-unit" ng-hide='doubleCheck'>
+		<!-- 無設定公司 -->
+		<div class="edit-unit" ng-hide='doubleCheck' ng-if="saveStatus != ''">
+			<a href="javascript:;" class="green-btn saveBot" ng-click="saveName()">更改真實姓名</a>
+		</div>
+
+		<!-- 有設定公司 -->
+		<div class="edit-unit" ng-hide='doubleCheck' ng-if="saveStatus == ''">
 			<p class='errorMes'>{{userHRError}}</p>
 			<a href="javascript:;" class="green-btn saveBot" ng-click="userHRdblCheck()">保存個人訊息</a>
 		</div>
 		<div class="edit-unit" ng-show='doubleCheck'>
 			<a href="javascript:;" class="green-btn saveBot" ng-click="userHRSave()">保存</a>
 		</div>
+
 	</div>
 </div>

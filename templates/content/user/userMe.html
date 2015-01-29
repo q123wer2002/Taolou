@@ -5,9 +5,13 @@
 	<?php if(!empty($this->laout_arr['member'])){
 			foreach($this->laout_arr['member'] as $memberKey => $memberValue) { ?>
 	<div class='profile'>
-		<a href="javascript:;" class='editProfile'>
+		<a href="javascript:;" class='editProfile' style='right:70px;' ng-click='showPOPEdit()'>
 			<span id='iconEditProfile' class='icon'></span>編輯
 		</a>
+		<a href="userMe_preview.php" class='editProfile' target='_new'>
+			<span class='icon white_view'></span>預覽
+		</a>
+
 
 		<div class='avatar clearfix'>
 			<span id='iconEditProfile' class='icon profileEdit'></span>
@@ -24,34 +28,34 @@
 			<span class="name"><?php echo $memberValue['name']; ?></span>
 			<span class="status"><?php echo $memberValue['jobStatus']; ?></span>
 		</div>
-		<div class="experience sub">
+		<div class="experience">
 			<span class="birth"><b><?php echo $memberValue['born']; ?></b> 年出生・</span>
 			<span class="degree"><b><?php echo $memberValue['lastEducation']; ?></b>學歷・</span>
 			<span class="work-years"><b><?php echo $memberValue['workYears']; ?></b> 年工作經驗</span>
 		</div>
 	</div>
 
-	<div class='popEditProfileDiv'>
+	<div class='BG' ng-show='showPOPEditStatus' ng-click='showPOPEdit()'></div>
+	<div class='popEditProfileDiv' ng-show='showPOPEditStatus'>
 		<div class='title'>
 			<span>修改基本訊息</span>
-			<a href="javascript:;" class='closePop' alt='取消編輯'><span class='icon delete'></span></a>
+			<a href="javascript:;" class='closePop' alt='取消編輯' ng-click='showPOPEdit()'><span class='icon delete'></span></a>
 		</div>
 
 		<div class='pop-edit-line'>
 			<span class='popLabel'>　　姓名</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input' id='userName' value='<?php echo $memberValue['name']; ?>'>
+				<input type='text' class='pop-input' id='userName' ng-model='name' ng-init="name = '<?php echo $memberValue['name']; ?>'">
 			</div>
 			<p class='edit-hint'>必填</p>
 		</div>
 		<div class='pop-edit-line'>
 			<span class='popLabel'>出生年份</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showYears'><input type='text' class='pop-input pop-select' value='<?php echo $memberValue['born']; ?>' disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
-				<ul class='pop-selectUl' id='yearSelect'>
+				<a href="javascript:;" id='showYears' ng-click='shoeYearEdit()'><input type='text' class='pop-input pop-select' ng-model='bornYear' ng-init="bornYear = '<?php echo $memberValue['born']; ?>'" disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
+				<ul class='pop-selectUl' id='yearSelect' ng-show='shoeYearEditStatus'>
 					<a href="javascript:;" ng-repeat="n in [] | range:50">
-						<li class='yearsSelected' data-value='{{n}}'>{{n}}</li>
-						<a href="javascript:;" ng-if="n=='<?php echo $memberValue['born']; ?>'" class='pop_selected'><li>{{n}}</li></a>
+						<li class='yearsSelected' ng-click='selectBornYear(n)'>{{n}}</li>
 					</a>
 				</ul>
 			</div>
@@ -60,9 +64,11 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>最高學歷</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showEducation'><input type='text' class='pop-input pop-select' value='<?php echo $memberValue['lastEducation']; ?>' disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
-				<ul class='pop-selectUl' id='educationSelect'>
-					<a href="javascript:;" ng-repeat='edu in educations'><li class='educationSelected' data-value='{{edu.name}}'>{{edu.name}}</li></a>
+				<a href="javascript:;" id='showEducation' ng-click='showEduEdit()'><input type='text' class='pop-input pop-select' ng-model='topEdu' ng-init="topEdu='<?php echo $memberValue['lastEducation']; ?>'" disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
+				<ul class='pop-selectUl' id='educationSelect' ng-show='showEduEditStatus'>
+					<a href="javascript:;" ng-repeat='edu in educations'>
+						<li class='educationSelected' ng-click='selectTopEdu(edu)'>{{edu.name}}</li>
+					</a>
 				</ul>
 			</div>
 			<p class='edit-hint'>必選</p>
@@ -70,23 +76,25 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>工作年齡</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input' id='userWorkyear' value='<?php echo $memberValue['workYears']; ?>'>
+				<input type='text' class='pop-input' id='userWorkyear' ng-model='workYear' ng-init="workYear=<?php echo $memberValue['workYears']; ?>">
 			</div>
 			<p class='edit-hint'>必填,單位為「年」</p>
 		</div>
 		<div class='pop-edit-line'>
 			<span class='popLabel'>求職狀態</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showJobStatus'><input type='text' class='pop-input pop-select' value='<?php echo $memberValue['jobStatus'] ?>' disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
-				<ul class='pop-selectUl' id='jobStatusSelect'>
-					<a href="javascript:;" ng-repeat='jbs in jobStatus'><li class='jbsSelected' data-value='{{jbs.name}}'>{{jbs.name}}</li></a>
+				<a href="javascript:;" id='showJobStatus' ng-click='showJobEdit()'><input type='text' class='pop-input pop-select' ng-model='jobShow' ng-init="jobShow='<?php echo $memberValue['jobStatus'] ?>'" disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
+				<ul class='pop-selectUl' id='jobStatusSelect' ng-show='showJobEditStatus'>
+					<a href="javascript:;" ng-repeat='jbs in jobStatus'>
+						<li class='jbsSelected' ng-click='selectJobStatus(jbs)'>{{jbs.name}}</li>
+					</a>
 				</ul>
 			</div>
 			<p class='edit-hint'>必選</p>
 		</div>
 
 		<div class='pop-edit-line popSaveDiv'>
-			<a href="javascript:;" class='pop_save'>保存</a>
+			<a href="javascript:;" class='pop_save' ng-click='save()'>保存</a>
 		</div>
 	</div>
 
@@ -211,7 +219,7 @@
 		<div  class="clearfix showskills"  
 		ng-hide='showSpecial'
 		ng-init="skillListInit()">
-			<a href="javascript:;" class='icon title-chart edit' ng-click='showSpecialFun()'></a>
+			<a href="javascript:;" class='icon title-chart edit' ng-click='showSpecialFun()' style='top:20px;'></a>
 			<ul class='skillList'>
 				<li class='skill' ng-repeat='skill in myskills'>{{skill}}</li>
 			</ul>

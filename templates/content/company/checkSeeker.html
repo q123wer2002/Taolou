@@ -45,7 +45,7 @@
 			<input type='hidden' ng-init="SEEKER_RESUME_SRC='<?php echo $this->resume[$value['id']][0]['src']; ?>'">
 				<?php }else{ //online cv?>
 			<input type='hidden' ng-init="SEEKER_RESUME_NAME='<?php echo "頭路網線上履歷"; ?>'">
-			<input type='hidden' ng-init="SEEKER_RESUME_SRC='<?php echo "XXX"; ?>'">
+			<input type='hidden' ng-init="SEEKER_RESUME_SRC='<?php echo "userMe_preview.php?seekerID=".$this->encode($value['memberId']); ?>'">
 				<?php } ?>
 
 			<input type='hidden' ng-init="SEEKER_STATUS='<?php echo $value['status']; ?>'">
@@ -87,7 +87,7 @@
 				<div class='alertLight' style='background:#EB6A64;' ng-show='seeker.status == 1'></div>
 				<div class='alertLight' style='background:#FF8227;' ng-show='seeker.status == 2'></div>
 				<div class='alertLight' style='background:#FFBE0E;' ng-show='seeker.status == 3'></div>
-				<div class='alertLight' style='background:#17B385;' ng-show='seeker.status == 4'></div>{{seeker.status}}
+				<div class='alertLight' style='background:#17B385;' ng-show='seeker.status == 4'></div>
 
 				<textarea class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment'></textarea>
 

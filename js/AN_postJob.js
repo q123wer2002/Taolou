@@ -113,6 +113,7 @@ TaoLou.controller('Taolou_postJob',['$scope','$http',function postJob($scope,$ht
 			}
 			else{//location
 				$scope.jobLocation=$scope.county[1]+"/"+$scope.district[1]+"/"+$scope.zipcode[1];
+				$scope.saveJob();
 			}
 		}
 		else{

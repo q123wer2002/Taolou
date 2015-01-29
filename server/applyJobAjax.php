@@ -17,8 +17,9 @@ if(@$_SESSION['user']['id']!= ""){$userId=$_SESSION['user']['id'];}
 //========================
 
 if(@$_POST['method'] == "applyJob"){
+	//print_r($_POST);
 	if($userId != ""){
-		$sql_apply="INSERT INTO ".$obj_tmp1->jobManage." VALUES(NULL,'".$userId."','".$_POST['jobID']."','".$_POST['CV']['id']."','n','',CURRENT_TIMESTAMP)";
+		$sql_apply="INSERT INTO ".$obj_tmp1->jobManage." VALUES(NULL,'".$userId."','".$_POST['jobID']."','".$_POST['CV']['id']."','n','','',CURRENT_TIMESTAMP)";
 		mysql_query($sql_apply);
 
 		$message=array("first"=>"success");

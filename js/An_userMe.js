@@ -2,6 +2,72 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 
 	$scope.phone=[{'phone':''},];
 
+	//init showPOPEdit
+	$scope.showPOPEditStatus=false;
+	$scope.shoeYearEditStatus=false;
+	$scope.showEduEditStatus=false;
+	$scope.showJobEditStatus=false;
+
+	$scope.name='';
+	$scope.bornYear='';
+	$scope.topEdu='';
+
+
+	// show function
+	$scope.showPOPEdit=function(){
+		if($scope.showPOPEditStatus){$scope.showPOPEditStatus=false;}
+		else{$scope.showPOPEditStatus=true;}
+	}
+	$scope.shoeYearEdit=function(){
+		if($scope.shoeYearEditStatus){$scope.shoeYearEditStatus=false;}
+		else{$scope.shoeYearEditStatus=true;}
+	}
+	$scope.showEduEdit=function(){
+		if($scope.showEduEditStatus){$scope.showEduEditStatus=false;}
+		else{$scope.showEduEditStatus=true;}
+	}
+	$scope.showJobEdit=function(){
+		if($scope.showJobEditStatus){$scope.showJobEditStatus=false;}
+		else{$scope.showJobEditStatus=true;}
+	}
+
+	//click functino
+	$scope.selectBornYear=function(item){
+		$scope.bornYear=item;
+		$scope.shoeYearEditStatus=false;
+	}
+	$scope.selectTopEdu=function(item){
+		$scope.topEdu=item.name;
+		$scope.showEduEditStatus=false;
+	}
+	$scope.selectJobStatus=function(item){
+		$scope.jobShow=item.name;
+		$scope.showJobEditStatus=false;
+	}
+	//save data
+	$scope.save=function(){
+		if($scope.name==''){}
+		else if($scope.bornYear==''){}
+		else if($scope.topEdu==''){}
+		else if($scope.jobShow==''){}
+		else if($scope.workYear==''){}
+		else{
+			var userProfileObject={"method":"saveUserProfile","userName":$scope.name,"userBorn":$scope.bornYear,"userEducation":$scope.topEdu,"userWorkyear":$scope.workYear,"userJobstatus":$scope.jobShow};
+			$http({
+				method:'POST',
+				url:'server/userMeAjax.php',
+				data: $.param(userProfileObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+				}).
+				success(function(json){
+					console.log(json);
+				}).
+				error(function(json){
+					console.warn(json);
+			});
+		}
+	}
+
 	//編輯,儲存手機
 	$scope.editphone = function(item) {
 		item.editing=true;
@@ -461,67 +527,4 @@ $(document).ready(function(){
 		var el = document.getElementById("file");
       	if (el) {el.click();}
 	});
-
-	$('.editProfile').click(function(){
-		$('.popEditProfileDiv').animate({bottom:'15%'},500);
-	});
-	$('.closePop').click(function(){
-		$('.popEditProfileDiv').animate({bottom:'-100%'},500);
-	});
-
-	//點擊出現下拉選單
-	$('#showYears').click(function(){
-		$('#yearSelect').toggle('fast');
-	});
-	$('#showEducation').click(function(){
-		$('#educationSelect').toggle('fast');
-	});
-	$('#showJobStatus').click(function(){
-		$('#jobStatusSelect').toggle('fast');
-	});
-
-	//點擊下拉選單，出現值
-	$('.yearsSelected').click(function(){
-		var yearValue=$(this).data('value');
-		$('#showYears input').val(yearValue);
-		$('#yearSelect').toggle('fast');
-	});
-	$('.educationSelected').click(function(){
-		var eduValue=$(this).data('value');
-		$('#showEducation input').val(eduValue);
-		$('#educationSelect').toggle('fast');
-	});
-	$('.jbsSelected').click(function(){
-		var jbsValue=$(this).data('value');
-		$('#showJobStatus input').val(jbsValue);
-		$('#jobStatusSelect').toggle('fast');
-	});
-
-	//儲存到資料庫
-	$('.pop_save').click(function(){
-		var userName=$('#userName').val();
-		var userBorn=$('#showYears input').val();
-		var userEducation=$('#showEducation input').val();
-		var userWorkyear=$('#userWorkyear').val();
-		var userJobstatus=$('#showJobStatus input').val();
-		connect_db_save(userName,userBorn,userEducation,userWorkyear,userJobstatus);
-		$('.popEditProfileDiv').animate({bottom:'-100%'},500);
-	});
 });
-
-//Ajax to save data  //save pop data
-function connect_db_save(userName,userBorn,userEducation,userWorkyear,userJobstatus)
-{
-	//alert(userName+userBorn+userEducation+userWorkyear+userJobstatus);
-	var now = new Date();
-	var userProfileObject={"method":"saveUserProfile","userName":userName,"userBorn":userBorn,"userEducation":userEducation,"userWorkyear":userWorkyear,"userJobstatus":userJobstatus};
-	$.ajax({
-		type: "POST",
-		url: "server/userMeAjax.php",
-		data: $.param(userProfileObject),
-		headers: {'Content-type': 'application/x-www-form-urlencoded'},
-		async: true,
-		error: function (xhr,error){console.warn(xhr);},
-		success: function (json) {console.log(json);location.reload();}
-	});
-}

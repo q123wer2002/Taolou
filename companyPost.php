@@ -223,7 +223,7 @@ switch(@$action){
     $obj_tmp1->accessMan=array();
     if(!empty($obj_tmp1->laout_arr['showJob'])){
         foreach($obj_tmp1->laout_arr['showJob'] as $key => $value){
-            $sql_findRightMan="SELECT ".$obj_tmp1->member.".*, ".$obj_tmp1->memberCV.".src as RESUME
+            $sql_findRightMan="SELECT ".$obj_tmp1->member.".*, ".$obj_tmp1->memberCV.".id as RESUME_id, ".$obj_tmp1->memberCV.".src as RESUME_src
                                FROM ".$obj_tmp1->memberJob."
                                LEFT JOIN ".$obj_tmp1->member." ON ".$obj_tmp1->memberJob.".memberId=".$obj_tmp1->member.".id
                                LEFT JOIN ".$obj_tmp1->memberCV." ON ".$obj_tmp1->memberJob.".cvId=".$obj_tmp1->memberCV.".id 
