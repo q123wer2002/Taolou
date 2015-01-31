@@ -22,10 +22,45 @@ TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$htt
 		{'name':'職位管理','url':'companyPost.php'},
 	];
 
-
+	//search init
 	$scope.searchText='';
+	$scope.searchPlaceHolder='搜尋公司或職位';
+	$scope.searchC=[];
+	$scope.searchJ=[];
+
+	$scope.companySearch=false;
+	$scope.jobSearch=false;
+	$scope.noSearch=false;
+
+	//search click
+	$scope.closeSearch=function(){
+		$scope.companySearch=false;
+		$scope.jobSearch=false;
+		$scope.noSearch=false;
+		$scope.searchC=[];
+		$scope.searchJ=[];
+	}
+
+	//search function
+	$scope.insertCompany=function(item){
+		if(item.company){
+			for(var i=0;i<item.company.length;i++){
+				$scope.searchC.push({'name':item.company[i]['companyName'],'jobs':item.company_jobCOUNT[item.company[i]['id']]['jobcount'],'src':item.company_jobCOUNT[item.company[i]['id']]['src']});
+			}
+		}
+	}
+	$scope.insertJob=function(item){
+		if(item.job){
+			for(var i=0;i<item.job.length;i++){
+				$scope.searchJ.push({'name':item.job[i]['jobName'],'company':item.job_companyName[item.job[i]['id']]['companyName'],'src':item.job_companyName[item.job[i]['id']]['src']});
+			}
+		}
+	}
+
+	//search function
 	$scope.search=function(){
 		if($scope.searchText != ""){
+			$scope.closeSearch();
 			var searchObject={'method':'search','keyword':$scope.searchText};
 			$http({
 				method:'POST',
@@ -34,7 +69,26 @@ TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$htt
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
 			success(function(json){
-				console.log(json);
+				//console.log(json);
+				if(json.status=='company&job'){
+					$scope.companySearch=true;
+					$scope.jobSearch=true;
+					//load function
+					$scope.insertCompany(json);
+					$scope.insertJob(json);
+				}
+				else if(json.status=='company'){
+					$scope.companySearch=true;
+					//load function
+					$scope.insertCompany(json);
+				}
+				else if(json.status=='job'){
+					$scope.jobSearch=true;
+					//console.warn(json.job.length);
+					//load function
+					$scope.insertJob(json);
+				}
+				else{$scope.noSearch=true;}
 			}).
 			error(function(json){
 				console.warn(json);
@@ -48,28 +102,45 @@ TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$htt
 TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 
 	$scope.hotJobs=[
-		{'name':'全部','hotTag':'1'},
-		{'name':'產品經理','hotTag':'2'},
-		{'name':'前端工程師','hotTag':'3'},
-		{'name':'後端工程師','hotTag':'4'},
-		{'name':'iOS工程師','hotTag':'5'},
-		{'name':'Android工程師','hotTag':'6'},
+		{'name':'全部'},
+		{'name':'產品經理'},
+		{'name':'前端工程師'},
+		{'name':'後端工程師'},
+		{'name':'iOS工程師'},
+		{'name':'Android工程師'},
 	];
 
 	$scope.positions=[
-		{'name':'全部','posTag':'1'},
-		{'name':'北部','posTag':'2'},
-		{'name':'中部','posTag':'3'},
-		{'name':'南部','posTag':'4'},
-		{'name':'東部','posTag':'5'},
-		{'name':'外海','posTag':'6'}
+		{'name':'全部','number':1},
+		{'name':'基隆','number':2},
+		{'name':'台北','number':3},
+		{'name':'新北','number':4},
+		{'name':'宜蘭','number':5},
+		{'name':'新竹','number':6},
+		{'name':'桃園','number':7},
+		{'name':'苗栗','number':8},
+		{'name':'台中','number':9},
+		{'name':'彰化','number':10},
+		{'name':'南投','number':11},
+		{'name':'嘉義','number':12},
+		{'name':'雲林','number':13},
+		{'name':'台南','number':14},
+		{'name':'高雄','number':15},
+		{'name':'屏東','number':16},
+		{'name':'台東','number':17},
+		{'name':'花蓮','number':18},
+		{'name':'金門','number':19},
+		{'name':'連江','number':20},
+		{'name':'澎湖','number':21},
+		{'name':'南海諸島','number':22},
+		{'name':'海外','number':23},
 	];
 
 	$scope.jobTypes=[
-		{'name':'全部','typeTag':'1'},
-		{'name':'正職','typeTag':'2'},
-		{'name':'兼職','typeTag':'3'},
-		{'name':'實習','typeTag':'4'}
+		{'name':'全部','number':1},
+		{'name':'全職','number':2},
+		{'name':'兼職','number':3},
+		{'name':'實習','number':4}
 	];
 
 	$scope.ranks=[
@@ -78,6 +149,41 @@ TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 		{'name':'最新'}
 	];
 
+	//init 
+	$scope.cityStatus=false;
+	$scope.typeStatus=false;
+	$scope.salaryStatus=false;
+
+	//city Selector
+	$scope.cityNumber=function(city){
+		for(var i=0;i<$scope.positions.length;i++){
+			if($scope.positions[i].name === city){$scope.cityNum=$scope.positions[i].number;}
+		}
+	}
+	//jobtype Selector
+	$scope.jobTypesNumber=function(type){
+		for(var i=0;i<$scope.jobTypes.length;i++){
+			if($scope.jobTypes[i].name === type){$scope.typeNum=$scope.jobTypes[i].number;}
+		}
+	}
+	//salary INIT
+	$scope.salaryINIT=function(){
+		if($scope.salary != ""){
+			var a=$scope.salary.split("%5B");
+			//show a[0]=[low,high]
+			
+			//console.log(a[0]);
+			var b=a[0].split(",")
+			//console.log(b[1]);
+			var c=b[0].split("[")
+			//console.log(c[1]);
+			var d=b[1].split("]")
+			//console.log(d[0]);
+			
+			$scope.salaryLow=c[1];
+			$scope.salaryHigh=d[0];
+		}
+	}
 }]);
 
 TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scope,$http){

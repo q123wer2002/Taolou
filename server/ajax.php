@@ -13,26 +13,74 @@ $obj_tmp1->tmp_order ='order By sort Asc';
 
 if(@$_POST['method'] == 'search'){
 
+	//init
+	$companySearch=false;
+	$jobSearch=false;
 	$obj_tmp1->tmp_where=$_POST['keyword'];
 
 	//開始搜尋公司
 	$sql_searchC="SELECT ".$obj_tmp1->company.".*
 				 FROM ".$obj_tmp1->company."
-				 WHERE ".$obj_tmp1->company.".companyName LIKE '%".$obj_tmp1->tmp_where."%' ";
+				 WHERE ".$obj_tmp1->company.".companyName LIKE '%".$obj_tmp1->tmp_where."%'
+				 OR ".$obj_tmp1->company.".companyShortName LIKE '%".$obj_tmp1->tmp_where."%'";
 	$obj_tmp1->laout_arr['searchC']=array();
 	$obj_tmp1->basic_select('laout_arr','searchC',$sql_searchC);
+		//看看公司的目前開放職缺
+	if(!empty($obj_tmp1->laout_arr['searchC'])){
+		$companySearch='ture';
+		//array to save jobs
+		$obj_tmp1->jobCOUNT=array();
+
+		foreach ($obj_tmp1->laout_arr['searchC'] as $key => $value) {
+			$sql_jobCount="SELECT COUNT(".$obj_tmp1->job.".id) as COUNTJOB
+						   FROM ".$obj_tmp1->job."
+						   WHERE ".$obj_tmp1->job.".companyId='".$value['id']."'
+						   AND ".$obj_tmp1->job.".status='y'";
+			$obj_tmp1->laout_arr['jobCount']=array();
+			$obj_tmp1->basic_select('laout_arr','jobCount',$sql_jobCount);
+			$obj_tmp1->jobCOUNT[$value['id']]['jobcount']=$obj_tmp1->laout_arr['jobCount'][0]['COUNTJOB'];
+			$obj_tmp1->jobCOUNT[$value['id']]['src']=$obj_tmp1->encode($value['id']);
+		}
+	}
 	//============================
 
 	//開始搜尋工作
 	$sql_searchJ="SELECT ".$obj_tmp1->job.".*
 				 FROM ".$obj_tmp1->job."
-				 WHERE ".$obj_tmp1->job.".jobName LIKE '%".$obj_tmp1->tmp_where."%' ";
+				 WHERE ".$obj_tmp1->job.".jobName LIKE '%".$obj_tmp1->tmp_where."%'
+				 OR ".$obj_tmp1->job.".title LIKE '%".$obj_tmp1->tmp_where."%'";
 	$obj_tmp1->laout_arr['searchJ']=array();
 	$obj_tmp1->basic_select('laout_arr','searchJ',$sql_searchJ);
+		//看看是哪家公司
+		if(!empty($obj_tmp1->laout_arr['searchJ'])){
+			$jobSearch=true;
+			//array to save companyName
+			$obj_tmp1->companyName=array();
+
+			foreach ($obj_tmp1->laout_arr['searchJ'] as $key => $value) {
+				$sql_company="SELECT ".$obj_tmp1->company.".companyName as Name
+							  FROM ".$obj_tmp1->job."
+							  LEFT JOIN ".$obj_tmp1->company." ON ".$obj_tmp1->job.".companyId=".$obj_tmp1->company.".id
+							  WHERE ".$obj_tmp1->company.".id='".$value['companyId']."'";
+				$obj_tmp1->laout_arr['company']=array();
+				$obj_tmp1->basic_select('laout_arr','company',$sql_company);
+				$obj_tmp1->companyName[$value['id']]['companyName']=$obj_tmp1->laout_arr['company'][0]['Name'];
+				$obj_tmp1->companyName[$value['id']]['src']=$obj_tmp1->encode($value['id']);
+			}
+		}
 	//=============================
+	
 
-	echo "yes";
-
+	if($companySearch && $jobSearch){
+		$message=array('status'=>'company&job','company'=>$obj_tmp1->laout_arr['searchC'],'company_jobCOUNT'=>$obj_tmp1->jobCOUNT,'job'=>$obj_tmp1->laout_arr['searchJ'],'job_companyName'=>$obj_tmp1->companyName);
+	}else if($companySearch){
+		$message=array('status'=>'company','company'=>$obj_tmp1->laout_arr['searchC'],'company_jobCOUNT'=>$obj_tmp1->jobCOUNT);
+	}else if($jobSearch){
+		$message=array('status'=>'job','job'=>$obj_tmp1->laout_arr['searchJ'],'job_companyName'=>$obj_tmp1->companyName);
+	}else{
+		$message=array('status'=>'none');
+	}
+	echo json_encode($message);
 	exit;
 }
 else if(@$_POST['method']=='changeMail'){

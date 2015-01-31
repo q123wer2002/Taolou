@@ -10,8 +10,9 @@ h3{border-bottom: 1px solid #eceef1;padding-top: 5px;padding-bottom: 5px;margin-
 	.title-box{background-position: -190px 0px;}
 	.selector{width: 100%;height: auto;position: relative;}
 	.selector ul{list-style: none;padding: 10px;margin-left: 30px;}
-		.tagName{font-weight: 700;font-size: 15px;margin-left: -15px;padding-right: 15px;}
-	.selector ul li{display: inline;}
+		.tagName{font-weight: 700;font-size: 15px;margin-left: 0px;padding-right: 15px;margin-top:10px;text-decoration: underline;}
+	.selector ul li{display: inline-block;}
+	.selector ul a{color:#6b7485;}
 		.tag{margin-right: 15px;padding: 5px;}
 		.tag:hover{cursor: pointer;background:#707b91;color: #ffffff;border-radius: 2px;}
 

@@ -50,8 +50,33 @@
 			<div class='search'>
 				<form class='searchDiv'>
 					<a href="javascript:;" class='icon title-chart inputSearch' ng-click='search()'></a>
-					<input type='text' class='searchBar' ng-model='searchText' placeholder='搜尋公司或職位'>
+					<input type='text' class='searchBar' ng-model='searchText' placeholder='{{searchPlaceHolder}}'>
+					<a href='javascript:;' id='searchBAR' style='position:absolute;top:-5px;right:0;background:#17B385;color:#ffffff;padding:5px 3px;border-radius:3px;' ng-click='search()'>搜尋</a>
 				</form>
+
+				<div class='searchResult' ng-show='companySearch || jobSearch || noSearch'>
+					<a href='javascript:;' style='padding:5px;float:right;margin-top:-2px;' ng-click='closeSearch()'><span class='icon blackCrossIcon'></span></a><br>
+					<p class='searchTitle' ng-show='companySearch'><strong>公司</strong></p>
+					<ul style='list-style:none;' ng-show='companySearch'>
+						<a href="companies.php?company={{company.src}}" ng-repeat='company in searchC'>
+							<li style='height:39px;line-height:39px;padding:0px 30px;'>
+								<span class='company'>{{company.name}}</span>
+								<span class='jobCount'>{{company.jobs}}個職位開放</span>
+							</li>
+						</a>
+					</ul>
+					<p class='searchTitle' ng-show='jobSearch'><strong>職位</strong></p>
+					<ul style='list-style:none;' ng-show='jobSearch'>
+						<a href="jobs.php?jobsid={{job.src}}" ng-repeat='job in searchJ'>
+							<li style='height:39px;line-height:39px;padding:0px 30px;'>
+								<span class='company'>{{job.name}}</span>
+								<span class='jobCount'>{{job.company}}公司職缺</span>
+							</li>
+						</a>
+					</ul>
+
+					<p class='searchTitle' ng-show='noSearch'><strong><span class='icon redCrossIcon'></span>　　找不到結果</strong></p>
+				</div>
 			</div>
 
 			<?php if(@$_SESSION['user']['id']!="" && @$_SESSION['user']['userType']=='1') { ?>

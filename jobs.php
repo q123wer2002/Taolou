@@ -11,6 +11,7 @@ $obj_tmp1->memberCV='taolou_member_cv';
 $obj_tmp1->memberJM="taolou_member_jobmanage";
 
 $obj_tmp1->tmp_where="";
+
 $obj_tmp1->page="0";
 $obj_tmp1->max_page="0";
 if(@laout_check($_REQUEST['page'])==''){@$obj_tmp1->page='1';}
@@ -145,9 +146,44 @@ switch($action){
 	
 	case"jobList":
 
+
 	//職位列表
-		//==篩選器
-	$obj_tmp1->tmp_where=" WHERE ".$obj_tmp1->jobtable.".status='y'";
+	//init
+	$select="";
+	if(@$_GET['city']!=""){
+		$city=laout_check($_GET['city']);
+		if(@$_GET['city']=="全部"){$city="";}
+		$select=$select."AND ".$obj_tmp1->jobtable.".location LIKE '%".$city."%' ";
+	}
+	if(@$_GET['jobtype']!=""){
+		$jobtype=laout_check($_GET['jobtype']);
+		if(@$_GET['jobtype']=="全部"){$jobtype="";}
+		$select=$select."AND ".$obj_tmp1->jobtable.".jobNature LIKE '%".$jobtype."%' ";
+	}
+	if(@$_GET['salary']!=""){//%5B + low + %2C+ High +%5D
+		$salary=laout_check($_GET['salary']);
+		//print_r($salary);
+		$show=split('[,]',$salary);
+		$low=split('[[]',$show[0]);
+		$high=split(']', $show[1]);
+		//print_r($low[1].$high[0]);
+		if($low[1]!="" && $high[0]!=""){
+			$select=$select."AND ".$obj_tmp1->jobtable.".salary >= ".$low[1]." AND ".$obj_tmp1->jobtable.".salary <= ".$high[0]."";
+		}else if($low[1]=="" && $high[0]!=""){
+			$select=$select."AND ".$obj_tmp1->jobtable.".salary <= ".$high[0]."";
+		}else if($low[1]!="" && $high[0]==""){
+			$select=$select."AND ".$obj_tmp1->jobtable.".salary >= ".$low[1]."";
+		}else{}
+	}
+	if(@$_GET['rank']!=""){
+		$rank=laout_check($_GET['rank']);
+		//$select=$select."AND ".$obj_tmp1->jobtable.".jobNature LIKE '%".$jobtype."%' ";
+	}
+
+	//==篩選器
+	if($select){
+		$obj_tmp1->tmp_where=$select;
+	}else{$obj_tmp1->tmp_where="";}
 
 		//==========================
 
@@ -156,7 +192,7 @@ switch($action){
 				  ".$obj_tmp1->companyTable.".companyName,".$obj_tmp1->companyTable.".logo,".$obj_tmp1->companyTable.".memberSize
 				  FROM ".$obj_tmp1->jobtable."
 				  LEFT JOIN ".$obj_tmp1->companyTable." ON ".$obj_tmp1->companyTable.".id=".$obj_tmp1->jobtable.".companyId 
-				  ".$obj_tmp1->tmp_where."
+				  WHERE ".$obj_tmp1->jobtable.".status='y' ".$obj_tmp1->tmp_where." 
 				  ORDER BY ".$obj_tmp1->jobtable.".createDate
 				  LIMIT ".$jobshow_start.",20";
     $obj_tmp1->laout_arr['showJob']=array();

@@ -14,25 +14,74 @@
             職位列表
         </h3>
 		<div class='selector'>
+            <p class='tagName'>城市</p>
+            <!-- city Selector -->
 			<ul class='city'>
-				<li class='tagName'>城市</li>
-                <li class='tag' ng-repeat='pos in positions'>{{pos.name}}</li>
+                <input type='hidden' ng-init="<?php if(!empty($_GET['city'])){echo "cityStatus=true";} ?>">
+                <input type='hidden' ng-init="cityNumber('<?php if(!empty($_GET['city'])){echo $_GET['city'];}else{echo "全部";} ?>')">
+                <!-- cityStatus == false -->
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&city={{pos.name}}";}else{echo "jobs.php?city={{pos.name}}";} ?>" ng-repeat='pos in positions' ng-show="pos.number < cityNum" ng-if="!cityStatus"><li class='tag'>{{pos.name}}</li></a>
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&city={{pos.name}}";}else{echo "jobs.php?city={{pos.name}}";} ?>" ng-repeat='pos in positions' ng-show="pos.number==cityNum"><li class='tag' style='background:#707b91;color: #ffffff;border-radius: 2px;' ng-if="!cityStatus">{{pos.name}}</li></a>
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&city={{pos.name}}";}else{echo "jobs.php?city={{pos.name}}";} ?>" ng-repeat='pos in positions' ng-show="pos.number > cityNum" ng-if="!cityStatus"><li class='tag'>{{pos.name}}</li></a>
+                <!-- cityStatus == true -->
+                <?php //先找到QUERY的字串
+                    $citySearch=split('city=',$_SERVER['REQUEST_URI']);
+                    $citytwiceSearch=split('[&]',$citySearch[1],2);
+                    if(!empty($citytwiceSearch[1])){$citytwiceSearch[1]="&".$citytwiceSearch[1];}
+                    //print_r($citySearch[0]."city=XXX&".$citytwiceSearch[1]); 
+                ?>
+                <a href="<?php echo $citySearch[0]."city={{pos.name}}".$citytwiceSearch[1]; ?>" ng-repeat='pos in positions' ng-show="pos.number < cityNum" ng-if="cityStatus"><li class='tag'>{{pos.name}}</li></a>
+                <a href="<?php echo $citySearch[0]."city={{pos.name}}".$citytwiceSearch[1]; ?>" ng-repeat='pos in positions' ng-show="pos.number==cityNum"><li class='tag' style='background:#707b91;color: #ffffff;border-radius: 2px;' ng-if="cityStatus">{{pos.name}}</li></a>
+                <a href="<?php echo $citySearch[0]."city={{pos.name}}".$citytwiceSearch[1]; ?>" ng-repeat='pos in positions' ng-show="pos.number > cityNum" ng-if="cityStatus"><li class='tag'>{{pos.name}}</li></a>
 			</ul>
+            <!-- jobtype Selector -->
+            <p class='tagName'>類型</p>
 			<ul class='jobtype'>
-				<li class='tagName'>類型</li>
-                <li class='tag' ng-repeat='type in jobTypes'>{{type.name}}</li>
+                <input type='hidden' ng-init="<?php if(!empty($_GET['jobtype'])){echo "typeStatus=true";} ?>">
+                <input type='hidden' ng-init="jobTypesNumber('<?php if(!empty($_GET['jobtype'])){echo $_GET['jobtype'];}else{echo "全部";} ?>')">
+                <!-- typeStatus == false -->
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&jobtype={{type.name}}";}else{echo "jobs.php?jobtype={{type.name}}";} ?>" ng-repeat='type in jobTypes' ng-show="type.number < typeNum" ng-if="!typeStatus"><li class='tag'>{{type.name}}</li></a>
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&jobtype={{type.name}}";}else{echo "jobs.php?jobtype={{type.name}}";} ?>" ng-repeat='type in jobTypes' ng-show="type.number == typeNum" ng-if="!typeStatus"><li class='tag' style='background:#707b91;color: #ffffff;border-radius: 2px;'>{{type.name}}</li></a>
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&jobtype={{type.name}}";}else{echo "jobs.php?jobtype={{type.name}}";} ?>" ng-repeat='type in jobTypes' ng-show="type.number > typeNum" ng-if="!typeStatus"><li class='tag'>{{type.name}}</li></a>
+                <?php //先找到QUERY的字串
+                    $typeSearch=split('jobtype=',$_SERVER['REQUEST_URI']);
+                    $typetwiceSearch=split('[&]',$typeSearch[1],2);
+                    if(!empty($typetwiceSearch[1])){$typetwiceSearch[1]="&".$typetwiceSearch[1];}
+                    //print_r($typeSearch[0]."city=XXX&".$typetwiceSearch[1]); 
+                ?>
+                <!-- typeStatus == true -->
+                <a href="<?php echo $typeSearch[0]."jobtype={{type.name}}".$typetwiceSearch[1]; ?>" ng-repeat='type in jobTypes' ng-show="type.number < typeNum" ng-if="typeStatus"><li class='tag'>{{type.name}}</li></a>
+                <a href="<?php echo $typeSearch[0]."jobtype={{type.name}}".$typetwiceSearch[1]; ?>" ng-repeat='type in jobTypes' ng-show="type.number == typeNum" ng-if="typeStatus"><li class='tag' style='background:#707b91;color: #ffffff;border-radius: 2px;'>{{type.name}}</li></a>
+                <a href="<?php echo $typeSearch[0]."jobtype={{type.name}}".$typetwiceSearch[1]; ?>" ng-repeat='type in jobTypes' ng-show="type.number > typeNum" ng-if="typeStatus"><li class='tag'>{{type.name}}</li></a>
 			</ul>
-            <ul class='salary'>
-                <li class='tagName'>薪水</li>
-                <span class='icon moneyIcon'></span><input type="text" class='input' name="lower_bound"> ~ <span class='icon moneyIcon'></span><input class='input' type="text" name="upper_bound">
+            <!-- salary Selector -->
+            <p class='tagName'>薪水</p>
+            <ul class='salary' ng-mouseover="checkSalary=true" ng-mouseleave="checkSalary=false">
+                <input type='hidden' ng-init="<?php if(!empty($_GET['salary'])){echo "salaryStatus=true";} ?>">
+                <input type='hidden' ng-init="salary='<?php if(!empty($_GET['salary'])){echo $_GET['salary'];} ?>'">
+                <input type='hidden' ng-init="salaryINIT()">
+
+                <span class='icon moneyIcon'></span><input type="text" class='input' ng-model='salaryLow'> -
+                <span class='icon moneyIcon'></span><input class='input' type="text" ng-model='salaryHigh'>
+                <!-- salaryStatus==false -->
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D";}else{echo "jobs.php?salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D";} ?>" style='color:#ffffff;background:#36A9E5;padding:6px 3px;border-radius:3px;margin-left:5px;' ng-show='checkSalary' ng-if="!salaryStatus">確定</a>
+                <!-- salaryStatus==true -->
+                <?php //先找到QUERY的字串
+                    $salarySearch=split('salary=',$_SERVER['REQUEST_URI']);
+                    $salarytwiceSearch=split('[&]',$salarySearch[1],2);
+                    if(!empty($salarytwiceSearch[1])){$salarytwiceSearch[1]="&".$salarytwiceSearch[1];}
+                    //print_r($salarySearch[0]."city=XXX&".$salarytwiceSearch[1]); 
+                ?>
+                <a href="<?php echo $salarySearch[0]."salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D".$salarytwiceSearch[1]; ?>" style='color:#ffffff;background:#36A9E5;padding:6px 3px;border-radius:3px;margin-left:5px;' ng-show='checkSalary' ng-if="salaryStatus">確定</a>
             </ul>
 		</div>
-        <div class='selector'>
+        <!-- <div class='selector'>
+            <p class='tagName'>排序</p>
             <ul class='rank'>
-                <li class='tagName'>排序</li>
-                <li class='tag' ng-repeat='rank in ranks'>{{rank.name}}</li>
+                <a href="jobList.php?rank={{rank.name}}" ng-repeat='rank in ranks' ng-if="rank.name == '綜合排名'"><li class='tag' style='background:#707b91;color: #ffffff;border-radius: 2px;'>{{rank.name}}</li></a>
+                <a href="jobList.php?rank={{rank.name}}" ng-repeat='rank in ranks' ng-if="rank.name != '綜合排名'"><li class='tag'>{{rank.name}}</li></a>
             </ul>
-        </div>
+        </div> -->
 	</section>
 
     <div class='showJobs'>
@@ -63,22 +112,22 @@
         <div class='dividePage'>
             <div class='pageBar'>
                 <?php if($this->page > 2) {?>
-                    <a class='home pageTag' href="index.php">首頁</a>
+                    <a class='home pageTag' href="jobs.php">首頁</a>
                 <?php } ?>
 
                 <?php if($this->page > 1) {?>
-                    <a class='pre pageTag' href="index.php?page=<?php echo ($this->page-1); ?>">上一頁</a>
+                    <a class='pre pageTag' href="jobs.php?page=<?php echo ($this->page-1); ?>">上一頁</a>
                     <?php for($i=1;$i<$this->page;$i++) { ?>
-                    <a class='pageTag' href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <a class='pageTag' href="jobs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                 <?php } ?><?php } ?>
 
                 <a class='page pageTag'><?php echo $this->page; ?></a>
 
                 <?php if($this->page!=$this->max_page && $this->page<$this->max_page) {?>
                     <?php for($i=$this->page+1;$i<=$this->max_page;$i++) {?>
-                    <a class='pageTag' href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <a class='pageTag' href="jobs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                     <?php } ?>
-                    <a class='next pageTag' href="index.php?page=<?php echo ($this->page+1); ?>">下一頁</a>
+                    <a class='next pageTag' href="jobs.php?page=<?php echo ($this->page+1); ?>">下一頁</a>
                 <?php } ?>
             </div>
         </div>
