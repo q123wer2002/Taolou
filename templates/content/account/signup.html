@@ -18,6 +18,33 @@
 <script type="text/javascript" src='js/LinkedIn_user.js'></script>
 
 <div class='signupDiv' ng-controller='TaolouAccount'>
+	<div style='color:red;text-align:center;' ng-show='successSignup'>
+		<h2>恭喜你，註冊成功</h2><br>
+		請記得去信箱認證，認證後才可使用頭路網TaoLou求職喔！<br>
+		<span><span id='second'></span>秒將會自動後跳轉頁面...</span>
+	</div>
+	<script type="text/javascript">
+	//設定倒數秒數
+	var t = 10;
+
+	//顯示倒數秒收
+	function showTime()
+	{
+	    t -= 1;
+	    document.getElementById('second').innerHTML= t;
+	    
+	    if(t==0)
+	    {
+	        location.href='index.php';
+	    }
+	    
+	    //每秒執行一次,showTime()
+	    setTimeout("showTime()",1000);
+	}
+
+	//執行showTime()
+	</script>
+
 	<h3>註冊「Taolou」帳號</h3>
 	<hr>
 	<div class='form'>

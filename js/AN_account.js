@@ -8,7 +8,7 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 		{'name':'一般用戶','values':'n'},
 		{'name':'人力資源','values':'y'},
 	];
-
+	$scope.successSignup=false;
 	$scope.account = function() {
 		if($scope.email != "" && $scope.password != ""){
 			if($scope.myType.values==''){
@@ -34,7 +34,11 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 				}
 				else if(json.actions=='login'){
 					if(json.url=='X'){$scope.errorMessage='*'+json.first;}
-					else{window.open(json.url,'_self');}
+					else{
+						$scope.successSignup=true;
+						showTime();
+						//window.open(json.url,'_self');
+					}
 				}
 			}).
 			error(function(json){
