@@ -1,7 +1,11 @@
 var TaoLou = angular.module('TaoLou',[]);
 
 TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$http){
-
+	//init 
+	$scope.companySearch=false;
+	$scope.jobSearch=false;
+	$scope.noSearch=false;
+	
 	$scope.lists=[
 		{'name':'主題公司','url':'topicCompany.php'},
 		{'name':'職缺','url':'jobs.php'},
@@ -27,10 +31,6 @@ TaoLou.controller('TaoLouMenu',['$scope','$http',function TaoLouMenu($scope,$htt
 	$scope.searchPlaceHolder='搜尋公司或職位';
 	$scope.searchC=[];
 	$scope.searchJ=[];
-
-	$scope.companySearch=false;
-	$scope.jobSearch=false;
-	$scope.noSearch=false;
 
 	//search click
 	$scope.closeSearch=function(){

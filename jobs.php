@@ -9,7 +9,11 @@ $obj_tmp1->companyFin="taolou_company_finance";
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->memberCV='taolou_member_cv';
 $obj_tmp1->memberJM="taolou_member_jobmanage";
-
+//resume check
+$obj_tmp1->memberExp='taolou_member_experience';
+$obj_tmp1->memberedu='taolou_member_education';
+$obj_tmp1->memberSkill="taolou_member_specialskill";
+//============
 $obj_tmp1->tmp_where="";
 
 $obj_tmp1->page="0";
@@ -113,6 +117,28 @@ switch($action){
 		$obj_tmp1->basic_select('laout_arr','CV',$sql_CV);
 			//echo $sql_CV;
 			//print_r($obj_tmp1->laout_arr['CV']);
+		//=========================
+
+		//確認使用者的線上履歷是否完整
+			//init 不完整
+			$obj_tmp1->resumeComplete=true;
+		$sql_resumeCheck="SELECT ".$obj_tmp1->memberExp.".id as EXP ,".$obj_tmp1->memberedu.".id as EDU, ".$obj_tmp1->memberSkill.".id as SKILL
+						  FROM ".$obj_tmp1->memberExp.", ".$obj_tmp1->memberedu.", ".$obj_tmp1->memberSkill."
+						  WHERE ".$obj_tmp1->memberExp.".memberId='".$userId."'
+						  AND ".$obj_tmp1->memberedu.".memberId='".$userId."'
+						  AND ".$obj_tmp1->memberSkill.".memberId='".$userId."'
+						  LIMIT 0,1";
+		$obj_tmp1->laout_arr['resumeCheck']=array();
+		$obj_tmp1->basic_select('laout_arr','resumeCheck',$sql_resumeCheck);
+			//echo $sql_resumeCheck;
+			//print_r($obj_tmp1->laout_arr['resumeCheck']);
+		if(!empty($obj_tmp1->laout_arr['resumeCheck'])){
+			foreach($obj_tmp1->laout_arr['resumeCheck'] as $key => $value){
+				if($value['EXP']==""){$obj_tmp1->resumeComplete=false;continue;}
+				if($value['EDU']==""){$obj_tmp1->resumeComplete=false;continue;}
+				if($value['SKILL']==""){$obj_tmp1->resumeComplete=false;continue;}
+			}
+		}else{$obj_tmp1->resumeComplete=false;}
 		//=========================
 
 		//確認使用者投過獲收藏的履歷

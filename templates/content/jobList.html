@@ -61,10 +61,10 @@
                 <input type='hidden' ng-init="salary='<?php if(!empty($_GET['salary'])){echo $_GET['salary'];} ?>'">
                 <input type='hidden' ng-init="salaryINIT()">
 
-                <span class='icon moneyIcon'></span><input type="text" class='input' ng-model='salaryLow'> -
-                <span class='icon moneyIcon'></span><input class='input' type="text" ng-model='salaryHigh'>
+                <span class='icon moneyIcon'></span><input type="number" class='input' ng-model='salaryLow'> -
+                <span class='icon moneyIcon'></span><input class='input' type="number" ng-model='salaryHigh'>
                 <!-- salaryStatus==false -->
-                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D";}else{echo "jobs.php?salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D";} ?>" style='color:#ffffff;background:#36A9E5;padding:6px 3px;border-radius:3px;margin-left:5px;' ng-show='checkSalary' ng-if="!salaryStatus">確定</a>
+                <a href="<?php if($_SERVER['QUERY_STRING']){echo $_SERVER['REQUEST_URI']."&salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D";}else{echo "jobs.php?salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D";} ?>" style='color:#ffffff;background:#36A9E5;padding:6px 3px;border-radius:3px;margin-left:5px;' ng-show='checkSalary' ng-if="!salaryStatus && salaryLow<salaryHigh && salaryLow>0">確定</a>
                 <!-- salaryStatus==true -->
                 <?php //先找到QUERY的字串
                     $salarySearch=split('salary=',$_SERVER['REQUEST_URI']);
@@ -72,7 +72,8 @@
                     if(!empty($salarytwiceSearch[1])){$salarytwiceSearch[1]="&".$salarytwiceSearch[1];}
                     //print_r($salarySearch[0]."city=XXX&".$salarytwiceSearch[1]); 
                 ?>
-                <a href="<?php echo $salarySearch[0]."salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D".$salarytwiceSearch[1]; ?>" style='color:#ffffff;background:#36A9E5;padding:6px 3px;border-radius:3px;margin-left:5px;' ng-show='checkSalary' ng-if="salaryStatus">確定</a>
+                <a href="<?php echo $salarySearch[0]."salary=%5B{{salaryLow}}%2C{{salaryHigh}}%5D".$salarytwiceSearch[1]; ?>" style='color:#ffffff;background:#36A9E5;padding:6px 3px;border-radius:3px;margin-left:5px;' ng-show='checkSalary' ng-if="salaryStatus && salaryLow<salaryHigh && salaryLow>0">確定</a>
+                <span style='color:#EB6A64;float:left;font-size:10px;margin-top:-25px;' ng-if="salaryLow>salaryHigh || salaryLow<0">請輸入正確的金額查詢</span>
             </ul>
 		</div>
         <!-- <div class='selector'>

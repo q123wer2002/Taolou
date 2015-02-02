@@ -22,7 +22,9 @@ if(@$_POST['method'] == 'search'){
 	$sql_searchC="SELECT ".$obj_tmp1->company.".*
 				 FROM ".$obj_tmp1->company."
 				 WHERE ".$obj_tmp1->company.".companyName LIKE '%".$obj_tmp1->tmp_where."%'
-				 OR ".$obj_tmp1->company.".companyShortName LIKE '%".$obj_tmp1->tmp_where."%'";
+				 OR ".$obj_tmp1->company.".companyShortName LIKE '%".$obj_tmp1->tmp_where."%'
+				 OR ".$obj_tmp1->company.".CEO LIKE '%".$obj_tmp1->tmp_where."%'
+				 OR ".$obj_tmp1->company.".location LIKE '%".$obj_tmp1->tmp_where."%'";
 	$obj_tmp1->laout_arr['searchC']=array();
 	$obj_tmp1->basic_select('laout_arr','searchC',$sql_searchC);
 		//看看公司的目前開放職缺
@@ -48,7 +50,8 @@ if(@$_POST['method'] == 'search'){
 	$sql_searchJ="SELECT ".$obj_tmp1->job.".*
 				 FROM ".$obj_tmp1->job."
 				 WHERE ".$obj_tmp1->job.".jobName LIKE '%".$obj_tmp1->tmp_where."%'
-				 OR ".$obj_tmp1->job.".title LIKE '%".$obj_tmp1->tmp_where."%'";
+				 OR ".$obj_tmp1->job.".title LIKE '%".$obj_tmp1->tmp_where."%'
+				 OR ".$obj_tmp1->job.".location LIKE '%".$obj_tmp1->tmp_where."%'";
 	$obj_tmp1->laout_arr['searchJ']=array();
 	$obj_tmp1->basic_select('laout_arr','searchJ',$sql_searchJ);
 		//看看是哪家公司

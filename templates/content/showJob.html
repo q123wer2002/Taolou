@@ -18,6 +18,8 @@
 			foreach($this->laout_arr['CV'] as $CVKey => $CVValue){ ?>
 	<input type="hidden" ng-init="CV_NAME='<?php echo $CVValue['name']; ?>'">
 	<input type="hidden" ng-init="CV_ID='<?php echo $CVValue['id']; ?>'">
+	<!-- 確認線上履歷完整性 -->
+	<input type='hidden' ng-init="CV_complete=<?php echo $this->resumeComplete; ?>">
 	<input type="hidden" ng-init="CVINIT()">
 	<?php }} ?>
 	<!-- 顯示履歷列表 -->
@@ -27,8 +29,8 @@
 		<select ng-model="myCV" ng-options="CV.name for CV in CVs">
       		<option value="">請選擇履歷</option>
     	</select>
-		<a href="javascript:;" class='applyBtn' ng-click="apply()" ng-if="myCV != '' ">投遞履歷</a>
-		<a href="javascript:;" ng-click="apply()" ng-if="myCV == '' ">投遞</a>
+    	<span style='color:#EB6A64;font-size:12px;font-weight:700;' ng-show="!CV_complete" ng-if="myCV.id==0">TaoLou線上履歷不完整</span>
+		<a href="javascript:;" class='applyBtn' ng-click="apply()" ng-hide="!CV_complete && myCV.id==0">投遞履歷</a>
 	</div>
 	<!-- 開始 -->
 	<section class="nsb-block">

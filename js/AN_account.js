@@ -30,15 +30,15 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 				console.log(json);
 				if(json.actions=="signup"){
 					if(json.url=='X'){$scope.errorMessage='*'+json.first;}
-					else{window.open(json.url,'_self');}
-				}
-				else if(json.actions=='login'){
-					if(json.url=='X'){$scope.errorMessage='*'+json.first;}
 					else{
 						$scope.successSignup=true;
 						showTime();
 						//window.open(json.url,'_self');
 					}
+				}
+				else if(json.actions=='login'){
+					if(json.url=='X'){$scope.errorMessage='*'+json.first;}
+					else{window.open(json.url,'_self');}
 				}
 			}).
 			error(function(json){

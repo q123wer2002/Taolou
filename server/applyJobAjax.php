@@ -31,7 +31,7 @@ if(@$_POST['method'] == "applyJob"){
 }
 else if(@$_POST['method'] == "collectJob"){
 	if($userId != ""){
-		$sql_collect="INSERT INTO ".$obj_tmp1->jobManage." VALUES(NULL,'".$userId."','".$_POST['jobID']."','0','n','collect',CURRENT_TIMESTAMP)";
+		$sql_collect="INSERT INTO ".$obj_tmp1->jobManage." VALUES(NULL,'".$userId."','".$_POST['jobID']."','','n','collect','',CURRENT_TIMESTAMP)";
 		mysql_query($sql_collect);
 
 		$message=array("first"=>"success");
