@@ -1,6 +1,8 @@
 TaoLou.controller('Taolou_userResume',['$scope','$http',function userResume($scope,$http){
 
 	$scope.userResumes=[];
+	$scope.userResumesSkills=[];
+
 	$scope.checkDelete=false;
 	$scope.checkboxModeFun=function(item){
 		var delResumeObject={"method":"checkboxIntellFun","resume":item};
@@ -25,8 +27,6 @@ TaoLou.controller('Taolou_userResume',['$scope','$http',function userResume($sco
 		if(item.selectSkill){item.selectSkill=false;}
 		else{item.selectSkill=true;}
 	}
-
-
 	$scope.RESUME_INIT=function(){
 		if($scope.RESUME_intelligence=='y'){$scope.intell=true;$scope.intelligenceName='開啟';}
 		else{$scope.intell=false;$scope.intelligenceName='取消';}
@@ -36,9 +36,72 @@ TaoLou.controller('Taolou_userResume',['$scope','$http',function userResume($sco
 		else if($scope.RESUME_type=="txt"){$scope.figure="RETEXT";}
 		else{$scope.figure="REX";}
 
-		$scope.userResumes.push({"name":$scope.RESUME_name,"type":$scope.figure,"skill":$scope.RESUME_skill,"intelligence":$scope.intell,"size":$scope.RESUME_size,"src":$scope.RESUME_src,"createDate":$scope.RESUME_createDate,"selectSkill":false,"checkBG":false,"checkDiv":false});
+		$scope.RESUME_skill=$scope.RESUME_skill.split('|');
+		$scope.userResumes.push({"id":$scope.RESUME_id,"name":$scope.RESUME_name,"type":$scope.figure,"skill":$scope.RESUME_skill,"intelligence":$scope.intell,"size":$scope.RESUME_size,"src":$scope.RESUME_src,"createDate":$scope.RESUME_createDate,"newSkill":'',"selectSkill":false,"checkBG":false,"checkDiv":false});
+		//console.log($scope.userResumes);
 	}
-
+	$scope.RESUME_SYSSKILL_INIT=function(){
+		$scope.SYSTEM_SKILL=$scope.SYSTEM_SKILL.split('|');
+		//console.log($scope.SYSTEM_SKILL);
+	}
+	//add skill
+	$scope.addSkill=function(resume,skillName){
+		var index = resume.skill.indexOf(skillName);
+		if(index!='-1'){$scope.errorMes='已經有此技能';}
+		else{resume.skill.push(skillName);$scope.errorMes="";}
+	}
+	//remove skill
+	$scope.remove=function(resume,skillName){
+		var index = resume.skill.indexOf(skillName);
+		if(index!='-1'){resume.skill.splice(index,1);}
+		//console.log(index);
+	}
+	//add new skill
+	$scope.newSkillFun=function(resume){
+		if(resume.newSkill != ""){
+			var index = $scope.SYSTEM_SKILL.indexOf(resume.newSkill);
+			if(index!='-1'){$scope.errorMes='已經有此技能';}
+			else{
+				var addSkillObject={"method":"addNewSkill","skill":resume.newSkill};
+				$http({
+					method:'POST',
+					url:'server/resumeAjax.php',
+					data: $.param(addSkillObject),
+					headers: {'Content-type': 'application/x-www-form-urlencoded'},
+				}).
+				success(function(json){
+					resume.skill.push(resume.newSkill);
+					$scope.errorMes='';
+					resume.newSkill='';
+					console.log(json);
+					//location.reload();
+				}).
+				error(function(json){
+					console.warn(json);
+					$scope.errorMes='發生不可預測的錯誤';
+				});
+			}
+		}else{$scope.errorMes='未填入技能';}
+	}
+	//save skills
+	$scope.save=function(resume){
+		var skillObject={"method":"saveResumeSkill","resume":resume};
+		$http({
+			method:'POST',
+			url:'server/resumeAjax.php',
+			data: $.param(skillObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			//console.log(json);
+			$scope.selectSkillFun(resume);
+			//location.reload();
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.errorMes='發生不可預測的錯誤';
+		});
+	}
 	//delete
 	$scope.showDelete=function(item){
 		item.checkBG=true;

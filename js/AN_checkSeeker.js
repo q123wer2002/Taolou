@@ -28,7 +28,10 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		else if($scope.SEEKER_STATUS=='wait'){$scope.seekStatus=3;}
 		else if($scope.SEEKER_STATUS=='access'){$scope.seekStatus=4;}
 
-		$scope.seekers.push({'id':$scope.SEEKER_ID,'name':$scope.SEEKER_NAME,'photo':$scope.SEEKER_PHOTO,'resume_name':$scope.SEEKER_RESUME_NAME,'resume_src':$scope.SEEKER_RESUME_SRC,'status':$scope.seekStatus,'comment':$scope.SEEKER_COMMENT,'message':"",'openMessage':false,'change':false});
+		if($scope.SEEKER_COMMENT){var status=true;}
+		else{var status=false;}
+
+		$scope.seekers.push({'id':$scope.SEEKER_ID,'name':$scope.SEEKER_NAME,'photo':$scope.SEEKER_PHOTO,'resume_name':$scope.SEEKER_RESUME_NAME,'resume_src':$scope.SEEKER_RESUME_SRC,'status':$scope.seekStatus,'comment':$scope.SEEKER_COMMENT,"commentSatus":status,'message':"",'openMessage':false,'change':false});
 	}
 
 	//change function
@@ -97,6 +100,26 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		}
 		if($scope.countAccess!=0){$scope.bg=true;$scope.peopleCheck=true;}
 		else{$scope.bg=true;$scope.noOneCheck=true;}
+	}
+	$scope.sendComment=function(seeker){
+		if(seeker.comment!=""){
+			var commentObject={"method":"comment","seeker":seeker,"JOB_ID":$scope.JOB_ID};
+			$http({
+				method:'POST',
+				url:'server/checkSeekerAjax.php',
+				data: $.param(commentObject),
+				headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			}).
+			success(function(json){
+				//console.log(json);
+				seeker.commentSatus=true;
+				//location.href='companyPost.php';
+			}).
+			error(function(json){
+				console.warn(json);
+				$scope.skillErrorMess='發生不可預測的錯誤';
+			});
+		}
 	}
 	$scope.save=function(){
 		var seekerObject={"method":"saveSeeker","seekers":$scope.seekers,"JOB_ID":$scope.JOB_ID};

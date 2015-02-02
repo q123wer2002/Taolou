@@ -153,6 +153,14 @@ else if(@$_POST['method']=='messageToSeeker'){
 	$message=array("first"=>"success");
 	echo json_encode($message);
 	exit;
-}
+}else if(@$_POST['method'] == "comment"){
+	$comment=laout_check($_POST['seeker']['comment']);
+	//print_r($_POST);
+	$sql_updaetComment="UPDATE ".$obj_tmp1->memberJob." SET comment='".$comment."' WHERE ".$obj_tmp1->memberJob.".jobId='".$_POST['JOB_ID']."' AND ".$obj_tmp1->memberJob.".memberId='".$_POST['seeker']['id']."'";
+	mysql_query($sql_updaetComment);
 
+	echo "SUCCESS";
+	exit;
+}
+else{}
 ?>

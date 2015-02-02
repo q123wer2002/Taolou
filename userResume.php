@@ -50,6 +50,32 @@ switch(@$action){
     $obj_tmp1->basic_select('laout_arr','CV',$sql_CV);
         //echo $sql_CV;
         //print_r($obj_tmp1->laout_arr['CV']);
+
+    //取得履歷技能
+        //init
+        $obj_tmp1->resumeSkill=array();
+    if(!empty($obj_tmp1->laout_arr['CV'])){
+        foreach ($obj_tmp1->laout_arr['CV'] as $key => $value) {
+            $skillLists=array();
+            $skillLists=split('[|]',$value['skill']);
+                //echo $obj_tmp1->laout_arr['memberSkill'][0]['skillList'];
+                //print_r($skillLists);
+            foreach($skillLists as $skListKey => $skListValue){
+                //echo $skListValue;
+                $sql_SL="SELECT ".$obj_tmp1->skillList.".*
+                         FROM ".$obj_tmp1->skillList."
+                         WHERE ".$obj_tmp1->skillList.".id='".$skListValue."'";
+                $obj_tmp1->laout_arr['SL']=array();
+                $obj_tmp1->basic_select('laout_arr','SL',$sql_SL);
+                    //echo $sql_SL;
+                    //print_r($obj_tmp1->laout_arr['SL']);
+                $obj_tmp1->resumeSkill[$value['id']]=$obj_tmp1->resumeSkill[$value['id']].$obj_tmp1->laout_arr['SL'][0]['skill']."|";
+                    //echo $obj_tmp1->laout_arr['SL'][0]['skill'];
+            }
+            $obj_tmp1->resumeSkill[$value['id']]=substr($obj_tmp1->resumeSkill[$value['id']],0,-1);
+            //print_r($obj_tmp1->resumeSkill);
+        }
+    }
     //=========================
 
     //讀取系統技能
@@ -61,9 +87,10 @@ switch(@$action){
     $obj_tmp1->basic_select('laout_arr','skillList',$sql_skillList);
         //echo $sql_skillList;
         //print_r($obj_tmp1->laout_arr['skillList']);
+    //技能儲存列表
     foreach($obj_tmp1->laout_arr['skillList'] as $allSkillKey => $allSkillValue){
         $obj_tmp1->allSkillList=$obj_tmp1->allSkillList.$allSkillValue['skill']."|";
-    }
+    }//
     $obj_tmp1->allSkillList=substr($obj_tmp1->allSkillList,0,-1);
         //print_r($obj_tmp1->allSkillList);
     //=========================

@@ -2,10 +2,6 @@
 <link href="css/message.css" rel="stylesheet">
 <script type="text/javascript" src='js/AN_jobFound.js'></script>
 
-<style type="text/css">
-    .but{}
-</style>
-
 <section class='selectCompany'>
     <h3>
         <span><span class='icon folder'></span>已解決職位</span>
@@ -20,9 +16,9 @@
     <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue){ ?>
         <?php foreach($this->accessMan[$jobValue['id']] as $manKey => $manValue){ ?>
     <div class='bg' ng-show='showBG' ng-click='showMan()'></div>
-    <div class='check' ng-show='showBG'>
-        <table>
-            <img src="<?php echo $manValue['photo']; ?>" width='150px' style='margin-bottom:15px;'>
+    <div class='check' ng-show='showBG' style="top:70px;">
+        <table style='font-size:10px;'>
+            <img src="<?php echo $manValue['photo']; ?>" width='90px' style='margin-bottom:15px;'>
             <tr>
                 <td>姓名：</td>
                 <td><?php echo $manValue['name']; ?></td>
@@ -37,9 +33,9 @@
             </tr>
         </table>
         <?php if($manValue['RESUME_id'] != 0){//自己的履歷 ?>
-        <a href="<?php echo $manValue['RESUME_src']; ?>" class='but' target='_new'>下載履歷</a>
+        <a href="<?php echo $manValue['RESUME_src']; ?>" class='but' target='_new' style='margin-left:10px;'>下載履歷</a>
         <?php }else{// taolou的履歷 ?>
-        <a href="<?php echo "userMe_preview.php?seekerID=".$this->encode($manValue['id']); ?>" class='but' target='_new'>TaoLou履歷</a>
+        <a href="<?php echo "userMe_preview.php?seekerID=".$this->encode($manValue['id']); ?>" class='but' target='_new' style='margin-left:10px;'>TaoLou履歷</a>
         <?php } ?>
         <a href="javascript:;" class='but' ng-click='showMessage()' ng-hide='Message'>私信錄取者</a>
 

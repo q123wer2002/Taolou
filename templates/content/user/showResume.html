@@ -7,14 +7,17 @@
 
     <!-- 讀取資料庫 -->
     <?php if(!empty($this->laout_arr['CV'])){ foreach($this->laout_arr['CV'] as $CVKey => $CVValue){ ?>
+        <input type="hidden" ng-init="RESUME_id='<?php echo $CVValue['id']; ?>'">
         <input type="hidden" ng-init="RESUME_name='<?php echo $CVValue['name']; ?>'">
         <input type="hidden" ng-init="RESUME_type='<?php echo $CVValue['type']; ?>'">
-        <input type="hidden" ng-init="RESUME_skill='<?php echo $CVValue['skill']; ?>'">
+        <input type="hidden" ng-init="RESUME_skill='<?php echo $this->resumeSkill[$CVValue['id']]; ?>'">
         <input type="hidden" ng-init="RESUME_intelligence='<?php echo $CVValue['intelligence']; ?>'">
         <input type="hidden" ng-init="RESUME_size='<?php echo $CVValue['size']; ?>'">
         <input type="hidden" ng-init="RESUME_src='<?php echo $CVValue['src']; ?>'">
         <input type="hidden" ng-init="RESUME_createDate='<?php echo $CVValue['createDate']; ?>'">
         <input type='hidden' ng-init="RESUME_INIT()">
+        <input type='hidden' ng-init="SYSTEM_SKILL='<?php echo $this->allSkillList; ?>'">
+        <input type='hidden' ng-init="RESUME_SYSSKILL_INIT()">
     <?php }} ?>
     <!-- 讀取結束 -->
 
@@ -35,12 +38,8 @@
                 沒有你的簡歷,
                 <a href="userResume.php?action=upload"><span class='icon Renewupload'></span>請上傳新簡歷</a>
             </div>
-            <div class='reitemList' ng-repeat='resume in userResumes'>
-                <div class='selectSkill' ng-show='resume.selectSkill'>
-                    製作中....
-                    <a href="javascipt:;" ng-click='selectSkillFun(resume)'>BACK</a>
-                </div>
-                <div class='jobInfo' ng-hide='resume.selectSkill'>
+            <div class='reitemList'>
+                <div class='jobInfo' ng-repeat='resume in userResumes'>
                     <figure class='icon {{resume.type}}'></figure>
                     <div class='author'>
                         <b class="name">{{resume.name}}</b>
@@ -55,10 +54,41 @@
                         <a href="javascript:;" ng-click='selectSkillFun(resume)'><span> <span class='icon Reskill'></span>選擇簡歷技能 </span></a>｜
                         <a href="javascript:;" ng-click='showDelete(resume)'><span> <span class='icon Redelete'></span>刪除 </span></a>
                     </div>
+                    <!-- start 履歷技能顯示 -->
+                    <div class='ResumeSkillDiv'>
+                        <p>簡歷技能</p>
+                        <ul class='skillListUl' ng-hide="resume.selectSkill">
+                            <li ng-repeat="skill in resume.skill">{{skill}}</li>
+                        </ul>
+                        <ul class='skillListUl' ng-show="resume.selectSkill">
+                            <li ng-repeat="skill in resume.skill">{{skill}}
+                            <a href="javascript:;" ng-click="remove(resume,skill)">
+                                <span class='icon blackCrossIcon' style='width:12px;height:12px;background-position:-23px -83px;'></span>
+                            </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end 履歷技能顯示 -->
+                    <!-- start 刪除履歷 -->
                     <div class='checkDelBG' ng-show='resume.checkBG' ng-click='closeBG(resume)'></div>
                     <div class='checkDel' ng-show='resume.checkDiv'>
                         你確定要刪除<span style='color:#F57778;'>"{{resume.name}}"</span>履歷？
                         <a href='javascript:;' class='deleteResu' ng-click='delete(resume)'>刪除</a>
+                    </div>
+                    <!-- end 刪除履歷 -->
+                    <div class='selectSkillDiv' ng-show='resume.selectSkill'>
+                        <h3>為您的履歷選擇技能</h3>
+                        <p style='color:red;'>{{errorMes}}</p>
+                        <input class='input' ng-model='resume.newSkill' style='padding:5px;width:300px;margin-top:5px;' placeholder="找不到您要的技能嗎？自己新增">
+                        <button style='color:#ffffff;background:#36A9E5;padding:5px;margin-left:5px;border-radius:3px;' ng-click="newSkillFun(resume)">新增</button>
+
+                        <div class='selectskill'>
+                            
+                            <ul class='skillListUl'>
+                                <a href="javascript:;" ng-repeat='sysSkill in SYSTEM_SKILL' ng-click="addSkill(resume,sysSkill)"><li>{{sysSkill}}</li></a>
+                            </ul>
+                        </div>
+                        <a href="javascript:;" style='color:#ffffff;background:#73AE1F;padding:5px;border-radius:3px;margin-right:10px;' ng-click="save(resume)">儲存</a>
                     </div>
                 </div>
             </div>

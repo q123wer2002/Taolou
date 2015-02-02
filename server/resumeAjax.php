@@ -9,6 +9,8 @@ $obj_tmp1->memberCV="taolou_member_cv";
 
 $obj_tmp1->job="taolou_job";
 
+$obj_tmp1->skillList="taolou_system_specialskill";
+
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
@@ -99,6 +101,38 @@ else if(@$_POST['method']=="checkboxIntellFun"){
    	//print_r($_POST['resume']);
    	$message=array('first'=>"success");
 	echo json_encode($message);
+}else if(@$_POST['method']=="addNewSkill"){
+	$skill=laout_check($_POST['skill']);
+	$sql_addNewSkill="INSERT INTO ".$obj_tmp1->skillList." VALUES(NULL,'0','".$skill."','n',CURRENT_TIMESTAMP)";
+	mysql_query($sql_addNewSkill);
+	//=============
+
+	echo "SUCCESS";
+	exit;
 }
+else if(@$_POST['method']=="saveResumeSkill"){
+	//init skill list
+	$skillList="";
+	foreach($_POST['resume']['skill'] as $key => $value){
+		//list skill id
+		$sql_listID="SELECT ".$obj_tmp1->skillList.".*
+					 FROM ".$obj_tmp1->skillList."
+					 WHERE ".$obj_tmp1->skillList.".skill='".$value."'";
+		$obj_tmp1->laout_arr['listID']=array();
+	    $obj_tmp1->basic_select('laout_arr','listID',$sql_listID);
+	        //echo $sql_listID;
+	        //print_r($obj_tmp1->laout_arr['listID']);
+	    $skillList=$skillList.$obj_tmp1->laout_arr['listID'][0]['id']."|";
+	    //=========================
+	}$skillList=substr($skillList,0,-1);
+	//echo $skillList;
+
+	$sql_updateSkill="UPDATE ".$obj_tmp1->memberCV." SET skill='".$skillList."' WHERE ".$obj_tmp1->memberCV.".id='".$_POST['resume']['id']."'";
+	mysql_query($sql_updateSkill);
+
+	echo "SUCCESS";
+	exit;
+}
+else{}
 
 ?>

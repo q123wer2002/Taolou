@@ -71,7 +71,7 @@
 					履歷：<a href="{{seeker.resume_src}}" class='resume' alt='下載履歷' target='_new' style='color:blue;' ng-click='changeStatusTo2(seeker)'>{{seeker.resume_name}}(下載)</a>
 					<div class='scollBar'>
 						<div class='scroll'></div>
-						<ul class='barUl'>
+						<ul class='barUl' style='font-size:14px;'>
 							<a href="javascript:;" ng-click='changeStatusTo1(seeker)' ng-hide='seeker.status == 1'><li class='bar' id='deny'>不錄取</li></a>
 							<a href="javascript:;" ng-show='seeker.status == 1'><li class='bar' id='deny' style='color:#ffffff;background: #EB6A64'>不錄取</li></a>
 							<a href="javascript:;" ng-click='changeStatusTo2(seeker)' ng-hide='seeker.status == 2'><li class='bar' id='face'>履歷下載</li></a>
@@ -89,8 +89,11 @@
 				<div class='alertLight' style='background:#FFBE0E;' ng-show='seeker.status == 3'></div>
 				<div class='alertLight' style='background:#17B385;' ng-show='seeker.status == 4'></div>
 
-				<textarea class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment'></textarea>
+				<textarea disabled class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment' ng-if="seeker.commentSatus"></textarea>
+				<textarea class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment' ng-if="!seeker.commentSatus"></textarea>
 
+				<a href="javascript:;" style='font-size:14px;color:#ffffff;background:#000000;padding:5px;border-radius:3px;position:absolute;top:60px;right:80px;' ng-click="seeker.commentSatus=false">更改</a>
+				<a href="javascript:;" style='font-size:14px;color:#ffffff;background:#000000;padding:5px;border-radius:3px;position:absolute;top:100px;right:80px;' ng-click="sendComment(seeker)">送出</a>
 			</div>
 		</div>
 
