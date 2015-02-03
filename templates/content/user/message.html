@@ -40,24 +40,31 @@
 	            else if($times < 86400){$divTime=round($times/(3600))."個小時前";}
 	            else if($times < 259200){$divTime=round($times/(86400))."天前";}
 	            else{$divTime=round($times/(259200))."個月前";}
-	        
-			?>
-		
-			<?php if($MesValue['receiveUserId']==$_SESSION['user']['id']) { ?>
-			<div class='SayBG LeftSay saying'>
-				<p><?php echo $MesValue['message']; ?></p>
-				<span class='timestamp'><?php echo $divTime; ?></span>
-			</div>
+	        ?>
+			<?php if($MesValue['receiveUserId']==$_SESSION['user']['id']) { //儲存對話紀錄 ?>
+				<input type='hidden' ng-init="MESSAGE_LEFT='<?php echo laout_check($MesValue['message']); ?>'">
+				<input type='hidden' ng-init="MESSAGE_RIGHT=''">
+				<input type='hidden' ng-init="MESSAGE_time='<?php echo $divTime; ?>'">
 			<?php } ?>
-
 			<?php if($MesValue['sendUserId']==$_SESSION['user']['id']) { ?>
-			<div class='SayBG RightSay saying'>
-				<p class='rightMes'><?php echo $MesValue['message']; ?></p>
-				<span class='timestamp'><?php echo $divTime; ?></span>
-			</div>
+				<input type='hidden' ng-init="MESSAGE_LEFT=''">
+				<input type='hidden' ng-init="MESSAGE_RIGHT='<?php echo laout_check($MesValue['message']); ?>'">
+				<input type='hidden' ng-init="MESSAGE_time='<?php echo $divTime; ?>'">
 			<?php } ?>
-		
+			<input type='hidden' ng-init="MESSAGEINIT()">	
 		<?php }} ?>
+		
+		<div ng-repeat='message in messages'>
+			<div class='SayBG LeftSay saying' ng-if="message.left">
+				<p>{{message.left}}</p>
+				<span class='timestamp' id='{{message.time}}'>{{message.time}}</span>
+			</div>
+			<div class='SayBG RightSay saying' ng-if="message.right">
+				<p class='rightMes'>{{message.right}}</p>
+				<span class='timestamp' id='{{message.time}}'>{{message.time}}</span>
+			</div>
+		</div>
+
 		<div class='whiteBG'></div>
 	</div>
 
@@ -67,8 +74,3 @@
    		<a href="javascript:;" class='btn' ng-click='sendMessage()'>傳送</a>
 	</div>
 </div>
-
-<script type="text/javascript">
-	var objDiv = document.getElementById("MessageDiv");
-	objDiv.scrollTop = objDiv.scrollHeight;
-</script>
