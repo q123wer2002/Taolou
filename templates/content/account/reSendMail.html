@@ -9,6 +9,9 @@
 <?php if(!empty($this->laout_arr['userInfo']) && $this->laout_arr['userInfo'][0]['mailValid']!='y'){ 
 		foreach($this->laout_arr['userInfo'] as $key => $value){?>
 <div class='mailValid' ng-controller='TaoLou_mailValid'>
+	<!-- start LOADING DIV -->
+	<div class='loadingBG' ng-show='loading'><p>Loading...</p></div>
+	<!-- end LOADING DIV -->
 	<input type='hidden' ng-init="mail='<?php echo $value['email']; ?>'">
 	<div class='alertDiv'>
 		<h1 style='text-decoration:underline;'>尚未認證</h1><br>

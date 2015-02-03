@@ -1,5 +1,8 @@
 //帳戶專用
 TaoLou.controller('TaolouAccount',function account($scope,$http){
+	//email loading BG
+	$scope.loading=false;
+	//===============
 
 	$scope.email='';
 	$scope.password='';
@@ -20,6 +23,7 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 			else{
 				var accountObject={"method":"signup","memberType":$scope.myType.values,"email":$scope.email,"password":$scope.password};
 			}
+			$scope.loading=true;
 			$http({
 				method:'POST',
 				url:'server/accountAjax.php',
@@ -27,10 +31,15 @@ TaoLou.controller('TaolouAccount',function account($scope,$http){
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
 			success(function(json){
-				console.log(json);
+				//email loading BG
+				$scope.loading=false;
+				//===============
+				//console.log(json);
 				if(json.actions=="signup"){
 					if(json.url=='X'){$scope.errorMessage='*'+json.first;}
 					else{
+						$scope.email="";
+						$scope.password="";
 						$scope.successSignup=true;
 						showTime();
 						//window.open(json.url,'_self');

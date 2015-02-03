@@ -1,4 +1,7 @@
 TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http){
+	//email loading BG
+	$scope.loading=false;
+	//===============
 
 	//init
 	$scope.company="";
@@ -76,6 +79,9 @@ TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http
 		}
 	}
 	$scope.userHRSave=function(){
+		//email loading BG
+		$scope.loading=true;
+		//===============
 		var userHRObject={"method":"saveUserHR","companyName":$scope.company,"facebook":$scope.FB,"google":$scope.Google,"userName":$scope.Name};
 		
 		$http({
@@ -85,6 +91,9 @@ TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
+			//email loading BG
+			$scope.loading=false;
+			//===============
 			console.log(json);
 			location.href="companies.php";
 		}).
@@ -113,6 +122,9 @@ TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http
 	}
 	//re send company valid email
 	$scope.reSendCompanyValid=function(){
+		//email loading BG
+		$scope.loading=true;
+		//===============
 		var reCompanyValid={"method":"reCompanyValid","companyName":$scope.company};
 		
 		$http({
@@ -122,6 +134,9 @@ TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
+			//email loading BG
+			$scope.loading=false;
+			//===============
 			console.log(json);
 			$("#resend").animate({'top':'0px'},500).delay(1500).animate({'top':'-200px'},500);
 		}).
@@ -135,6 +150,9 @@ TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http
 	$scope.CHANGEUSER=function(){
 		if($scope.newContent==""){$scope.contactError="請選擇聯絡人";}
 		else{
+			//email loading BG
+			$scope.loading=true;
+			//===============
 			var userChangeObject={"method":"changeUser","userName":$scope.newContent};
 			
 			$http({
@@ -144,6 +162,9 @@ TaoLou.controller('Taolou_userHr',['$scope','$http',function userHr($scope,$http
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
 			success(function(json){
+				//email loading BG
+				$scope.loading=false;
+				//===============
 				console.log(json);
 				location.reload();
 			}).

@@ -187,6 +187,9 @@ TaoLou.controller('TaoLoujob-index',['$scope', function TaoLoujobIndex($scope){
 }]);
 
 TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scope,$http){
+	//email loading BG
+	$scope.loading=false;
+	//===============
 
 	$scope.mailVlid='再寄一次認證信';
 
@@ -223,6 +226,7 @@ TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scop
 	}
 
 	$scope.reSendMail=function(){
+		$scope.loading=true;
 		var mailObject={'method':'reSendMail','email':$scope.mail};
 		$http({
 			method:'POST',
@@ -231,7 +235,10 @@ TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scop
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
-			console.log(json);
+			//email loading BG
+			$scope.loading=false;
+			//===============
+			//console.log(json);
 			location.href='index.php';
 		}).
 		error(function(json){
@@ -241,6 +248,9 @@ TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scop
 
 	//company valid success
 	$scope.validSuccess=function(){
+		//email loading BG
+		$scope.loading=true;
+		//===============
 		var successObject={'method':'validSuccess','name':$scope.name,'email':$scope.email,'companyName':$scope.companyName};
 		$http({
 			method:'POST',
@@ -249,7 +259,10 @@ TaoLou.controller('TaoLou_mailValid',['$scope','$http', function mailValid($scop
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
-			console.log(json);
+			//email loading BG
+			$scope.loading=false;
+			//===============
+			//console.log(json);
 			location.href='index.php';
 		}).
 		error(function(json){

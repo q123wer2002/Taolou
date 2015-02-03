@@ -1,4 +1,7 @@
 TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope,$http){
+	//email loading BG
+	$scope.loading=false;
+	//===============
 
 	//init
 	$scope.selectSeeker='所有求職者';
@@ -74,6 +77,9 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 	$scope.messageToSeeker=function(item){
 		if(item.message==''){}
 		else{
+			//email loading BG
+			$scope.loading=true;
+			//===============
 			var messageObject={"method":"messageToSeeker","receiveId":item.id,"message":item.message};
 			$http({
 				method:'POST',
@@ -82,6 +88,9 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
 			success(function(json){
+				//email loading BG$scope.loading=false;
+				//===============
+				
 				console.log(json);
 				item.openMessage=false;
 			}).
@@ -103,6 +112,9 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 	}
 	$scope.sendComment=function(seeker){
 		if(seeker.comment!=""){
+			//email loading BG
+			$scope.loading=true;
+			//===============
 			var commentObject={"method":"comment","seeker":seeker,"JOB_ID":$scope.JOB_ID};
 			$http({
 				method:'POST',
@@ -111,6 +123,9 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 			}).
 			success(function(json){
+				//email loading BG
+				$scope.loading=false;
+				//===============
 				//console.log(json);
 				seeker.commentSatus=true;
 				//location.href='companyPost.php';
@@ -122,6 +137,9 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		}
 	}
 	$scope.save=function(){
+		//email loading BG
+		$scope.loading=true;
+		//===============
 		var seekerObject={"method":"saveSeeker","seekers":$scope.seekers,"JOB_ID":$scope.JOB_ID};
 		$http({
 			method:'POST',
@@ -130,6 +148,9 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 			headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		}).
 		success(function(json){
+			//email loading BG
+			$scope.loading=false;
+			//===============
 			console.log(json);
 			location.href='companyPost.php';
 		}).

@@ -215,8 +215,30 @@ else if(@$_POST['method'] == "changeUser"){
 	mysql_query($sql_host_nor);
 
 	//set normal→host
-	$sql_nor_host="UPDATE ".$obj_tmp1->member." SET companyValid='Host' WHERE ".$obj_tmp1->member.".id='".$obj_tmp1->laout_arr['changeUser'][0]['id']."'";
-	mysql_query($sql_nor_host);
+
+	//send mail to check company host
+	//寄信告知
+		$homeURL=WEB_PATH."index.php";
+
+	$email=$obj_tmp1->laout_arr['changeUser'][0]['email'];
+	// 收件者信箱
+	$name=$obj_tmp1->laout_arr['changeUser'][0]['name'];
+	// 收件者的名稱or暱稱
+	$mail->AddAddress($email,$name);
+	$mail->Subject = "=?UTF-8?B?".base64_encode("[頭路網 TaoLou]恭喜您成為公司的聯絡人")."?=";//信件標題，解決亂碼問題
+	// 信件標題
+	$mail->Body = "Hi ".$name.",<br><br>
+	歡迎您使用<a href='".$homeURL."'>頭路網TaoLou</a>求才！<br><br>
+	您已經成為公司的<span style='color:red'>主要聯絡人</span>了喔！<br>
+	舉凡有人註冊貴公司，都需要您的認證！趕緊上<a href='".$homeURL."'>頭路網TaoLou</a>確認吧<br><br>
+	-------<br>
+	<span style='font-size:9px;'>頭路網服務團隊發送，如果有任何問題，可以寄信給<a href='mailto:q123wer2002@gmail.com'>q123wer2002@gmail.com</a>聯繫您的問題。</span>";
+
+	if(!$mail->Send()){echo "寄信發生錯誤：" . $mail->ErrorInfo;//如果有錯誤會印出原因
+	}else{
+		$sql_nor_host="UPDATE ".$obj_tmp1->member." SET companyValid='Host' WHERE ".$obj_tmp1->member.".id='".$obj_tmp1->laout_arr['changeUser'][0]['id']."'";
+		mysql_query($sql_nor_host);
+	}
 
 	$message=array('first'=>"success");
 	echo json_encode($message);	

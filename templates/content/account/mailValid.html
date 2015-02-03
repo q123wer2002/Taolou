@@ -6,6 +6,9 @@
 
 
 <div class='mailValid' ng-controller='TaoLou_mailValid'>
+	<!-- start LOADING DIV -->
+	<div class='loadingBG' ng-show='loading'><p>Loading...</p></div>
+	<!-- end LOADING DIV -->
 <?php if($this->mailValid){ ?>
 	<h2>恭喜你，認證成功</h2><br>
 	<a href="jobs.php">馬上看職缺</a><br><br>

@@ -2,6 +2,9 @@
 <script type="text/javascript" src='js/AN_checkSeeker.js'></script>
 
 <div class='checkSeekerDiv' ng-controller='Taolou_jobSeeker'>
+	<!-- start LOADING DIV -->
+	<div class='loadingBG' ng-show='loading'><p>Loading...</p></div>
+	<!-- end LOADING DIV -->
 	<h1>求職者資訊</h1>
 	<div class='jobInfo'>
 		<span class='tinytitle'>職缺資訊</span>
@@ -89,11 +92,11 @@
 				<div class='alertLight' style='background:#FFBE0E;' ng-show='seeker.status == 3'></div>
 				<div class='alertLight' style='background:#17B385;' ng-show='seeker.status == 4'></div>
 
-				<textarea disabled class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment' ng-if="seeker.commentSatus"></textarea>
+				<textarea disabled class='textarea' style='background:#ffffff;border:1px solid #ECEDF0;' ng-model='seeker.comment' ng-if="seeker.commentSatus"></textarea>
 				<textarea class='textarea' placeholder='提供建議，讓求職者能像上邁進' ng-model='seeker.comment' ng-if="!seeker.commentSatus"></textarea>
 
-				<a href="javascript:;" style='font-size:14px;color:#ffffff;background:#000000;padding:5px;border-radius:3px;position:absolute;top:60px;right:80px;' ng-click="seeker.commentSatus=false">更改</a>
-				<a href="javascript:;" style='font-size:14px;color:#ffffff;background:#000000;padding:5px;border-radius:3px;position:absolute;top:100px;right:80px;' ng-click="sendComment(seeker)">送出</a>
+				<a href="javascript:;" style='font-size:14px;color:#ffffff;background:#000000;padding:5px;border-radius:3px;position:absolute;top:60px;right:80px;z-index:2;' ng-click="seeker.commentSatus=false">編輯</a>
+				<a href="javascript:;" style='font-size:14px;color:#ffffff;background:#000000;padding:5px;border-radius:3px;position:absolute;top:100px;right:80px;z-index:2;' ng-click="sendComment(seeker)">送出</a>
 			</div>
 		</div>
 
