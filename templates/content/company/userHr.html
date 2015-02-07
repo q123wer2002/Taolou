@@ -50,7 +50,6 @@
 	<input type='hidden' ng-init="email='<?php echo $MValue['email']; ?>'">
 	<input type='hidden' ng-init="FB='<?php echo $MValue['facebook']; ?>'">
 	<input type='hidden' ng-init="IN='<?php echo $MValue['LinkedIn']; ?>'">
-	<input type='hidden' ng-init="photo='<?php echo $MValue['photo']; ?>'">
 	<?php }} ?>
 	<!-- 初始化公司列表 -->
 	<?php if(!empty($this->laout_arr['company'])) {
@@ -163,7 +162,8 @@
 				<a href="javascript:;" id="openFile"><input id='photoName' class='required' placeholder="請點上傳新頭像" disabled></a>
 				<input type='file' style="display:none;" id='photoFile' accept="image/*" onchange='handleFiles(this.files)'>
 				
-				<img class='imgShow' id='Photo' src="{{photo}}">
+				<img class='imgShow' id='Photo' src="{{photo}}" ng-if="photo">
+				<img class='imgShow' id='Photo' src="images/userMe/user-default.jpg" style='border:1px solid #6b7485;' ng-if="!photo">
 				
 				<span class="edit-hint">上傳<span style='color:red;'>個人大頭像</span>，<br>非公司Logo</span>
 			</div>

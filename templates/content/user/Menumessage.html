@@ -6,7 +6,10 @@
 		<?php if(!empty($this->UserMenu)){
 				foreach($this->UserMenu as $UMKey){
 					foreach($UMKey as $UMSUBKey => $UMValue){ ?>
-		<a href="userMessage.php?action=<?php echo $this->encode($UMValue['id']); ?>" <?php if($_GET['action']==$this->encode($UMValue['id'])){echo "style='background:#ECEEF1;'";} ?>>
+		<a href="userMessage.php?action=<?php echo $this->encode($UMValue['id']); ?>" 
+			<?php if($_GET['action']==$this->encode($UMValue['id'])){echo "style='background:#ECEEF1;'";} ?>
+			<?php if(in_array($UMValue['id'], $this->noReadMesUserID)){echo "style='background:#E2713B;color:#ffffff;'";} ?>
+			>
             <span><img class='contact-people-photo' src="<?php if(!empty($UMValue['photo'])){echo $UMValue['photo'];}else{echo "images/userMe/user-default.jpg";} ?>" alt=""></span>
             <span class='contact-people'><?php echo $UMValue['name']; ?></span>
 		</a>

@@ -13,14 +13,17 @@ $obj_tmp1->experience="taolou_member_experience";
 $obj_tmp1->facebook="taolou_member_facebook";
 $obj_tmp1->IN="taolou_member_linkedin";
 
+$obj_tmp1->userNotification="taolou_member_notification_user";
+$obj_tmp1->hrNotification="taolou_member_notification_hr";
+
 $obj_tmp1->sysSkill="taolou_system_specialskill";
 
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
 $obj_tmp1->tmp_order ='order By sort Asc';
 
-if(!empty($_SESSION['user']['id'])){
-	$userId=$_SESSION['user']['id'];
+if(!empty(@$_SESSION['user']['id'])){
+	@$userId=$_SESSION['user']['id'];
 }
 
 if(@$_POST['method']=='login')
@@ -56,17 +59,39 @@ if(@$_POST['method']=='login')
 				//ID
 			$_SESSION['user']['id']=$userId;
 				//PHOTO
-			$_SESSION['user']['userPicture']=$obj_tmp1->laout_arr['loadUser'][0]['photo'];
+			if($obj_tmp1->laout_arr['loadUser'][0]['photo']==""){$_SESSION['user']['userPicture']="images/layout/user-default.jpg";}
+			else{
+				$_SESSION['user']['userPicture']=$obj_tmp1->laout_arr['loadUser'][0]['photo'];
+			}
 				//USERTYPE
 			if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'y'){
 				$_SESSION['user']['userType']="2";
 				$_SESSION['user']['company']=$obj_tmp1->laout_arr['loadUser'][0]['companyId'];
 				$_SESSION['user']['companyValid']=$obj_tmp1->laout_arr['loadUser'][0]['companyValid'];
+				//check notification
+				$sql_notification="SELECT COUNT(".$obj_tmp1->hrNotification.".id) as NotiS
+								   FROM ".$obj_tmp1->hrNotification."
+								   WHERE ".$obj_tmp1->hrNotification.".status='y'
+								   AND ".$obj_tmp1->hrNotification.".memberId='".$userId."'";
+				$obj_tmp1->laout_arr['notification']=array();
+				$obj_tmp1->basic_select('laout_arr','notification',$sql_notification);
+				//======================
+
 			}else if($obj_tmp1->laout_arr['loadUser'][0]['companyHr'] == 'n'){
 				$_SESSION['user']['userType']="1";
+				//check notification
+				$sql_notification="SELECT COUNT(".$obj_tmp1->userNotification.".id) as NotiS 
+								   FROM ".$obj_tmp1->userNotification."
+								   WHERE ".$obj_tmp1->userNotification.".status='y'
+								   AND ".$obj_tmp1->userNotification.".memberId='".$userId."'";
+				$obj_tmp1->laout_arr['notification']=array();
+				$obj_tmp1->basic_select('laout_arr','notification',$sql_notification);
+				//======================
 			}
 				//mail valid
 			$_SESSION['user']['mailValid']=$obj_tmp1->laout_arr['checkUser'][0]['mailValid'];
+				//notifiacitons
+			$_SESSION['user']['notification']=$obj_tmp1->laout_arr['notification'][0]['NotiS'];
 
 			$message=array('first'=>"success",'url'=>"index.php","actions"=>'login');
 			//=======================
@@ -268,11 +293,29 @@ else if(@$_POST['method']== "checkFBuser"){
 			$_SESSION['user']['userType']="2";
 			$_SESSION['user']['company']=$obj_tmp1->laout_arr['checkUser'][0]['companyId'];
 			$_SESSION['user']['companyValid']=$obj_tmp1->laout_arr['checkUser'][0]['companyValid'];
+			//check notification
+			$sql_notification="SELECT COUNT(".$obj_tmp1->hrNotification.".id) as NotiS
+							   FROM ".$obj_tmp1->hrNotification."
+							   WHERE ".$obj_tmp1->hrNotification.".status='y'
+							   AND ".$obj_tmp1->hrNotification.".memberId='".$userId."'";
+			$obj_tmp1->laout_arr['notification']=array();
+			$obj_tmp1->basic_select('laout_arr','notification',$sql_notification);
+			//======================
 		}else if($obj_tmp1->laout_arr['checkUser'][0]['companyHr'] == 'n'){
 			$_SESSION['user']['userType']="1";
+			//check notification
+			$sql_notification="SELECT COUNT(".$obj_tmp1->userNotification.".id) as NotiS
+							   FROM ".$obj_tmp1->userNotification."
+							   WHERE ".$obj_tmp1->userNotification.".status='y'
+							   AND ".$obj_tmp1->userNotification.".memberId='".$userId."'";
+			$obj_tmp1->laout_arr['notification']=array();
+			$obj_tmp1->basic_select('laout_arr','notification',$sql_notification);
+			//======================
 		}
 			//mail valid
 		$_SESSION['user']['mailValid']='y';
+			//notifiacitons
+		$_SESSION['user']['notification']=$obj_tmp1->laout_arr['notification'][0]['NotiS'];
 
 		$message=array("mes"=>"OK");
 
@@ -387,11 +430,29 @@ else if(@$_POST['method'] == "checkINuser"){
 			$_SESSION['user']['userType']="2";
 			$_SESSION['user']['company']=$obj_tmp1->laout_arr['checkUser'][0]['companyId'];
 			$_SESSION['user']['companyValid']=$obj_tmp1->laout_arr['checkUser'][0]['companyValid'];
+			//check notification
+			$sql_notification="SELECT COUNT(".$obj_tmp1->hrNotification.".id) as NotiS
+							   FROM ".$obj_tmp1->hrNotification."
+							   WHERE ".$obj_tmp1->hrNotification.".status='y'
+							   AND ".$obj_tmp1->hrNotification.".memberId='".$userId."'";
+			$obj_tmp1->laout_arr['notification']=array();
+			$obj_tmp1->basic_select('laout_arr','notification',$sql_notification);
+				//======================
 		}else if($obj_tmp1->laout_arr['checkUser'][0]['companyHr'] == 'n'){
 			$_SESSION['user']['userType']="1";
+			//check notification
+			$sql_notification="SELECT COUNT(".$obj_tmp1->userNotification.".id) as NotiS
+							   FROM ".$obj_tmp1->userNotification."
+							   WHERE ".$obj_tmp1->userNotification.".status='y'
+							   AND ".$obj_tmp1->userNotification.".memberId='".$userId."'";
+			$obj_tmp1->laout_arr['notification']=array();
+			$obj_tmp1->basic_select('laout_arr','notification',$sql_notification);
+			//======================
 		}
 			//mail valid
 		$_SESSION['user']['mailValid']='y';
+			//notifiacitons
+		$_SESSION['user']['notification']=$obj_tmp1->laout_arr['notification'][0]['NotiS'];
 
 		$message=array("mes"=>"OK");
 

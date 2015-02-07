@@ -37,9 +37,7 @@ TaoLou.controller('Taolou_applyJob',['$scope','$http',function applyJob($scope,$
 		}).
 		success(function(json){
 			console.log(json);
-			if(json.first=="success"){
-				location.reload();
-			}
+			if(json.first=="success"){location.reload();}
 		}).
 		error(function(json){
 			console.warn(json);

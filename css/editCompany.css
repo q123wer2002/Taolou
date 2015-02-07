@@ -65,4 +65,5 @@
         
         .changeOK{position: fixed;text-align: center;width: 1024px;height: auto;color: white;font-weight: 700;font-size: 20px;background-color: #eb6a64;z-index: 10;padding: 50px 0px;top: -200px;}
         .loading{position: fixed;text-align: center;width: 1024px;height: 10px;color: white;font-weight: 700;font-size: 20px;z-index: 10;padding: 50px 0px;top: -200px;background-image: url(../images/layout/loading.gif);background-position: 250px -100px;background-repeat: no-repeat;background-color: #000000;}
-        .postJobBut{color: #ffffff;background: #17B385;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}
+        .postJobBut{color: #ffffff;background: #17B385;padding: 10px 8px;font-size: 18px;margin-left: 200px;}
+        .postJobBut:hover{box-shadow:none;}

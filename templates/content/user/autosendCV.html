@@ -17,24 +17,29 @@
                 foreach($this->saveJob as $jobKey) { 
                     foreach($jobKey as $jobSubKey => $jobValue){?>
         <a class='jobitem'>
-            <div class='jobInfo'>
+            <div class='jobInfo'<?php if(!empty($this->jobNotiS_Intell[$jobValue['id']])){echo "style='border:2px solid #F38C5B;'";} ?>>
                 <figure>
                     <img src="<?php echo $jobValue['logo'] ?>">
                 </figure>
                 <div class='author'>
                     <a href="jobs.php?jobsid=<?php echo $this->encode($jobValue['id']); ?>"><b class="job-title"><?php echo $jobValue['jobName'] ?></b></a>-
                     <a href="companies.php?company=<?php echo $this->encode($jobValue['companyId']); ?>"><b class="name"><?php echo $jobValue['companyName'] ?></b></a>
+                    <!-- 評論 -->
+                    <?php if(!empty($jobValue['comment'])){ ?>
+                    <a href="javascript:;" class='cmpComment'><span class='icon tagIcon' style='position:absolute;'></span><span class='cmpCommentTEXT'>公司對您評論</span></a>
+                    <?php } ?>
+                    <!-- end評論 -->
                 </div>
                 <div class='job-meta'>
                     <span class="location"><span class='icon locationicon'></span><b><?php echo $jobValue['location'][0]; ?></b></span>
                     <span class="type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType'] ?></b></span>
                     <span class="salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary'] ?></b></span>
                     <?php if($jobValue['stock_option']=='y'){ ?>
-                    <span class="stock-share"><span class='icon stockicon'></span>提供股票或期权<b></b></span>
+                    <span class="stock-share"><span class='icon stockicon'></span>提供股票或期權<b></b></span>
                     <?php } ?>
                 </div>
                 <div class="status">
-                    <span class='resume_status'>
+                    <span class='resume_status' <?php if(in_array($jobValue['id'], $this->jobNotiS_Intell))echo "style='color:#F38C5B;''"; ?>>
                         <?php
                         if($jobValue['jobstatus'] == 'download'){echo "履歷已被下載";}
                         else if($jobValue['jobstatus'] == 'wait'){echo "已面試";}

@@ -50,7 +50,7 @@
             <span class="edit-hint">請上傳公司圖像，最佳解析度 150*150</span>
             <img class='Photo' id='companyPhoto' src="{{companyPhoto}}">
             <input type='file' id='companyPhotoFile' style='display:none;' accept='image/*' onchange="handleFilesCom(this.files)">
-            <a href="javascript:;" class='postJobBut' id='updaetBut'>上傳檔案</a>
+            <a href="javascript:;" class='postJobBut butShadow' id='updaetBut'>上傳檔案</a>
         </div>
     </div>
 
@@ -154,7 +154,7 @@
             <span class="edit-hint">請上傳CEO圖像，最佳解析度 150*150</span>
             <img class='Photo' id='ceoPhoto' src="{{ceoPhoto}}">
             <input type='file' id='ceoPhotoFile' style='display:none;' accept='image/*' onchange="handleFilesCEO(this.files)">
-            <a href="javascript:;" class='postJobBut' id='ceoupdaetBut'>上傳檔案</a>
+            <a href="javascript:;" class='postJobBut butShadow' id='ceoupdaetBut'>上傳檔案</a>
         </div>
         <h4 class='tagName'>融資部分</h4>
         <div class="edit-unit high">
@@ -181,7 +181,7 @@
         </div>
         <div class="edit-unit finallyDiv">
             <p>{{companyEditError}}</p>
-            <a href="javascript:;" class="postJobBut" id='saveEditCompany' ng-click='saveEditCompany()'>保存</a>
+            <a href="javascript:;" class="postJobBut butShadow" id='saveEditCompany' ng-click='saveEditCompany()'>保存</a>
         </div>
 	</div>
     	

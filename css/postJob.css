@@ -26,5 +26,5 @@
     .district:hover{cursor: pointer;}
     .district option{text-align: center;background: #707b91;font-weight: 500;font-size: 13px;color: #ffffff;height: 39px;line-height: 39px;}
 
-		.postJobBut{color: #ffffff;background: #36a9e5;padding: 10px 8px;border-radius: 3px;font-size: 18px;margin-left: 200px;}
-
+	.postJobBut{color: #ffffff;background: #36a9e5;padding: 10px 8px;font-size: 18px;margin-left: 200px;}
+	.postJobBut:hover{box-shadow:none;}

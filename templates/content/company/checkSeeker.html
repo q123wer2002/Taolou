@@ -59,13 +59,8 @@
 			<?php }} ?>
 
 			<div class='seekerDiv' ng-repeat='seeker in seekers | filter:{status:selectSeekerFilter}'>
-				<a href='javascript:;' ng-click='controlMessage(seeker)' style='z-index:2;position:absolute;left:-50px;top:40%;padding:15px;color:#ffffff;font-size:20px;font-weight:800;'>私信他</a>
-				<div class='bg' ng-show='seeker.openMessage' ng-click='controlMessage(seeker)'></div>
-				<div class='check' ng-show='seeker.openMessage'>
-					<span>To {{seeker.name}} :</span><br><br><br>
-					<textarea class='textarea' placeholder='這裡填寫私信內容' ng-model='seeker.message'></textarea>
-					<a href="javascript:;" style='background:#36A9E5;padding:5px;border-radius: 3px;color:#ffffff;margin-left:20px;' ng-click='messageToSeeker(seeker)'>寄私信</a>
-				</div>
+
+				<a href='javascript:;' ng-click='messageToSeeker(seeker)' style='z-index:2;position:absolute;left:-50px;top:40%;padding:15px;color:#ffffff;font-size:20px;font-weight:800;text-shadow:0px 2px 5px #000000;'>私信他</a>
 
 				<div class='seekerPhoto' style="background:url({{seeker.photo}});background-size:cover;"></div>
 
@@ -118,10 +113,12 @@
 			</tr>
 		</table>
 		<span style='font-size:12px;'>**系統將會寄發錄取信件給錄取者</span>
+		<span style='font-size:12px;'>對求職者的評論也會一同送出喔！</span>
 		<a href="javascript:;" style='background:#17B385;padding:10px;border-radius: 3px;color:#ffffff;position:relative;margin-top:50px;margin-left:75px;float:left;' ng-click='save()'>確定保存</a>
 	</div>
 	<div class='check' ng-show='noOneCheck'>
-		目前<span style='color:red'>沒有求職者</span>被錄取<br>
+		目前<span style='color:red'>沒有求職者</span>被錄取<br><br>
+		<span style='font-size:12px;'>對求職者的評論也會一同送出喔！</span><br>
 		<a href="javascript:;" style='background:#17B385;padding:10px;border-radius: 3px;color:#ffffff;position:relative;margin-top:50px;margin-left:75px;float:left;' ng-click='save()'>確定保存</a>
 	</div>
 

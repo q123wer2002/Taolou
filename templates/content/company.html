@@ -14,7 +14,7 @@
 			</h2>
 			<?php if($this->ourCompany){ 
 					if($this->companyValid){ ?>
-			<a href="companyEdit.php?action=<?php echo $this->encode($ComValue['id']); ?>" class='editCompany'>編輯公司訊息</a>
+			<a href="companyEdit.php?action=<?php echo $this->encode($ComValue['id']); ?>" class='editCompany butShadow'>編輯公司訊息</a>
 			<?php }else{ ?>
 			<a href="javscript:;" class='editCompany'>公司尚未認證你是HR</a>
 			<?php }} ?>
@@ -48,7 +48,10 @@
 				foreach($this->laout_arr['job'] as $jobKey => $jobValue) { ?>
 		<div class='joblistDiv'>
 			<div class="job-list-item">
-				<a href="javascript:;" class="job-author-avatar"><img src="<?php echo $this->postMan[$jobValue['id']]['photo']; ?>"></a>
+				<a href="javascript:;" class="job-author-avatar">
+					<img src="<?php if($this->postMan[$jobValue['id']]['photo']){echo $this->postMan[$jobValue['id']]['photo'];}
+									else{echo "images/userMe/user-default.jpg";} ?>">
+				</a>
 				<div class="main">
 					<span class="job-author-name"><?php echo $this->postMan[$jobValue['id']]['name']; ?></span>
 					<span>發佈職位</span>
@@ -83,10 +86,10 @@
 	<div class='companyRight'>
 		<section class="nsb-block company-aside">
 			<div class="company-block team">
-				<h3>管理团队</h3>
+				<h3>管理團隊</h3>
 				<div class="team-member">
 					<div class="img-wrapper avatar">
-						<img src="<?php echo $ComValue['ceoPhoto']; ?>" alt="">
+						<img src="<?php if($ComValue['ceoPhoto']){echo $ComValue['ceoPhoto'];}else{echo "images/userMe/user-default.jpg";} ?>" alt="">
 					</div>
 					<div class="memver-content">
 						<span class="name"><?php echo $ComValue['CEO']; ?></span>

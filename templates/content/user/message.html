@@ -45,6 +45,7 @@
 				<input type='hidden' ng-init="MESSAGE_LEFT='<?php echo laout_check($MesValue['message']); ?>'">
 				<input type='hidden' ng-init="MESSAGE_RIGHT=''">
 				<input type='hidden' ng-init="MESSAGE_time='<?php echo $divTime; ?>'">
+				<input type='hidden' ng-init="MESSAGE_noRead=<?php if(in_array($MesValue['id'],$this->noReadMes[$MesValue['sendUserId']])){echo "true";}else{echo "false";} ?>">
 			<?php } ?>
 			<?php if($MesValue['sendUserId']==$_SESSION['user']['id']) { ?>
 				<input type='hidden' ng-init="MESSAGE_LEFT=''">
@@ -55,11 +56,18 @@
 		<?php }} ?>
 		
 		<div ng-repeat='message in messages'>
-			<div class='SayBG LeftSay saying' ng-if="message.left">
+			<div class='SayBG LeftSay saying' ng-if="message.left && !message.noRead" >
+				<div class='arrow LEFT'></div>
+				<p>{{message.left}}</p>
+				<span class='timestamp' id='{{message.time}}'>{{message.time}}</span>
+			</div>
+			<div class='SayBG LeftSay saying' ng-if="message.left && message.noRead" style='background:#FEB490;'>
+				<div class='arrow LEFT' style='border-right-color:#FEB490;'></div>
 				<p>{{message.left}}</p>
 				<span class='timestamp' id='{{message.time}}'>{{message.time}}</span>
 			</div>
 			<div class='SayBG RightSay saying' ng-if="message.right">
+				<div class='arrow RIGHT'></div>
 				<p class='rightMes'>{{message.right}}</p>
 				<span class='timestamp' id='{{message.time}}'>{{message.time}}</span>
 			</div>
@@ -71,6 +79,6 @@
 	<div class='rule job-seeker'>
     	<textarea class="job-seeker-send" placeholder='填入訊息內容' ng-model='messageArea'></textarea>
     	<span class='errorMes'>{{Error}}</span>
-   		<a href="javascript:;" class='btn' ng-click='sendMessage()'>傳送</a>
+   		<a href="javascript:;" class='btn butShadow' ng-click='sendMessage()'>傳送</a>
 	</div>
 </div>

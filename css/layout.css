@@ -13,6 +13,7 @@ button:hover{cursor: pointer;}
 .title-chart{width: 13px;height: 13px;}
 .in_submit{width: 70px;height: 30px;border: none;background: #36a9e5;color: #ffffff;border-radius: 3px;font-family: '微軟正黑體';}
 .in_submit:hover{cursor: pointer;}
+.butShadow{box-shadow: 2px 2px 3px #7F7F7F;border-radius: none;}
 
 .locationicon{background-position: -68px -147px;width: 16px;height: 16px;}
 .jobtypeicon{background-position: -120px -59px;width: 16px;height: 17px;}
@@ -33,6 +34,7 @@ button:hover{cursor: pointer;}
 .view{background-position: -190px -30px;width: 14px;height: 9px;}
 .recommend{background-position: -190px -113px;width: 14px;height: 14px;}
 .love{background-position: -136px -118px;width: 16px;height: 16px;}
+.tagIcon{background-position: -92px -181px;width: 16px;height: 16px;}
 
 .showUs{width: 100%;position:relative;height: 700px;}
 	@media screen and (min-width: 1600px) {
@@ -55,14 +57,15 @@ button:hover{cursor: pointer;}
 		.menu li a{color: black;text-decoration: none;font-weight: 500;}
 		.menu li a:hover{text-decoration: underline;}
 
-		.search{position: absolute;top: 0px;right:160px;background: white;height: 70px;width: 200px;}
+		.search{position: absolute;top: 0px;right:220px;background: white;height: 70px;width: 160px;}
 			.searchDiv{position: absolute;bottom: 15px;}
-				.searchBar{border: none;height: 30px;font-size: 18px;width: 180px;margin-left: 22px;}
+				.searchBar{border: none;height: 30px;font-size: 18px;width: 160px;margin-left: 22px;}
 				#searchBAR{display: none;}
 				.searchBar:focus+#searchBAR{display: block;}
 				.searchBar:focus{border-bottom: 1px solid #46A3FF;}
 				#searchBAR:focus{display: block;}
-				.inputSearch{position:absolute;bottom: 7px;background-position: -115px -180px;width: 20px;height: 20px;}
+				.inputSearch{position:absolute;bottom: 7px;background-position: -115px -180px;width: 20px;height: 20px;right:0;transition: none;}
+				.inputSearch:hover{background-position: -132px -180px;background-color: #46A3FF;border-radius: 3px;}
 			.searchResult{position: absolute;width: 300px;top:70px;background-color: #ffffff;border-top: 2px solid #000000;box-shadow: 0px 20px 20px 0px #888888;}
 				.searchTitle{padding: 7px;border-bottom: 1px solid #ECEEF1;font-weight: 900;}
 				.company{color: #51A6F9;}
@@ -82,15 +85,17 @@ button:hover{cursor: pointer;}
 			.userPicture:hover .userMenuListUl{display: block;}
 			.userMenuListUl{width: 100px;height: 112px;text-align: center;position: absolute;right: -40px;top: 25px;display: none;padding-top: 10px;}
 			.userMenuListUl:hover .userMenuListUl li{display: block;}
-			.userMenuListUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;padding: 5px;}
+			.userMenuListUl li{list-style: none;background: #707b91;font-weight: 500;font-size: 13px;padding: 5px;position: relative;}
 			.userMenuListUl li:hover{background: #d94600;}
 			.userMenuListUl a {color: #ffffff;text-decoration: none;}
+				.notification{position: absolute;right: -3px;background-color: #d94600;top:-3px;font-size: 10px;width: 20px;height: 20px;border-radius: 11px;font-weight: 900;color: #ffffff;text-align: center;transition:0.5s;transaction-webkit-transition:0.5s;}
+				#imageNotification{right: -10px;top:-10px;}
 
 .body{position: relative;width: 1024px;margin: auto;height: auto;margin-top: 50px;margin-bottom: 50px;}
 	.loadingBG{position: fixed;left: 0;top:0;width: 100%;height: 100%;z-index: 3;opacity:0.7;background-image: url(../images/layout/mailLoading.gif);background-color: #000000;background-repeat: no-repeat;background-position: center;text-align: center;color: #ffffff;font-weight:700;}
 	.loadingBG p{margin-top: 25%;}
 
-.footer{width: 100%;height: auto;position: relative;background: #51A6F9;}
+.footer{width: 100%;height: auto;position: relative;background: #51A6F9;bottom: 0px;}
 	.ourInfo{width: 1024px;height: 100px;margin: auto;color: white;}
 	.socialActivity{float: right;}
 		.fbLIKE{margin-top: 20px;}

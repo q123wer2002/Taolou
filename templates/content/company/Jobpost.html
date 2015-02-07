@@ -16,7 +16,7 @@
 		<input type='hidden' ng-init="jobName='<?php echo $jobValue['jobName']; ?>'">
 		<input type='hidden' ng-init="jobType='<?php echo $jobValue['jobType']; ?>'">
 		<input type='hidden' ng-init="jobNature='<?php echo $jobValue['jobNature']; ?>'">
-		<input type='hidden' ng-init="jobSalary='<?php echo $jobValue['salary']; ?>'">
+		<input type='hidden' ng-init="jobSalary=<?php echo $jobValue['salary']; ?>">
 		<input type='hidden' ng-init="jobStockOption='<?php if($jobValue['stock_option']=='y'){echo "true";}else{echo "false";} ?>'">
 		<input type='hidden' ng-init="jobDetail='<?php echo $jobValue['detail']; ?>'">
 		<!-- 設定地點 -->
@@ -90,7 +90,7 @@
 		<div class="edit-unit">
 			<span class="edit-name">起始月薪</span>
 			<div class="edit-body">
-				<input type="text" placeholder="請輸入純數字"  onkeyup="value=this.value.replace(/\D+/g,'')" class="required" ng-model='jobSalary'>
+				<input type="number" placeholder="請輸入純數字"  onkeyup="value=this.value.replace(/\D+/g,'')" class="required" ng-model='jobSalary'>
 				<span class="edit-hint">請輸入起始月薪，<br>格式為數字，單位為「台幣」</span>
 			</div>
 		</div>
@@ -112,11 +112,11 @@
 		{{jobError}}
 		<div class="edit-unit">
 			<?php if(!empty($this->laout_arr['showJob'])){ ?>
-			<a href="javascript:;" class="postJobBut" ng-click='saveJob()' style='background:#17b385;'>保存</a>
+			<a href="javascript:;" class="postJobBut butShadow" ng-click='saveJob()' style='background:#17b385;'>保存</a>
 			<?php }else{ ?>
-			<a href="javascript:;" class="postJobBut" ng-click='saveJob()'>發佈職位</a>
+			<a href="javascript:;" class="postJobBut butShadow" ng-click='saveJob()'>發佈職位</a>
 			<?php } ?>
-			<a href="companyPost.php" class="postJobBut" style='background:#eb6a64;'>取消</a>
+			<a href="companyPost.php" class="postJobBut butShadow" style='background:#eb6a64;'>取消</a>
 		</div>
 	</div>
 </div>

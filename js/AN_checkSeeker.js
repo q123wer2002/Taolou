@@ -75,30 +75,24 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 		else{item.openMessage=true;}
 	}
 	$scope.messageToSeeker=function(item){
-		if(item.message==''){}
-		else{
-			//email loading BG
-			$scope.loading=true;
-			//===============
-			var messageObject={"method":"messageToSeeker","receiveId":item.id,"message":item.message};
-			$http({
-				method:'POST',
-				url:'server/checkSeekerAjax.php',
-				data: $.param(messageObject),
-				headers: {'Content-type': 'application/x-www-form-urlencoded'},
-			}).
-			success(function(json){
-				//email loading BG$scope.loading=false;
-				//===============
-				
-				console.log(json);
-				item.openMessage=false;
-			}).
-			error(function(json){
-				console.warn(json);
-				$scope.skillErrorMess='發生不可預測的錯誤';
-			});
-		}
+		//email loading BG
+		$scope.loading=true;
+		//===============
+		var messageObject={"method":"messageToSeeker","receiveId":item.id};
+		$http({
+			method:'POST',
+			url:'server/checkSeekerAjax.php',
+			data: $.param(messageObject),
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		}).
+		success(function(json){
+			//jump to message.php
+			location.href='userMessage.php?action='+json.urlID;
+		}).
+		error(function(json){
+			console.warn(json);
+			$scope.skillErrorMess='發生不可預測的錯誤';
+		});
 	}
 
 	//save data
@@ -138,6 +132,7 @@ TaoLou.controller('Taolou_jobSeeker',['$scope','$http',function jobSeeker($scope
 	}
 	$scope.save=function(){
 		//email loading BG
+		$scope.closeBG();
 		$scope.loading=true;
 		//===============
 		var seekerObject={"method":"saveSeeker","seekers":$scope.seekers,"JOB_ID":$scope.JOB_ID};

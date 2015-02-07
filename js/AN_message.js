@@ -5,10 +5,10 @@ TaoLou.controller('Taolou_Message',['$scope','$http','$location','$anchorScroll'
 	
 	$scope.MESSAGEINIT=function(){
 		if($scope.MESSAGE_LEFT){
-			$scope.messages.push({"left":$scope.MESSAGE_LEFT,"right":"","time":$scope.MESSAGE_time});
+			$scope.messages.push({"left":$scope.MESSAGE_LEFT,"right":"","time":$scope.MESSAGE_time,"noRead":$scope.MESSAGE_noRead});
 		}
 		else if($scope.MESSAGE_RIGHT){
-			$scope.messages.push({"left":"","right":$scope.MESSAGE_RIGHT,"time":$scope.MESSAGE_time});
+			$scope.messages.push({"left":"","right":$scope.MESSAGE_RIGHT,"time":$scope.MESSAGE_time,"noRead":false});
 		}
 		$scope.scrollDown($scope.MESSAGE_time); 
 	}

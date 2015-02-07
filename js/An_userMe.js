@@ -46,11 +46,11 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 	}
 	//save data
 	$scope.save=function(){
-		if($scope.name==''){}
-		else if($scope.bornYear==''){}
-		else if($scope.topEdu==''){}
-		else if($scope.jobShow==''){}
-		else if($scope.workYear==''){}
+		if($scope.name==''){alert('請填妥資料Name');}
+		else if($scope.bornYear==""){alert('請填妥資料bornYear');}
+		else if($scope.topEdu==""){alert('請填妥資料topEdu');}
+		else if($scope.jobShow==""){alert('請填妥資料jobShow');}
+		else if($scope.workYear==""){alert('請填妥資料workYear');}
 		else{
 			var userProfileObject={"method":"saveUserProfile","userName":$scope.name,"userBorn":$scope.bornYear,"userEducation":$scope.topEdu,"userWorkyear":$scope.workYear,"userJobstatus":$scope.jobShow};
 			$http({
@@ -60,7 +60,8 @@ TaoLou.controller('Taolou_onlineCV',['$scope','$http',function onlineCV($scope,$
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
 				}).
 				success(function(json){
-					console.log(json);
+					//console.log(json);
+					$scope.showPOPEdit();
 				}).
 				error(function(json){
 					console.warn(json);

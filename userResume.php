@@ -69,7 +69,7 @@ switch(@$action){
                 $obj_tmp1->basic_select('laout_arr','SL',$sql_SL);
                     //echo $sql_SL;
                     //print_r($obj_tmp1->laout_arr['SL']);
-                $obj_tmp1->resumeSkill[$value['id']]=$obj_tmp1->resumeSkill[$value['id']].$obj_tmp1->laout_arr['SL'][0]['skill']."|";
+                @$obj_tmp1->resumeSkill[$value['id']]=$obj_tmp1->resumeSkill[$value['id']].$obj_tmp1->laout_arr['SL'][0]['skill']."|";
                     //echo $obj_tmp1->laout_arr['SL'][0]['skill'];
             }
             $obj_tmp1->resumeSkill[$value['id']]=substr($obj_tmp1->resumeSkill[$value['id']],0,-1);

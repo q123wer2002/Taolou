@@ -18,20 +18,20 @@
 			<div class='blackBG'></div>
 			<img id='userPhoto' src="<?php 
 			if($memberValue['photo']!=""){echo $memberValue['photo'];}
-			else echo "images/userMe/user-default.jpg"; ?>">
+			else{echo "images/userMe/user-default.jpg";} ?>">
 			<form id='userPhotoForm' action='userMe.php?action=userPhoto' method='POST' enctype="multipart/form-data">
 				<input type='file' name='file' id="file" style="display:none"  accept='image/*' onchange='handleFiles(this.files)'>
 			</form>
 		</div>
 		<div id='fileList'></div>		
 		<div class='main clearfix'>
-			<span class="name"><?php echo $memberValue['name']; ?></span>
-			<span class="status"><?php echo $memberValue['jobStatus']; ?></span>
+			<span class="name">{{name}}</span>
+			<span class="status">{{jobShow}}</span>
 		</div>
 		<div class="experience">
-			<span class="birth"><b><?php echo $memberValue['born']; ?></b> 年出生・</span>
-			<span class="degree"><b><?php echo $memberValue['lastEducation']; ?></b>學歷・</span>
-			<span class="work-years"><b><?php echo $memberValue['workYears']; ?></b> 年工作經驗</span>
+			<span class="birth"><b>{{bornYear}}</b> 年出生・</span>
+			<span class="degree"><b>{{topEdu}}</b>學歷・</span>
+			<span class="work-years"><b>{{workYear}}</b> 年工作經驗</span>
 		</div>
 	</div>
 
@@ -52,7 +52,7 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>出生年份</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showYears' ng-click='shoeYearEdit()'><input type='text' class='pop-input pop-select' ng-model='bornYear' ng-init="bornYear = '<?php echo $memberValue['born']; ?>'" disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
+				<a href="javascript:;" id='showYears' ng-click='shoeYearEdit()'><input type='text' class='pop-input pop-select' ng-model='bornYear' ng-init="bornYear = '<?php echo $memberValue['born']; ?>'" disabled="disabled"><span class='icon selectIcon'></span></a>
 				<ul class='pop-selectUl' id='yearSelect' ng-show='shoeYearEditStatus'>
 					<a href="javascript:;" ng-repeat="n in [] | range:50">
 						<li class='yearsSelected' ng-click='selectBornYear(n)'>{{n}}</li>
@@ -64,7 +64,7 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>最高學歷</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showEducation' ng-click='showEduEdit()'><input type='text' class='pop-input pop-select' ng-model='topEdu' ng-init="topEdu='<?php echo $memberValue['lastEducation']; ?>'" disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
+				<a href="javascript:;" id='showEducation' ng-click='showEduEdit()'><input type='text' class='pop-input pop-select' ng-model='topEdu' ng-init="topEdu='<?php echo $memberValue['lastEducation']; ?>'" disabled="disabled"><span class='icon selectIcon'></span></a>
 				<ul class='pop-selectUl' id='educationSelect' ng-show='showEduEditStatus'>
 					<a href="javascript:;" ng-repeat='edu in educations'>
 						<li class='educationSelected' ng-click='selectTopEdu(edu)'>{{edu.name}}</li>
@@ -76,14 +76,14 @@
 		<div class='pop-edit-line'>
 			<span class='popLabel'>工作年齡</span>
 			<div class='pop-inputWarp'>
-				<input type='text' class='pop-input' id='userWorkyear' ng-model='workYear' ng-init="workYear=<?php echo $memberValue['workYears']; ?>">
+				<input type='number' class='pop-input' id='userWorkyear' ng-model='workYear' ng-init="workYear=<?php echo $memberValue['workYears']; ?>">
 			</div>
 			<p class='edit-hint'>必填,單位為「年」</p>
 		</div>
 		<div class='pop-edit-line'>
 			<span class='popLabel'>求職狀態</span>
 			<div class='pop-inputWarp'>
-				<a href="javascript:;" id='showJobStatus' ng-click='showJobEdit()'><input type='text' class='pop-input pop-select' ng-model='jobShow' ng-init="jobShow='<?php echo $memberValue['jobStatus'] ?>'" disabled="disabled"><span class='icon title-chart selectIcon'></span></a>
+				<a href="javascript:;" id='showJobStatus' ng-click='showJobEdit()'><input type='text' class='pop-input pop-select' ng-model='jobShow' ng-init="jobShow='<?php echo $memberValue['jobStatus'] ?>'" disabled="disabled"><span class='icon selectIcon'></span></a>
 				<ul class='pop-selectUl' id='jobStatusSelect' ng-show='showJobEditStatus'>
 					<a href="javascript:;" ng-repeat='jbs in jobStatus'>
 						<li class='jbsSelected' ng-click='selectJobStatus(jbs)'>{{jbs.name}}</li>
@@ -99,7 +99,7 @@
 	</div>
 
 	<div class='profile-seg'>
-		<span class="seg-title"><span class="icon title-chart locked"></span>聯絡方式</span>
+		<span class="seg-title"><span class="icon locked"></span>聯絡方式</span>
 		<div class="seg-body">
 			<ul>
 				<li class="mail clearfix"> 
@@ -107,7 +107,7 @@
 					<span class="value value-mail"><?php echo $memberValue['email']; ?></span>
 				</li>
 				<li class="phone edit-el clearfix" ng-repeat='p in phone'>
-					<a href="javascript:;" class='icon title-chart edit' ng-hide='p.editing' ng-click='editphone(p)'></a>
+					<a href="javascript:;" class='icon edit' ng-hide='p.editing' ng-click='editphone(p)'></a>
 					<span class="label">電話</span>
 					<span class="value value-phone">
 						<span ng-hide='p.editing'>{{p.phone}}</span>
@@ -125,7 +125,7 @@
 		<span class="seg-title">求職願望</span>
 		<!-- <?php if(empty($this->laout_arr['wantjob'][0]['name'])){ ?>
 		<a href="javascript:;" class='add_ee' id='addwantjob' ng-click='addjobwish()' ng-hide='addjobwishB'>
-			<span class='icon title-chart add'></span>
+			<span class='icon add'></span>
 			新增求職願望
 		</a>
 		<?php } ?> --> 
@@ -179,7 +179,7 @@
 				<!-- 設定工作地點 -->
 				<div class='edit_div'>工作地點
 					<div class='editloc'>
-						<div class='loctag' ng-repeat='loc in locations'>{{loc}}<a href='javascript:;' class='icon title-chart delete' ng-click="deleteloca(loc)"></a></div>
+						<div class='loctag' ng-repeat='loc in locations'>{{loc}}<a href='javascript:;' class='icon delete' ng-click="deleteloca(loc)"></a></div>
 						<br><br>
 						<input class='in_cv' ng-model='newLoca' placeholder='輸入地點名稱'><a href="javascript:;" ng-click="newaddloca()"><button class='b_cv'>添加</button></a>
 						<br>
@@ -219,21 +219,21 @@
 		<div  class="clearfix showskills"  
 		ng-hide='showSpecial'
 		ng-init="skillListInit()">
-			<a href="javascript:;" class='icon title-chart edit' ng-click='showSpecialFun()' style='top:20px;'></a>
+			<a href="javascript:;" class='icon edit' ng-click='showSpecialFun()' style='top:20px;'></a>
 			<ul class='skillList'>
 				<li class='skill' ng-repeat='skill in myskills'>{{skill}}</li>
 			</ul>
 		</div>
 		<?php }else{ ?>
 		<a href="javascript:;" class='add_ee' style='margin-left:15px;' ng-click='showSpecialFun()' ng-hide='showSpecial' ng-init="skillListInit()">
-			<span class='icon title-chart add'></span>
+			<span class='icon add'></span>
 			新增你的技能
 		</a>
 		<?php } ?>
 			
 		<div class='clearfix' ng-show='showSpecial'>
 			<ul class='skillList'>
-				<li class='skill' ng-repeat='skill in myskills'>{{skill}}<a href='javascript:;' class='icon title-chart delete' ng-click='deleteskill(skill)'></a></li>
+				<li class='skill' ng-repeat='skill in myskills'>{{skill}}<a href='javascript:;' class='icon delete' ng-click='deleteskill(skill)'></a></li>
 			</ul>
 
 			<div class='addskills'>
@@ -309,14 +309,14 @@
 			<!-- 顯示教育列表 -->
 			<ul class='educationListUl'>
 				<li ng-repeat='eduexp in eduexps' ng-hide="eduexp.status">
-					<a href="javascript:;" class='icon title-chart edit' ng-click='showEducationFun(eduexp)'></a>
+					<a href="javascript:;" class='icon edit' ng-click='showEducationFun(eduexp)'></a>
 					<p>{{eduexp.start_edu}}-{{eduexp.end_edu}} . {{eduexp.school}}</p>
 					<p class='sub'>{{eduexp.education}} . {{eduexp.major}}</p>
 				</li>
 			</ul>
 
 			<a href="javascript:;" class='add_ee' ng-click='addEducationFun()'>
-				<span class='icon title-chart add'></span>
+				<span class='icon add'></span>
 				新增教育經歷
 			</a>
 		</div>
@@ -386,7 +386,7 @@
 			<!-- 顯示經驗列表 -->
 			<ul class='educationListUl'>
 				<li ng-repeat='experience in experiences' ng-hide="experience.showEdit">
-					<a href="javascript:;" class='icon title-chart edit' ng-click="showEditExperienceFun(experience)"></a>
+					<a href="javascript:;" class='icon edit' ng-click="showEditExperienceFun(experience)"></a>
 					<p>{{experience.name}} . {{experience.company}}</p>
 					<p>{{experience.role}} . {{experience.year}},{{experience.howlong}}</p>
 					<p class='sub'>{{experience.detail}}</p>
@@ -394,7 +394,7 @@
 			</ul>
 
 			<a href="javascript:;" class='add_ee' ng-click='addExperienceFun()'>
-				<span class='icon title-chart add'></span>
+				<span class='icon add'></span>
 				新增經歷
 			</a>
 		</div>
@@ -406,7 +406,7 @@
 		<div class='clearfix experienceList'>
 
 			<div class='addSelf' ng-hide='addSelfStatus'>
-				<a href="javascript:;" class='icon title-chart edit' ng-click="showAddselfFun()"></a>
+				<a href="javascript:;" class='icon edit' ng-click="showAddselfFun()"></a>
 				<input type='hidden' ng-init="Addself = '請添加自我描述'">
 				<?php if(!empty($this->laout_arr['member'][0]['selfIntro'])){ ?>
 				<input type='hidden' ng-init="Addself = '<?php echo $this->laout_arr['member'][0]['selfIntro']; ?>'">

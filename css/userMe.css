@@ -4,7 +4,7 @@
 	.b_cv:hover{cursor: pointer;}
 	.in_cv{width: 226px;height: 30px;padding: 12px 15px 12px 15px;background:#f8f9fa ;border:none;font-size: 16px;border-radius: 5px;}
 	.in_cv:focus{border:2px solid #36a9e5;}
-	.edit{background-position: -173px -67px;width: 14px;height: 15px;position: absolute;right: 0;}
+	.edit{background-position: -173px -67px;width: 14px;height: 15px;position: absolute;right: 0;transition: none;}
 	.edit:hover{background-position: -173px -35px;}
 	.add{background-position: -190px -85px;width: 13px;height: 13px;}
 	.selectIcon{background-position: -136px -135px;width: 16px;height: 12px;position: absolute;right: 10px;top: 7px;}

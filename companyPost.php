@@ -10,6 +10,8 @@ $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->memberJob="taolou_member_jobmanage";
 $obj_tmp1->memberCV="taolou_member_cv";
 
+$obj_tmp1->hrNotification="taolou_member_notification_hr";
+
 $obj_tmp1->job="taolou_job";
 
 $obj_tmp1->tmp_where="";
@@ -21,6 +23,7 @@ if(@laout_check($_GET['action']) != ""){$getAction=laout_check($_GET['action']);
 if(@laout_check($_GET['jobId']) != ""){@$jobId=$obj_tmp1->decode(laout_check($_GET['jobId']));}else{@$jobId="";}
 
 if(@$_SESSION['user']['id'] != ""){
+    @$userId=$_SESSION['user']['id'];
     if(@$_SESSION['user']['userType']=='2'){
         if(@$_SESSION['user']['company'] != "" && @$_SESSION['user']['company'] != "0"){
             @$companyId=$_SESSION['user']['company'];
@@ -34,6 +37,31 @@ if(@$_SESSION['user']['id'] != ""){
     }else{$action="none";}
 }else{$action='none';}
 //===================
+
+//notification
+    $sql_checkNotiS="SELECT ".$obj_tmp1->hrNotification.".*, ".$obj_tmp1->memberJob.".jobId 
+                     FROM ".$obj_tmp1->hrNotification."
+                     LEFT JOIN ".$obj_tmp1->memberJob." ON ".$obj_tmp1->memberJob.".id=".$obj_tmp1->hrNotification.".itemId 
+                     WHERE ".$obj_tmp1->hrNotification.".memberId='".$userId."'
+                     AND ".$obj_tmp1->hrNotification.".type='jobApply'
+                     OR ".$obj_tmp1->hrNotification.".type='jobExpired'";
+    $obj_tmp1->laout_arr['checkNotiS']=array();
+    $obj_tmp1->basic_select('laout_arr','checkNotiS',$sql_checkNotiS);
+        //echo $sql_checkNotiS;
+        //print_r($obj_tmp1->laout_arr['checkNotiS']);
+    //array to save
+    $obj_tmp1->jobApply=array();
+    $obj_tmp1->jobExpired=array();
+    //===============================
+    if(!empty($obj_tmp1->laout_arr['checkNotiS'])){
+        foreach($obj_tmp1->laout_arr['checkNotiS'] as $key => $value) {
+            if($value['type']=='jobApply'){array_push($obj_tmp1->jobApply, $value['jobId']);}
+            else if($value['type']=='jobExpired'){array_push($obj_tmp1->jobExpired, $value['jobId']);}
+        }
+    }
+    //print_r($obj_tmp1->jobApply);
+    //print_r($obj_tmp1->jobExpired);
+//===========================================
 
 switch(@$action){
 

@@ -14,7 +14,7 @@
     <p><span class='icon newspaper'></span>目前沒有無效職位喔</p>
     <?php }else{ ?>
     <?php foreach($this->laout_arr['showJob'] as $jobKey => $jobValue){ ?>
-    <div class='showJobDiv'>
+    <div class='showJobDiv' style='<?php if(in_array($jobValue['id'], $this->jobExpired)){echo"border:2px solid #FEC0A2;";} ?>'>
     	<div class='joblist'>
     		<h2>
     			<?php echo $jobValue['title']; ?> , 
@@ -31,8 +31,8 @@
 				<?php } ?>
 			</p>
 
-			<a href="companyPost.php?action=postJob&jobId=" class='editJob' style='background:#eb6a64'>刪除職位</a>
-            <a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob'>編輯職位</a>
+			<a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob butShadow' style='background:#eb6a64;float:right;margin-right:15px;margin-top:-7px;'>刪除職位</a>
+            <a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob butShadow' style='float:right;margin-right:15px;margin-top:-7px;'>編輯職位</a>
     	</div>
     </div>
     <?php }} ?>

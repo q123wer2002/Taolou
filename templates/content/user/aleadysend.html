@@ -18,7 +18,7 @@
                 foreach($this->saveJob as $jobKey) { 
                     foreach($jobKey as $jobSubKey => $jobValue){?>
         <a class='jobitem'>
-            <div class='jobInfo'>
+            <div class='jobInfo' <?php if(!empty($this->jobNotiS_NIntell[$jobValue['id']])){echo "style='border:2px solid #F38C5B;'";} ?>>
                 <figure>
                     <img src="<?php echo $jobValue['logo']; ?>">
                 </figure>
@@ -31,11 +31,11 @@
                     <span class="type"><span class='icon jobtypeicon'></span><b><?php echo $jobValue['jobType']; ?></b></span>
                     <span class="salary-start"><span class='icon salaryicon'></span><b><?php echo $jobValue['salary']; ?></b></span>
                     <?php if($jobValue['stock_option']=='y'){ ?>
-                    <span class="stock-share"><span class='icon stockicon'></span>提供股票或期权<b></b></span>
+                    <span class="stock-share"><span class='icon stockicon'></span>提供股票或期權<b></b></span>
                     <?php } ?>
                 </div>
                 <div class="status">
-                    <span class='resume_status'>
+                    <span class='resume_status' <?php if(in_array('JOB_APPLY',$this->jobNotiS_NIntell[$jobValue['id']])){echo "style='color:#F38C5B;'";} ?>>
                         <?php
                         if($jobValue['jobstatus'] == 'download'){echo "履歷已被下載";}
                         else if($jobValue['jobstatus'] == 'wait'){echo "已面試";}
@@ -59,6 +59,13 @@
                         ?>
                     </span>
                 </div>
+                 <!-- 評論 -->
+                <?php if(!empty($jobValue['comment'])){ ?>
+                <span class='commentHREF' class='cmpComment'><span class='icon tagIcon'></span><span class='cmpCommentTEXT'>建議</span></span>  
+                <br>
+                <span style='padding:10px 30px;color:#554F4F;<?php if(in_array('comment',$this->jobNotiS_NIntell[$jobValue['id']])){echo "color:#F38C5B;";} ?>'><?php echo $jobValue['comment']; ?></span>                  
+                <?php } ?>
+                <!-- end評論 -->
             </div>
         </a>
         <?php }}}else{ ?>

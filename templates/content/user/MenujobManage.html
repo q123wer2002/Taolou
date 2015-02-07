@@ -1,12 +1,14 @@
 <style type="text/css">
     .jobInfo:hover{background: #ffffff;}
+    .jobInfo{height: auto;}
     .author{margin-bottom: 10px;}
     .author a{text-decoration: none;font-weight: 700;color: #707b91;}
     .author a b{font-weight: 700;}
     .author a:hover{text-decoration: underline;}
     .status a{text-decoration: none;font-weight: 700;color: #707b91;}
-    .job-meta{font-size: 17px;margin-top: 50px;}
+    .job-meta{font-size: 17px;margin: 0;top:43px;}
     .dividtime{font-size: 17px;}
+    .cmpCommentTEXT{font-weight: 700;margin-top: 10px;}
 </style>
 
 <nav class='partner'>
@@ -14,13 +16,18 @@
         <span>求職管理</span>
     </h3>
 	<div class='partnerList'>
-		<a href="jobManage.php?action=autosendCV">
+		<a href="jobManage.php?action=autosendCV" style='
+        <?php if(empty($_GET['action']) || $_GET['action']=='autosendCV'){echo "background:#ECEEF1;";} ?>
+        <?php if(!empty($this->jobNotiS_Intell)){echo "border:2px solid #FEC0A2;color:#FEC0A2;";} ?>'>
 			<span class='job_management'>智能投遞工作</span>
 		</a>
-        <a href="jobManage.php?action=aleadysend">
+        <a href="jobManage.php?action=aleadysend" style='
+        <?php if(!empty($_GET['action']) && $_GET['action']=='aleadysend'){echo "background:#ECEEF1;";} ?>
+        <?php if(!empty($this->jobNotiS_NIntell)){echo "border:2px solid #FEC0A2;color:#FEC0A2;";} ?>'>
             <span class='job_management'>已投遞工作</span>
         </a>
-        <a href="jobManage.php?action=aleadylove">
+        <a href="jobManage.php?action=aleadylove"
+         <?php if(!empty($_GET['action']) && $_GET['action']=='aleadylove'){echo "style='background:#ECEEF1;'";} ?>>
             <span class='job_management'>已收藏工作</span>
         </a>
 	</div>

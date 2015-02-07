@@ -91,8 +91,8 @@
   padding: 10px 20px;
   font-size: 16px;
   font-weight: 500;
-  border-radius: 3px;
 }
+.btn:hover{box-shadow:none;}
 
   .Mstitle{font-size: 15px;font-weight: 400;}
   .partnerList a{padding: 5px 5px;}
@@ -105,10 +105,13 @@
 
 
   .saying{width: 350px;padding: 10px 7px;margin-top: 10px;position: relative;font-size: 15px;}
-  .LeftSay{text-align: left;margin-left: 10px;float: left;}
-  .RightSay{text-align: right;float: right;margin-right: 10px;}
+  .LeftSay{text-align: left;margin-left: 15px;float: left;}
+  .RightSay{text-align: right;float: right;margin-right: 15px;}
   .rightMes{text-align: left;}
   .whiteBG{width: 500px;height: 30px;position: relative;float: left;}
   .timestamp{font-size: 9px;color: black;}
+    .arrow{width: 0;height: 0;position: absolute;top:5px;border-width: 10px;border-style: solid;border-color:transparent;}
+    .LEFT{left: -20px;border-right-color: #eceef1;}
+    .RIGHT{right: -20px;border-left-color: #eceef1;}
 
   .errorMes{color: #eb6a64;font-size: 9px;font-weight: 400;position: absolute;left: 50px;bottom: 45px;}

@@ -58,10 +58,11 @@
                     <div class='ResumeSkillDiv'>
                         <p>簡歷技能</p>
                         <ul class='skillListUl' ng-hide="resume.selectSkill">
-                            <li ng-repeat="skill in resume.skill">{{skill}}</li>
+                            <li ng-repeat="skill in resume.skill" ng-if="skill != ''">{{skill}}</li>
+                            <li ng-repeat="skill in resume.skill" ng-if="resume.skill==''" style='background:#d94600;color:#ffffff;'>還沒填選技能！</li>
                         </ul>
                         <ul class='skillListUl' ng-show="resume.selectSkill">
-                            <li ng-repeat="skill in resume.skill">{{skill}}
+                            <li ng-repeat="skill in resume.skill" ng-if="skill!=''">{{skill}}
                             <a href="javascript:;" ng-click="remove(resume,skill)">
                                 <span class='icon blackCrossIcon' style='width:12px;height:12px;background-position:-23px -83px;'></span>
                             </a>

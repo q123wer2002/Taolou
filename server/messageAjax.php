@@ -9,6 +9,8 @@ $obj_tmp1->companyTable="taolou_company";
 $obj_tmp1->member='taolou_member_detail';
 $obj_tmp1->message="taolou_member_message";
 
+$obj_tmp1->userNotification="taolou_member_notification_user";
+$obj_tmp1->hrNotification="taolou_member_notification_hr";
 
 $obj_tmp1->tmp_where="";
 $obj_tmp1->laout_set=true;
@@ -21,7 +23,9 @@ if(@$_POST['method'] == "message"){
 	$sql_deleteSys="DELETE FROM ".$obj_tmp1->message." WHERE ".$obj_tmp1->message.".sendUserId='".$userId."' AND ".$obj_tmp1->message.".receiveUserId='".$_POST['reveicer']."' AND status='n'";
 	mysql_query($sql_deleteSys);
 
-	$sql_insertMessage="INSERT INTO ".$obj_tmp1->message." VALUES (NULL,'".$userId."','".$_POST['reveicer']."','".$_POST['messagecontent']."','y',CURRENT_TIMESTAMP)";
+	//
+	$messageContent=laout_check($_POST['messagecontent']);
+	$sql_insertMessage="INSERT INTO ".$obj_tmp1->message." VALUES (NULL,'".$userId."','".$_POST['reveicer']."','".$messageContent."','y',CURRENT_TIMESTAMP)";
 	mysql_query($sql_insertMessage);
 
 	//mail alert
@@ -34,6 +38,29 @@ if(@$_POST['method'] == "message"){
 		//echo $sql_check;
 		//print_r($obj_tmp1->laout_arr['checkUser']);
 	//==========================
+
+	//new notitifications
+		//1. find message ID
+	$sql_finID="SELECT ".$obj_tmp1->message.".* ,".$obj_tmp1->member.".companyHr as TYPE 
+				FROM ".$obj_tmp1->message.", ".$obj_tmp1->member."
+				WHERE ".$obj_tmp1->message.".sendUserId='".$userId."'
+				AND ".$obj_tmp1->message.".receiveUserId='".$_POST['reveicer']."'
+				AND ".$obj_tmp1->message.".message='".$messageContent."'
+				AND ".$obj_tmp1->member.".id='".$_POST['reveicer']."'";
+	$obj_tmp1->laout_arr['finID']=array();
+	$obj_tmp1->basic_select('laout_arr','finID',$sql_finID);
+		//echo $sql_finID;
+		//print_r($obj_tmp1->laout_arr['finID']);
+		//2. input into notification
+	if(!empty($obj_tmp1->laout_arr['finID'])){
+		if($obj_tmp1->laout_arr['finID'][0]['TYPE']=='n'){
+			$sql_notiS="INSERT INTO ".$obj_tmp1->userNotification." VALUES(NULL,'".$_POST['reveicer']."','message','".$obj_tmp1->laout_arr['finID'][0]['id']."','y',CURRENT_TIMESTAMP)";
+		}else if($obj_tmp1->laout_arr['finID'][0]['TYPE']=='y'){
+			$sql_notiS="INSERT INTO ".$obj_tmp1->hrNotification." VALUES(NULL,'".$_POST['reveicer']."','message','".$obj_tmp1->laout_arr['finID'][0]['id']."','y',CURRENT_TIMESTAMP)";
+		}
+		mysql_query($sql_notiS);
+	}
+	// end notitifications===============
 
 	if(!empty($obj_tmp1->laout_arr['checkUser']) && $obj_tmp1->laout_arr['checkUser'][0]['messageEmail']=='y'){
 		//寄信等待認證

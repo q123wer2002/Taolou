@@ -49,9 +49,8 @@
 			
 			<div class='search'>
 				<form class='searchDiv'>
-					<a href="javascript:;" class='icon title-chart inputSearch' ng-click='search()'></a>
 					<input type='text' class='searchBar' ng-model='searchText' placeholder='{{searchPlaceHolder}}'>
-					<a href='javascript:;' id='searchBAR' style='position:absolute;top:-5px;right:0;background:#17B385;color:#ffffff;padding:5px 3px;border-radius:3px;' ng-click='search()'>搜尋</a>
+					<a href="javascript:;" class='icon inputSearch' ng-click='search()'></a>
 				</form>
 
 				<div class='searchResult' ng-show='companySearch || jobSearch || noSearch'>
@@ -90,7 +89,13 @@
 				<span id='alertMailValidMes' class='mailMessage'>認證信箱</span>
 				<?php } ?>
 				<div class='userPicture' style="background-image: url(<?php if(!empty($_SESSION['user']['userPicture'])){echo $_SESSION['user']['userPicture'];}else{echo "images/userMe/user-default.jpg";} ?>);">
+					<?php if(@$_SESSION['user']['notification']){ ?>
+					<span class='notification' id='imageNotification'><?php echo $_SESSION['user']['notification']; ?></span>
+					<?php } ?>
 					<ul class='userMenuListUl'>
+						<?php if(@$_SESSION['user']['notification']){ ?>
+						<a href="notification.php"><li style='background:#d94600;'>新訊息</li></a>
+						<?php } ?>
 						<a href="userMe.php"><li>線上履歷</li></a>
 						<a href="userSetting.php"><li>設定</li></a>
 						<a href="javescript:;" ng-click='logout()'><li>登出</li></a>
@@ -107,7 +112,13 @@
 				<a href="userMessage.php" class='icon title-chart userMessages'></a>
 				<span class='mailMessage'>私信</span>
 				<div class='userPicture' style="background-image: url(<?php if(!empty($_SESSION['user']['userPicture'])){echo $_SESSION['user']['userPicture'];}else{echo "images/userMe/user-default.jpg";} ?>);">
+					<?php if(@$_SESSION['user']['notification']){ ?>
+					<span class='notification' id='imageNotification'><?php echo $_SESSION['user']['notification']; ?></span>
+					<?php } ?>
 					<ul class='userMenuListUl'>
+						<?php if(@$_SESSION['user']['notification']){ ?>
+						<a href="notification.php"><li style='background:#d94600;'>新訊息</li></a>
+						<?php } ?>
 						<a href="userMe.php"><li>個人資料</li></a>
 						<a href="userSetting.php"><li>設定</li></a>
 						<a href="javescript:;" ng-click='logout()'><li>登出</li></a>

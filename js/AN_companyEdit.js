@@ -161,7 +161,6 @@ TaoLou.controller('Taolou_companyEdit',['$scope','$http',function companyEdit($s
 		if($scope.companyShortName==""){$scope.companyEditError="公司簡稱未填寫";}
 		else if($scope.companyName==""){$scope.companyEditError="公司名稱未填寫";}
 		else if($scope.companyWebsite==""){$scope.companyEditError="公司網址未填寫";}
-		else if($scope.companyFB==""){$scope.companyEditError="公司FB未填寫";}
 		else if($scope.companySize==""){$scope.companyEditError="公司規模未選擇";}
 		else if($scope.companyDetail==""){$scope.companyEditError="公司描述未填寫";}
 		else if($scope.myskills==""){$scope.companyEditError="公司專長未選填";}

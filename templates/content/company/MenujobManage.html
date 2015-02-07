@@ -8,11 +8,12 @@
     .joblist h2{font-size: 22px;}
     .jobName{font-size: 18px;}
     .meta-item{display: inline-block;padding: 0;width: 80px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 16px;}
+    .head-meta{padding: 0px 0px 10px 0px;}
     .found-time,.stockOption{width: 120px;}
-    .editJob{color: #ffffff;background:#17b385;font-size: 15px;border-radius: 3px;padding: 7px 5px;float: right;margin-right: 10px;margin-top: -30px;}
+    .editJob{color: #ffffff;background:#17b385;font-size: 15px;padding: 7px 5px;margin-left: 15px;}
+    .editJob:hover{box-shadow: none;}
     .but{color: #ffffff;background:#17b385;font-size: 15px;border-radius: 3px;padding: 7px 5px;margin-left:30px;margin-top: 30px;float:left;}
-    .itemMenu{display: block;}
-    .checkSeeker{background: #FFBE0E;color: #ffffff;padding: 5px;border-radius: 3px;}
+    .itemMenu{display: block;border-top: 1px solid #ECEEF1;}
     .bg{position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
     .check{text-align:center;position: fixed;background:#ffffff;height:auto;box-shadow: 3px black;z-index: 10;box-shadow: 0px 5px 20px 5px #888888;left: 40%;border-radius: 5px;padding: 30px;top: 150px;padding-bottom: 80px;}
     .textarea{background: #eceef1;width: 240px;height: 120px;padding: 10px;border: none;border-radius: 3px;font-size: 14px;position: relative;z-index: 2;margin-top: 20px;}
@@ -32,13 +33,18 @@
         });
         </script>
         <?php }else{ ?>
-        <a href="companyPost.php?action=ManageJob" class='itemMenu'>
+        <a href="companyPost.php?action=ManageJob" class='itemMenu' style='
+        <?php if(empty($_GET['action']) || $_GET['action']=='ManageJob'){echo "background:#ECEEF1;";} ?>
+        <?php if(!empty($this->jobApply)){echo "border:2px solid #FEC0A2;color:#FEC0A2;";} ?>'>
             <span class='job_management'>有效職位</span>
         </a>
-        <a href="companyPost.php?action=found" class='itemMenu'>
+        <a href="companyPost.php?action=found" class='itemMenu' style='
+        <?php if(!empty($_GET['action']) && $_GET['action']=='found'){echo "background:#ECEEF1;";} ?>'>
             <span class='job_management'>已解決職位</span>
         </a>
-        <a href="companyPost.php?action=invalid" class='itemMenu'>
+        <a href="companyPost.php?action=invalid" class='itemMenu' style='
+        <?php if(!empty($_GET['action']) && $_GET['action']=='invalid'){echo "background:#ECEEF1;";} ?>
+        <?php if(!empty($this->jobExpired)){echo "border:2px solid #FEC0A2;color:#FEC0A2;";} ?>'>
             <span class='job_management'>無效職位</span>
         </a>
         <?php } ?>

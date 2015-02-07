@@ -61,8 +61,9 @@
 				<span class="meta-item stockOption"><span class="icon stockicon"></span>提供股票期權</span>
 				<?php } ?>
 			</p>
-
-            <a href="javascript:;" class='editJob' style='background:#36A9E5' ng-click='showMan()'>觀看錄取人資訊</a>
+            <a href="companyPost.php?action=postJob&jobId=<?php echo $this->encode($jobValue['id']); ?>" class='editJob butShadow' style='float:right;margin-right:15px;margin-top:-7px;'>編輯職位</a>
+            
+            <a href="javascript:;" class='editJob butShadow' style='background:#36A9E5' ng-click='showMan()'>觀看錄取人資訊</a>
 
     	</div>
     </div>
